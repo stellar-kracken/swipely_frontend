@@ -1,0 +1,97 @@
+import { Link } from "react-router-dom";
+
+interface BridgeStatusCardProps {
+  name: string;
+  status: "healthy" | "degraded" | "down" | "unknown";
+  totalValueLocked: number;
+  supplyOnStellar: number;
+  supplyOnSource: number;
+  mismatchPercentage: number;
+}
+
+function getStatusBadge(status: string) {
+  const styles: Record<string, string> = {
+    healthy: "bg-green-500/20 text-green-400",
+    degraded: "bg-yellow-500/20 text-yellow-400",
+    down: "bg-red-500/20 text-red-400",
+    unknown: "bg-gray-500/20 text-gray-400",
+  };
+
+  return (
+    <span
+      className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${styles[status] || styles.unknown}`}
+    >
+      {status.charAt(0).toUpperCase() + status.slice(1)}
+    </span>
+  );
+}
+
+function formatNumber(num: number): string {
+  if (num >= 1_000_000_000) return `$${(num / 1_000_000_000).toFixed(2)}B`;
+  if (num >= 1_000_000) return `$${(num / 1_000_000).toFixed(2)}M`;
+  if (num >= 1_000) return `$${(num / 1_000).toFixed(2)}K`;
+  return `$${num.toFixed(2)}`;
+}
+
+export default function BridgeStatusCard({
+  name,
+  status,
+  totalValueLocked,
+  supplyOnStellar,
+  supplyOnSource,
+  mismatchPercentage,
+}: BridgeStatusCardProps) {
+  return (
+    <Link
+      to={`/bridges?selected=${encodeURIComponent(name)}`}
+      className="block bg-stellar-card border border-stellar-border rounded-lg p-6 hover:border-stellar-blue transition-colors"
+    >
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-semibold text-white">{name}</h3>
+        {getStatusBadge(status)}
+      </div>
+
+      <div className="space-y-3">
+        <div className="flex justify-between">
+          <span className="text-sm text-stellar-text-secondary">TVL</span>
+          <span className="text-sm text-white font-medium">
+            {formatNumber(totalValueLocked)}
+          </span>
+        </div>
+
+        <div className="flex justify-between">
+          <span className="text-sm text-stellar-text-secondary">
+            Supply (Stellar)
+          </span>
+          <span className="text-sm text-white font-medium">
+            {supplyOnStellar.toLocaleString()}
+          </span>
+        </div>
+
+        <div className="flex justify-between">
+          <span className="text-sm text-stellar-text-secondary">
+            Supply (Source)
+          </span>
+          <span className="text-sm text-white font-medium">
+            {supplyOnSource.toLocaleString()}
+          </span>
+        </div>
+
+        <div className="flex justify-between">
+          <span className="text-sm text-stellar-text-secondary">Mismatch</span>
+          <span
+            className={`text-sm font-medium ${
+              mismatchPercentage > 1
+                ? "text-red-400"
+                : mismatchPercentage > 0.5
+                  ? "text-yellow-400"
+                  : "text-green-400"
+            }`}
+          >
+            {mismatchPercentage.toFixed(3)}%
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
