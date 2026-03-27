@@ -48,13 +48,26 @@ export default function Bridges() {
         </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
+            <caption className="sr-only">
+              Bridge performance metrics table
+            </caption>
             <thead>
               <tr className="text-left text-stellar-text-secondary border-b border-stellar-border">
-                <th className="pb-3 pr-4">Bridge</th>
-                <th className="pb-3 pr-4">24h Volume</th>
-                <th className="pb-3 pr-4">7d Volume</th>
-                <th className="pb-3 pr-4">Avg Transfer Time</th>
-                <th className="pb-3">30d Uptime</th>
+                <th scope="col" className="pb-3 pr-4">
+                  Bridge
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  24h Volume
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  7d Volume
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  Avg Transfer Time
+                </th>
+                <th scope="col" className="pb-3">
+                  30d Uptime
+                </th>
               </tr>
             </thead>
             <tbody className="text-white">

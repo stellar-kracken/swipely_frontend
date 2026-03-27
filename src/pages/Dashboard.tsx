@@ -7,6 +7,8 @@ import HealthScoreCard, {
   HealthScoreCardSkeleton,
 } from "../components/HealthScoreCard";
 import BridgeStatusCard from "../components/BridgeStatusCard";
+import OnboardingDialog from "../components/OnboardingDialog";
+import { useLocalStorageState } from "../hooks/useLocalStorageState";
 import type {
   AssetWithHealth,
   SortField,
@@ -64,6 +66,12 @@ export default function Dashboard() {
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
   const [filterStatus, setFilterStatus] = useState<FilterStatus>("all");
 
+  const [onboardingCompleted, setOnboardingCompleted] = useLocalStorageState(
+    "bridge-watch:onboarding:v1",
+    false
+  );
+  const [onboardingOpen, setOnboardingOpen] = useState(!onboardingCompleted);
+
   const handleHealthUpdate = useCallback(
     (data: unknown) => {
       const healthData = data as { channel: string } & HealthScore;
@@ -98,11 +106,38 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-8">
+      <OnboardingDialog
+        open={onboardingOpen}
+        onClose={() => setOnboardingOpen(false)}
+        onComplete={() => {
+          setOnboardingCompleted(true);
+          setOnboardingOpen(false);
+        }}
+      />
+
       <header>
         <h1 className="text-3xl font-bold text-white">Dashboard</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Real-time monitoring of bridged assets on the Stellar network
         </p>
+        {!onboardingOpen && !onboardingCompleted && (
+          <button
+            type="button"
+            onClick={() => setOnboardingOpen(true)}
+            className="mt-4 text-sm text-stellar-blue hover:underline focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-md px-2 py-1"
+          >
+            Continue onboarding
+          </button>
+        )}
+        {onboardingCompleted && (
+          <button
+            type="button"
+            onClick={() => setOnboardingOpen(true)}
+            className="mt-4 text-sm text-stellar-text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-md px-2 py-1"
+          >
+            Show onboarding
+          </button>
+        )}
       </header>
 
       <section aria-labelledby="asset-health-heading">

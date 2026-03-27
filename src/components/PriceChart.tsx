@@ -29,14 +29,17 @@ const SOURCE_COLORS: Record<string, string> = {
 };
 
 export default function PriceChart({ symbol, data, isLoading }: PriceChartProps) {
+  const titleId = `price-chart-title-${symbol}`;
+  const descId = `price-chart-desc-${symbol}`;
+
   if (isLoading) {
     return (
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">
+        <h3 id={titleId} className="text-lg font-semibold text-white mb-4">
           {symbol} Price History
         </h3>
-        <div className="h-64 flex items-center justify-center">
-          <span className="text-stellar-text-secondary">Loading chart data...</span>
+        <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
+          <span className="text-stellar-text-secondary">Loading chart data…</span>
         </div>
       </div>
     );
@@ -45,10 +48,10 @@ export default function PriceChart({ symbol, data, isLoading }: PriceChartProps)
   if (data.length === 0) {
     return (
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">
+        <h3 id={titleId} className="text-lg font-semibold text-white mb-4">
           {symbol} Price History
         </h3>
-        <div className="h-64 flex items-center justify-center">
+        <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
           <span className="text-stellar-text-secondary">No price data available</span>
         </div>
       </div>
@@ -59,12 +62,22 @@ export default function PriceChart({ symbol, data, isLoading }: PriceChartProps)
   const sources = [...new Set(data.map((d) => d.source))];
 
   return (
-    <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-white mb-4">
-        {symbol} Price History
-      </h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={data}>
+    <figure
+      className="bg-stellar-card border border-stellar-border rounded-lg p-6"
+      aria-labelledby={titleId}
+      aria-describedby={descId}
+    >
+      <figcaption>
+        <h3 id={titleId} className="text-lg font-semibold text-white mb-1">
+          {symbol} Price History
+        </h3>
+        <p id={descId} className="sr-only">
+          Line chart showing price history for {symbol} across sources.
+        </p>
+      </figcaption>
+      <div role="img" aria-label={`${symbol} price history chart`} className="mt-3">
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={data}>
           <CartesianGrid strokeDasharray="3 3" stroke="#1E2340" />
           <XAxis dataKey="timestamp" stroke="#8A8FA8" tick={{ fontSize: 12 }} />
           <YAxis stroke="#8A8FA8" tick={{ fontSize: 12 }} domain={["auto", "auto"]} />
@@ -88,8 +101,9 @@ export default function PriceChart({ symbol, data, isLoading }: PriceChartProps)
               strokeWidth={2}
             />
           ))}
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </figure>
   );
 }
