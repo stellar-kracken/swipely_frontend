@@ -51,12 +51,23 @@ export default function AssetDetail() {
         </h3>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
+            <caption className="sr-only">
+              Price sources for {symbol} including last update times
+            </caption>
             <thead>
               <tr className="text-left text-stellar-text-secondary border-b border-stellar-border">
-                <th className="pb-3 pr-4">Source</th>
-                <th className="pb-3 pr-4">Price</th>
-                <th className="pb-3 pr-4">Last Updated</th>
-                <th className="pb-3">Deviation</th>
+                <th scope="col" className="pb-3 pr-4">
+                  Source
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  Price
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  Last Updated
+                </th>
+                <th scope="col" className="pb-3">
+                  Deviation
+                </th>
               </tr>
             </thead>
             <tbody className="text-white">
@@ -71,7 +82,9 @@ export default function AssetDetail() {
                       key={source.source}
                       className="border-b border-stellar-border"
                     >
-                      <td className="py-3 pr-4">{source.source}</td>
+                      <th scope="row" className="py-3 pr-4 font-medium text-white">
+                        {source.source}
+                      </th>
                       <td className="py-3 pr-4">
                         ${source.price.toFixed(4)}
                       </td>

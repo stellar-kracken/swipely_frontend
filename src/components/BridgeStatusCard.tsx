@@ -44,7 +44,8 @@ export default function BridgeStatusCard({
   return (
     <Link
       to={`/bridges?selected=${encodeURIComponent(name)}`}
-      className="block bg-stellar-card border border-stellar-border rounded-lg p-6 hover:border-stellar-blue transition-colors"
+      className="block bg-stellar-card border border-stellar-border rounded-lg p-6 hover:border-stellar-blue transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-dark"
+      aria-label={`View details for bridge ${name}`}
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-lg font-semibold text-white">{name}</h3>

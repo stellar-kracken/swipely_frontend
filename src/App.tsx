@@ -1,20 +1,30 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
-import Dashboard from "./pages/Dashboard";
-import AssetDetail from "./pages/AssetDetail";
-import Bridges from "./pages/Bridges";
-import Analytics from "./pages/Analytics";
+
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const AssetDetail = lazy(() => import("./pages/AssetDetail"));
+const Bridges = lazy(() => import("./pages/Bridges"));
+const Analytics = lazy(() => import("./pages/Analytics"));
 
 function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/assets/:symbol" element={<AssetDetail />} />
-        <Route path="/bridges" element={<Bridges />} />
-        <Route path="/analytics" element={<Analytics />} />
-      </Route>
-    </Routes>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-stellar-dark flex items-center justify-center text-stellar-text-secondary">
+          Loading page…
+        </div>
+      }
+    >
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/assets/:symbol" element={<AssetDetail />} />
+          <Route path="/bridges" element={<Bridges />} />
+          <Route path="/analytics" element={<Analytics />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
