@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import GlobalSearch from "./search/GlobalSearch";
 
 const navLinks = [
   { to: "/", label: "Dashboard" },
@@ -33,8 +34,13 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-          <div className="text-sm text-stellar-text-secondary">
-            Stellar Network Monitor
+
+          {/* Right side: search + network label */}
+          <div className="flex items-center gap-4">
+            <GlobalSearch />
+            <span className="hidden sm:block text-sm text-stellar-text-secondary">
+              Stellar Network Monitor
+            </span>
           </div>
         </div>
       </div>
