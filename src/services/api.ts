@@ -1,5 +1,4 @@
-import type { Asset, HealthScore, AssetWithHealth, Bridge, BridgeStats } from "../types";
-
+import type { Asset, HealthScore, AssetWithHealth, Bridge , BridgeStats , TransactionPage, TransactionFilters} from "../types";
 const API_BASE_URL = "/api/v1";
 
 async function fetchApi<T>(endpoint: string): Promise<T> {
@@ -68,4 +67,36 @@ export function getBridges() {
 
 export function getBridgeStats(bridge: string) {
   return fetchApi<BridgeStats | null>(`/bridges/${bridge}/stats`);
+}
+
+// Transactions
+export function getTransactions(
+  filters: TransactionFilters,
+  page: number,
+  pageSize: number
+) {
+  const params = new URLSearchParams();
+  params.set("page", String(page));
+  params.set("pageSize", String(pageSize));
+  if (filters.bridge) params.set("bridge", filters.bridge);
+  if (filters.asset) params.set("asset", filters.asset);
+  if (filters.status !== "all") params.set("status", filters.status);
+  if (filters.search) params.set("search", filters.search);
+  if (filters.dateFrom) params.set("dateFrom", filters.dateFrom);
+  if (filters.dateTo) params.set("dateTo", filters.dateTo);
+
+  return fetchApi<TransactionPage>(`/transactions?${params.toString()}`);
+}
+
+export function exportTransactionsCsv(filters: TransactionFilters): string {
+  const params = new URLSearchParams();
+  if (filters.bridge) params.set("bridge", filters.bridge);
+  if (filters.asset) params.set("asset", filters.asset);
+  if (filters.status !== "all") params.set("status", filters.status);
+  if (filters.search) params.set("search", filters.search);
+  if (filters.dateFrom) params.set("dateFrom", filters.dateFrom);
+  if (filters.dateTo) params.set("dateTo", filters.dateTo);
+  params.set("format", "csv");
+
+  return `${API_BASE_URL}/transactions/export?${params.toString()}`;
 }

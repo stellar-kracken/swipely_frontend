@@ -46,4 +46,41 @@ export interface BridgeStats {
   totalTransactions: number;
   averageTransferTime: number;
   uptime30d: number;
+// Transaction History types
+export type TransactionStatus = "pending" | "completed" | "failed";
+
+export interface BridgeTransaction {
+  id: string;
+  txHash: string;
+  bridge: string;
+  asset: string;
+  amount: number;
+  sourceChain: string;
+  destinationChain: string;
+  senderAddress: string;
+  recipientAddress: string;
+  status: TransactionStatus;
+  fee: number;
+  timestamp: string;
+  confirmedAt: string | null;
+  stellarTxHash: string | null;
+  ethereumTxHash: string | null;
+  blockNumber: number | null;
+}
+
+export interface TransactionFilters {
+  bridge: string;
+  asset: string;
+  status: TransactionStatus | "all";
+  search: string;
+  dateFrom: string;
+  dateTo: string;
+}
+
+export interface TransactionPage {
+  transactions: BridgeTransaction[];
+  total: number;
+  page: number;
+  pageSize: number;
+  totalPages: number;
 }

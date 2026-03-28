@@ -4,6 +4,7 @@ import BridgeCard from "../components/BridgeCard";
 import BridgeFilterSort from "../components/BridgeFilterSort";
 import type { Bridge } from "../types";
 
+
 export default function Bridges() {
   const { data, isLoading } = useBridges();
   const [statusFilter, setStatusFilter] = useState("all");
