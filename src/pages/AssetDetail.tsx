@@ -10,7 +10,7 @@ import { ErrorBoundary, LoadingSpinner } from "../components/Skeleton";
 export default function AssetDetail() {
   const { symbol } = useParams<{ symbol: string }>();
   const { data: healthData } = useAssetHealth(symbol ?? "");
-  const { data: priceData, isLoading: priceLoading } = usePrices(symbol ?? "");
+  const { data: priceData } = usePrices(symbol ?? "");
 
   if (!symbol) {
     return (
@@ -47,11 +47,7 @@ export default function AssetDetail() {
           trend={healthData?.trend ?? null}
         />
         <div className="lg:col-span-2">
-          <PriceChart
-            symbol={symbol}
-            data={priceData?.history ?? []}
-            isLoading={priceLoading}
-          />
+          <PriceChart symbol={symbol} />
         </div>
       </div>
 
