@@ -1,13 +1,35 @@
 import { Link, useLocation } from "react-router-dom";
+import { SkeletonText } from "./Skeleton";
 
 const navLinks = [
-  { to: "/", label: "Dashboard" },
+  { to: "/dashboard", label: "Dashboard" },
   { to: "/bridges", label: "Bridges" },
+  { to: "/transactions", label: "Transactions" },
   { to: "/analytics", label: "Analytics" },
+  { to: "/reports", label: "Reports" },
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  isLoading?: boolean;
+}
+
+export default function Navbar({ isLoading = false }: NavbarProps) {
   const location = useLocation();
+
+  if (isLoading) {
+    return (
+      <nav className="border-b border-stellar-border bg-stellar-card px-4 py-3" aria-label="Primary loading navigation">
+        <div className="flex items-center gap-3">
+          <SkeletonText width="110px" height="1rem" variant="title" />
+          <div className="flex gap-2">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <SkeletonText key={i} width="70px" height="1rem" variant="text" />
+            ))}
+          </div>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <nav className="border-b border-stellar-border bg-stellar-card" aria-label="Primary">
@@ -25,7 +47,7 @@ export default function Navbar() {
               className="text-xl font-bold text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card rounded-sm"
               aria-label="Bridge Watch home"
             >
-              Bridge Watch
+              Bridge <span className="text-stellar-blue">Watch</span>
             </Link>
             <div className="hidden md:flex space-x-4">
               {navLinks.map((link) => (
