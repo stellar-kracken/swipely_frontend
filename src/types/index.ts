@@ -46,6 +46,8 @@ export interface BridgeStats {
   totalTransactions: number;
   averageTransferTime: number;
   uptime30d: number;
+}
+
 // Transaction History types
 export type TransactionStatus = "pending" | "completed" | "failed";
 

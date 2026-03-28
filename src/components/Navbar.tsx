@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SkeletonText } from "./Skeleton";
 import NotificationCenter from "./NotificationCenter";
-import { useNotificationContext } from "../context/NotificationContext";
+import { useNotificationContext } from "../hooks/useNotificationContext";
 
 const navLinks = [
   { to: "/dashboard", label: "Dashboard" },

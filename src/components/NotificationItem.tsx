@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Notification } from "../context/NotificationContext";
+import type { Notification } from "../context/NotificationContext.types";
 
 interface NotificationItemProps {
   notification: Notification;
