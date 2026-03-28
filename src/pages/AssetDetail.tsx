@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { useAssetHealth } from "../hooks/useAssets";
 import { usePrices } from "../hooks/usePrices";
@@ -7,6 +8,7 @@ import LiquidityDepthChart from "../components/LiquidityDepthChart";
 import type { DataTableColumnDef } from "../components/DataTable";
 import { DataTable } from "../components/DataTable";
 import type { CellContext } from "@tanstack/react-table";
+import { ErrorBoundary, LoadingSpinner } from "../components/Skeleton";
 
 export default function AssetDetail() {
   const { symbol } = useParams<{ symbol: string }>();
@@ -69,6 +71,23 @@ export default function AssetDetail() {
           Detailed monitoring for {symbol} on the Stellar network
         </p>
       </header>
+    <ErrorBoundary onRetry={() => window.location.reload()}>
+      <Suspense
+        fallback={
+          <LoadingSpinner
+            message={`Loading ${symbol} details...`}
+            progress={25}
+            className="max-w-lg mx-auto"
+          />
+        }
+      >
+        <div className="space-y-8">
+          <header>
+            <h1 className="text-3xl font-bold text-white">{symbol}</h1>
+            <p className="mt-2 text-stellar-text-secondary">
+              Detailed monitoring for {symbol} on the Stellar network
+            </p>
+          </header>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <HealthScoreCard
@@ -109,5 +128,7 @@ export default function AssetDetail() {
         }}
       />
     </div>
+  </Suspense>
+</ErrorBoundary>
   );
 }

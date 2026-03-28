@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
   Legend,
 } from "recharts";
+import { SkeletonChart } from "./Skeleton";
 
 function stellarVarRgb(varName: string, fallbackRgb: string): string {
   try {
@@ -53,6 +54,7 @@ export default function LiquidityDepthChart({
         </div>
       </div>
     );
+    return <SkeletonChart height={340} ariaLabel={`${symbol} liquidity chart loading`} />;
   }
 
   if (data.length === 0) {
