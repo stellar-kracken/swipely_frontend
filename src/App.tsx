@@ -11,6 +11,7 @@ const Analytics = lazy(() => import("./pages/Analytics"));
 const Reports = lazy(() => import("./pages/Reports"));
 const Landing = lazy(() => import("./pages/Landing"));
 const Settings = lazy(() => import("./pages/Settings"));
+const LiquidityDashboard = lazy(() => import("./pages/LiquidityDashboard"));
 
 
 function NotificationInitializer() {
@@ -39,6 +40,7 @@ function App() {
             <Route path="/assets/:symbol" element={<AssetDetail />} />
             <Route path="/bridges" element={<Bridges />} />
             <Route path="/analytics" element={<Analytics />} />
+            <Route path="/liquidity" element={<LiquidityDashboard />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="/settings" element={<Settings />} />
           </Route>
