@@ -1,4 +1,4 @@
-import type { Asset, HealthScore, AssetWithHealth } from "../types";
+import type { Asset, HealthScore, AssetWithHealth, Bridge, BridgeStats } from "../types";
 
 const API_BASE_URL = "/api/v1";
 
@@ -63,26 +63,9 @@ export function getAssetPrice(symbol: string) {
 
 // Bridges
 export function getBridges() {
-  return fetchApi<{
-    bridges: Array<{
-      name: string;
-      status: "healthy" | "degraded" | "down" | "unknown";
-      totalValueLocked: number;
-      supplyOnStellar: number;
-      supplyOnSource: number;
-      mismatchPercentage: number;
-    }>;
-  }>("/bridges");
+  return fetchApi<{ bridges: Bridge[] }>("/bridges");
 }
 
 export function getBridgeStats(bridge: string) {
-  return fetchApi<{
-    name: string;
-    volume24h: number;
-    volume7d: number;
-    volume30d: number;
-    totalTransactions: number;
-    averageTransferTime: number;
-    uptime30d: number;
-  } | null>(`/bridges/${bridge}/stats`);
+  return fetchApi<BridgeStats | null>(`/bridges/${bridge}/stats`);
 }

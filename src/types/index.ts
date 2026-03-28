@@ -28,3 +28,22 @@ export interface AssetWithHealth extends Asset {
 export type SortField = "symbol" | "score";
 export type SortOrder = "asc" | "desc";
 export type FilterStatus = "all" | HealthStatus;
+
+export interface Bridge {
+  name: string;
+  status: "healthy" | "degraded" | "down" | "unknown";
+  totalValueLocked: number;
+  supplyOnStellar: number;
+  supplyOnSource: number;
+  mismatchPercentage: number;
+}
+
+export interface BridgeStats {
+  name: string;
+  volume24h: number;
+  volume7d: number;
+  volume30d: number;
+  totalTransactions: number;
+  averageTransferTime: number;
+  uptime30d: number;
+}
