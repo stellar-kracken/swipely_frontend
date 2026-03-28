@@ -1,14 +1,30 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen, fireEvent, within } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
+import { NotificationProvider } from "../context/NotificationContext";
+import ThemeProvider from "../theme/ThemeProvider";
 import Navbar from "./Navbar";
+
+function renderNavbar(path = "/") {
+  const queryClient = new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  });
+  return render(
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <NotificationProvider>
+          <MemoryRouter initialEntries={[path]}>
+            <Navbar />
+          </MemoryRouter>
+        </NotificationProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  );
+}
 
 describe("Navbar", () => {
   it("opens and closes the mobile menu from the hamburger control", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Navbar />
-      </MemoryRouter>
-    );
+    renderNavbar("/dashboard");
 
     const openBtn = screen.getByRole("button", { name: "Open menu" });
     fireEvent.click(openBtn);
@@ -21,11 +37,7 @@ describe("Navbar", () => {
   });
 
   it("closes the menu when navigating via a mobile link", () => {
-    render(
-      <MemoryRouter initialEntries={["/"]}>
-        <Navbar />
-      </MemoryRouter>
-    );
+    renderNavbar("/dashboard");
 
     fireEvent.click(screen.getByRole("button", { name: "Open menu" }));
     const dialog = screen.getByRole("dialog", { name: "Mobile navigation" });

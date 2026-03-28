@@ -5,6 +5,7 @@ import AppQueryClientProvider from "./components/AppQueryClientProvider";
 import { PreferencesProvider } from "./context/PreferencesContext";
 import { ToastProvider } from "./context/ToastContext";
 import App from "./App";
+import ThemeProvider from "./theme/ThemeProvider";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -12,9 +13,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <ToastProvider>
       <PreferencesProvider>
         <AppQueryClientProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <ThemeProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </ThemeProvider>
         </AppQueryClientProvider>
       </PreferencesProvider>
     </ToastProvider>
