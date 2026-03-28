@@ -17,6 +17,13 @@ import {
   type PriceSourceId,
   usePriceComparison,
 } from "../hooks/usePriceComparison";
+import { SkeletonChart } from "./Skeleton";
+
+interface PriceDataPoint {
+  timestamp: string;
+  price: number;
+  source: string;
+}
 
 interface PriceChartProps {
   symbol: string;
@@ -91,6 +98,22 @@ export default function PriceChart({ symbol }: PriceChartProps) {
     () => msForRange(rangeId, customStartIso, customEndIso),
     [customEndIso, customStartIso, rangeId]
   );
+  if (isLoading) {
+    return <SkeletonChart height={340} ariaLabel={`${symbol} price chart loading`} />;
+  }
+
+  if (data.length === 0) {
+    return (
+      <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
+        <h3 id={titleId} className="text-lg font-semibold text-white mb-4">
+          {symbol} Price History
+        </h3>
+        <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
+          <span className="text-stellar-text-secondary">No price data available</span>
+        </div>
+      </div>
+    );
+  }
 
   const comparison = usePriceComparison({
     symbol,
