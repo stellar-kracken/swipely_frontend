@@ -1,17 +1,4 @@
-import type {
-  Asset,
-  HealthScore,
-  AssetWithHealth,
-  AssetInfo,
-  PriceDataPoint,
-  PriceSource,
-  LiquiditySource,
-  VolumeData,
-  SupplyVerification,
-  HealthHistoryPoint,
-  AlertConfig,
-  PriceTimeframe,
-} from "../types";
+import type { Asset, HealthScore, AssetWithHealth, TransactionPage, TransactionFilters } from "../types";
 
 const API_BASE_URL = "/api/v1";
 
@@ -100,37 +87,34 @@ export function getBridgeStats(bridge: string) {
   } | null>(`/bridges/${bridge}/stats`);
 }
 
-// Asset Detail
-export function getAssetInfo(symbol: string) {
-  return fetchApi<AssetInfo>(`/assets/${symbol}/info`);
+// Transactions
+export function getTransactions(
+  filters: TransactionFilters,
+  page: number,
+  pageSize: number
+) {
+  const params = new URLSearchParams();
+  params.set("page", String(page));
+  params.set("pageSize", String(pageSize));
+  if (filters.bridge) params.set("bridge", filters.bridge);
+  if (filters.asset) params.set("asset", filters.asset);
+  if (filters.status !== "all") params.set("status", filters.status);
+  if (filters.search) params.set("search", filters.search);
+  if (filters.dateFrom) params.set("dateFrom", filters.dateFrom);
+  if (filters.dateTo) params.set("dateTo", filters.dateTo);
+
+  return fetchApi<TransactionPage>(`/transactions?${params.toString()}`);
 }
 
-export function getAssetPriceHistory(symbol: string, timeframe: PriceTimeframe) {
-  return fetchApi<PriceDataPoint[]>(
-    `/assets/${symbol}/price/history?timeframe=${timeframe}`
-  );
-}
+export function exportTransactionsCsv(filters: TransactionFilters): string {
+  const params = new URLSearchParams();
+  if (filters.bridge) params.set("bridge", filters.bridge);
+  if (filters.asset) params.set("asset", filters.asset);
+  if (filters.status !== "all") params.set("status", filters.status);
+  if (filters.search) params.set("search", filters.search);
+  if (filters.dateFrom) params.set("dateFrom", filters.dateFrom);
+  if (filters.dateTo) params.set("dateTo", filters.dateTo);
+  params.set("format", "csv");
 
-export function getAssetPriceSources(symbol: string) {
-  return fetchApi<PriceSource[]>(`/assets/${symbol}/price/sources`);
-}
-
-export function getAssetLiquiditySources(symbol: string) {
-  return fetchApi<LiquiditySource[]>(`/assets/${symbol}/liquidity/sources`);
-}
-
-export function getAssetVolume(symbol: string) {
-  return fetchApi<VolumeData[]>(`/assets/${symbol}/volume`);
-}
-
-export function getAssetSupplyVerification(symbol: string) {
-  return fetchApi<SupplyVerification>(`/assets/${symbol}/supply`);
-}
-
-export function getAssetHealthHistory(symbol: string) {
-  return fetchApi<HealthHistoryPoint[]>(`/assets/${symbol}/health/history`);
-}
-
-export function getAssetAlerts(symbol: string) {
-  return fetchApi<AlertConfig[]>(`/assets/${symbol}/alerts`);
+  return `${API_BASE_URL}/transactions/export?${params.toString()}`;
 }
