@@ -25,6 +25,20 @@ export function getAssetHealth(symbol: string) {
   return fetchApi<HealthScore | null>(`/assets/${symbol}/health`);
 }
 
+export function getAssetHealthHistory(
+  symbol: string,
+  period: "24h" | "7d" | "30d" = "7d"
+) {
+  return fetchApi<
+    | {
+        symbol: string;
+        period: "24h" | "7d" | "30d";
+        points: Array<{ timestamp: string; score: number }>;
+      }
+    | null
+  >(`/assets/${symbol}/health/history?period=${period}`);
+}
+
 export async function getAssetsWithHealth(): Promise<AssetWithHealth[]> {
   const { assets } = await getAssets();
   const healthPromises = assets.map(async (asset) => {
