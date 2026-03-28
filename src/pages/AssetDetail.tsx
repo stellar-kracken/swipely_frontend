@@ -64,7 +64,7 @@ export default function AssetDetail() {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-3xl font-bold text-white">{symbol}</h1>
+        <h1 className="text-3xl font-bold text-stellar-text-primary">{symbol}</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Detailed monitoring for {symbol} on the Stellar network
         </p>

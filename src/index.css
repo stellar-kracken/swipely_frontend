@@ -2,6 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  color-scheme: light;
+  --stellar-bg: 248 250 252;
+  --stellar-card: 255 255 255;
+  --stellar-border: 226 232 240;
+  --stellar-text-primary: 15 23 42;
+  --stellar-text-secondary: 71 85 105;
+}
+
+.dark {
+  color-scheme: dark;
+  --stellar-bg: 11 14 26;
+  --stellar-card: 20 24 41;
+  --stellar-border: 30 35 64;
+  --stellar-text-primary: 255 255 255;
+  --stellar-text-secondary: 138 143 168;
+}
+
+html,
+body {
+  transition:
+    background-color 200ms ease,
+    color 200ms ease;
+}
+
+*,
+*::before,
+*::after {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
 body {
   margin: 0;
   font-family:

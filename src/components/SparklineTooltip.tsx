@@ -33,13 +33,13 @@ export default function SparklineTooltip({
       style={{ pointerEvents: "none" }}
       role="tooltip"
     >
-      {header ? <div className="text-xs text-white mb-1">{header}</div> : null}
+      {header ? <div className="text-xs text-stellar-text-primary mb-1">{header}</div> : null}
       {p.timestamp ? (
         <div className="text-xs text-stellar-text-secondary tabular-nums">
           {new Date(p.timestamp).toLocaleString()}
         </div>
       ) : null}
-      <div className="text-sm text-white font-medium tabular-nums">{valueText}</div>
+      <div className="text-sm text-stellar-text-primary font-medium tabular-nums">{valueText}</div>
     </div>
   );
 }

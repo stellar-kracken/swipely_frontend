@@ -39,7 +39,7 @@ export default function Analytics() {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-3xl font-bold text-white">Analytics</h1>
+        <h1 className="text-3xl font-bold text-stellar-text-primary">Analytics</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Historical trends, cross-asset comparisons, and ecosystem health
           metrics
@@ -58,14 +58,14 @@ export default function Analytics() {
             className="bg-stellar-card border border-stellar-border rounded-lg p-6"
           >
             <p className="text-sm text-stellar-text-secondary">{stat.label}</p>
-            <p className="mt-2 text-2xl font-bold text-white">{stat.value}</p>
+            <p className="mt-2 text-2xl font-bold text-stellar-text-primary">{stat.value}</p>
           </div>
         ))}
       </div>
 
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-xl font-semibold text-white">
+          <h2 className="text-xl font-semibold text-stellar-text-primary">
             Asset Comparison
           </h2>
           <p className="text-sm text-stellar-text-secondary">
@@ -96,8 +96,8 @@ export default function Analytics() {
                     aria-pressed={selected}
                     className={`rounded-md border px-3 py-2 text-sm transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
                       selected
-                        ? "border-stellar-blue bg-stellar-blue/20 text-white"
-                        : "border-stellar-border bg-stellar-dark text-stellar-text-secondary hover:text-white"
+                        ? "border-stellar-blue bg-stellar-blue/20 text-stellar-text-primary"
+                        : "border-stellar-border bg-stellar-card text-stellar-text-secondary hover:text-stellar-text-primary"
                     } disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
                     {asset.symbol}
@@ -127,34 +127,34 @@ export default function Analytics() {
                 return (
                   <article
                     key={asset.symbol}
-                    className="bg-stellar-dark border border-stellar-border rounded-lg p-4"
+                    className="bg-stellar-card border border-stellar-border rounded-lg p-4"
                     aria-label={`${asset.symbol} comparison metrics`}
                   >
-                    <h3 className="text-lg font-semibold text-white">{asset.symbol}</h3>
+                    <h3 className="text-lg font-semibold text-stellar-text-primary">{asset.symbol}</h3>
                     <p className="text-sm text-stellar-text-secondary">{asset.name}</p>
 
                     <dl className="mt-4 space-y-2 text-sm">
                       <div className="flex justify-between gap-3">
                         <dt className="text-stellar-text-secondary">Health Score</dt>
-                        <dd className="text-white font-medium">
+                        <dd className="text-stellar-text-primary font-medium">
                           {asset.health?.overallScore ?? "--"}
                         </dd>
                       </div>
                       <div className="flex justify-between gap-3">
                         <dt className="text-stellar-text-secondary">Trend</dt>
-                        <dd className="text-white font-medium">
+                        <dd className="text-stellar-text-primary font-medium">
                           {asset.health?.trend ?? "--"}
                         </dd>
                       </div>
                       <div className="flex justify-between gap-3">
                         <dt className="text-stellar-text-secondary">VWAP</dt>
-                        <dd className="text-white font-medium">
+                        <dd className="text-stellar-text-primary font-medium">
                           {typeof vwap === "number" ? `$${vwap.toFixed(4)}` : "--"}
                         </dd>
                       </div>
                       <div className="flex justify-between gap-3">
                         <dt className="text-stellar-text-secondary">Price Sources</dt>
-                        <dd className="text-white font-medium">
+                        <dd className="text-stellar-text-primary font-medium">
                           {query?.data?.sources?.length ?? 0}
                         </dd>
                       </div>
@@ -177,7 +177,7 @@ export default function Analytics() {
 
       {/* Volume Analytics */}
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-xl font-semibold text-white mb-4">
+        <h2 className="text-xl font-semibold text-stellar-text-primary mb-4">
           Bridge Volume Analytics
         </h2>
         <div className="h-64 flex items-center justify-center">
@@ -190,7 +190,7 @@ export default function Analytics() {
 
       {/* Liquidity Distribution */}
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-xl font-semibold text-white mb-4">
+        <h2 className="text-xl font-semibold text-stellar-text-primary mb-4">
           Liquidity Distribution Across DEXs
         </h2>
         <div className="h-64 flex items-center justify-center">

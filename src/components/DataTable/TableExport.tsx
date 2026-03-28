@@ -71,7 +71,7 @@ export function TableExport<TData>({
     <div className="flex items-center gap-2">
       <button
         type="button"
-        className="px-3 py-1.5 rounded border border-stellar-border text-white disabled:opacity-40"
+        className="px-3 py-1.5 rounded border border-stellar-border text-stellar-text-primary disabled:opacity-40"
         onClick={exportCsv}
         disabled={rows.length === 0}
       >
@@ -79,7 +79,7 @@ export function TableExport<TData>({
       </button>
       <button
         type="button"
-        className="px-3 py-1.5 rounded border border-stellar-border text-white disabled:opacity-40"
+        className="px-3 py-1.5 rounded border border-stellar-border text-stellar-text-primary disabled:opacity-40"
         onClick={exportJson}
         disabled={rows.length === 0}
       >

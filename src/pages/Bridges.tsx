@@ -8,7 +8,7 @@ export default function Bridges() {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-white">Bridges</h1>
+        <h1 className="text-3xl font-bold text-stellar-text-primary">Bridges</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Monitor cross-chain bridge status, supply consistency, and performance
         </p>
@@ -43,7 +43,7 @@ export default function Bridges() {
 
       {/* Bridge Performance Table */}
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-xl font-semibold text-white mb-4">
+        <h2 className="text-xl font-semibold text-stellar-text-primary mb-4">
           Bridge Performance
         </h2>
         <div className="overflow-x-auto">
@@ -70,7 +70,7 @@ export default function Bridges() {
                 </th>
               </tr>
             </thead>
-            <tbody className="text-white">
+            <tbody className="text-stellar-text-primary">
               <tr>
                 <td
                   colSpan={5}

@@ -25,7 +25,7 @@ function RowActionsMenu<TData>({
     <div className="relative">
       <button
         type="button"
-        className="px-2 py-1 rounded border border-stellar-border text-white"
+        className="px-2 py-1 rounded border border-stellar-border text-stellar-text-primary"
         aria-haspopup="menu"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
@@ -42,7 +42,7 @@ function RowActionsMenu<TData>({
               key={item.id}
               type="button"
               role="menuitem"
-              className="w-full text-left px-3 py-2 text-sm text-white hover:bg-stellar-dark disabled:opacity-40"
+              className="w-full text-left px-3 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border/30 disabled:opacity-40"
               disabled={item.disabled}
               onClick={() => {
                 item.onSelect(row.original);
@@ -150,7 +150,7 @@ export function TableBody<TData>({
       aria-label="Table content"
     >
       <table className="w-full text-sm">
-        <tbody className="text-white">
+        <tbody className="text-stellar-text-primary">
           {isLoading ? (
             <tr>
               <td
@@ -181,7 +181,7 @@ export function TableBody<TData>({
                 <tr
                   key={row.id}
                   className={`border-b border-stellar-border ${
-                    idx === focusedRowIndex ? "bg-stellar-dark/40" : ""
+                    idx === focusedRowIndex ? "bg-stellar-border/30" : ""
                   }`}
                   onMouseEnter={() => setFocusedRowIndex(idx)}
                 >
@@ -209,7 +209,7 @@ export function TableBody<TData>({
               <tr
                 key={row.id}
                 className={`border-b border-stellar-border ${
-                  idx === focusedRowIndex ? "bg-stellar-dark/40" : ""
+                  idx === focusedRowIndex ? "bg-stellar-border/30" : ""
                 }`}
                 onMouseEnter={() => setFocusedRowIndex(idx)}
               >

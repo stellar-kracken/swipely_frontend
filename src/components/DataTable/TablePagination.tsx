@@ -24,7 +24,7 @@ export function TablePagination<TData>({
         </label>
         <select
           id="page-size"
-          className="bg-stellar-dark border border-stellar-border rounded px-2 py-1 text-sm text-white"
+          className="bg-stellar-card border border-stellar-border rounded px-2 py-1 text-sm text-stellar-text-primary"
           value={pageSize}
           onChange={(e) => table.setPageSize(Number(e.target.value))}
         >
@@ -39,7 +39,7 @@ export function TablePagination<TData>({
       <div className="flex items-center gap-2">
         <button
           type="button"
-          className="px-3 py-1.5 rounded border border-stellar-border text-white disabled:opacity-40"
+          className="px-3 py-1.5 rounded border border-stellar-border text-stellar-text-primary disabled:opacity-40"
           onClick={() => table.setPageIndex(0)}
           disabled={!table.getCanPreviousPage()}
         >
@@ -47,19 +47,19 @@ export function TablePagination<TData>({
         </button>
         <button
           type="button"
-          className="px-3 py-1.5 rounded border border-stellar-border text-white disabled:opacity-40"
+          className="px-3 py-1.5 rounded border border-stellar-border text-stellar-text-primary disabled:opacity-40"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
         >
           Prev
         </button>
         <div className="text-sm text-stellar-text-secondary">
-          Page <span className="text-white">{pageIndex + 1}</span> of{" "}
-          <span className="text-white">{table.getPageCount()}</span>
+          Page <span className="text-stellar-text-primary">{pageIndex + 1}</span> of{" "}
+          <span className="text-stellar-text-primary">{table.getPageCount()}</span>
         </div>
         <button
           type="button"
-          className="px-3 py-1.5 rounded border border-stellar-border text-white disabled:opacity-40"
+          className="px-3 py-1.5 rounded border border-stellar-border text-stellar-text-primary disabled:opacity-40"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
         >
@@ -67,7 +67,7 @@ export function TablePagination<TData>({
         </button>
         <button
           type="button"
-          className="px-3 py-1.5 rounded border border-stellar-border text-white disabled:opacity-40"
+          className="px-3 py-1.5 rounded border border-stellar-border text-stellar-text-primary disabled:opacity-40"
           onClick={() => table.setPageIndex(table.getPageCount() - 1)}
           disabled={!table.getCanNextPage()}
         >

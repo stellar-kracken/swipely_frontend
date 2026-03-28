@@ -164,7 +164,7 @@ export function DataTable<TData extends RowData>({
       {(title || description) ? (
         <div className="mb-4">
           {title ? (
-            <h2 className="text-xl font-semibold text-white">{title}</h2>
+            <h2 className="text-xl font-semibold text-stellar-text-primary">{title}</h2>
           ) : null}
           {description ? (
             <p className="mt-1 text-stellar-text-secondary">{description}</p>
@@ -176,14 +176,14 @@ export function DataTable<TData extends RowData>({
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
           <div className="flex items-center gap-2">
             <input
-              className="w-full sm:w-80 bg-stellar-dark border border-stellar-border rounded px-3 py-2 text-sm text-white"
+              className="w-full sm:w-80 bg-stellar-card border border-stellar-border rounded px-3 py-2 text-sm text-stellar-text-primary"
               placeholder="Search…"
               value={table.getState().globalFilter ?? ""}
               onChange={(e) => table.setGlobalFilter(e.target.value)}
             />
             {selectedCount > 0 ? (
               <div className="text-sm text-stellar-text-secondary">
-                <span className="text-white">{selectedCount}</span> selected
+                <span className="text-stellar-text-primary">{selectedCount}</span> selected
               </div>
             ) : null}
           </div>

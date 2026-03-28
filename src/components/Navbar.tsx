@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { to: "/", label: "Dashboard" },
@@ -13,7 +14,7 @@ export default function Navbar() {
     <nav className="border-b border-stellar-border bg-stellar-card" aria-label="Primary">
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-stellar-card focus:px-3 focus:py-2 focus:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-stellar-card focus:px-3 focus:py-2 focus:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
       >
         Skip to content
       </a>
@@ -22,7 +23,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-8">
             <Link
               to="/"
-              className="text-xl font-bold text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card rounded-sm"
+              className="text-xl font-bold text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card rounded-sm"
               aria-label="Bridge Watch home"
             >
               Bridge Watch
@@ -36,7 +37,7 @@ export default function Navbar() {
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                     location.pathname === link.to
                       ? "bg-stellar-blue text-white"
-                      : "text-stellar-text-secondary hover:text-white"
+                      : "text-stellar-text-secondary hover:text-stellar-text-primary"
                   } focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card`}
                 >
                   {link.label}
@@ -44,8 +45,9 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-          <div className="text-sm text-stellar-text-secondary">
-            Stellar Network Monitor
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <div className="text-sm text-stellar-text-secondary">Stellar Network Monitor</div>
           </div>
         </div>
       </div>

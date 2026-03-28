@@ -116,7 +116,7 @@ export default function Dashboard() {
       />
 
       <header>
-        <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+        <h1 className="text-3xl font-bold text-stellar-text-primary">Dashboard</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Real-time monitoring of bridged assets on the Stellar network
         </p>
@@ -133,7 +133,7 @@ export default function Dashboard() {
           <button
             type="button"
             onClick={() => setOnboardingOpen(true)}
-            className="mt-4 text-sm text-stellar-text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-md px-2 py-1"
+            className="mt-4 text-sm text-stellar-text-secondary hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-md px-2 py-1"
           >
             Show onboarding
           </button>
@@ -142,7 +142,7 @@ export default function Dashboard() {
 
       <section aria-labelledby="asset-health-heading">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-          <h2 id="asset-health-heading" className="text-xl font-semibold text-white">
+          <h2 id="asset-health-heading" className="text-xl font-semibold text-stellar-text-primary">
             Asset Health
           </h2>
 
@@ -155,7 +155,7 @@ export default function Dashboard() {
                 id="filter-status"
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value as FilterStatus)}
-                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 <option value="all">All Assets</option>
                 <option value="healthy">Healthy ({statusCounts.healthy})</option>
@@ -172,7 +172,7 @@ export default function Dashboard() {
                 id="sort-field"
                 value={sortField}
                 onChange={(e) => setSortField(e.target.value as SortField)}
-                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 <option value="score">Sort by Score</option>
                 <option value="symbol">Sort by Name</option>
@@ -181,7 +181,7 @@ export default function Dashboard() {
               <button
                 type="button"
                 onClick={() => setSortOrder((o) => (o === "asc" ? "desc" : "asc"))}
-                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-white hover:bg-stellar-border focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                 aria-label={`Sort ${sortOrder === "asc" ? "descending" : "ascending"}`}
               >
                 {sortOrder === "asc" ? "↑" : "↓"}
@@ -249,7 +249,7 @@ export default function Dashboard() {
 
       <section aria-labelledby="bridge-status-heading">
         <div className="flex items-center justify-between mb-4">
-          <h2 id="bridge-status-heading" className="text-xl font-semibold text-white">
+          <h2 id="bridge-status-heading" className="text-xl font-semibold text-stellar-text-primary">
             Bridge Status
           </h2>
           <Link
