@@ -1,6 +1,6 @@
 import React from "react";
 import NotificationPreferences from "../components/NotificationPreferences";
-import { useNotificationContext } from "../context/NotificationContext";
+import { useNotificationContext } from "../hooks/useNotificationContext";
 
 export default function Settings() {
   const { addNotification } = useNotificationContext();

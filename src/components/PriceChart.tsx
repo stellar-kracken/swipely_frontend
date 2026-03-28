@@ -19,12 +19,6 @@ import {
 } from "../hooks/usePriceComparison";
 import { SkeletonChart } from "./Skeleton";
 
-interface PriceDataPoint {
-  timestamp: string;
-  price: number;
-  source: string;
-}
-
 interface PriceChartProps {
   symbol: string;
 }
@@ -72,7 +66,7 @@ function formatPct(value: number | null): string {
 
 function formatPrice(value: number | null | undefined): string {
   if (value === null || value === undefined || !Number.isFinite(value)) return "--";
-  return `$${value.toFixed(6)}`;
+  return `${value.toFixed(6)}`;
 }
 
 function tooltipLabelFromIso(iso: string | undefined): string {
@@ -108,23 +102,8 @@ export default function PriceChart({ symbol }: PriceChartProps) {
     () => msForRange(rangeId, customStartIso, customEndIso),
     [customEndIso, customStartIso, rangeId]
   );
-  if (isLoading) {
-    return <SkeletonChart height={340} ariaLabel={`${symbol} price chart loading`} />;
-  }
 
-  if (data.length === 0) {
-    return (
-      <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h3 id={titleId} className="text-lg font-semibold text-white mb-4">
-          {symbol} Price History
-        </h3>
-        <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
-          <span className="text-stellar-text-secondary">No price data available</span>
-        </div>
-      </div>
-    );
-  }
-
+  // All hooks must be called unconditionally before any early returns
   const comparison = usePriceComparison({
     symbol,
     enabledSources,
@@ -220,6 +199,24 @@ export default function PriceChart({ symbol }: PriceChartProps) {
     return { source: enabledSources[0] ?? "stellar_dex", price: null as number | null };
   }, [comparison.currentPrices, enabledSources]);
 
+  // Early returns AFTER all hooks
+  if (comparison.isLoading && chartData.length === 0) {
+    return <SkeletonChart height={340} ariaLabel={`${symbol} price chart loading`} />;
+  }
+
+  if (!comparison.isLoading && chartData.length === 0) {
+    return (
+      <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
+        <h3 id={titleId} className="text-lg font-semibold text-white mb-4">
+          {symbol} Price History
+        </h3>
+        <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
+          <span className="text-stellar-text-secondary">No price data available</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <figure
       className="bg-stellar-card border border-stellar-border rounded-lg p-6"
@@ -291,10 +288,6 @@ export default function PriceChart({ symbol }: PriceChartProps) {
           <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
             <span className="text-stellar-text-secondary">Loading chart data…</span>
           </div>
-        ) : chartData.length === 0 ? (
-          <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
-            <span className="text-stellar-text-secondary">No price data available</span>
-          </div>
         ) : (
           <ResponsiveContainer width="100%" height={360}>
             <LineChart data={chartData} margin={{ top: 12, right: 16, left: 0, bottom: 0 }}>
@@ -318,7 +311,7 @@ export default function PriceChart({ symbol }: PriceChartProps) {
                 stroke={stellarVarRgb("--stellar-text-secondary", "rgb(138 143 168)")}
                 tick={{ fontSize: 12 }}
                 domain={["auto", "auto"]}
-                tickFormatter={(v: number) => `$${Number(v).toFixed(4)}`}
+                tickFormatter={(v: number) => `${Number(v).toFixed(4)}`}
               />
 
               <DeviationHighlightOverlay ranges={deviationRanges} />

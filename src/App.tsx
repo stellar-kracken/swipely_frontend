@@ -40,6 +40,7 @@ function App() {
             <Route path="/assets/:symbol" element={<AssetDetail />} />
             <Route path="/bridges" element={<Bridges />} />
             <Route path="/analytics" element={<Analytics />} />
+            <Route path="/liquidity" element={<LiquidityDashboard />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="/watchlist" element={<WatchlistPage />} />
             <Route path="/settings" element={<Settings />} />
