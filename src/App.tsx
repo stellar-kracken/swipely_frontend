@@ -6,6 +6,9 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const AssetDetail = lazy(() => import("./pages/AssetDetail"));
 const Bridges = lazy(() => import("./pages/Bridges"));
 const Analytics = lazy(() => import("./pages/Analytics"));
+const Transactions = lazy(() => import("./pages/Transactions"));
+const Settings = lazy(() => import("./pages/Settings"));
+const Status = lazy(() => import("./pages/Status"));
 
 function App() {
   return (
@@ -21,7 +24,10 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/assets/:symbol" element={<AssetDetail />} />
           <Route path="/bridges" element={<Bridges />} />
+          <Route path="/transactions" element={<Transactions />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/status" element={<Status />} />
         </Route>
       </Routes>
     </Suspense>
