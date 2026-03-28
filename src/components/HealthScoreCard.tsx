@@ -1,5 +1,6 @@
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 import type { HealthFactors, HealthStatus } from "../types";
+import Sparkline from "./Sparkline";
 
 interface HealthScoreCardProps {
   symbol: string;
@@ -177,6 +178,17 @@ export default function HealthScoreCard({
             </span>
           </div>
         </div>
+      </div>
+
+      <div className="mb-4" aria-hidden="true">
+        <Sparkline
+          symbol={symbol}
+          metric="health"
+          period="7d"
+          height={40}
+          showMinMax
+          aria-label={`${symbol} health score trend sparkline`}
+        />
       </div>
 
       {!compact && (
