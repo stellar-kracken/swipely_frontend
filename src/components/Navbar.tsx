@@ -23,7 +23,6 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
   const [isWatchlistOpen, setIsWatchlistOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { unreadCount } = useNotificationContext();
-  const location = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
