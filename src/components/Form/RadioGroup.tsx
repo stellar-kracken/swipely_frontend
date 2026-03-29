@@ -1,4 +1,4 @@
-import React from "react";
+
 import { BaseFieldProps, RadioOption } from "./types";
 import { FormLabel } from "./FormLabel";
 import { FormError } from "./FormError";

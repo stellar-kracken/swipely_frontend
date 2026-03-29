@@ -60,7 +60,7 @@ describe("Form Primitives", () => {
     describe("FormGroup", () => {
         it("renders label and children in correct order", () => {
             render(
-                <FormGroup id="test" label="My Label">
+                <FormGroup id="test" name="test" label="My Label">
                     <input id="test" />
                 </FormGroup>
             );
@@ -72,6 +72,7 @@ describe("Form Primitives", () => {
             render(
                 <FormGroup
                     id="test"
+                    name="test"
                     label="Label"
                     helperText="Helper"
                     error="Error"
