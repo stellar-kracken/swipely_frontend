@@ -54,7 +54,7 @@ export default function Bridges() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-3xl font-bold text-white">Bridges</h1>
+        <h1 className="text-3xl font-bold text-stellar-text-primary">Bridges</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Monitor cross-chain bridge status, supply consistency, and performance
         </p>
@@ -85,6 +85,49 @@ export default function Bridges() {
           </p>
         </div>
       )}
+
+      {/* Bridge Performance Table */}
+      <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
+        <h2 className="text-xl font-semibold text-stellar-text-primary mb-4">
+          Bridge Performance
+        </h2>
+        <div className="overflow-x-auto">
+          <table className="w-full text-sm">
+            <caption className="sr-only">
+              Bridge performance metrics table
+            </caption>
+            <thead>
+              <tr className="text-left text-stellar-text-secondary border-b border-stellar-border">
+                <th scope="col" className="pb-3 pr-4">
+                  Bridge
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  24h Volume
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  7d Volume
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  Avg Transfer Time
+                </th>
+                <th scope="col" className="pb-3">
+                  30d Uptime
+                </th>
+              </tr>
+            </thead>
+            <tbody className="text-stellar-text-primary">
+              <tr>
+                <td
+                  colSpan={5}
+                  className="py-6 text-center text-stellar-text-secondary"
+                >
+                  Performance data will appear once bridge monitoring is active
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

@@ -30,7 +30,7 @@ function RangeButton({
       className={
         "rounded-md border px-2.5 py-1 text-xs transition " +
         (active
-          ? "border-stellar-border bg-stellar-card text-white"
+          ? "border-stellar-border bg-stellar-card text-stellar-text-primary"
           : "border-stellar-border/60 bg-transparent text-stellar-text-secondary")
       }
       aria-pressed={active}
@@ -92,7 +92,7 @@ export default function ChartControls({
                 type="datetime-local"
                 value={customStartIso}
                 onChange={(e) => onCustomStartIsoChange(e.target.value)}
-                className="rounded-md border border-stellar-border bg-transparent px-2 py-1 text-xs text-white"
+                className="rounded-md border border-stellar-border bg-transparent px-2 py-1 text-xs text-stellar-text-primary"
               />
             </label>
             <label className="flex items-center gap-2 text-xs text-stellar-text-secondary">
@@ -101,7 +101,7 @@ export default function ChartControls({
                 type="datetime-local"
                 value={customEndIso}
                 onChange={(e) => onCustomEndIsoChange(e.target.value)}
-                className="rounded-md border border-stellar-border bg-transparent px-2 py-1 text-xs text-white"
+                className="rounded-md border border-stellar-border bg-transparent px-2 py-1 text-xs text-stellar-text-primary"
               />
             </label>
           </div>
@@ -117,7 +117,7 @@ export default function ChartControls({
             step={0.1}
             value={deviationThresholdPct}
             onChange={(e) => onDeviationThresholdPctChange(Number(e.target.value))}
-            className="w-20 rounded-md border border-stellar-border bg-transparent px-2 py-1 text-xs text-white"
+            className="w-20 rounded-md border border-stellar-border bg-transparent px-2 py-1 text-xs text-stellar-text-primary"
           />
           <span>%</span>
         </label>
@@ -135,7 +135,7 @@ export default function ChartControls({
         <button
           type="button"
           onClick={onExportPng}
-          className="rounded-md border border-stellar-border bg-stellar-card px-3 py-1.5 text-xs text-white"
+          className="rounded-md border border-stellar-border bg-stellar-card px-3 py-1.5 text-xs text-stellar-text-primary"
         >
           Export PNG
         </button>

@@ -1,15 +1,20 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 import { SkeletonText } from "./Skeleton";
 import NotificationCenter from "./NotificationCenter";
 import { useNotificationContext } from "../context/NotificationContext";
 import { WatchlistSidebar } from "./WatchlistSidebar";
-import HamburgerButton from "./MobileNav/HamburgerButton";
-import MobileMenu from "./MobileNav/MobileMenu";
-import {
-  desktopNavItems,
-  isNavItemActive,
-} from "./MobileNav/navigation";
+import ConnectionStatus from "./ConnectionStatus";
+
+const navLinks = [
+  { to: "/dashboard", label: "Dashboard" },
+  { to: "/bridges", label: "Bridges" },
+  { to: "/transactions", label: "Transactions" },
+  { to: "/analytics", label: "Analytics" },
+  { to: "/watchlist", label: "Watchlist" },
+  { to: "/reports", label: "Reports" },
+];
 
 interface NavbarProps {
   isLoading?: boolean;
@@ -53,10 +58,10 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
   }
 
   return (
-    <div ref={navRef}>
-      <nav
-        className="sticky top-0 z-50 border-b border-stellar-border bg-stellar-card/95 backdrop-blur"
-        aria-label="Primary"
+    <nav className="border-b border-stellar-border bg-stellar-card sticky top-0 z-50" aria-label="Primary" ref={navRef}>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-stellar-card focus:px-3 focus:py-2 focus:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
       >
         <a
           href="#main-content"
@@ -67,8 +72,8 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <div className="flex items-center space-x-4 md:space-x-8">
             <Link
-              to="/dashboard"
-              className="rounded-sm text-xl font-bold text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card"
+              to="/"
+              className="text-xl font-bold text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card rounded-sm"
               aria-label="Bridge Watch home"
             >
               Bridge <span className="text-stellar-blue">Watch</span>
@@ -84,7 +89,7 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
                   className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
                     isNavItemActive(location.pathname, link.to)
                       ? "bg-stellar-blue text-white"
-                      : "text-stellar-text-secondary hover:text-white"
+                      : "text-stellar-text-secondary hover:text-stellar-text-primary"
                   } focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card`}
                 >
                   {link.label}
@@ -92,6 +97,9 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
               ))}
             </div>
           </div>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <div className="text-sm text-stellar-text-secondary">Stellar Network Monitor</div>
 
           <div className="flex items-center gap-4">
             <button
@@ -145,14 +153,8 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
               />
             </div>
 
-            <div className="hidden border-l border-stellar-border pl-4 text-sm text-stellar-text-secondary sm:block">
-              <Link
-                to="/admin/api-keys"
-                className="mr-4 rounded-full border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary transition hover:border-stellar-blue hover:text-white"
-              >
-                API Keys
-              </Link>
-              Stellar Network Monitor
+            <div className="hidden sm:flex items-center gap-3 border-l border-stellar-border pl-4">
+              <ConnectionStatus />
             </div>
             <HamburgerButton
               open={mobileOpen}

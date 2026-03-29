@@ -1,40 +1,21 @@
-import React, { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { ReactNode } from "react";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
-
-export type NotificationType = "alert" | "system" | "info";
-
-export interface Notification {
-  id: string;
-  type: NotificationType;
-  title: string;
-  message: string;
-  timestamp: number;
-  read: boolean;
-  link?: string;
-}
-
-export interface NotificationPreferences {
-  soundEnabled: boolean;
-}
-
-interface NotificationContextType {
-  notifications: Notification[];
-  preferences: NotificationPreferences;
-  addNotification: (notification: Omit<Notification, "id" | "timestamp" | "read">) => void;
-  markAsRead: (id: string) => void;
-  markAllAsRead: () => void;
-  clearAll: () => void;
-  updatePreferences: (prefs: Partial<NotificationPreferences>) => void;
-  unreadCount: number;
-}
-
-const NotificationContext = createContext<NotificationContextType | undefined>(undefined);
+import { NotificationContext } from "./NotificationContextValue";
+import type {
+  Notification,
+  NotificationPreferences,
+  NotificationContextType,
+} from "./NotificationContext.types";
 
 export function NotificationProvider({ children }: { children: ReactNode }) {
-  const [notifications, setNotifications] = useLocalStorageState<Notification[]>("stellar-notifications", []);
-  const [preferences, setPreferences] = useLocalStorageState<NotificationPreferences>("notification-prefs", {
-    soundEnabled: true,
-  });
+  const [notifications, setNotifications] = useLocalStorageState<Notification[]>(
+    "stellar-notifications",
+    []
+  );
+  const [preferences, setPreferences] = useLocalStorageState<NotificationPreferences>(
+    "notification-prefs",
+    { soundEnabled: true }
+  );
 
   const unreadCount = notifications.filter((n) => !n.read).length;
 
@@ -50,16 +31,13 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     if (preferences.soundEnabled) {
       const audio = new Audio("/notification-sound.mp3");
       audio.play().catch(() => {
-        // Handle cases where audio play is blocked by the browser
         console.warn("Notification sound blocked by browser");
       });
     }
   };
 
   const markAsRead = (id: string) => {
-    setNotifications((prev) =>
-      prev.map((n) => (n.id === id ? { ...n, read: true } : n))
-    );
+    setNotifications((prev) => prev.map((n) => (n.id === id ? { ...n, read: true } : n)));
   };
 
   const markAllAsRead = () => {
@@ -74,28 +52,20 @@ export function NotificationProvider({ children }: { children: ReactNode }) {
     setPreferences((prev) => ({ ...prev, ...newPrefs }));
   };
 
+  const value: NotificationContextType = {
+    notifications,
+    preferences,
+    addNotification,
+    markAsRead,
+    markAllAsRead,
+    clearAll,
+    updatePreferences,
+    unreadCount,
+  };
+
   return (
-    <NotificationContext.Provider
-      value={{
-        notifications,
-        preferences,
-        addNotification,
-        markAsRead,
-        markAllAsRead,
-        clearAll,
-        updatePreferences,
-        unreadCount,
-      }}
-    >
+    <NotificationContext.Provider value={value}>
       {children}
     </NotificationContext.Provider>
   );
-}
-
-export function useNotificationContext() {
-  const context = useContext(NotificationContext);
-  if (context === undefined) {
-    throw new Error("useNotificationContext must be used within a NotificationProvider");
-  }
-  return context;
 }
