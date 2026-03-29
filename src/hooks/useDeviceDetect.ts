@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useUserPreferencesStore, useUIStore } from "../stores";
+import { useUIStore } from "../stores";
 
 /**
  * Hook to detect and handle mobile view changes

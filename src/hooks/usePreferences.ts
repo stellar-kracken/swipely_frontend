@@ -3,7 +3,6 @@ import {
   useUserPreferencesStore,
   selectAlertThresholds,
   selectFavoriteAssets,
-  useNotificationStore,
   useNotifications,
 } from "../stores";
 

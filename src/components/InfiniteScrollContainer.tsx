@@ -9,7 +9,7 @@ import {
   useInfiniteScroll,
   UseInfiniteScrollOptions,
 } from "../hooks/useInfiniteScroll";
-import { LoadingSpinner } from "./Skeleton/LoadingSpinner";
+import LoadingSpinner from "./Skeleton/LoadingSpinner";
 
 interface InfiniteScrollContainerProps<T> extends UseInfiniteScrollOptions<T> {
   renderItem: (item: T, index: number) => React.ReactNode;

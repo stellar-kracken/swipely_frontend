@@ -1,4 +1,4 @@
-import React from "react";
+
 import NotificationPreferences from "../components/NotificationPreferences";
 import { useNotificationContext } from "../hooks/useNotificationContext";
 

@@ -21,6 +21,8 @@ export class WebSocketService {
   private listeners: Map<string, Set<MessageHandler>> = new Map();
   // Connection state change listeners
   private stateHandlers: Set<ConnectionStateHandler> = new Set();
+  // Generic event listeners (open, close, error, message)
+  private eventListeners: Map<string, Set<Function>> = new Map();
 
   private _state: ConnectionState = "disconnected";
   private reconnectAttempts = 0;
@@ -141,6 +143,30 @@ export class WebSocketService {
     };
   }
 
+  /**
+   * Add a generic event listener (e.g., 'open', 'close', 'error', 'message').
+   */
+  on(event: string, handler: Function): void {
+    if (!this.eventListeners.has(event)) {
+      this.eventListeners.set(event, new Set());
+    }
+    this.eventListeners.get(event)!.add(handler);
+  }
+
+  /**
+   * Remove a generic event listener.
+   */
+  off(event: string, handler: Function): void {
+    this.eventListeners.get(event)?.delete(handler);
+  }
+
+  /**
+   * Emit a generic event.
+   */
+  private _emit(event: string, ...args: any[]): void {
+    this.eventListeners.get(event)?.forEach((handler) => handler(...args));
+  }
+
   // ---------------------------------------------------------------------------
   // Sending
   // ---------------------------------------------------------------------------
@@ -187,6 +213,7 @@ export class WebSocketService {
       this._setState("connected");
       this._startHeartbeat();
       this._flushQueue();
+      this._emit("open");
       // Re-subscribe to all active channels
       this.listeners.forEach((_, channel) => {
         this._sendRaw({ type: "subscribe", channel });
@@ -213,6 +240,7 @@ export class WebSocketService {
         }
         // Wildcard listeners receive every message
         this.listeners.get("*")?.forEach((h) => h(data));
+        this._emit("message", data);
       } catch {
         this._log("Failed to parse message:", event.data);
       }
@@ -229,12 +257,14 @@ export class WebSocketService {
       }
 
       this._setState("disconnected");
+      this._emit("close", event);
       this._scheduleReconnect();
     };
 
-    this.ws.onerror = () => {
+    this.ws.onerror = (event) => {
       this._log("Socket error");
       this._setState("error");
+      this._emit("error", event);
     };
   }
 

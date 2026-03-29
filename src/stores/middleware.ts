@@ -15,19 +15,17 @@ type LoggerImpl = <T>(
 ) => StateCreator<T, [], []>;
 
 const loggerImpl: LoggerImpl = (f, name) => (set, get, store) => {
-  const loggedSet: typeof set = (...args) => {
+  const loggedSet: typeof set = (nextStateOrUpdater: any, replace?: boolean, action?: string) => {
     const prevState = get();
-    set(...args);
+    (set as any)(nextStateOrUpdater, replace, action);
     const nextState = get();
 
     if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-      console.group(`[Zustand] ${name || "Store"} - ${args[2] || "action"}`);
+      console.group(`[Zustand] ${name || "Store"} - ${action || "action"}`);
       console.log("Previous state:", prevState);
       console.log("Next state:", nextState);
       console.groupEnd();
     }
-
-    return nextState;
   };
 
   return f(loggedSet, get, store);
@@ -49,11 +47,11 @@ export const stateMetricsMiddleware = <T>(
   onMetric?: (metric: StateChangeMetric) => void
 ): StateCreator<T, [], []> => {
   return (set, get, store) => {
-    const wrappedSet: typeof set = (...args) => {
+    const wrappedSet: typeof set = (nextStateOrUpdater: any, replace?: boolean, action?: string) => {
       const start = performance.now();
-      const actionName = typeof args[2] === "string" ? args[2] : "unknown";
+      const actionName = typeof action === "string" ? action : "unknown";
 
-      const result = set(...args);
+      (set as any)(nextStateOrUpdater, replace, action);
 
       const duration = performance.now() - start;
       const metric: StateChangeMetric = {
@@ -66,8 +64,6 @@ export const stateMetricsMiddleware = <T>(
       if (onMetric) {
         onMetric(metric);
       }
-
-      return result;
     };
 
     return f(wrappedSet, get, store);
@@ -80,11 +76,11 @@ export const errorBoundaryMiddleware = <T>(
   onError?: (error: Error, actionName: string) => void
 ): StateCreator<T, [], []> => {
   return (set, get, store) => {
-    const wrappedSet: typeof set = (...args) => {
+    const wrappedSet: typeof set = (nextStateOrUpdater: any, replace?: boolean, action?: string) => {
       try {
-        return set(...args);
+        return (set as any)(nextStateOrUpdater, replace, action);
       } catch (error) {
-        const actionName = typeof args[2] === "string" ? args[2] : "unknown";
+        const actionName = typeof action === "string" ? action : "unknown";
 
         if (onError && error instanceof Error) {
           onError(error, actionName);
