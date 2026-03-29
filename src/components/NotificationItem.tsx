@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import type { Notification } from "../context/NotificationContext.types";
 

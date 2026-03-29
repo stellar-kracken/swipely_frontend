@@ -223,9 +223,10 @@ export const useThemeStore = create<ThemeState & ThemeActions>()(
         },
 
         removeCustomCssVar: (name) => {
-          const customCssVars = { ...get().customCssVars };
-          delete customCssVars[name];
-          set({ customCssVars }, false, "removeCustomCssVar");
+          const rest = Object.fromEntries(
+            Object.entries(get().customCssVars).filter(([key]) => key !== name)
+          );
+          set({ customCssVars: rest }, false, "removeCustomCssVar");
         },
 
         applyTheme: () => {

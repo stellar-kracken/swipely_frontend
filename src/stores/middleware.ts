@@ -50,10 +50,10 @@ export const stateMetricsMiddleware = <T>(
   return (set, get, store) => {
     const wrappedSet = (...args: Parameters<typeof set>) => {
       const start = performance.now();
-      const action = (args as unknown[])[2];
+  const action = (args as unknown[])[2];
       const actionName = typeof action === "string" ? action : "unknown";
 
-      set(...args);
+  set(...args);
 
       const duration = performance.now() - start;
       const metric: StateChangeMetric = {
