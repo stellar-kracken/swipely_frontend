@@ -5,7 +5,11 @@ export default function Layout() {
   return (
     <div className="min-h-screen bg-stellar-dark">
       <Navbar />
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 focus:outline-none"
+      >
         <Outlet />
       </main>
     </div>
