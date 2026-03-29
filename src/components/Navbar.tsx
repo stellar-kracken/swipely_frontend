@@ -6,15 +6,10 @@ import NotificationCenter from "./NotificationCenter";
 import { useNotificationContext } from "../hooks/useNotificationContext";
 import { WatchlistSidebar } from "./WatchlistSidebar";
 import ConnectionStatus from "./ConnectionStatus";
+import HamburgerButton from "./MobileNav/HamburgerButton";
+import MobileMenu from "./MobileNav/MobileMenu";
+import { desktopNavItems, isNavItemActive } from "./MobileNav/navigation";
 
-const navLinks = [
-  { to: "/dashboard", label: "Dashboard" },
-  { to: "/bridges", label: "Bridges" },
-  { to: "/transactions", label: "Transactions" },
-  { to: "/analytics", label: "Analytics" },
-  { to: "/watchlist", label: "Watchlist" },
-  { to: "/reports", label: "Reports" },
-];
 
 interface NavbarProps {
   isLoading?: boolean;
@@ -23,9 +18,14 @@ interface NavbarProps {
 export default function Navbar({ isLoading = false }: NavbarProps) {
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [isWatchlistOpen, setIsWatchlistOpen] = useState(false);
-  const location = useLocation();
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { unreadCount } = useNotificationContext();
   const navRef = useRef<HTMLDivElement>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -53,7 +53,8 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
   }
 
   return (
-    <nav className="border-b border-stellar-border bg-stellar-card sticky top-0 z-50" aria-label="Primary" ref={navRef}>
+    <>
+      <nav className="border-b border-stellar-border bg-stellar-card sticky top-0 z-50" aria-label="Primary" ref={navRef}>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-stellar-card focus:px-3 focus:py-2 focus:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
@@ -71,13 +72,13 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
               Bridge <span className="text-stellar-blue">Watch</span>
             </Link>
             <div className="hidden md:flex space-x-4">
-              {navLinks.map((link) => (
+              {desktopNavItems.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
-                  aria-current={location.pathname === link.to ? "page" : undefined}
+                  aria-current={isNavItemActive(location.pathname, link.to) ? "page" : undefined}
                   className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    location.pathname === link.to
+                    isNavItemActive(location.pathname, link.to)
                       ? "bg-stellar-blue text-white"
                       : "text-stellar-text-secondary hover:text-stellar-text-primary"
                   } focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card`}
@@ -135,10 +136,21 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
             <div className="hidden sm:flex items-center gap-3 border-l border-stellar-border pl-4">
               <ConnectionStatus />
             </div>
+
+            <HamburgerButton
+              open={mobileOpen}
+              onClick={() => setMobileOpen((current) => !current)}
+            />
             </div>
           </div>
         </div>
       </div>
     </nav>
+    <MobileMenu
+      open={mobileOpen}
+      pathname={location.pathname}
+      onClose={() => setMobileOpen(false)}
+    />
+    </>
   );
 }
