@@ -8,6 +8,7 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const AssetDetail = lazy(() => import("./pages/AssetDetail"));
 const Bridges = lazy(() => import("./pages/Bridges"));
 const Analytics = lazy(() => import("./pages/Analytics"));
+const LiquidityDashboard = lazy(() => import("./pages/LiquidityDashboard"));
 const Reports = lazy(() => import("./pages/Reports"));
 const Landing = lazy(() => import("./pages/Landing"));
 const Settings = lazy(() => import("./pages/Settings"));

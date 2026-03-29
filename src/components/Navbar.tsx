@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import { SkeletonText } from "./Skeleton";
 import NotificationCenter from "./NotificationCenter";
-import { useNotificationContext } from "../context/NotificationContext";
+import { useNotificationContext } from "../hooks/useNotificationContext";
 import { WatchlistSidebar } from "./WatchlistSidebar";
 import ConnectionStatus from "./ConnectionStatus";
 
@@ -23,6 +23,7 @@ interface NavbarProps {
 export default function Navbar({ isLoading = false }: NavbarProps) {
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [isWatchlistOpen, setIsWatchlistOpen] = useState(false);
+  const location = useLocation();
   const { unreadCount } = useNotificationContext();
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -89,8 +90,7 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <div className="text-sm text-stellar-text-secondary">Stellar Network Monitor</div>
-
-          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4">
             <button
               onClick={() => setIsWatchlistOpen(true)}
               className="p-2 rounded-full transition-colors relative focus:outline-none focus:ring-2 focus:ring-stellar-blue text-stellar-text-secondary hover:text-white"
@@ -134,6 +134,7 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
 
             <div className="hidden sm:flex items-center gap-3 border-l border-stellar-border pl-4">
               <ConnectionStatus />
+            </div>
             </div>
           </div>
         </div>
