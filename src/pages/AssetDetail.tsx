@@ -6,6 +6,7 @@ import HealthScoreCard from "../components/HealthScoreCard";
 import PriceChart from "../components/PriceChart";
 import LiquidityDepthChart from "../components/LiquidityDepthChart";
 import { ErrorBoundary, LoadingSpinner } from "../components/Skeleton";
+import CopyButton from "../components/CopyButton";
 
 export default function AssetDetail() {
   const { symbol } = useParams<{ symbol: string }>();
@@ -95,15 +96,57 @@ export default function AssetDetail() {
                       className="border-b border-stellar-border"
                     >
                       <th scope="row" className="py-3 pr-4 font-medium text-white">
-                        {source.source}
+                        <span className="inline-flex items-center gap-2">
+                          <span>{source.source}</span>
+                          <CopyButton
+                            value={source.source}
+                            label="Copy"
+                            copiedLabel="Copied"
+                            failedLabel="Failed"
+                            variant="inline"
+                            ariaLabel={`Copy source for ${symbol}`}
+                          />
+                        </span>
                       </th>
                       <td className="py-3 pr-4">
-                        ${source.price.toFixed(4)}
+                        <span className="inline-flex items-center gap-2">
+                          <span>${source.price.toFixed(4)}</span>
+                          <CopyButton
+                            value={source.price}
+                            label="Copy"
+                            copiedLabel="Copied"
+                            failedLabel="Failed"
+                            variant="inline"
+                            serialize={(value) => Number(value).toFixed(4)}
+                            ariaLabel={`Copy price from ${source.source}`}
+                          />
+                        </span>
                       </td>
                       <td className="py-3 pr-4 text-stellar-text-secondary">
-                        {source.timestamp}
+                        <span className="inline-flex items-center gap-2">
+                          <span>{source.timestamp}</span>
+                          <CopyButton
+                            value={source.timestamp}
+                            label="Copy"
+                            copiedLabel="Copied"
+                            failedLabel="Failed"
+                            variant="inline"
+                            ariaLabel={`Copy timestamp from ${source.source}`}
+                          />
+                        </span>
                       </td>
-                      <td className="py-3">--</td>
+                      <td className="py-3">
+                        <CopyButton
+                          value={source}
+                          label="JSON"
+                          copiedLabel="Copied"
+                          failedLabel="Failed"
+                          variant="inline"
+                          format="pretty-json"
+                          mimeType="application/json"
+                          ariaLabel={`Copy ${source.source} row as JSON`}
+                        />
+                      </td>
                     </tr>
                   )
                 )
