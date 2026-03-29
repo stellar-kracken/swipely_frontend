@@ -13,8 +13,7 @@ const Landing = lazy(() => import("./pages/Landing"));
 const Settings = lazy(() => import("./pages/Settings"));
 const WatchlistPage = lazy(() => import("./pages/Watchlist"));
 const Transactions = lazy(() => import("./pages/Transactions"));
-const Status = lazy(() => import("./pages/Status"));
-const LiquidityDashboard = lazy(() => import("./pages/LiquidityDashboard"));
+const ApiKeys = lazy(() => import("./pages/ApiKeys"));
 
 function NotificationInitializer() {
   useNotifications();
@@ -41,11 +40,10 @@ function App() {
             <Route path="/bridges" element={<Bridges />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/analytics" element={<Analytics />} />
-            <Route path="/liquidity" element={<LiquidityDashboard />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="/watchlist" element={<WatchlistPage />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/status" element={<Status />} />
+            <Route path="/admin/api-keys" element={<ApiKeys />} />
           </Route>
         </Routes>
       </Suspense>

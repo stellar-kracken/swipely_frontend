@@ -53,7 +53,7 @@ export function InfiniteScrollContainer<T>({
   if (isLoading) {
     return (
       <div className="flex items-center justify-center py-12">
-        <LoadingSpinner className="max-w-sm mx-auto" />
+        <LoadingSpinner message="Loading..." />
       </div>
     );
   }
@@ -150,7 +150,7 @@ export function InfiniteScrollContainer<T>({
       {/* Loading more indicator */}
       {isLoadingMore && (
         <div className="flex items-center justify-center py-8">
-          <LoadingSpinner className="max-w-xs mx-auto" />
+          <LoadingSpinner message="Loading..." className="p-2" />
           <span className="ml-3 text-gray-600">Loading more {itemName}...</span>
         </div>
       )}

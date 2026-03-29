@@ -58,30 +58,22 @@ export default function Analytics() {
             </div>
           }
         >
-          {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {Array.from({ length: 4 }).map((_, i) => (
-                <SkeletonCard key={i} rows={2} ariaLabel="Loading analytics summary" />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { label: "Total Bridges Monitored", value: "--" },
-                { label: "Total Assets Tracked", value: totalTrackedAssets || "--" },
-                { label: "Average Health Score", value: avgHealthScore },
-                { label: "Total Value Locked", value: "--" },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className="bg-stellar-card border border-stellar-border rounded-lg p-6"
-                >
-                  <p className="text-sm text-stellar-text-secondary">{stat.label}</p>
-                  <p className="mt-2 text-2xl font-bold text-white">{stat.value}</p>
-                </div>
-              ))}
-            </div>
-          )}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { label: "Total Bridges Monitored", value: "--" },
+              { label: "Total Assets Tracked", value: totalTrackedAssets || "--" },
+              { label: "Average Health Score", value: avgHealthScore },
+              { label: "Total Value Locked", value: "--" },
+            ].map((stat) => (
+              <div
+                key={stat.label}
+                className="bg-stellar-card border border-stellar-border rounded-lg p-6"
+              >
+                <p className="text-sm text-stellar-text-secondary">{stat.label}</p>
+                <p className="mt-2 text-2xl font-bold text-white">{stat.value}</p>
+              </div>
+            ))}
+          </div>
         </Suspense>
       </ErrorBoundary>
 

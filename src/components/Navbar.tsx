@@ -3,20 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import ThemeToggle from "./ThemeToggle";
 import { SkeletonText } from "./Skeleton";
 import NotificationCenter from "./NotificationCenter";
-import { WatchlistSidebar } from "./WatchlistSidebar";
 import { useNotificationContext } from "../hooks/useNotificationContext";
+import { WatchlistSidebar } from "./WatchlistSidebar";
+import ConnectionStatus from "./ConnectionStatus";
+import HamburgerButton from "./MobileNav/HamburgerButton";
+import MobileMenu from "./MobileNav/MobileMenu";
+import { desktopNavItems, isNavItemActive } from "./MobileNav/navigation";
 
-const navLinks = [
-  { to: "/dashboard", label: "Dashboard" },
-  { to: "/bridges", label: "Bridges" },
-  { to: "/transactions", label: "Transactions" },
-  { to: "/analytics", label: "Analytics" },
-  { to: "/liquidity", label: "Liquidity" },
-  { to: "/watchlist", label: "Watchlist" },
-  { to: "/reports", label: "Reports" },
-  { to: "/status", label: "Status" },
-  { to: "/settings", label: "Settings" },
-];
 
 interface NavbarProps {
   isLoading?: boolean;
@@ -36,32 +29,14 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
   const menuId = useId();
   const [isNotifOpen, setIsNotifOpen] = useState(false);
   const [isWatchlistOpen, setIsWatchlistOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { unreadCount } = useNotificationContext();
+  const location = useLocation();
   const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMenuOpen(false);
+    setMobileOpen(false);
   }, [location.pathname]);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [menuOpen]);
-
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -92,11 +67,8 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
   }
 
   return (
-    <nav
-      className="border-b border-stellar-border bg-stellar-card sticky top-0 z-50"
-      aria-label="Primary"
-      ref={navRef}
-    >
+    <>
+      <nav className="border-b border-stellar-border bg-stellar-card sticky top-0 z-50" aria-label="Primary" ref={navRef}>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-stellar-card focus:px-3 focus:py-2 focus:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
@@ -113,22 +85,27 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
             >
               Bridge <span className="text-stellar-blue">Watch</span>
             </Link>
-            <div className="hidden md:flex flex-wrap gap-1 lg:gap-2">
-              {navLinks.map((link) => (
+            <div className="hidden md:flex space-x-4">
+              {desktopNavItems.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
-                  aria-current={location.pathname === link.to ? "page" : undefined}
-                  className={linkClass(location.pathname === link.to)}
+                  aria-current={isNavItemActive(location.pathname, link.to) ? "page" : undefined}
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    isNavItemActive(location.pathname, link.to)
+                      ? "bg-stellar-blue text-white"
+                      : "text-stellar-text-secondary hover:text-stellar-text-primary"
+                  } focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card`}
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
           </div>
-
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-3">
             <ThemeToggle />
+          </div>
+          <div className="flex items-center gap-4">
             <button
               type="button"
               onClick={() => setIsWatchlistOpen(true)}
@@ -171,11 +148,20 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
                 )}
               </button>
 
-              <NotificationCenter isOpen={isNotifOpen} onClose={() => setIsNotifOpen(false)} />
+              <NotificationCenter
+                isOpen={isNotifOpen}
+                onClose={() => setIsNotifOpen(false)}
+              />
             </div>
 
-            <div className="hidden lg:block text-sm text-stellar-text-secondary border-l border-stellar-border pl-4 max-w-[10rem] xl:max-w-none truncate">
-              Stellar Network Monitor
+            <div className="hidden sm:flex items-center gap-3 border-l border-stellar-border pl-4">
+              <ConnectionStatus />
+            </div>
+
+            <HamburgerButton
+              open={mobileOpen}
+              onClick={() => setMobileOpen((current) => !current)}
+            />
             </div>
 
             <button
@@ -199,42 +185,12 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
             </button>
           </div>
         </div>
-      </div>
-
-      {menuOpen && (
-        <>
-          <button
-            type="button"
-            className="fixed inset-0 z-40 bg-black/60 md:hidden"
-            aria-label="Close navigation menu"
-            onClick={() => setMenuOpen(false)}
-          />
-          <div
-            id={menuId}
-            className="fixed top-16 bottom-0 right-0 z-50 w-[min(100%,20rem)] border-l border-stellar-border bg-stellar-card shadow-xl md:hidden flex flex-col py-6 px-4"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation"
-          >
-            <div className="flex flex-col gap-1 overflow-y-auto">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  aria-current={location.pathname === link.to ? "page" : undefined}
-                  className={`${linkClass(location.pathname === link.to)} text-base`}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-            <p className="mt-auto pt-6 text-xs text-stellar-text-secondary border-t border-stellar-border">
-              Stellar Network Monitor
-            </p>
-          </div>
-        </>
-      )}
     </nav>
+    <MobileMenu
+      open={mobileOpen}
+      pathname={location.pathname}
+      onClose={() => setMobileOpen(false)}
+    />
+    </>
   );
 }
