@@ -1,5 +1,4 @@
-import type { Asset, HealthScore, AssetWithHealth } from "../types";
-
+import type { Asset, HealthScore, AssetWithHealth, Bridge , BridgeStats , TransactionPage, TransactionFilters} from "../types";
 const API_BASE_URL = "/api/v1";
 
 async function fetchApi<T>(endpoint: string): Promise<T> {
@@ -23,6 +22,20 @@ export function getAssetDetail(symbol: string) {
 
 export function getAssetHealth(symbol: string) {
   return fetchApi<HealthScore | null>(`/assets/${symbol}/health`);
+}
+
+export function getAssetHealthHistory(
+  symbol: string,
+  period: "24h" | "7d" | "30d" = "7d"
+) {
+  return fetchApi<
+    | {
+        symbol: string;
+        period: "24h" | "7d" | "30d";
+        points: Array<{ timestamp: string; score: number }>;
+      }
+    | null
+  >(`/assets/${symbol}/health/history?period=${period}`);
 }
 
 export async function getAssetsWithHealth(): Promise<AssetWithHealth[]> {
@@ -63,26 +76,41 @@ export function getAssetPrice(symbol: string) {
 
 // Bridges
 export function getBridges() {
-  return fetchApi<{
-    bridges: Array<{
-      name: string;
-      status: "healthy" | "degraded" | "down" | "unknown";
-      totalValueLocked: number;
-      supplyOnStellar: number;
-      supplyOnSource: number;
-      mismatchPercentage: number;
-    }>;
-  }>("/bridges");
+  return fetchApi<{ bridges: Bridge[] }>("/bridges");
 }
 
 export function getBridgeStats(bridge: string) {
-  return fetchApi<{
-    name: string;
-    volume24h: number;
-    volume7d: number;
-    volume30d: number;
-    totalTransactions: number;
-    averageTransferTime: number;
-    uptime30d: number;
-  } | null>(`/bridges/${bridge}/stats`);
+  return fetchApi<BridgeStats | null>(`/bridges/${bridge}/stats`);
+}
+
+// Transactions
+export function getTransactions(
+  filters: TransactionFilters,
+  page: number,
+  pageSize: number
+) {
+  const params = new URLSearchParams();
+  params.set("page", String(page));
+  params.set("pageSize", String(pageSize));
+  if (filters.bridge) params.set("bridge", filters.bridge);
+  if (filters.asset) params.set("asset", filters.asset);
+  if (filters.status !== "all") params.set("status", filters.status);
+  if (filters.search) params.set("search", filters.search);
+  if (filters.dateFrom) params.set("dateFrom", filters.dateFrom);
+  if (filters.dateTo) params.set("dateTo", filters.dateTo);
+
+  return fetchApi<TransactionPage>(`/transactions?${params.toString()}`);
+}
+
+export function exportTransactionsCsv(filters: TransactionFilters): string {
+  const params = new URLSearchParams();
+  if (filters.bridge) params.set("bridge", filters.bridge);
+  if (filters.asset) params.set("asset", filters.asset);
+  if (filters.status !== "all") params.set("status", filters.status);
+  if (filters.search) params.set("search", filters.search);
+  if (filters.dateFrom) params.set("dateFrom", filters.dateFrom);
+  if (filters.dateTo) params.set("dateTo", filters.dateTo);
+  params.set("format", "csv");
+
+  return `${API_BASE_URL}/transactions/export?${params.toString()}`;
 }
