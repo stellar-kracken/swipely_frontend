@@ -4,17 +4,24 @@ import { useWatchlist } from "../hooks/useWatchlist";
 import { WatchlistManager } from "../components/WatchlistManager";
 import { AssetWatchlistButton } from "../components/AssetWatchlistButton";
 import { getAssetPrice, getAssetHealth } from "../services/api";
+import type { HealthScore } from "../types";
 import { Link } from "react-router-dom";
 
-type AssetDetail = {
-  price?: { vwap?: number } | null;
-  health?: { overallScore?: number } | null;
-};
+interface AssetDetails {
+  price: {
+    symbol: string;
+    vwap: number;
+    sources: Array<{ source: string; price: number; timestamp: string }>;
+    deviation: number;
+    lastUpdated: string;
+  } | null;
+  health: HealthScore | null;
+}
 
 export default function WatchlistPage() {
   const { activeWatchlist, importWatchlists } = useWatchlist();
   const [searchParams, setSearchParams] = useSearchParams();
-  const [assetDetails, setAssetDetails] = useState<Record<string, AssetDetail>>({});
+  const [assetDetails, setAssetDetails] = useState<Record<string, AssetDetails>>({});
   const [isLoading, setIsLoading] = useState(false);
 
   // Handle shared link import
@@ -41,7 +48,7 @@ export default function WatchlistPage() {
     const fetchDetails = async () => {
       setIsLoading(true);
       try {
-        const details: Record<string, AssetDetail> = {};
+        const details: Record<string, AssetDetails> = {};
         await Promise.all(
           activeWatchlist.assets.map(async (symbol) => {
             try {

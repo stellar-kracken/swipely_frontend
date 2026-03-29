@@ -41,7 +41,6 @@ function App() {
             <Route path="/bridges" element={<Bridges />} />
             <Route path="/transactions" element={<Transactions />} />
             <Route path="/analytics" element={<Analytics />} />
-            <Route path="/liquidity" element={<LiquidityDashboard />} />
             <Route path="/reports" element={<Reports />} />
             <Route path="/watchlist" element={<WatchlistPage />} />
             <Route path="/settings" element={<Settings />} />

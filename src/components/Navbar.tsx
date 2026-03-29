@@ -20,8 +20,8 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
   const [isWatchlistOpen, setIsWatchlistOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { unreadCount } = useNotificationContext();
-  const navRef = useRef<HTMLDivElement>(null);
   const location = useLocation();
+  const navRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMobileOpen(false);
@@ -90,8 +90,8 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
           </div>
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <div className="text-sm text-stellar-text-secondary">Stellar Network Monitor</div>
-            <div className="flex items-center gap-4">
+          </div>
+          <div className="flex items-center gap-4">
             <button
               onClick={() => setIsWatchlistOpen(true)}
               className="p-2 rounded-full transition-colors relative focus:outline-none focus:ring-2 focus:ring-stellar-blue text-stellar-text-secondary hover:text-white"
@@ -144,7 +144,6 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
             </div>
           </div>
         </div>
-      </div>
     </nav>
     <MobileMenu
       open={mobileOpen}
