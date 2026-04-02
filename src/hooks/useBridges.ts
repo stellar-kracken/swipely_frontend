@@ -1,8 +1,5 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getBridges, getBridgeStats } from "../services/api";
-import { wsService } from "../services/websocket";
-import type { Bridge } from "../types";
 
 type QueryRefreshOptions = {
   refetchInterval?: number | false;

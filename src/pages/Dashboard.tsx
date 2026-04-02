@@ -6,7 +6,6 @@ import { useWebSocket } from "../hooks/useWebSocket";
 import { useRefreshControls } from "../hooks/useRefreshControls";
 import HealthScoreCard from "../components/HealthScoreCard";
 import BridgeStatusCard from "../components/BridgeStatusCard";
-import { QuickStatsWidget } from "../components/QuickStats";
 import OnboardingDialog from "../components/OnboardingDialog";
 import RefreshControls from "../components/RefreshControls";
 import { SkeletonCard, ErrorBoundary } from "../components/Skeleton";

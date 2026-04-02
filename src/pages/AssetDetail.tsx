@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import type { CellContext } from "@tanstack/react-table";
 import { useParams } from "react-router-dom";
 import { useAssetHealth } from "../hooks/useAssets";
 import { usePrices } from "../hooks/usePrices";
@@ -8,15 +7,8 @@ import HealthScoreCard from "../components/HealthScoreCard";
 import LiquidityDepthChart from "../components/LiquidityDepthChart";
 import RefreshControls from "../components/RefreshControls";
 import { ErrorBoundary, LoadingSpinner } from "../components/Skeleton";
-import CopyButton from "../components/CopyButton";
-import { useAssetHealth } from "../hooks/useAssets";
-import { usePrices } from "../hooks/usePrices";
+import PriceChart from "../components/PriceChart";
 
-type PriceSourceRow = {
-  source: string;
-  price: number;
-  timestamp: string;
-};
 
 export default function AssetDetail() {
   const { symbol } = useParams<{ symbol: string }>();
@@ -38,7 +30,6 @@ export default function AssetDetail() {
   });
   const {
     data: priceData,
-    isLoading: priceLoading,
     refetch: refetchPrice,
   } = usePrices(symbol ?? "", {
     refetchInterval: refreshControls.preferences.autoRefreshEnabled
@@ -97,7 +88,7 @@ export default function AssetDetail() {
               trend={healthData?.trend ?? null}
             />
             <div className="lg:col-span-2">
-              <PriceChart symbol={symbol} data={priceData?.history ?? []} isLoading={priceLoading} />
+              <PriceChart symbol={symbol} />
             </div>
           </div>
 
