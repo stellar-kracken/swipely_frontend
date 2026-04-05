@@ -21,7 +21,7 @@ export function ColumnToggle<TData>({ table }: ColumnToggleProps<TData>) {
               checked={column.getIsVisible()}
               onChange={column.getToggleVisibilityHandler()}
             />
-            <span className="text-white/90">{column.id}</span>
+            <span className="text-stellar-text-primary">{column.id}</span>
           </label>
         ))}
     </div>

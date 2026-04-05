@@ -19,60 +19,52 @@ import {
 } from "../hooks/usePriceComparison";
 import { SkeletonChart } from "./Skeleton";
 
-interface PriceDataPoint {
-  timestamp: string;
-  price: number;
-  source: string;
-}
-
 interface PriceChartProps {
   symbol: string;
 }
 
-const SOURCE_COLORS: Record<PriceSourceId, string> = {
-  stellar_dex: "#0057FF",
+interface EnhancedPriceChartProps extends PriceChartProps {
+  timeframe: PriceTimeframe;
+  onTimeframeChange: (tf: PriceTimeframe) => void;
+}
+
+const SOURCE_COLORS: Record<string, string> = {
+  sdex: "#0057FF",
   circle: "#00D4AA",
   coinbase: "#0052FF",
   stellar_amm: "#FF6B35",
 };
 
-const ALL_SOURCES: PriceSourceId[] = [
-  "stellar_dex",
-  "circle",
-  "coinbase",
-  "stellar_amm",
-];
+const TIMEFRAMES: PriceTimeframe[] = ["1H", "24H", "7D", "30D"];
 
-function msForRange(rangeId: TimeRangeId, customStartIso: string, customEndIso: string): number {
-  if (rangeId === "1h") return 60 * 60 * 1000;
-  if (rangeId === "24h") return 24 * 60 * 60 * 1000;
-  if (rangeId === "7d") return 7 * 24 * 60 * 60 * 1000;
-  if (rangeId === "30d") return 30 * 24 * 60 * 60 * 1000;
-
-  const start = Date.parse(customStartIso);
-  const end = Date.parse(customEndIso);
-  if (!Number.isFinite(start) || !Number.isFinite(end) || end <= start) return 60 * 60 * 1000;
-  return end - start;
+function getTimeframeTickFormatter(timeframe: PriceTimeframe) {
+  return (val: string) => {
+    const date = new Date(val);
+    switch (timeframe) {
+      case "1H":
+        return date.toLocaleTimeString(undefined, {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      case "24H":
+        return date.toLocaleTimeString(undefined, {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      case "7D":
+        return date.toLocaleDateString(undefined, {
+          weekday: "short",
+        });
+      case "30D":
+        return date.toLocaleDateString(undefined, {
+          month: "short",
+          day: "numeric",
+        });
+    }
+  };
 }
 
-function formatPct(value: number | null): string {
-  if (value === null || !Number.isFinite(value)) return "--";
-  return `${(value * 100).toFixed(2)}%`;
-}
-
-function formatPrice(value: number | null | undefined): string {
-  if (value === null || value === undefined || !Number.isFinite(value)) return "--";
-  return `$${value.toFixed(6)}`;
-}
-
-function tooltipLabelFromIso(iso: string | undefined): string {
-  if (!iso) return "";
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleString();
-}
-
-export default function PriceChart({ symbol }: PriceChartProps) {
+export default function PriceChart({ symbol, data, isLoading }: PriceChartProps) {
   const titleId = `price-chart-title-${symbol}`;
   const descId = `price-chart-desc-${symbol}`;
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -98,23 +90,8 @@ export default function PriceChart({ symbol }: PriceChartProps) {
     () => msForRange(rangeId, customStartIso, customEndIso),
     [customEndIso, customStartIso, rangeId]
   );
-  if (isLoading) {
-    return <SkeletonChart height={340} ariaLabel={`${symbol} price chart loading`} />;
-  }
 
-  if (data.length === 0) {
-    return (
-      <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h3 id={titleId} className="text-lg font-semibold text-white mb-4">
-          {symbol} Price History
-        </h3>
-        <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
-          <span className="text-stellar-text-secondary">No price data available</span>
-        </div>
-      </div>
-    );
-  }
-
+  // All hooks must be called unconditionally before any early returns
   const comparison = usePriceComparison({
     symbol,
     enabledSources,
@@ -183,7 +160,7 @@ export default function PriceChart({ symbol }: PriceChartProps) {
 
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
-      ctx.fillStyle = "#0B1020";
+      ctx.fillStyle = stellarVarRgb("--stellar-bg", "rgb(11 14 26)");
       ctx.fillRect(0, 0, width, height);
       ctx.drawImage(img, 0, 0);
 
@@ -210,6 +187,24 @@ export default function PriceChart({ symbol }: PriceChartProps) {
     return { source: enabledSources[0] ?? "stellar_dex", price: null as number | null };
   }, [comparison.currentPrices, enabledSources]);
 
+  // Early returns AFTER all hooks
+  if (comparison.isLoading && chartData.length === 0) {
+    return <SkeletonChart height={340} ariaLabel={`${symbol} price chart loading`} />;
+  }
+
+  if (!comparison.isLoading && chartData.length === 0) {
+    return (
+      <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
+        <h3 id={titleId} className="text-lg font-semibold text-white mb-4">
+          {symbol} Price History
+        </h3>
+        <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
+          <span className="text-stellar-text-secondary">No price data available</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <figure
       className="bg-stellar-card border border-stellar-border rounded-lg p-6"
@@ -219,25 +214,25 @@ export default function PriceChart({ symbol }: PriceChartProps) {
       <figcaption className="space-y-4">
         <div className="flex flex-col gap-2 md:flex-row md:items-start md:justify-between">
           <div>
-            <h3 id={titleId} className="text-lg font-semibold text-white">
+            <h3 id={titleId} className="text-lg font-semibold text-stellar-text-primary">
               {symbol} Price Comparison
             </h3>
             <p id={descId} className="sr-only">
               Interactive line chart comparing {symbol} prices across multiple sources.
             </p>
             <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2 text-sm">
-              <div className="text-white">
+              <div className="text-stellar-text-primary">
                 <span className="text-stellar-text-secondary">Current</span>{" "}
                 {formatPrice(currentAttributed.price)}
                 <span className="ml-2 text-stellar-text-secondary">
                   ({currentAttributed.source.replace("_", " ")})
                 </span>
               </div>
-              <div className="text-white">
+              <div className="text-stellar-text-primary">
                 <span className="text-stellar-text-secondary">VWAP</span>{" "}
                 {formatPrice(comparison.currentVwap)}
               </div>
-              <div className="text-white">
+              <div className="text-stellar-text-primary">
                 <span className="text-stellar-text-secondary">Deviation</span>{" "}
                 {formatPct(comparison.currentDeviationPct)}
               </div>
@@ -281,31 +276,30 @@ export default function PriceChart({ symbol }: PriceChartProps) {
           <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
             <span className="text-stellar-text-secondary">Loading chart data…</span>
           </div>
-        ) : chartData.length === 0 ? (
-          <div className="h-64 flex items-center justify-center" role="status" aria-live="polite">
-            <span className="text-stellar-text-secondary">No price data available</span>
-          </div>
         ) : (
           <ResponsiveContainer width="100%" height={360}>
             <LineChart data={chartData} margin={{ top: 12, right: 16, left: 0, bottom: 0 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1E2340" />
+              <CartesianGrid
+                strokeDasharray="3 3"
+                stroke={stellarVarRgb("--stellar-border", "rgb(30 35 64)")}
+              />
               <XAxis
                 dataKey="t"
                 type="number"
                 domain={["dataMin", "dataMax"]}
                 scale="time"
                 tick={{ fontSize: 12 }}
-                stroke="#8A8FA8"
+                stroke={stellarVarRgb("--stellar-text-secondary", "rgb(138 143 168)")}
                 tickFormatter={(v: number) => {
                   const d = new Date(v);
                   return d.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
                 }}
               />
               <YAxis
-                stroke="#8A8FA8"
+                stroke={stellarVarRgb("--stellar-text-secondary", "rgb(138 143 168)")}
                 tick={{ fontSize: 12 }}
                 domain={["auto", "auto"]}
-                tickFormatter={(v: number) => `$${Number(v).toFixed(4)}`}
+                tickFormatter={(v: number) => `${Number(v).toFixed(4)}`}
               />
 
               <DeviationHighlightOverlay ranges={deviationRanges} />
@@ -318,7 +312,7 @@ export default function PriceChart({ symbol }: PriceChartProps) {
 
                   return (
                     <div
-                      className="rounded-lg border border-stellar-border bg-[#141829] px-3 py-2 text-sm text-white"
+                      className="rounded-lg border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-stellar-text-primary"
                       style={{ minWidth: 240 }}
                     >
                       <div className="text-xs text-stellar-text-secondary">
@@ -364,7 +358,7 @@ export default function PriceChart({ symbol }: PriceChartProps) {
                   type="monotone"
                   dataKey="vwap"
                   name="VWAP"
-                  stroke="#FFFFFF"
+                  stroke={stellarVarRgb("--stellar-text-primary", "rgb(255 255 255)")}
                   strokeOpacity={0.7}
                   dot={false}
                   strokeWidth={1.5}
@@ -376,7 +370,7 @@ export default function PriceChart({ symbol }: PriceChartProps) {
               <Brush
                 dataKey="t"
                 height={24}
-                stroke="#1E2340"
+                stroke={stellarVarRgb("--stellar-border", "rgb(30 35 64)")}
                 travellerWidth={10}
                 tickFormatter={(v: number) => {
                   const d = new Date(v);
@@ -388,5 +382,95 @@ export default function PriceChart({ symbol }: PriceChartProps) {
         )}
       </div>
     </figure>
+  );
+}
+
+export function EnhancedPriceChart({
+  symbol,
+  data,
+  isLoading,
+  timeframe,
+  onTimeframeChange,
+}: EnhancedPriceChartProps) {
+  const sources = data.length > 0 ? [...new Set(data.map((d) => d.source))] : [];
+
+  return (
+    <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-semibold text-white">
+          {symbol} Price History
+        </h3>
+        <div className="flex items-center gap-1 bg-stellar-dark rounded-lg p-1">
+          {TIMEFRAMES.map((tf) => (
+            <button
+              key={tf}
+              type="button"
+              onClick={() => onTimeframeChange(tf)}
+              className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${
+                tf === timeframe
+                  ? "bg-stellar-blue text-white"
+                  : "text-stellar-text-secondary hover:text-white"
+              }`}
+            >
+              {tf}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {isLoading ? (
+        <div className="h-72 flex items-center justify-center">
+          <span className="text-stellar-text-secondary">
+            Loading chart data...
+          </span>
+        </div>
+      ) : data.length === 0 ? (
+        <div className="h-72 flex items-center justify-center">
+          <span className="text-stellar-text-secondary">
+            No price data available for {timeframe}
+          </span>
+        </div>
+      ) : (
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={data}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#1E2340" />
+            <XAxis
+              dataKey="timestamp"
+              stroke="#8A8FA8"
+              tick={{ fontSize: 12 }}
+              tickFormatter={getTimeframeTickFormatter(timeframe)}
+            />
+            <YAxis
+              stroke="#8A8FA8"
+              tick={{ fontSize: 12 }}
+              domain={["auto", "auto"]}
+            />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: "#141829",
+                border: "1px solid #1E2340",
+                borderRadius: "8px",
+                color: "#FFFFFF",
+              }}
+              labelFormatter={(label: string) =>
+                new Date(label).toLocaleString()
+              }
+            />
+            <Legend />
+            {sources.map((source) => (
+              <Line
+                key={source}
+                type="monotone"
+                dataKey="price"
+                name={source}
+                stroke={SOURCE_COLORS[source] || "#8A8FA8"}
+                dot={false}
+                strokeWidth={2}
+              />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      )}
+    </div>
   );
 }

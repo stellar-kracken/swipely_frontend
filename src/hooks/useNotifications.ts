@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useWebSocket } from "./useWebSocket";
-import { useNotificationContext, NotificationType } from "../context/NotificationContext";
+import { useNotificationContext } from "./useNotificationContext";
+import type { NotificationType } from "../context/NotificationContext.types";
 
 interface RawNotification {
   type: string;

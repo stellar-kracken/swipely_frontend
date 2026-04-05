@@ -16,6 +16,16 @@ import {
 
 type TrendDirection = "up" | "down" | "flat";
 
+function stellarVarRgb(varName: string, fallbackRgb: string): string {
+  try {
+    const raw = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+    if (!raw) return fallbackRgb;
+    return `rgb(${raw})`;
+  } catch {
+    return fallbackRgb;
+  }
+}
+
 function getTrendDirection(points: SparklinePoint[]): TrendDirection {
   if (points.length < 2) return "flat";
   const first = points[0]?.value;
@@ -187,7 +197,7 @@ function SparklineImpl({
                     y={minMax.min.value}
                     r={3}
                     fill={colors.stroke}
-                    stroke="#141829"
+                    stroke={stellarVarRgb("--stellar-card", "rgb(20 24 41)")}
                     strokeWidth={1}
                     ifOverflow="extendDomain"
                   />
@@ -196,7 +206,7 @@ function SparklineImpl({
                     y={minMax.max.value}
                     r={3}
                     fill={colors.stroke}
-                    stroke="#141829"
+                    stroke={stellarVarRgb("--stellar-card", "rgb(20 24 41)")}
                     strokeWidth={1}
                     ifOverflow="extendDomain"
                   />

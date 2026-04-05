@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import { useAssetsWithHealth, useHealthUpdater } from "../hooks/useAssets";
 import { useBridges } from "../hooks/useBridges";
 import { useWebSocket } from "../hooks/useWebSocket";
+import { useRefreshControls } from "../hooks/useRefreshControls";
 import HealthScoreCard from "../components/HealthScoreCard";
 import BridgeStatusCard from "../components/BridgeStatusCard";
 import OnboardingDialog from "../components/OnboardingDialog";
-import {
-  SkeletonCard,
-  ErrorBoundary,
-} from "../components/Skeleton";
+import RefreshControls from "../components/RefreshControls";
+import { SkeletonCard, ErrorBoundary } from "../components/Skeleton";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 import type {
   AssetWithHealth,
@@ -26,11 +25,7 @@ function getHealthStatus(score: number | null): FilterStatus {
   return "critical";
 }
 
-function sortAssets(
-  assets: AssetWithHealth[],
-  field: SortField,
-  order: SortOrder
-): AssetWithHealth[] {
+function sortAssets(assets: AssetWithHealth[], field: SortField, order: SortOrder): AssetWithHealth[] {
   return [...assets].sort((a, b) => {
     let comparison = 0;
     if (field === "symbol") {
@@ -44,10 +39,7 @@ function sortAssets(
   });
 }
 
-function filterAssets(
-  assets: AssetWithHealth[],
-  status: FilterStatus
-): AssetWithHealth[] {
+function filterAssets(assets: AssetWithHealth[], status: FilterStatus): AssetWithHealth[] {
   if (status === "all") return assets;
   return assets.filter((asset) => {
     const assetStatus = getHealthStatus(asset.health?.overallScore ?? null);
@@ -56,12 +48,32 @@ function filterAssets(
 }
 
 export default function Dashboard() {
+  const refreshControls = useRefreshControls({
+    viewId: "dashboard",
+    targets: [
+      { id: "assets", label: "Assets", queryKey: ["assets-with-health"] },
+      { id: "bridges", label: "Bridges", queryKey: ["bridges"] },
+    ],
+    defaultIntervalMs: 30_000,
+  });
+
   const {
     data: assetsData,
     isLoading: assetsLoading,
     error: assetsError,
-  } = useAssetsWithHealth();
-  const { data: bridgesData, isLoading: bridgesLoading } = useBridges();
+    refetch: refetchAssets,
+  } = useAssetsWithHealth({
+    refetchInterval: refreshControls.preferences.autoRefreshEnabled
+      ? refreshControls.preferences.refreshIntervalMs
+      : false,
+    refetchOnWindowFocus: refreshControls.preferences.refreshOnFocus,
+  });
+  const { data: bridgesData, isLoading: bridgesLoading, refetch: refetchBridges } = useBridges({
+    refetchInterval: refreshControls.preferences.autoRefreshEnabled
+      ? refreshControls.preferences.refreshIntervalMs
+      : false,
+    refetchOnWindowFocus: refreshControls.preferences.refreshOnFocus,
+  });
   const { updateHealth } = useHealthUpdater();
 
   const [sortField, setSortField] = useState<SortField>("score");
@@ -85,6 +97,11 @@ export default function Dashboard() {
   );
 
   useWebSocket("health-updates", handleHealthUpdate);
+
+  const refreshTargets = [
+    { id: "assets", label: "Assets", refetch: refetchAssets },
+    { id: "bridges", label: "Bridges", refetch: refetchBridges },
+  ];
 
   const processedAssets = useMemo(() => {
     if (!assetsData) return [];
@@ -118,7 +135,7 @@ export default function Dashboard() {
       />
 
       <header>
-        <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+        <h1 className="text-3xl font-bold text-stellar-text-primary">Dashboard</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Real-time monitoring of bridged assets on the Stellar network
         </p>
@@ -135,16 +152,32 @@ export default function Dashboard() {
           <button
             type="button"
             onClick={() => setOnboardingOpen(true)}
-            className="mt-4 text-sm text-stellar-text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-md px-2 py-1"
+            className="mt-4 text-sm text-stellar-text-secondary hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-md px-2 py-1"
           >
             Show onboarding
           </button>
         )}
       </header>
 
+      <RefreshControls
+        autoRefreshEnabled={refreshControls.preferences.autoRefreshEnabled}
+        onAutoRefreshEnabledChange={refreshControls.setAutoRefreshEnabled}
+        refreshIntervalMs={refreshControls.preferences.refreshIntervalMs}
+        onRefreshIntervalChange={refreshControls.setRefreshIntervalMs}
+        refreshOnFocus={refreshControls.preferences.refreshOnFocus}
+        onRefreshOnFocusChange={refreshControls.setRefreshOnFocus}
+        targets={refreshTargets}
+        selectedTargetIds={refreshControls.preferences.selectedTargetIds}
+        onSelectedTargetIdsChange={refreshControls.setSelectedTargetIds}
+        onRefresh={refreshControls.refreshNow}
+        onCancelRefresh={refreshControls.cancelRefresh}
+        isRefreshing={refreshControls.isRefreshing}
+        lastUpdatedAt={refreshControls.lastUpdatedAt}
+      />
+
       <section aria-labelledby="asset-health-heading">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
-          <h2 id="asset-health-heading" className="text-xl font-semibold text-white">
+          <h2 id="asset-health-heading" className="text-xl font-semibold text-stellar-text-primary">
             Asset Health
           </h2>
 
@@ -157,7 +190,7 @@ export default function Dashboard() {
                 id="filter-status"
                 value={filterStatus}
                 onChange={(e) => setFilterStatus(e.target.value as FilterStatus)}
-                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 <option value="all">All Assets</option>
                 <option value="healthy">Healthy ({statusCounts.healthy})</option>
@@ -174,7 +207,7 @@ export default function Dashboard() {
                 id="sort-field"
                 value={sortField}
                 onChange={(e) => setSortField(e.target.value as SortField)}
-                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 <option value="score">Sort by Score</option>
                 <option value="symbol">Sort by Name</option>
@@ -183,7 +216,7 @@ export default function Dashboard() {
               <button
                 type="button"
                 onClick={() => setSortOrder((o) => (o === "asc" ? "desc" : "asc"))}
-                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-white hover:bg-stellar-border focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="bg-stellar-card border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                 aria-label={`Sort ${sortOrder === "asc" ? "descending" : "ascending"}`}
               >
                 {sortOrder === "asc" ? "↑" : "↓"}
@@ -203,14 +236,9 @@ export default function Dashboard() {
             }
           >
             {assetsError ? (
-              <div
-                className="bg-red-500/10 border border-red-500/30 rounded-lg p-6 text-center"
-                role="alert"
-              >
+              <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-6 text-center" role="alert">
                 <p className="text-red-400 font-medium">Failed to load asset data</p>
-                <p className="text-sm text-red-400/80 mt-1">
-                  Please check your connection and try again.
-                </p>
+                <p className="text-sm text-red-400/80 mt-1">Please check your connection and try again.</p>
                 <button
                   type="button"
                   onClick={() => window.location.reload()}
@@ -226,57 +254,47 @@ export default function Dashboard() {
                 ))}
               </div>
             ) : processedAssets.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {processedAssets.map((asset) => (
-              <Link
-                key={asset.symbol}
-                to={`/assets/${asset.symbol}`}
-                className="block focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-lg"
-              >
-                <HealthScoreCard
-                  symbol={asset.symbol}
-                  name={asset.name}
-                  overallScore={asset.health?.overallScore ?? null}
-                  factors={asset.health?.factors ?? null}
-                  trend={asset.health?.trend ?? null}
-                />
-              </Link>
-            ))}
-          </div>
-        ) : filterStatus !== "all" ? (
-          <div className="bg-stellar-card border border-stellar-border rounded-lg p-8 text-center">
-            <p className="text-stellar-text-secondary">
-              No assets match the selected filter.
-            </p>
-            <button
-              type="button"
-              onClick={() => setFilterStatus("all")}
-              className="mt-3 text-sm text-stellar-blue hover:underline"
-            >
-              Clear filter
-            </button>
-          </div>
-        ) : (
-          <div className="bg-stellar-card border border-stellar-border rounded-lg p-8 text-center">
-            <p className="text-stellar-text-secondary">
-              No monitored assets yet. Configure assets in the backend to get
-              started.
-            </p>
-          </div>
-        )}
-      </Suspense>
-    </ErrorBoundary>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {processedAssets.map((asset) => (
+                  <Link
+                    key={asset.symbol}
+                    to={`/assets/${asset.symbol}`}
+                    className="block focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-lg"
+                  >
+                    <HealthScoreCard
+                      symbol={asset.symbol}
+                      name={asset.name}
+                      overallScore={asset.health?.overallScore ?? null}
+                      factors={asset.health?.factors ?? null}
+                      trend={asset.health?.trend ?? null}
+                    />
+                  </Link>
+                ))}
+              </div>
+            ) : filterStatus !== "all" ? (
+              <div className="bg-stellar-card border border-stellar-border rounded-lg p-8 text-center">
+                <p className="text-stellar-text-secondary">No assets match the selected filter.</p>
+                <button type="button" onClick={() => setFilterStatus("all")} className="mt-3 text-sm text-stellar-blue hover:underline">
+                  Clear filter
+                </button>
+              </div>
+            ) : (
+              <div className="bg-stellar-card border border-stellar-border rounded-lg p-8 text-center">
+                <p className="text-stellar-text-secondary">
+                  No monitored assets yet. Configure assets in the backend to get started.
+                </p>
+              </div>
+            )}
+          </Suspense>
+        </ErrorBoundary>
       </section>
 
       <section aria-labelledby="bridge-status-heading">
         <div className="flex items-center justify-between mb-4">
-          <h2 id="bridge-status-heading" className="text-xl font-semibold text-white">
+          <h2 id="bridge-status-heading" className="text-xl font-semibold text-stellar-text-primary">
             Bridge Status
           </h2>
-          <Link
-            to="/bridges"
-            className="text-sm text-stellar-blue hover:underline"
-          >
+          <Link to="/bridges" className="text-sm text-stellar-blue hover:underline">
             View all
           </Link>
         </div>
@@ -297,29 +315,18 @@ export default function Dashboard() {
                 ))}
               </div>
             ) : bridgesData && bridgesData.bridges.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {bridgesData.bridges.map(
-              (bridge: {
-                name: string;
-                status: "healthy" | "degraded" | "down" | "unknown";
-                totalValueLocked: number;
-                supplyOnStellar: number;
-                supplyOnSource: number;
-                mismatchPercentage: number;
-              }) => (
-                <BridgeStatusCard key={bridge.name} {...bridge} />
-              )
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {bridgesData.bridges.map((bridge) => (
+                  <BridgeStatusCard key={bridge.name} {...bridge} />
+                ))}
+              </div>
+            ) : (
+              <div className="bg-stellar-card border border-stellar-border rounded-lg p-8 text-center">
+                <p className="text-stellar-text-secondary">No bridge data available yet.</p>
+              </div>
             )}
-          </div>
-        ) : (
-          <div className="bg-stellar-card border border-stellar-border rounded-lg p-8 text-center">
-            <p className="text-stellar-text-secondary">
-              No bridge data available yet.
-            </p>
-          </div>
-        )}
-      </Suspense>
-    </ErrorBoundary>
+          </Suspense>
+        </ErrorBoundary>
       </section>
     </div>
   );

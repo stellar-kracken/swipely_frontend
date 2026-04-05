@@ -189,7 +189,7 @@ export function TableBody<TData>({
       aria-label="Table content"
     >
       <table className="w-full text-sm">
-        <tbody className="text-white">
+        <tbody className="text-stellar-text-primary">
           {isLoading ? (
             <tr>
               <td
