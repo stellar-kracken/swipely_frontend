@@ -60,7 +60,7 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
       <nav className="border-b border-stellar-border bg-stellar-card sticky top-0 z-50" aria-label="Primary" ref={navRef}>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-stellar-card focus:px-3 focus:py-2 focus:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-stellar-card focus:px-3 focus:py-2 focus:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card rounded-sm"
         >
           Skip to content
         </a>
@@ -80,11 +80,10 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
                     key={link.to}
                     to={link.to}
                     aria-current={isNavItemActive(location.pathname, link.to) ? "page" : undefined}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                      isNavItemActive(location.pathname, link.to)
+                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${isNavItemActive(location.pathname, link.to)
                         ? "bg-stellar-blue text-white"
                         : "text-stellar-text-secondary hover:text-stellar-text-primary"
-                    } focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card`}
+                      } focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card`}
                   >
                     {link.label}
                   </Link>
@@ -121,9 +120,8 @@ export default function Navbar({ isLoading = false }: NavbarProps) {
                 <button
                   type="button"
                   onClick={() => setIsNotifOpen(!isNotifOpen)}
-                  className={`p-2 rounded-full transition-colors relative focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
-                    isNotifOpen ? "bg-stellar-dark text-white" : "text-stellar-text-secondary hover:text-white"
-                  }`}
+                  className={`p-2 rounded-full transition-colors relative focus:outline-none focus:ring-2 focus:ring-stellar-blue ${isNotifOpen ? "bg-stellar-dark text-white" : "text-stellar-text-secondary hover:text-white"
+                    }`}
                   aria-label={`${unreadCount} notifications`}
                   aria-expanded={isNotifOpen}
                 >
