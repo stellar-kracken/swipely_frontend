@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import NotificationPreferences from "../components/NotificationPreferences";
+import HelpTooltip from "../components/help/HelpTooltip";
 import { usePreferences } from "../context/PreferencesContext";
 import { useToast } from "../context/ToastContext";
 import { useNotificationContext } from "../hooks/useNotificationContext";
@@ -51,6 +52,7 @@ export default function Settings() {
                 />
               </svg>
               Notification settings
+              <HelpTooltip label="Control when and how operational alerts appear in-app." />
             </h2>
             <NotificationPreferences />
           </section>
@@ -60,7 +62,10 @@ export default function Settings() {
             aria-labelledby="settings-display-heading"
           >
             <h2 id="settings-display-heading" className="text-lg font-semibold text-stellar-text-primary">
-              Display
+              <span className="inline-flex items-center gap-2">
+                Display
+                <HelpTooltip label="Display preferences are persisted per browser." />
+              </span>
             </h2>
             <p className="text-sm text-stellar-text-secondary -mt-2">
               Saved in this browser only.
@@ -108,7 +113,10 @@ export default function Settings() {
             aria-labelledby="settings-data-heading"
           >
             <h2 id="settings-data-heading" className="text-lg font-semibold text-stellar-text-primary">
-              Data refresh
+              <span className="inline-flex items-center gap-2">
+                Data refresh
+                <HelpTooltip label="Faster refresh improves responsiveness at the cost of more API requests." />
+              </span>
             </h2>
             <p className="text-sm text-stellar-text-secondary">
               Target interval for live dashboards. The app aligns polling with this preference where possible.

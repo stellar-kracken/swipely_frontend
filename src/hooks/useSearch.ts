@@ -47,6 +47,13 @@ const PAGE_RESULTS: SearchResult[] = [
     category: "pages",
     href: "/analytics",
   },
+  {
+    id: "page-help",
+    title: "Help Center",
+    subtitle: "Documentation, FAQ, and contextual guidance",
+    category: "pages",
+    href: "/help",
+  },
 ];
 
 // ─── Local storage helpers ─────────────────────────────────────────────────────
