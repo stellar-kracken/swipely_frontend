@@ -11,6 +11,9 @@ import type { CellContext } from "@tanstack/react-table";
 import { ErrorBoundary, LoadingSpinner } from "../components/Skeleton";
 import VolumeAnalytics from "../components/VolumeAnalytics";
 import AlertConfigSection from "../components/AlertConfigSection";
+import { PriceImpactCalculator } from "../components/liquidity";
+import { useLiquidity } from "../hooks/useLiquidity";
+import type { TradingPair } from "../types/liquidity";
 
 enum TabId {
   Overview = "overview",
@@ -49,32 +52,32 @@ export default function AssetDetail() {
       timestamp: string;
     }>
   > = [
-    {
-      id: "source",
-      accessorKey: "source",
-      header: "Source",
-      filterType: "text",
-    },
-    {
-      id: "price",
-      accessorKey: "price",
-      header: "Price",
-      filterType: "numberRange",
-      cell: (
-        ctx: CellContext<
-          { source: string; price: number; timestamp: string },
-          unknown
-        >
-      ) =>
-        `$${Number(ctx.getValue()).toFixed(4)}`,
-    },
-    {
-      id: "timestamp",
-      accessorKey: "timestamp",
-      header: "Last Updated",
-      filterType: "text",
-    },
-  ];
+      {
+        id: "source",
+        accessorKey: "source",
+        header: "Source",
+        filterType: "text",
+      },
+      {
+        id: "price",
+        accessorKey: "price",
+        header: "Price",
+        filterType: "numberRange",
+        cell: (
+          ctx: CellContext<
+            { source: string; price: number; timestamp: string },
+            unknown
+          >
+        ) =>
+          `$${Number(ctx.getValue()).toFixed(4)}`,
+      },
+      {
+        id: "timestamp",
+        accessorKey: "timestamp",
+        header: "Last Updated",
+        filterType: "text",
+      },
+    ];
 
   if (!symbol) {
     return <div className="text-stellar-text-secondary p-8">No asset symbol provided.</div>;
@@ -105,8 +108,8 @@ export default function AssetDetail() {
                 key={tab}
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${activeTab === tab
-                    ? "bg-stellar-primary text-white shadow-lg"
-                    : "text-stellar-text-secondary hover:text-white hover:bg-white/5"
+                  ? "bg-stellar-primary text-white shadow-lg"
+                  : "text-stellar-text-secondary hover:text-white hover:bg-white/5"
                   }`}
               >
                 {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -173,11 +176,19 @@ export default function AssetDetail() {
 
           {activeTab === TabId.Liquidity && (
             <div className="space-y-6">
-              <LiquidityDepthChart
-                symbol={symbol}
-                data={liquidity.data ?? []}
-                isLoading={liquidity.isLoading}
-              />
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div className="lg:col-span-2">
+                  <LiquidityDepthChart
+                    symbol={symbol}
+                    data={liquidity.data ?? []}
+                    isLoading={liquidity.isLoading}
+                  />
+                </div>
+                <div className="bg-stellar-card border border-stellar-border rounded-xl p-6">
+                  <h3 className="text-lg font-semibold text-white mb-4">Price Impact Calculator</h3>
+                  <PriceImpactCalculatorWrapper symbol={symbol} />
+                </div>
+              </div>
             </div>
           )}
 
@@ -195,4 +206,14 @@ export default function AssetDetail() {
       </Suspense>
     </ErrorBoundary>
   );
+}
+
+function PriceImpactCalculatorWrapper({ symbol }: { symbol: string }) {
+  // Most assets are traded against XLM in this app
+  const pair: TradingPair = symbol === "XLM" ? "USDC/XLM" : (`${symbol}/XLM` as any);
+  const { depth, isLoading } = useLiquidity(pair);
+
+  if (isLoading && !depth) return <LoadingSpinner message="Loading liquidity data..." />;
+
+  return <PriceImpactCalculator depth={depth} />;
 }
