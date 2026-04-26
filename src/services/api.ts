@@ -375,3 +375,76 @@ export function getPriceFeedHealth() {
     }>;
   }>("/price-feeds/health");
 }
+
+export interface ExternalDependencyCheck {
+  id: string;
+  providerKey: string;
+  status: "healthy" | "degraded" | "down" | "maintenance" | "unknown";
+  checkedAt: string;
+  latencyMs: number | null;
+  statusCode: number | null;
+  withinThreshold: boolean;
+  alertTriggered: boolean;
+  error: string | null;
+  details: Record<string, unknown>;
+}
+
+export interface ExternalDependency {
+  providerKey: string;
+  displayName: string;
+  category: string;
+  endpoint: string;
+  checkType: "http" | "jsonrpc";
+  latencyWarningMs: number;
+  latencyCriticalMs: number;
+  failureThreshold: number;
+  maintenanceMode: boolean;
+  maintenanceNote: string | null;
+  status: "healthy" | "degraded" | "down" | "maintenance" | "unknown";
+  lastCheckedAt: string | null;
+  lastLatencyMs: number | null;
+  consecutiveFailures: number;
+  lastSuccessAt: string | null;
+  lastFailureAt: string | null;
+  lastError: string | null;
+  alertState: "none" | "firing" | "suppressed";
+  history?: ExternalDependencyCheck[];
+}
+
+export function getExternalDependencies(includeHistory = true, historyLimit = 8) {
+  const params = new URLSearchParams({
+    includeHistory: includeHistory ? "true" : "false",
+    historyLimit: String(historyLimit),
+  });
+
+  return fetchApi<{
+    dependencies: ExternalDependency[];
+    summary: Record<"healthy" | "degraded" | "down" | "maintenance" | "unknown", number>;
+  }>(`/external-dependencies?${params.toString()}`);
+}
+
+export interface IndexedSearchResult {
+  id: string;
+  type: "asset" | "bridge" | "incident" | "alert";
+  title: string;
+  description: string;
+  relevanceScore: number;
+  highlights: string[];
+  metadata: Record<string, unknown>;
+}
+
+export function searchIndexed(query: string, limit = 12) {
+  const params = new URLSearchParams({
+    q: query,
+    limit: String(limit),
+    fuzzy: "true",
+  });
+
+  return fetchApi<{
+    success: boolean;
+    data: {
+      results: IndexedSearchResult[];
+      total: number;
+    };
+  }>(`/search?${params.toString()}`);
+}

@@ -5,6 +5,7 @@ import HealthScoreCard from "../components/HealthScoreCard";
 import BridgeStatusCard from "../components/BridgeStatusCard";
 import AddToWatchlistButton from "../components/watchlist/AddToWatchlistButton";
 import WatchlistWidget from "../components/watchlist/WatchlistWidget";
+import ExternalDependencyPanel from "../components/dashboard/ExternalDependencyPanel";
 
 export default function Dashboard() {
   const { data: assetsData, isLoading: assetsLoading } = useAssets();
@@ -56,6 +57,8 @@ export default function Dashboard() {
       </section>
 
       <WatchlistWidget />
+
+      <ExternalDependencyPanel />
 
       {/* Bridge Status Overview */}
       <section>
