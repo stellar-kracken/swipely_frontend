@@ -48,44 +48,6 @@ export interface BridgeStats {
   uptime30d: number;
 }
 
-export type DependencyNodeType =
-  | "bridge"
-  | "oracle"
-  | "indexer"
-  | "rpc"
-  | "queue"
-  | "database"
-  | "notifier"
-  | "api";
-
-export type DependencyNodeStatus = "healthy" | "degraded" | "down" | "unknown";
-
-export interface DependencyNode {
-  id: string;
-  label: string;
-  type: DependencyNodeType;
-  status: DependencyNodeStatus;
-  description: string;
-  impactHint: string;
-}
-
-export interface DependencyEdge {
-  from: string;
-  to: string;
-  kind: "data" | "control" | "notification";
-}
-
-export interface DependencyGraph {
-  nodes: DependencyNode[];
-  edges: DependencyEdge[];
-  summary: {
-    totalNodes: number;
-    totalEdges: number;
-    downServices: number;
-    degradedServices: number;
-  };
-}
-
 // Transaction History types
 export type TransactionStatus = "pending" | "completed" | "failed";
 
@@ -123,4 +85,117 @@ export interface TransactionPage {
   page: number;
   pageSize: number;
   totalPages: number;
+}
+
+// WebSocket connection
+export type ConnectionState = "connecting" | "connected" | "disconnected" | "error";
+
+export type SubscriptionChannel = "prices" | "health" | "health-updates" | "alerts" | "bridges";
+
+interface WsBaseMessage {
+  channel: SubscriptionChannel | string;
+  type?: string;
+  timestamp?: string;
+}
+
+export interface WsPriceMessage extends WsBaseMessage {
+  channel: "prices";
+  symbol: string;
+  price: number;
+  source: string;
+  vwap?: number;
+}
+
+export interface WsHealthMessage extends WsBaseMessage {
+  channel: "health" | "health-updates";
+  symbol: string;
+  overallScore: number;
+  factors: HealthFactors;
+  trend: "improving" | "stable" | "deteriorating";
+  lastUpdated: string;
+}
+
+export interface WsAlertMessage extends WsBaseMessage {
+  channel: "alerts";
+  severity: "info" | "warning" | "critical";
+  message: string;
+  symbol?: string;
+  bridgeName?: string;
+}
+
+export interface WsBridgeMessage extends WsBaseMessage {
+  channel: "bridges";
+  name: string;
+  status: "healthy" | "degraded" | "down" | "unknown";
+  totalValueLocked: number;
+  supplyOnStellar: number;
+  supplyOnSource: number;
+  mismatchPercentage: number;
+}
+
+export type WsMessage = WsPriceMessage | WsHealthMessage | WsAlertMessage | WsBridgeMessage;
+
+export type PriceTimeframe = "1H" | "24H" | "7D" | "30D";
+
+export interface AssetInfo {
+  symbol: string;
+  name: string;
+  type?: string;
+  description?: string;
+  issuer?: string;
+  domain?: string;
+  bridge?: string;
+  sourceChain?: string;
+}
+
+export interface AssetMetadata {
+  id: string;
+  asset_id: string;
+  symbol: string;
+  category: string | null;
+  tags: string[];
+  description?: string | null;
+  updated_at?: string;
+  version?: number;
+}
+
+export interface PriceSource {
+  source: string;
+  price: number;
+  timestamp: string;
+  deviation: number;
+  status: "active" | "stale" | "offline";
+}
+
+export interface HealthHistoryPoint {
+  timestamp: string;
+  score: number;
+}
+
+export interface ApiKeyRecord {
+  id: string;
+  name: string;
+  prefix: string;
+  scopes: string[];
+  rateLimitPerMinute: number;
+  usageCount: number;
+  expiresAt: string | null;
+  revokedAt: string | null;
+  lastUsedAt: string | null;
+  lastUsedIp: string | null;
+  createdBy: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CreateApiKeyRequest {
+  name: string;
+  scopes: string[];
+  rateLimitPerMinute?: number;
+  expiresInDays?: number;
+}
+
+export interface CreateApiKeyResponse {
+  apiKey: string;
+  key: ApiKeyRecord;
 }

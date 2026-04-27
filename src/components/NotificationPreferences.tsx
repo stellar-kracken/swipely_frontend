@@ -1,5 +1,4 @@
-import React from "react";
-import { useNotificationContext } from "../context/NotificationContext";
+import { useNotificationContext } from "../hooks/useNotificationContext";
 
 export default function NotificationPreferences() {
   const { preferences, updatePreferences } = useNotificationContext();

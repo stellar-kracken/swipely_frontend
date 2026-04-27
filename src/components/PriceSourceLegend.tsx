@@ -32,7 +32,7 @@ export default function PriceSourceLegend({
             className={
               "inline-flex items-center gap-2 rounded-md border px-3 py-1.5 text-sm transition " +
               (isOn
-                ? "border-stellar-border bg-stellar-card text-white"
+                ? "border-stellar-border bg-stellar-card text-stellar-text-primary"
                 : "border-stellar-border/60 bg-transparent text-stellar-text-secondary")
             }
             aria-pressed={isOn}
