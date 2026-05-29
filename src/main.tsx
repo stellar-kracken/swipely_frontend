@@ -5,6 +5,8 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { TimeRangeProvider } from "./hooks/useTimeRange";
 import { WatchlistProvider } from "./hooks/useWatchlist";
+import { WebSocketProvider } from "./contexts/WebSocketContext";
+import ThemeProvider from "./theme/ThemeProvider";
 import "./index.css";
 
 const queryClient = new QueryClient({
@@ -18,14 +20,18 @@ const queryClient = new QueryClient({
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <WatchlistProvider>
-          <TimeRangeProvider>
-            <App />
-          </TimeRangeProvider>
-        </WatchlistProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <WebSocketProvider>
+            <WatchlistProvider>
+              <TimeRangeProvider>
+                <App />
+              </TimeRangeProvider>
+            </WatchlistProvider>
+          </WebSocketProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
