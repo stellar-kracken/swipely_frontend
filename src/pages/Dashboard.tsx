@@ -220,7 +220,25 @@ export default function Dashboard() {
         isRefreshing={pullToRefresh.isRefreshing}
       />
 
-      <div className="space-y-4 rounded-2xl border border-stellar-border bg-gradient-to-br from-stellar-card via-stellar-card to-stellar-dark/40 p-6">
+      <div className="flex flex-col gap-6 md:flex-row">
+        <AssetFilterPanel
+          assets={availableAssets}
+          bridges={availableBridges}
+          filters={filters}
+          savedPresets={savedPresets}
+          hasActiveFilters={hasActiveFilters}
+          onToggleAsset={toggleAsset}
+          onToggleBridge={toggleBridge}
+          onStatusChange={setStatus}
+          onTimeRangeChange={setTimeRange}
+          onClearAll={clearAll}
+          onSavePreset={savePreset}
+          onApplyPreset={applyPreset}
+          onDeletePreset={deletePreset}
+        />
+
+        <main className="flex-1 space-y-8 min-w-0">
+          <div className="space-y-4 rounded-2xl border border-stellar-border bg-gradient-to-br from-stellar-card via-stellar-card to-stellar-dark/40 p-6">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <h1 className="text-3xl font-bold text-white">Dashboard</h1>
@@ -303,22 +321,6 @@ export default function Dashboard() {
           </select>
         </div>
       </div>
-
-      <AssetFilterPanel
-        assets={availableAssets}
-        bridges={availableBridges}
-        filters={filters}
-        savedPresets={savedPresets}
-        hasActiveFilters={hasActiveFilters}
-        onToggleAsset={toggleAsset}
-        onToggleBridge={toggleBridge}
-        onStatusChange={setStatus}
-        onTimeRangeChange={setTimeRange}
-        onClearAll={clearAll}
-        onSavePreset={savePreset}
-        onApplyPreset={applyPreset}
-        onDeletePreset={deletePreset}
-      />
 
       {/* Overview Stats */}
       <section aria-labelledby="overview-stats">
@@ -444,6 +446,8 @@ export default function Dashboard() {
           )}
         </section>
       ) : null}
+        </main>
+      </div>
       <ExportPickerDialog
         open={exportPickerOpen}
         onClose={() => setExportPickerOpen(false)}
