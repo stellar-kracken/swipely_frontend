@@ -4,6 +4,7 @@ import { useWatchlist } from "../../hooks/useWatchlist";
 import { useWebSocket } from "../../hooks/useWebSocket";
 import AlertSnoozeControls from "../alerts/AlertSnoozeControls";
 import { useAlertSnoozes } from "../../hooks/useAlertSnoozes";
+import { CollapsibleWidget } from "../dashboard/CollapsibleWidget";
 
 interface AssetAlert {
   symbol: string;
@@ -55,15 +56,20 @@ export default function WatchlistWidget() {
 
   useWebSocket("alerts", onAlert);
 
-  return (
-    <section className="rounded-lg border border-stellar-border bg-stellar-card p-6">
-      <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-semibold text-white">Watchlist quick access</h2>
-        <Link to="/watchlists" className="text-sm text-stellar-blue hover:underline">
-          Manage
-        </Link>
-      </div>
+  const headerActions = (
+    <Link to="/watchlists" className="text-sm text-stellar-blue hover:underline">
+      Manage
+    </Link>
+  );
 
+  return (
+    <CollapsibleWidget
+      id="watchlist"
+      title="Watchlist quick access"
+      headerActions={headerActions}
+      defaultCollapsed={false}
+      headerClassName="text-lg font-semibold text-white"
+    >
       <p className="mb-3 text-xs text-stellar-text-secondary">
         Active list: {activeWatchlist?.name ?? "None"}
       </p>
@@ -149,6 +155,6 @@ export default function WatchlistWidget() {
           </ul>
         )}
       </div>
-    </section>
+    </CollapsibleWidget>
   );
 }

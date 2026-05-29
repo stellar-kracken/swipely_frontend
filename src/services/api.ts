@@ -1,15 +1,25 @@
 import type {
+  AlertRoutingAuditEntry,
+  AlertRoutingRule,
   ApiKeyRecord,
   Asset,
+  AssetMetadata,
   AssetInfo,
   AssetWithHealth,
+  CreateAlertRoutingRuleRequest,
   Bridge,
   BridgeStats,
   CreateApiKeyRequest,
   CreateApiKeyResponse,
+  DependencyGraph,
   HealthScore,
   TransactionFilters,
   TransactionPage,
+  ExportDataType,
+  ExportFilters,
+  ExportFormat,
+  ExportRecord,
+  UpdateAlertRoutingRuleRequest,
 } from "../types";
 const API_BASE_URL = "/api/v1";
 
@@ -43,6 +53,10 @@ async function fetchApi<T>(
     throw new Error(`API error: ${response.status} ${response.statusText}${suffix}`);
   }
 
+  if (response.status === 204) {
+    return {} as T;
+  }
+
   return response.json();
 }
 
@@ -54,6 +68,59 @@ export async function getServerHealth(): Promise<{ status: string; timestamp: st
   }
   return response.json();
 }
+
+export type ExportStatus = "pending" | "processing" | "completed" | "failed";
+
+export interface ExportRequestPayload {
+  format: ExportFormat;
+  dataType: ExportDataType;
+  filters: ExportFilters;
+  emailDelivery?: boolean;
+  emailAddress?: string;
+}
+
+export async function requestExport(payload: ExportRequestPayload): Promise<ExportRecord> {
+  const response = await fetchApi<{ export: ExportRecord }>("/exports", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+  return response.export;
+}
+
+export async function getExportStatus(exportId: string): Promise<ExportRecord> {
+  const response = await fetchApi<{ export: ExportRecord }>(`/exports/${exportId}`);
+  return response.export;
+}
+
+export async function generateExportDownloadLink(exportId: string): Promise<string> {
+  const response = await fetchApi<{ downloadLink: { url: string; expiresAt: string } }>(
+    `/exports/${exportId}/download`
+  );
+  return response.downloadLink.url;
+}
+
+export interface SystemStatus {
+  status: "healthy" | "unhealthy" | "degraded";
+  timestamp: string;
+  uptime: number;
+  version: string;
+  maintenance?: {
+    active: boolean;
+    message: string;
+    severity: "info" | "warning" | "critical";
+    statusPageUrl?: string;
+  };
+}
+
+export async function getSystemStatus(): Promise<SystemStatus> {
+  const response = await fetch("/health/detailed");
+  if (!response.ok) {
+    throw new Error(`System status check failed: ${response.status} ${response.statusText}`);
+  }
+  return response.json();
+}
+
+
 
 // Assets
 export function getAssets() {
@@ -124,6 +191,26 @@ export function getAssetInfo(symbol: string) {
   return fetchApi<AssetInfo | null>(`/assets/${symbol}/info`);
 }
 
+export function getAssetMetadataBySymbol(symbol: string) {
+  return fetchApi<AssetMetadata>(`/metadata/symbol/${symbol}`);
+}
+
+export function upsertAssetMetadata(payload: {
+  assetId: string;
+  symbol: string;
+  metadata: {
+    category?: string | null;
+    tags?: string[];
+    description?: string | null;
+  };
+  updatedBy: string;
+}) {
+  return fetchApi<AssetMetadata>("/metadata", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
 export function getAssetPriceHistory(symbol: string, timeframe: string) {
   return fetchApi<Array<{ source: string; price: number; timestamp: string }>>(
     `/assets/${symbol}/price/history?timeframe=${timeframe}`
@@ -174,6 +261,61 @@ export function getAssetAlerts(symbol: string) {
   }>>(`/assets/${symbol}/alerts`);
 }
 
+export interface AlertSuppressionRule {
+  id: string;
+  name: string;
+  description: string | null;
+  isActive: boolean;
+  maintenanceMode: boolean;
+  expiresAt: string | null;
+}
+
+export function getSuppressionRules(includeExpired = false) {
+  return fetchApi<{ rules: AlertSuppressionRule[] }>(
+    `/alert-suppression/rules?includeExpired=${includeExpired ? "true" : "false"}`
+  );
+}
+
+export function toggleSuppressionRule(id: string, payload: { actor: string; isActive: boolean }) {
+  return fetchApi<{ rule: AlertSuppressionRule }>(`/alert-suppression/rules/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(payload),
+  });
+}
+
+export function createMaintenanceOverride(payload: {
+  actor: string;
+  startAt: string;
+  endAt: string;
+  description?: string;
+  sources?: string[];
+  assetCodes?: string[];
+}) {
+  return fetchApi<{ rule: AlertSuppressionRule }>("/alert-suppression/maintenance/override", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+export function previewSuppression(payload: {
+  actor: string;
+  assetCode: string;
+  source: string;
+  alertType: "price_deviation" | "supply_mismatch" | "bridge_downtime" | "health_score_drop" | "volume_anomaly" | "reserve_ratio_breach";
+  priority: "critical" | "high" | "medium" | "low";
+}) {
+  return fetchApi<{
+    decision: {
+      suppressed: boolean;
+      matchedRule: { id: string; name: string } | null;
+      reason: string | null;
+    };
+  }>("/alert-suppression/preview", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
 // Bridges
 export function getBridges() {
   return fetchApi<{ bridges: Bridge[] }>("/bridges");
@@ -181,6 +323,22 @@ export function getBridges() {
 
 export function getBridgeStats(bridge: string) {
   return fetchApi<BridgeStats | null>(`/bridges/${bridge}/stats`);
+}
+
+export function getDependencyGraph(filters?: {
+  type?: string;
+  status?: string;
+  search?: string;
+}) {
+  const params = new URLSearchParams();
+  if (filters?.type) params.set("type", filters.type);
+  if (filters?.status) params.set("status", filters.status);
+  if (filters?.search) params.set("q", filters.search);
+
+  const query = params.toString();
+  return fetchApi<DependencyGraph>(
+    `/metadata/dependencies${query ? `?${query}` : ""}`
+  );
 }
 
 // Transactions
@@ -261,6 +419,82 @@ export function extendApiKey(apiKey: string, id: string, extraDays: number) {
   );
 }
 
+// Alert routing admin
+export function listAlertRoutingRules(apiKey: string, ownerAddress?: string) {
+  const suffix = ownerAddress
+    ? `?ownerAddress=${encodeURIComponent(ownerAddress)}`
+    : "";
+  return fetchApi<{ rules: AlertRoutingRule[] }>(
+    `/admin/alert-routing/rules${suffix}`,
+    undefined,
+    apiKey
+  );
+}
+
+export function createAlertRoutingRule(
+  apiKey: string,
+  payload: CreateAlertRoutingRuleRequest
+) {
+  return fetchApi<{ rule: AlertRoutingRule }>(
+    "/admin/alert-routing/rules",
+    {
+      method: "POST",
+      body: JSON.stringify(payload),
+    },
+    apiKey
+  );
+}
+
+export function updateAlertRoutingRule(
+  apiKey: string,
+  id: string,
+  payload: UpdateAlertRoutingRuleRequest
+) {
+  return fetchApi<{ rule: AlertRoutingRule }>(
+    `/admin/alert-routing/rules/${id}`,
+    {
+      method: "PATCH",
+      body: JSON.stringify(payload),
+    },
+    apiKey
+  );
+}
+
+export function deleteAlertRoutingRule(apiKey: string, id: string) {
+  return fetchApi<Record<string, never>>(
+    `/admin/alert-routing/rules/${id}`,
+    {
+      method: "DELETE",
+    },
+    apiKey
+  );
+}
+
+export function getAlertRoutingAudit(
+  apiKey: string,
+  options?: {
+    ownerAddress?: string;
+    status?: "queued" | "delivered" | "suppressed" | "failed" | "fallback";
+    channel?: string;
+    limit?: number;
+  }
+) {
+  const params = new URLSearchParams();
+  if (options?.ownerAddress) params.set("ownerAddress", options.ownerAddress);
+  if (options?.status) params.set("status", options.status);
+  if (options?.channel) params.set("channel", options.channel);
+  if (options?.limit) params.set("limit", String(options.limit));
+
+  const qs = params.toString();
+  const suffix = qs ? `?${qs}` : "";
+
+  return fetchApi<{ entries: AlertRoutingAuditEntry[] }>(
+    `/admin/alert-routing/audit${suffix}`,
+    undefined,
+    apiKey
+  );
+}
+
 // Supply Chain
 export function getSupplyChainGraph() {
   return fetchApi<import("../components/SupplyChainViz/types").SupplyChainGraph>("/supply-chain");
@@ -319,4 +553,77 @@ export function getPriceFeedHealth() {
       lastSuccess: string | null;
     }>;
   }>("/price-feeds/health");
+}
+
+export interface ExternalDependencyCheck {
+  id: string;
+  providerKey: string;
+  status: "healthy" | "degraded" | "down" | "maintenance" | "unknown";
+  checkedAt: string;
+  latencyMs: number | null;
+  statusCode: number | null;
+  withinThreshold: boolean;
+  alertTriggered: boolean;
+  error: string | null;
+  details: Record<string, unknown>;
+}
+
+export interface ExternalDependency {
+  providerKey: string;
+  displayName: string;
+  category: string;
+  endpoint: string;
+  checkType: "http" | "jsonrpc";
+  latencyWarningMs: number;
+  latencyCriticalMs: number;
+  failureThreshold: number;
+  maintenanceMode: boolean;
+  maintenanceNote: string | null;
+  status: "healthy" | "degraded" | "down" | "maintenance" | "unknown";
+  lastCheckedAt: string | null;
+  lastLatencyMs: number | null;
+  consecutiveFailures: number;
+  lastSuccessAt: string | null;
+  lastFailureAt: string | null;
+  lastError: string | null;
+  alertState: "none" | "firing" | "suppressed";
+  history?: ExternalDependencyCheck[];
+}
+
+export function getExternalDependencies(includeHistory = true, historyLimit = 8) {
+  const params = new URLSearchParams({
+    includeHistory: includeHistory ? "true" : "false",
+    historyLimit: String(historyLimit),
+  });
+
+  return fetchApi<{
+    dependencies: ExternalDependency[];
+    summary: Record<"healthy" | "degraded" | "down" | "maintenance" | "unknown", number>;
+  }>(`/external-dependencies?${params.toString()}`);
+}
+
+export interface IndexedSearchResult {
+  id: string;
+  type: "asset" | "bridge" | "incident" | "alert";
+  title: string;
+  description: string;
+  relevanceScore: number;
+  highlights: string[];
+  metadata: Record<string, unknown>;
+}
+
+export function searchIndexed(query: string, limit = 12) {
+  const params = new URLSearchParams({
+    q: query,
+    limit: String(limit),
+    fuzzy: "true",
+  });
+
+  return fetchApi<{
+    success: boolean;
+    data: {
+      results: IndexedSearchResult[];
+      total: number;
+    };
+  }>(`/search?${params.toString()}`);
 }
