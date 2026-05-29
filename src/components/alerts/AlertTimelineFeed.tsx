@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useIncidentFeed } from "../../hooks/useIncidentFeed";
-import type { BridgeIncident } from "../../types";
+import type { BridgeIncident } from "../../hooks/useIncidentFeed";
 
 interface AlertTimelineFeedProps {
   readonly bridgeId?: string;
@@ -204,7 +204,7 @@ export default function AlertTimelineFeed({
         </div>
       ) : error ? (
         <div className="rounded-lg border border-red-500/50 bg-red-500/10 p-4">
-          <p className="text-sm text-red-300">Failed to load alerts: {error}</p>
+          <p className="text-sm text-red-300">Failed to load alerts: {error instanceof Error ? error.message : String(error)}</p>
         </div>
       ) : filteredIncidents.length === 0 ? (
         <div className="rounded-lg border border-stellar-border bg-stellar-card/50 p-8 text-center">
