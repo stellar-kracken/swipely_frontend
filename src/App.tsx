@@ -21,6 +21,9 @@ const AlertRoutingAdmin = lazy(() => import("./pages/AlertRoutingAdmin"));
 const SupplyChain = lazy(() => import("./pages/SupplyChain"));
 const ApiDocs = lazy(() => import("./pages/ApiDocs"));
 const Help = lazy(() => import("./pages/Help"));
+const ReleaseNotes = lazy(() => import("./pages/ReleaseNotes"));
+const NotificationPreferencesPage = lazy(() => import("./pages/NotificationPreferencesPage"));
+const RelationshipExplorer = lazy(() => import("./pages/RelationshipExplorer"));
 
 function NotificationInitializer() {
   useNotifications();
@@ -58,6 +61,9 @@ function App() {
               <Route path="/supply-chain" element={<SupplyChain />} />
               <Route path="/api-docs" element={<ApiDocs />} />
               <Route path="/help" element={<Help />} />
+              <Route path="/release-notes" element={<ReleaseNotes />} />
+              <Route path="/notification-preferences" element={<NotificationPreferencesPage />} />
+              <Route path="/relationship-explorer" element={<RelationshipExplorer />} />
             </Route>
           </Routes>
         </Suspense>
