@@ -20,6 +20,7 @@ import AssetFilterPanel from "../components/Filters/AssetFilterPanel";
 import FilterPresetsMenu from "../components/Filters/FilterPresetsMenu";
 import DashboardTour from "../components/dashboard/DashboardTour";
 import { useDashboardTour, type TourStep } from "../hooks/useDashboardTour";
+import { LiveUpdatePill } from "../components/LiveUpdatePill";
 import { useFavorites } from "../hooks/useFavorites";
 import ExportPickerDialog from "../components/ExportPickerDialog";
 import { Tabs, TabList, Tab, TabPanel } from "../components/Tabs";
@@ -192,14 +193,22 @@ export default function Dashboard() {
   const {
     data: assetsWithHealth,
     isLoading: assetsLoading,
+    isFetching: assetsFetching,
+    dataUpdatedAt: assetsUpdatedAt,
     refetch: refetchAssets,
   } = useAssetsWithHealth();
   const { favoritesFilterMode, toggleFavoriteBridge, favoriteBridges } = useFavorites();
   const {
     data: bridgesData,
     isLoading: bridgesLoading,
+    isFetching: bridgesFetching,
+    dataUpdatedAt: bridgesUpdatedAt,
     refetch: refetchBridges,
   } = useBridges();
+  const dashboardUpdatedAt =
+    Math.max(assetsUpdatedAt, bridgesUpdatedAt) > 0
+      ? Math.max(assetsUpdatedAt, bridgesUpdatedAt)
+      : null;
   const dashboard = useDashboardUrlState();
   const {
     filters,
@@ -532,7 +541,13 @@ export default function Dashboard() {
           <div className="space-y-4 rounded-2xl border border-stellar-border bg-gradient-to-br from-stellar-card via-stellar-card to-stellar-dark/40 p-6">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+            <div className="flex flex-wrap items-center gap-3">
+              <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+              <LiveUpdatePill
+                updatedAt={dashboardUpdatedAt}
+                polling={assetsFetching || bridgesFetching}
+              />
+            </div>
             <p className="mt-2 max-w-2xl text-stellar-text-secondary">
               Real-time monitoring of bridged assets on the Stellar network, with shareable
               views for assets, bridges, and the combined overview.

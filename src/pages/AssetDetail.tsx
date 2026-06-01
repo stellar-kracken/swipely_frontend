@@ -21,6 +21,7 @@ import AssetTagsPanel from "../components/asset/AssetTagsPanel";
 import ChartAnnotationPanel from "../components/asset/ChartAnnotationPanel";
 import { AlertTimelineFeed } from "../components/alerts";
 import { EntitySummaryBanner, type EntitySummaryField } from "../components/entity";
+import { LiveUpdatePill } from "../components/LiveUpdatePill";
 
 const USER_NAME = "xqcxx";
 type TabId = "summary" | "history" | "alerts" | "metadata";
@@ -250,6 +251,10 @@ export default function AssetDetail() {
         loading={summaryLoading}
         actions={
           <>
+            <LiveUpdatePill
+              updatedAt={health.dataUpdatedAt > 0 ? health.dataUpdatedAt : null}
+              polling={health.isFetching}
+            />
             <button
               type="button"
               onClick={() => {
