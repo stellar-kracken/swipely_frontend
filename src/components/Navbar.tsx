@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useWatchlist } from "../hooks/useWatchlist";
+import EntitySwitcher from "./EntitySwitcher";
+import GlobalSearch from "./search/GlobalSearch";
 
 const NAV_LINKS = [
   { to: "/", label: "Dashboard" },
@@ -8,6 +10,7 @@ const NAV_LINKS = [
   { to: "/analytics", label: "Analytics" },
   { to: "/watchlists", label: "Watchlists" },
   { to: "/incidents", label: "Incidents" },
+  { to: "/alerts", label: "Alerts" },
 ];
 
 function matchesRoute(pathname: string, to: string): boolean {
@@ -49,6 +52,10 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-3">
+          <div className="hidden lg:block">
+            <GlobalSearch />
+          </div>
+          <EntitySwitcher />
           <button
             type="button"
             className="hidden rounded-md px-2 py-1 text-sm text-stellar-text-secondary hover:bg-stellar-dark hover:text-white lg:inline-flex"
