@@ -17,6 +17,7 @@ import { SummaryCard } from "../components/SummaryCard";
 import AssetDiscoverySection from "../components/dashboard/AssetDiscoverySection";
 import FavoriteTagChip from "../components/favorites/FavoriteTagChip";
 import AssetFilterPanel from "../components/Filters/AssetFilterPanel";
+import FilterPresetsMenu from "../components/Filters/FilterPresetsMenu";
 import { useFavorites } from "../hooks/useFavorites";
 import ExportPickerDialog from "../components/ExportPickerDialog";
 import { Tabs, TabList, Tab, TabPanel } from "../components/Tabs";
@@ -178,6 +179,8 @@ export default function Dashboard() {
     clearAll,
     savePreset,
     applyPreset,
+    renamePreset,
+    setPresetShared,
     deletePreset,
   } = useDashboardFilters();
   const pullToRefresh = usePullToRefresh({
@@ -501,6 +504,15 @@ export default function Dashboard() {
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
+            <FilterPresetsMenu
+              filters={filters}
+              presets={savedPresets}
+              onSavePreset={savePreset}
+              onApplyPreset={applyPreset}
+              onRenamePreset={renamePreset}
+              onDeletePreset={deletePreset}
+              onToggleShared={setPresetShared}
+            />
             <button
               type="button"
               onClick={() => {
