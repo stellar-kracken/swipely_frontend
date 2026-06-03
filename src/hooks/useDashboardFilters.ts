@@ -16,6 +16,10 @@ export interface DashboardFilterPreset {
   id: string;
   name: string;
   filters: DashboardFilters;
+  /** Whether the preset is shared (exposes a shareable link) or kept private. */
+  shared: boolean;
+  createdAt: number;
+  updatedAt: number;
 }
 
 const FILTER_PRESET_STORAGE_KEY = "bridge-watch:dashboard-filter-presets:v1";
@@ -112,6 +116,32 @@ export function isTimestampInRange(
   return value.getTime() >= cutoff;
 }
 
+function normalizePreset(preset: Partial<DashboardFilterPreset> & { id: string; name: string; filters: DashboardFilters }): DashboardFilterPreset {
+  const now = Date.now();
+  return {
+    id: preset.id,
+    name: preset.name,
+    filters: preset.filters,
+    shared: preset.shared ?? false,
+    createdAt: preset.createdAt ?? now,
+    updatedAt: preset.updatedAt ?? preset.createdAt ?? now,
+  };
+}
+
+/**
+ * Build an absolute, shareable URL that re-applies a preset's filters when opened.
+ * Filters are encoded as URL search params, matching the dashboard's URL-persisted state.
+ */
+export function buildPresetShareUrl(preset: DashboardFilterPreset, pathname = "/dashboard"): string {
+  const params = buildDashboardSearchParams(preset.filters);
+  const query = params.toString();
+  const origin =
+    typeof window === "undefined" || !window.location?.origin
+      ? "https://bridge-watch.local"
+      : window.location.origin;
+  return `${origin}${pathname}${query ? `?${query}` : ""}`;
+}
+
 function toggleSelection(values: string[], candidate: string): string[] {
   if (values.includes(candidate)) {
     return values.filter((value) => value !== candidate);
@@ -122,9 +152,14 @@ function toggleSelection(values: string[], candidate: string): string[] {
 
 export function useDashboardFilters() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [savedPresets, setSavedPresets] = useLocalStorageState<DashboardFilterPreset[]>(
+  const [storedPresets, setSavedPresets] = useLocalStorageState<DashboardFilterPreset[]>(
     FILTER_PRESET_STORAGE_KEY,
     [],
+  );
+
+  const savedPresets = useMemo(
+    () => storedPresets.map((preset) => normalizePreset(preset)),
+    [storedPresets],
   );
 
   const filters = useMemo(() => parseDashboardFilters(searchParams), [searchParams]);
@@ -188,10 +223,14 @@ export function useDashboardFilters() {
       const presetName = name.trim();
       if (!presetName) return false;
 
+      const now = Date.now();
       const nextPreset: DashboardFilterPreset = {
-        id: `preset-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+        id: `preset-${now}-${Math.random().toString(36).slice(2, 8)}`,
         name: presetName,
         filters,
+        shared: false,
+        createdAt: now,
+        updatedAt: now,
       };
 
       setSavedPresets((prev) => {
@@ -202,6 +241,43 @@ export function useDashboardFilters() {
       return true;
     },
     [filters, setSavedPresets],
+  );
+
+  const renamePreset = useCallback(
+    (presetId: string, name: string): boolean => {
+      const nextName = name.trim();
+      if (!nextName) return false;
+
+      let renamed = false;
+      setSavedPresets((prev) => {
+        const clash = prev.some(
+          (preset) => preset.id !== presetId && preset.name.toLowerCase() === nextName.toLowerCase(),
+        );
+        if (clash) return prev;
+
+        return prev.map((preset) => {
+          if (preset.id !== presetId) return preset;
+          renamed = true;
+          return normalizePreset({ ...preset, name: nextName, updatedAt: Date.now() });
+        });
+      });
+
+      return renamed;
+    },
+    [setSavedPresets],
+  );
+
+  const setPresetShared = useCallback(
+    (presetId: string, shared: boolean) => {
+      setSavedPresets((prev) =>
+        prev.map((preset) =>
+          preset.id === presetId
+            ? normalizePreset({ ...preset, shared, updatedAt: Date.now() })
+            : preset,
+        ),
+      );
+    },
+    [setSavedPresets],
   );
 
   const applyPreset = useCallback(
@@ -232,6 +308,8 @@ export function useDashboardFilters() {
     clearAll,
     savePreset,
     applyPreset,
+    renamePreset,
+    setPresetShared,
     deletePreset,
   };
 }
