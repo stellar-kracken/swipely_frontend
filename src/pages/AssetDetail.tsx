@@ -20,6 +20,8 @@ import PullToRefresh from "../components/PullToRefresh";
 import AssetTagsPanel from "../components/asset/AssetTagsPanel";
 import ChartAnnotationPanel from "../components/asset/ChartAnnotationPanel";
 import { AlertTimelineFeed } from "../components/alerts";
+import { EntitySummaryBanner, type EntitySummaryField } from "../components/entity";
+import { LiveUpdatePill } from "../components/LiveUpdatePill";
 
 const USER_NAME = "xqcxx";
 type TabId = "summary" | "history" | "alerts" | "metadata";
@@ -48,6 +50,22 @@ function parseTabId(value: string | null): TabId {
     return value;
   }
   return "summary";
+}
+
+function healthStatus(score: number | null | undefined): "healthy" | "warning" | "critical" | "neutral" {
+  if (score === null || score === undefined) return "neutral";
+  if (score >= 80) return "healthy";
+  if (score >= 50) return "warning";
+  return "critical";
+}
+
+function trendChip(
+  trend: "improving" | "stable" | "deteriorating" | null | undefined,
+): { direction: "up" | "down" | "neutral"; label: string } | undefined {
+  if (trend === "improving") return { direction: "up", label: "Improving" };
+  if (trend === "deteriorating") return { direction: "down", label: "Deteriorating" };
+  if (trend === "stable") return { direction: "neutral", label: "Stable" };
+  return undefined;
 }
 
 export default function AssetDetail() {
@@ -141,6 +159,64 @@ export default function AssetDetail() {
         ? "Synced"
         : "Draft";
 
+  const summaryLoading = health.isLoading || priceLoading || liquidityLoading;
+  const latestPrice =
+    priceData?.history && priceData.history.length > 0
+      ? priceData.history[priceData.history.length - 1].price
+      : null;
+  const liquiditySourceCount = liquidityData?.sources?.length ?? 0;
+
+  const summaryFields = useMemo<EntitySummaryField[]>(() => {
+    const score = health.data?.overallScore ?? null;
+    return [
+      {
+        id: "health",
+        label: "Health score",
+        value: typeof score === "number" ? `${Math.round(score)}/100` : "--",
+        status: healthStatus(score),
+        trend: trendChip(health.data?.trend),
+        hint: "Composite health score across liquidity, price stability, uptime, reserves, and volume.",
+        onDrilldown: () => setSearchParams({ tab: "summary" }, { replace: true }),
+        drilldownLabel: "Open summary",
+      },
+      {
+        id: "price",
+        label: "Latest price",
+        value: typeof latestPrice === "number" ? `$${latestPrice.toFixed(4)}` : "--",
+        hint:
+          priceData?.sources && priceData.sources.length > 0
+            ? `Aggregated from ${priceData.sources.length} price source${priceData.sources.length > 1 ? "s" : ""}.`
+            : "No price source data available.",
+        onDrilldown: () => setSearchParams({ tab: "history" }, { replace: true }),
+        drilldownLabel: "Price history",
+      },
+      {
+        id: "liquidity",
+        label: "Liquidity sources",
+        value: liquiditySourceCount,
+        hint: "Number of venues currently reporting liquidity depth for this asset.",
+        onDrilldown: () => setSearchParams({ tab: "history" }, { replace: true }),
+        drilldownLabel: "View depth",
+      },
+      {
+        id: "trend",
+        label: "Trend",
+        value: trendChip(health.data?.trend)?.label ?? "Unknown",
+        trend: trendChip(health.data?.trend),
+        hint: "Direction of the most recent health-score movement.",
+        onDrilldown: () => setSearchParams({ tab: "alerts" }, { replace: true }),
+        drilldownLabel: "Related alerts",
+      },
+    ];
+  }, [
+    health.data?.overallScore,
+    health.data?.trend,
+    latestPrice,
+    liquiditySourceCount,
+    priceData?.sources,
+    setSearchParams,
+  ]);
+
   if (!symbol) {
     return <div className="text-stellar-text-secondary">No asset symbol provided.</div>;
   }
@@ -167,29 +243,31 @@ export default function AssetDetail() {
         isRefreshing={pullToRefresh.isRefreshing}
       />
 
-      <div className="rounded-2xl border border-stellar-border bg-gradient-to-br from-stellar-card via-stellar-card to-stellar-dark/35 p-6">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <h1 className="text-3xl font-bold text-white">{symbol}</h1>
-            <p className="mt-2 text-stellar-text-secondary">
-              Detailed monitoring for {symbol} on the Stellar network
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3">
+      <EntitySummaryBanner
+        entityType="Asset"
+        title={symbol}
+        subtitle={`Detailed monitoring for ${symbol} on the Stellar network`}
+        fields={summaryFields}
+        loading={summaryLoading}
+        actions={
+          <>
+            <LiveUpdatePill
+              updatedAt={health.dataUpdatedAt > 0 ? health.dataUpdatedAt : null}
+              polling={health.isFetching}
+            />
             <button
               type="button"
               onClick={() => {
                 void pullToRefresh.refresh();
               }}
-              className="rounded-md border border-stellar-border px-4 py-2 text-sm text-white hover:bg-stellar-border"
+              className="rounded-full border border-stellar-border px-4 py-1.5 text-xs text-white hover:bg-stellar-border"
             >
               Refresh views
             </button>
-            <AddToWatchlistButton symbol={symbol} className="text-sm" />
-          </div>
-        </div>
-      </div>
+            <AddToWatchlistButton symbol={symbol} className="text-xs" />
+          </>
+        }
+      />
 
       <Tabs activeTab={activeTab} onTabChange={handleTabChange}>
         <TabList aria-label="Asset detail views" className="flex flex-wrap items-center gap-2 border-b border-stellar-border pb-4">

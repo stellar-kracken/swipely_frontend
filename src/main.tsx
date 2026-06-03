@@ -6,6 +6,8 @@ import App from "./App";
 import { registerAction } from "./components/CommandPalette";
 import { TimeRangeProvider } from "./hooks/useTimeRange";
 import { WatchlistProvider } from "./hooks/useWatchlist";
+import { WebSocketProvider } from "./contexts/WebSocketContext";
+import ThemeProvider from "./theme/ThemeProvider";
 import "./index.css";
 
 const queryClient = new QueryClient({
@@ -24,14 +26,18 @@ registerAction({ id: "toggle-theme", title: "Toggle Dark Mode", onExecute: () =>
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <WatchlistProvider>
-          <TimeRangeProvider>
-            <App />
-          </TimeRangeProvider>
-        </WatchlistProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <WebSocketProvider>
+            <WatchlistProvider>
+              <TimeRangeProvider>
+                <App />
+              </TimeRangeProvider>
+            </WatchlistProvider>
+          </WebSocketProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
