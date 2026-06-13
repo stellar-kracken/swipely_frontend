@@ -30,6 +30,8 @@ export default function QuickStatsWidget({ assets, bridges, isLoading }: QuickSt
         title="Quick Stats"
         defaultCollapsed={false}
         headerClassName="text-xl font-semibold text-stellar-text-primary"
+        data-testid="quick-stats-widget"
+        aria-labelledby="quick-stats-heading"
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[1, 2, 3, 4].map((i) => (
@@ -56,6 +58,8 @@ export default function QuickStatsWidget({ assets, bridges, isLoading }: QuickSt
       defaultCollapsed={false}
       headerClassName="text-xl font-semibold text-stellar-text-primary"
       className="bg-transparent"
+      data-testid="quick-stats-widget"
+      aria-labelledby="quick-stats-heading"
     >
       <div
         id="quick-stats-grid"

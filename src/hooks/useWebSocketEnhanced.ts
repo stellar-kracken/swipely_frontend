@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from "react";
+import { useShallow } from "zustand/shallow";
 import { wsService } from "../services/websocket";
 import {
   useWebSocketStore,
@@ -20,7 +21,7 @@ export function useWebSocket(channel: string, onMessage: (data: unknown) => void
 
   // Connect to WebSocket store for state management
   const isConnected = useWebSocketStore(selectIsConnected);
-  const activeChannels = useWebSocketStore(selectActiveChannels);
+  const activeChannels = useWebSocketStore(useShallow(selectActiveChannels));
   const {
     setUrl,
     setStatus,
@@ -32,7 +33,20 @@ export function useWebSocket(channel: string, onMessage: (data: unknown) => void
     unsubscribe,
     addMessage,
     addError,
-  } = useWebSocketStore();
+  } = useWebSocketStore(
+    useShallow((s) => ({
+      setUrl: s.setUrl,
+      setStatus: s.setStatus,
+      markConnected: s.markConnected,
+      markDisconnected: s.markDisconnected,
+      incrementReconnectAttempts: s.incrementReconnectAttempts,
+      subscribe: s.subscribe,
+      confirmSubscription: s.confirmSubscription,
+      unsubscribe: s.unsubscribe,
+      addMessage: s.addMessage,
+      addError: s.addError,
+    }))
+  );
 
   useEffect(() => {
     // Initialize WebSocket URL in store

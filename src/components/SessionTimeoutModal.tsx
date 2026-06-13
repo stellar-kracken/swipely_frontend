@@ -3,7 +3,7 @@
  * Warns users before automatic logout with countdown timer
  */
 
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 interface SessionTimeoutModalProps {
   isOpen: boolean;

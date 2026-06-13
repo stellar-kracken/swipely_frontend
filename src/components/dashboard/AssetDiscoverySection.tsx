@@ -7,7 +7,7 @@ import AddToWatchlistButton from "../watchlist/AddToWatchlistButton";
 import type { AssetWithHealth } from "../../types";
 import { useUserPreferencesStore } from "../../stores/userPreferencesStore";
 import { useFavorites } from "../../hooks/useFavorites";
-import { useUIStore, selectInsightsTray } from "../../stores/uiStore";
+import { useUIStore } from "../../stores/uiStore";
 
 function chunkAssets<T>(items: T[], size: number): T[][] {
   const rows: T[][] = [];
@@ -55,7 +55,7 @@ export default function AssetDiscoverySection({
     toggleFavoriteAsset,
   } = useFavorites();
   const favoriteAssets = useUserPreferencesStore((s) => s.favoriteAssets);
-  const { openInsightsTray } = useUIStore(selectInsightsTray);
+  const openInsightsTray = useUIStore((s) => s.openInsightsTray);
 
   const cols = useColumnCount();
   const parentRef = useRef<HTMLDivElement>(null);

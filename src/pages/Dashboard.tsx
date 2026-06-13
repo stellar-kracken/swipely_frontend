@@ -31,7 +31,7 @@ import MetricsInspectorDrawer, {
 } from "../components/dashboard/MetricsInspectorDrawer";
 import DashboardSharingModal from "../components/dashboard/DashboardSharingModal";
 import AssetInsightsTray from "../components/asset/AssetInsightsTray";
-import { useUIStore, selectInsightsTray } from "../stores/uiStore";
+import { useUIStore } from "../stores/uiStore";
 import type { AssetWithHealth, Bridge, FilterStatus } from "../types";
 
 type DashboardView = "overview" | "assets" | "bridges";
@@ -153,8 +153,9 @@ export default function Dashboard() {
   const [exportPickerOpen, setExportPickerOpen] = useState(false);
   const [sharingOpen, setSharingOpen] = useState(false);
   const [inspectedMetricId, setInspectedMetricId] = useState<string | null>(null);
-  const { open: insightsTrayOpen, symbol: insightsTraySymbol, closeInsightsTray } =
-    useUIStore(selectInsightsTray);
+  const insightsTrayOpen = useUIStore((s) => s.insightsTrayOpen);
+  const insightsTraySymbol = useUIStore((s) => s.selectedAsset);
+  const closeInsightsTray = useUIStore((s) => s.closeInsightsTray);
   const {
     data: assetsWithHealth,
     isLoading: assetsLoading,

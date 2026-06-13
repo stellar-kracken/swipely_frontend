@@ -305,7 +305,7 @@ describe("DateRangePicker", () => {
         <DateRangePicker onApply={mockOnApply} onClear={mockOnClear} />
       );
 
-      const recentButton = screen.getByRole("button", { name: /04\/01\/2026 → 04\/20\/2026/ });
+      const recentButton = screen.getByRole("button", { name: /0?4\/0?1\/2026 → 0?4\/20\/2026/ });
       await user.click(recentButton);
 
       expect(mockOnApply).toHaveBeenCalledWith(recentRange);
@@ -370,7 +370,9 @@ describe("DateRangePicker", () => {
     });
 
     it("closes picker on Escape key", async () => {
-      const triggerRef = { current: document.createElement("button") };
+      const button = document.createElement("button");
+      document.body.appendChild(button);
+      const triggerRef = { current: button };
 
       render(
         <DateRangePicker
@@ -386,6 +388,7 @@ describe("DateRangePicker", () => {
       );
 
       expect(triggerRef.current).toBe(document.activeElement);
+      document.body.removeChild(button);
     });
 
     it("applies preset with Enter key", async () => {

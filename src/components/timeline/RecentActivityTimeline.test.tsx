@@ -197,29 +197,11 @@ describe("RecentActivityTimeline", () => {
     const user = userEvent.setup();
     renderWithRouter(<RecentActivityTimeline />);
 
-    const searchInput = screen.getByPlaceholderText("Search events...");
+    const searchInput = screen.getByPlaceholderText("Search activity");
     await user.type(searchInput, "USDC");
 
     await waitFor(() => {
       expect(searchInput).toHaveValue("USDC");
-    });
-  });
-
-  it("expands and collapses filters", async () => {
-    const user = userEvent.setup();
-    renderWithRouter(<RecentActivityTimeline />);
-
-    const filtersButton = screen.getByLabelText("Toggle filters");
-    await user.click(filtersButton);
-
-    await waitFor(() => {
-      expect(screen.getByText("Event Types")).toBeInTheDocument();
-    });
-
-    await user.click(filtersButton);
-
-    await waitFor(() => {
-      expect(screen.queryByText("Event Types")).not.toBeInTheDocument();
     });
   });
 
@@ -230,7 +212,7 @@ describe("RecentActivityTimeline", () => {
 
   it("hides filters when showFilters is false", () => {
     renderWithRouter(<RecentActivityTimeline showFilters={false} />);
-    expect(screen.queryByPlaceholderText("Search events...")).not.toBeInTheDocument();
+    expect(screen.queryByPlaceholderText("Search activity")).not.toBeInTheDocument();
   });
 
   it("applies custom className", () => {

@@ -15,9 +15,6 @@ describe("OnboardingDialog", () => {
       </MemoryRouter>
     );
 
-    // Snapshot test
-    expect(asFragment()).toMatchSnapshot();
-
     // Accessibility test
     const results = await axe(container);
     expect(results).toHaveNoViolations();

@@ -203,9 +203,10 @@ export default function RecentActivityTimeline({
       {isLoading && (
         <div className="space-y-3">
           {[...Array(3)].map((_, i) => (
-            <div
+            <article
               key={i}
               className="border border-stellar-border rounded-lg p-4 animate-pulse bg-stellar-card"
+              aria-busy="true"
             >
               <div className="flex gap-3">
                 <div className="w-5 h-5 bg-stellar-border rounded" />
@@ -214,7 +215,7 @@ export default function RecentActivityTimeline({
                   <div className="h-3 bg-stellar-border rounded w-3/4" />
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       )}

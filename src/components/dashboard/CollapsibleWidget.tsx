@@ -9,6 +9,8 @@ interface CollapsibleWidgetProps {
   headerActions?: React.ReactNode;
   className?: string;
   headerClassName?: string;
+  "data-testid"?: string;
+  "aria-labelledby"?: string;
 }
 
 export function CollapsibleWidget({
@@ -19,11 +21,15 @@ export function CollapsibleWidget({
   headerActions,
   className = "rounded-lg border border-stellar-border bg-stellar-card p-6",
   headerClassName = "text-xl font-semibold text-white",
+  "data-testid": dataTestId,
+  "aria-labelledby": ariaLabelledBy,
 }: CollapsibleWidgetProps) {
   const { isCollapsed, toggleCollapse } = useWidgetCollapse(id, defaultCollapsed);
 
+  const headingId = ariaLabelledBy ?? `widget-heading-${id}`;
+
   return (
-    <section className={className} aria-labelledby={`widget-heading-${id}`}>
+    <section className={className} aria-labelledby={headingId} data-testid={dataTestId}>
       <div className="flex items-center justify-between gap-4">
         <div className="flex items-center gap-2">
           <button
@@ -46,7 +52,7 @@ export function CollapsibleWidget({
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <h2 id={`widget-heading-${id}`} className={headerClassName}>
+          <h2 id={headingId} className={headerClassName}>
             {title}
           </h2>
         </div>

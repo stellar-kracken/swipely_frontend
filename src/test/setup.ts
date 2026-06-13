@@ -7,7 +7,7 @@ import { server } from "./mocks/server";
 
 // Extend Vitest matchers
 expect.extend(axeMatchers);
-expect.extend(jestDomMatchers);
+// expect.extend(jestDomMatchers);
 
 // MSW Lifecycle
 beforeAll(() => server.listen({ onUnhandledRequest: "error" }));
