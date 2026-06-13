@@ -89,4 +89,59 @@ export const handlers = [
       data: { results, total: results.length },
     });
   }),
+
+  // Mock External Dependencies (Service Health)
+  http.get("/api/v1/external-dependencies", () => {
+    return HttpResponse.json({
+      dependencies: [
+        {
+          providerKey: "horizon",
+          displayName: "Horizon API",
+          category: "blockchain",
+          endpoint: "https://horizon.stellar.org",
+          checkType: "http",
+          latencyWarningMs: 1000,
+          latencyCriticalMs: 3000,
+          failureThreshold: 3,
+          maintenanceMode: false,
+          maintenanceNote: null,
+          status: "healthy",
+          lastCheckedAt: new Date().toISOString(),
+          lastLatencyMs: 250,
+          consecutiveFailures: 0,
+          lastSuccessAt: new Date().toISOString(),
+          lastFailureAt: null,
+          lastError: null,
+          alertState: "none",
+        },
+        {
+          providerKey: "circle",
+          displayName: "Circle API",
+          category: "price",
+          endpoint: "https://api.circle.com",
+          checkType: "http",
+          latencyWarningMs: 2000,
+          latencyCriticalMs: 5000,
+          failureThreshold: 3,
+          maintenanceMode: false,
+          maintenanceNote: null,
+          status: "healthy",
+          lastCheckedAt: new Date().toISOString(),
+          lastLatencyMs: 180,
+          consecutiveFailures: 0,
+          lastSuccessAt: new Date().toISOString(),
+          lastFailureAt: null,
+          lastError: null,
+          alertState: "none",
+        },
+      ],
+      summary: {
+        healthy: 2,
+        degraded: 0,
+        down: 0,
+        maintenance: 0,
+        unknown: 0,
+      },
+    });
+  }),
 ];
