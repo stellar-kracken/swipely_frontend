@@ -330,3 +330,48 @@ export interface CreateAlertRoutingRuleRequest {
 }
 
 export type UpdateAlertRoutingRuleRequest = Partial<CreateAlertRoutingRuleRequest>;
+
+// Data Provenance Graph types
+export type ProvenanceNodeKind = "source" | "transform" | "destination";
+export type ProvenanceFreshness = "fresh" | "stale" | "unknown";
+
+export interface ProvenanceNode {
+  id: string;
+  label: string;
+  kind: ProvenanceNodeKind;
+  /** ISO timestamp of when this hop last produced data */
+  timestamp: string;
+  freshness: ProvenanceFreshness;
+  /** e.g. "asset", "bridge", "metric" */
+  entityType: string;
+  /** e.g. "USDC", "Allbridge", "price" */
+  entityId: string;
+  description: string;
+  /** Arbitrary key-value metadata about this node */
+  metadata: Record<string, string | number | boolean>;
+}
+
+export interface ProvenanceEdge {
+  from: string;
+  to: string;
+  /** e.g. "fetch", "aggregate", "normalize" */
+  transformKind: string;
+  latencyMs: number | null;
+}
+
+export interface ProvenanceGraph {
+  metric: string;
+  asset: string | null;
+  bridge: string | null;
+  generatedAt: string;
+  nodes: ProvenanceNode[];
+  edges: ProvenanceEdge[];
+}
+
+export interface ProvenanceListItem {
+  metric: string;
+  asset: string | null;
+  bridge: string | null;
+  lastUpdated: string;
+  nodeCount: number;
+}
