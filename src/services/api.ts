@@ -20,6 +20,8 @@ import type {
   ExportFormat,
   ExportRecord,
   UpdateAlertRoutingRuleRequest,
+  ProvenanceGraph,
+  ProvenanceListItem,
 } from "../types";
 const API_BASE_URL = "/api/v1";
 
@@ -626,4 +628,30 @@ export function searchIndexed(query: string, limit = 12) {
       total: number;
     };
   }>(`/search?${params.toString()}`);
+}
+
+export function getProvenanceMetrics(filters?: {
+  asset?: string;
+  bridge?: string;
+  metric?: string;
+}) {
+  const params = new URLSearchParams();
+  if (filters?.asset) params.set("asset", filters.asset);
+  if (filters?.bridge) params.set("bridge", filters.bridge);
+  if (filters?.metric) params.set("metric", filters.metric);
+  const query = params.toString();
+  return fetchApi<{ metrics: ProvenanceListItem[] }>(
+    `/provenance${query ? `?${query}` : ""}`
+  );
+}
+
+export function getProvenanceLineage(
+  metric: string,
+  asset?: string,
+  bridge?: string
+) {
+  const params = new URLSearchParams({ metric });
+  if (asset) params.set("asset", asset);
+  if (bridge) params.set("bridge", bridge);
+  return fetchApi<ProvenanceGraph>(`/provenance/lineage?${params.toString()}`);
 }
