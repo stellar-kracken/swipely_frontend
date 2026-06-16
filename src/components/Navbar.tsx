@@ -11,6 +11,7 @@ const navLinks = [
   { to: "/watchlists", label: "Watchlists" },
   { to: "/incidents", label: "Incidents" },
   { to: "/alerts", label: "Alerts" },
+  { to: "/data-provenance", label: "Provenance" },
 ];
 
 export default function Navbar() {

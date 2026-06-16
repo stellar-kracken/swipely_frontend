@@ -26,6 +26,7 @@ const NotificationPreferencesPage = lazy(() => import("./pages/NotificationPrefe
 const RelationshipExplorer = lazy(() => import("./pages/RelationshipExplorer"));
 const SearchResultsPage = lazy(() => import("./pages/SearchResultsPage"));
 const Alerts = lazy(() => import("./pages/Alerts"));
+const DataProvenanceGraph = lazy(() => import("./pages/DataProvenanceGraph"));
 
 function NotificationInitializer() {
   useNotifications();
@@ -68,6 +69,7 @@ function App() {
               <Route path="/notification-preferences" element={<NotificationPreferencesPage />} />
               <Route path="/relationship-explorer" element={<RelationshipExplorer />} />
               <Route path="/search" element={<SearchResultsPage />} />
+              <Route path="/data-provenance" element={<DataProvenanceGraph />} />
             </Route>
           </Routes>
         </Suspense>
