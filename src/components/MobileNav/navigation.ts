@@ -18,6 +18,7 @@ export const navGroups: NavGroup[] = [
       { to: "/dashboard", label: "Dashboard", description: "Real-time asset health overview" },
       { to: "/bridges", label: "Bridges", description: "Bridge performance and incidents" },
       { to: "/transactions", label: "Transactions", description: "Recent bridge transfer activity" },
+      { to: "/reconciliation", label: "Reconciliation", description: "Supply drift and reserve backing triage" },
       { to: "/analytics", label: "Analytics", description: "Trend analysis and health scoring" },
       { to: "/watchlist", label: "Watchlist", description: "Tracked assets and alerts" },
       { to: "/reports", label: "Reports", description: "Operational reporting views" },
