@@ -56,10 +56,14 @@ export default function NotificationsDrawer({
   const previousTopNotificationIdRef = useRef<string | null>(null);
 
   const notifications = useNotificationStore((state) => state.notifications);
+  const markAsRead = useNotificationStore((state) => state.markAsRead);
+  const markAllAsRead = useNotificationStore((state) => state.markAllAsRead);
+  const clearReadNotifications = useNotificationStore(
+    (state) => state.clearReadNotifications
+  );
 
   const groupedNotifications = useMemo(() => {
     const visibleNotifications = notifications.filter((n) => !n.dismissed);
-
     return NOTIFICATION_PRIORITY_ORDER.reduce<Record<NotificationPriority, Notification[]>>(
       (accumulator, priority) => {
         accumulator[priority] = visibleNotifications.filter(
@@ -75,11 +79,6 @@ export default function NotificationsDrawer({
       }
     );
   }, [notifications]);
-  const markAsRead = useNotificationStore((state) => state.markAsRead);
-  const markAllAsRead = useNotificationStore((state) => state.markAllAsRead);
-  const clearReadNotifications = useNotificationStore(
-    (state) => state.clearReadNotifications
-  );
 
   const allNotifications = useMemo(
     () => NOTIFICATION_PRIORITY_ORDER.flatMap((priority) => groupedNotifications[priority]),

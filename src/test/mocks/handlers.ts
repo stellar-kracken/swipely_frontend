@@ -12,6 +12,26 @@ export const handlers = [
     });
   }),
 
+  // Mock Bridges
+  http.get("/api/v1/bridges", () => {
+    return HttpResponse.json({
+      bridges: [
+        {
+          name: "Circle",
+          status: "healthy",
+          totalValueLocked: 500000000,
+          mismatchPercentage: 0,
+        },
+        {
+          name: "Wormhole",
+          status: "degraded",
+          totalValueLocked: 200000000,
+          mismatchPercentage: 5.26,
+        },
+      ],
+    });
+  }),
+
   // Mock Asset Health
   http.get("/api/v1/assets/:symbol/health", ({ params }) => {
     return HttpResponse.json({

@@ -1,5 +1,5 @@
+import { useShallow } from "zustand/react/shallow";
 import { useEffect, useRef, useCallback } from "react";
-import { useShallow } from "zustand/shallow";
 import { wsService } from "../services/websocket";
 import {
   useWebSocketStore,
@@ -22,48 +22,23 @@ export function useWebSocket(channel: string, onMessage: (data: unknown) => void
   // Connect to WebSocket store for state management
   const isConnected = useWebSocketStore(selectIsConnected);
   const activeChannels = useWebSocketStore(useShallow(selectActiveChannels));
-  const {
-    setUrl,
-    setStatus,
-    markConnected,
-    markDisconnected,
-    incrementReconnectAttempts,
-    subscribe,
-    confirmSubscription,
-    unsubscribe,
-    addMessage,
-    addError,
-  } = useWebSocketStore(
-    useShallow((s) => ({
-      setUrl: s.setUrl,
-      setStatus: s.setStatus,
-      markConnected: s.markConnected,
-      markDisconnected: s.markDisconnected,
-      incrementReconnectAttempts: s.incrementReconnectAttempts,
-      subscribe: s.subscribe,
-      confirmSubscription: s.confirmSubscription,
-      unsubscribe: s.unsubscribe,
-      addMessage: s.addMessage,
-      addError: s.addError,
-    }))
-  );
 
   useEffect(() => {
     // Initialize WebSocket URL in store
-    setUrl(WS_URL);
+    useWebSocketStore.getState().setUrl(WS_URL);
 
     if (!connectedRef.current) {
-      setStatus("connecting");
+      useWebSocketStore.getState().setStatus("connecting");
       wsService.connect(WS_URL);
       connectedRef.current = true;
     }
 
     // Subscribe to channel through store
-    subscribe(channel);
+    useWebSocketStore.getState().subscribe(channel);
 
     const handleOpen = () => {
-      markConnected();
-      confirmSubscription(channel);
+      useWebSocketStore.getState().markConnected();
+      useWebSocketStore.getState().confirmSubscription(channel);
     };
 
     const unsubscribeConnectionState = wsService.onStateChange((state) => {
@@ -73,23 +48,23 @@ export function useWebSocket(channel: string, onMessage: (data: unknown) => void
       }
 
       if (state === "disconnected") {
-        markDisconnected();
+        useWebSocketStore.getState().markDisconnected();
         return;
       }
 
       if (state === "error") {
-        addError(1006, "WebSocket connection error");
-        incrementReconnectAttempts();
+        useWebSocketStore.getState().addError(1006, "WebSocket connection error");
+        useWebSocketStore.getState().incrementReconnectAttempts();
       }
     });
 
     const unsubscribeChannel = wsService.subscribe(channel, (data) => {
-      addMessage(channel, data);
+      useWebSocketStore.getState().addMessage(channel, data);
       onMessage(data);
     });
 
     return () => {
-      unsubscribe(channel);
+      useWebSocketStore.getState().unsubscribe(channel);
       unsubscribeChannel();
       unsubscribeConnectionState();
     };
