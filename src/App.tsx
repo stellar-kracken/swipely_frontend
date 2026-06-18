@@ -29,6 +29,7 @@ const SearchResultsPage = lazy(() => import("./pages/SearchResultsPage"));
 const Alerts = lazy(() => import("./pages/Alerts"));
 const DataProvenanceGraph = lazy(() => import("./pages/DataProvenanceGraph"));
 const AlertSimulationSandbox = lazy(() => import("./pages/AlertSimulationSandbox"));
+const LiquidityFragmentation = lazy(() => import("./pages/LiquidityFragmentation"));
 
 function NotificationInitializer() {
   useNotifications();
@@ -74,6 +75,7 @@ function App() {
               <Route path="/search" element={<SearchResultsPage />} />
               <Route path="/data-provenance" element={<DataProvenanceGraph />} />
               <Route path="/alert-sandbox" element={<AlertSimulationSandbox />} />
+              <Route path="/liquidity-fragmentation" element={<LiquidityFragmentation />} />
             </Route>
           </Routes>
         </Suspense>
