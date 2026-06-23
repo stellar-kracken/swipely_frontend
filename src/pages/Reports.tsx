@@ -3,17 +3,10 @@ import { useAssetsWithHealth } from "../hooks/useAssets";
 import { useBridges } from "../hooks/useBridges";
 import PrintButton from "../components/PrintButton";
 import ReportQuickActions from "../components/ReportQuickActions";
-import {
-  TableFooterSummary,
-  sumColumn,
-  avgColumn,
-  formatCompact,
-} from "../components/TableFooterSummary";
-import {
-  AssetStatusBadge,
-  bridgeStatusToAssetStatus,
-  scoreToStatus,
-} from "../components/AssetStatusBadge";
+import { TableFooterSummary } from "../components/TableFooterSummary";
+import { sumColumn, avgColumn, formatCompact } from "../utils/tableSummary";
+import { AssetStatusBadge } from "../components/AssetStatusBadge";
+import { bridgeStatusToAssetStatus, scoreToStatus } from "../utils/status";
 
 // ---------------------------------------------------------------------------
 // Types

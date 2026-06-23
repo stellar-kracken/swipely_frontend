@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
-import { registerAction } from "./components/CommandPalette";
+import { registerAction } from "./utils/commandRegistry";
 import { TimeRangeProvider } from "./hooks/useTimeRange";
 import { WatchlistProvider } from "./hooks/useWatchlist";
 import { WebSocketProvider } from "./contexts/WebSocketContext";

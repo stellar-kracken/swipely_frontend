@@ -1,20 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
-export type CommandAction = {
-  id: string;
-  title: string;
-  href?: string;
-  keywords?: string[];
-  onExecute?: () => void;
-};
+import { CommandAction, actionsRegistry } from "../utils/commandRegistry";
 
 const STORAGE_KEY = "bridgewatch:recent_actions";
-
-const actionsRegistry: CommandAction[] = [];
-export function registerAction(action: CommandAction) {
-  actionsRegistry.push(action);
-}
 
 function fuzzyScore(q: string, text: string) {
   if (!q) return 1;

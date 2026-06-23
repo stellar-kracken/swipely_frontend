@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNotificationContext } from "../hooks/useNotificationContext";
-import { useToast } from "../context/ToastContext";
+import { useToast } from "../context/ToastContextValue";
 
 type Channel = "in_app" | "email" | "webhook";
 type Priority = "all" | "high_critical" | "critical_only";

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { AssetStatusBadge, bridgeStatusToAssetStatus } from "./AssetStatusBadge";
+import { AssetStatusBadge } from "./AssetStatusBadge";
+import { bridgeStatusToAssetStatus } from "../utils/status";
 
 interface BridgeStatusCardProps {
   name: string;
