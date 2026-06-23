@@ -27,6 +27,8 @@ import type {
   UpdateAlertRoutingRuleRequest,
   ProvenanceGraph,
   ProvenanceListItem,
+  CrossChainStateResult,
+  CrossChainVerificationSummary,
 } from "../types";
 const API_BASE_URL = "/api/v1";
 
@@ -962,4 +964,26 @@ export function searchAlertPlaybooks(params?: {
 
 export function getAlertPlaybook(id: string) {
   return fetchApi<AlertPlaybook>(`/playbooks/${encodeURIComponent(id)}`);
+}
+
+export function getCrossChainVerifications(force = false): Promise<CrossChainVerificationSummary> {
+  return fetchApi<CrossChainVerificationSummary>(
+    `/cross-chain-verification${force ? "?force=true" : ""}`
+  );
+}
+
+export function getCrossChainVerification(
+  bridgeId: string,
+  force = false
+): Promise<CrossChainStateResult> {
+  return fetchApi<CrossChainStateResult>(
+    `/cross-chain-verification/${encodeURIComponent(bridgeId)}${force ? "?force=true" : ""}`
+  );
+}
+
+export function triggerCrossChainVerification(bridgeId: string): Promise<CrossChainStateResult> {
+  return fetchApi<CrossChainStateResult>(
+    `/cross-chain-verification/${encodeURIComponent(bridgeId)}/verify`,
+    { method: "POST" }
+  );
 }

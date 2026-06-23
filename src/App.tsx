@@ -39,6 +39,7 @@ const BridgeHealthTimeline = lazy(() => import("./pages/BridgeHealthTimeline"));
 const ExportScheduler = lazy(() => import("./pages/ExportScheduler"));
 const AssetComparison = lazy(() => import("./pages/AssetComparison"));
 const MetricsSidebarPage = lazy(() => import("./pages/MetricsSidebar"));
+const CrossChainVerification = lazy(() => import("./pages/CrossChainVerification"));
 
 function NotificationInitializer() {
   useNotifications();
@@ -94,6 +95,7 @@ function App() {
               <Route path="/export-scheduler" element={<ExportScheduler />} />
               <Route path="/asset-comparison" element={<AssetComparison />} />
               <Route path="/metrics-sidebar" element={<MetricsSidebarPage />} />
+              <Route path="/cross-chain-verification" element={<CrossChainVerification />} />
             </Route>
           </Routes>
         </Suspense>

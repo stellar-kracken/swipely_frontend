@@ -509,3 +509,44 @@ export interface RiskHistoryPoint {
   score: number;
 }
 
+export interface EthereumChainState {
+  blockNumber: number;
+  lockedAmount: string;
+  formattedAmount: string;
+  isPaused: boolean;
+  timestamp: number;
+}
+
+export interface StellarChainState {
+  supply: number;
+  assetCode: string;
+  issuer: string;
+}
+
+export type CrossChainVerificationStatus = "verified" | "mismatch" | "error" | "stale" | "pending";
+
+export interface CrossChainStateResult {
+  bridgeId: string;
+  bridgeName: string;
+  sourceChain: string;
+  verifiedAt: string;
+  ethereum: EthereumChainState | null;
+  stellar: StellarChainState;
+  merkleProofValid: boolean | null;
+  latestCommitmentSequence: number | null;
+  stateConsistent: boolean;
+  mismatchPct: number;
+  mismatchThreshold: number;
+  status: CrossChainVerificationStatus;
+  cacheHit: boolean;
+  freshnessSeconds: number;
+  error?: string;
+}
+
+export interface CrossChainVerificationSummary {
+  count: number;
+  verified: number;
+  mismatches: number;
+  errors: number;
+  results: CrossChainStateResult[];
+}
