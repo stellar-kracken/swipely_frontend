@@ -42,9 +42,9 @@ export const navGroups: NavGroup[] = [
         description: "Manage alert dispatch routing and audit",
       },
       {
-        to: "/alert-sandbox",
-        label: "Alert Sandbox",
-        description: "Dry-run alert rules against synthetic data before enabling in production",
+        to: "/alert-playbooks",
+        label: "Alert Playbooks",
+        description: "Runbooks and remediation steps for triggered alerts",
       },
       {
         to: "/admin/access-audit",

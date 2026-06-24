@@ -29,6 +29,7 @@ const NotificationPreferencesPage = lazy(() => import("./pages/NotificationPrefe
 const RelationshipExplorer = lazy(() => import("./pages/RelationshipExplorer"));
 const SearchResultsPage = lazy(() => import("./pages/SearchResultsPage"));
 const Alerts = lazy(() => import("./pages/Alerts"));
+const AlertPlaybookViewer = lazy(() => import("./pages/AlertPlaybookViewer"));
 const DataProvenanceGraph = lazy(() => import("./pages/DataProvenanceGraph"));
 const AlertSimulationSandbox = lazy(() => import("./pages/AlertSimulationSandbox"));
 const LiquidityFragmentation = lazy(() => import("./pages/LiquidityFragmentation"));
@@ -65,6 +66,7 @@ function App() {
               <Route path="/incidents" element={<Incidents />} />
               <Route path="/incidents/replay/:id" element={<IncidentReplay />} />
               <Route path="/alerts" element={<Alerts />} />
+              <Route path="/alert-playbooks" element={<AlertPlaybookViewer />} />
               <Route path="/transactions" element={<Transactions />} />
               <Route path="/analytics" element={<Analytics />} />
               <Route path="/analytics/metric-builder" element={<CustomMetricBuilder />} />

@@ -928,3 +928,38 @@ export function deleteSavedMetric(id: string) {
     method: "DELETE",
   });
 }
+
+export interface PlaybookStep {
+  order: number;
+  title: string;
+  body: string;
+}
+
+export interface AlertPlaybook {
+  id: string;
+  alertType: string;
+  title: string;
+  severity: string[];
+  summary: string;
+  steps: PlaybookStep[];
+  tags: string[];
+}
+
+export function searchAlertPlaybooks(params?: {
+  q?: string;
+  alertType?: string;
+  severity?: string;
+}) {
+  const searchParams = new URLSearchParams();
+  if (params?.q) searchParams.set("q", params.q);
+  if (params?.alertType) searchParams.set("alertType", params.alertType);
+  if (params?.severity) searchParams.set("severity", params.severity);
+  const qs = searchParams.toString();
+  return fetchApi<{ playbooks: AlertPlaybook[]; total: number; query?: string }>(
+    `/playbooks${qs ? `?${qs}` : ""}`,
+  );
+}
+
+export function getAlertPlaybook(id: string) {
+  return fetchApi<AlertPlaybook>(`/playbooks/${encodeURIComponent(id)}`);
+}
