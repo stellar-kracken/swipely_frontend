@@ -708,3 +708,90 @@ export function getProvenanceLineage(
   if (bridge) params.set("bridge", bridge);
   return fetchApi<ProvenanceGraph>(`/provenance/lineage?${params.toString()}`);
 }
+
+export interface BridgeHealthPoint {
+  timestamp: string;
+  score: number;
+  annotation?: string;
+}
+
+export interface BridgeHealthHistoryResponse {
+  bridge: string;
+  period: "24h" | "7d" | "30d";
+  points: BridgeHealthPoint[];
+}
+
+export function getBridgeHealthHistory(
+  bridgeName: string,
+  period: "24h" | "7d" | "30d" = "7d"
+) {
+  return fetchApi<BridgeHealthHistoryResponse | null>(
+    `/bridges/${encodeURIComponent(bridgeName)}/health/history?period=${period}`
+  );
+}
+
+export interface ScheduledExport {
+  id: string;
+  name: string;
+  format: ExportFormat;
+  dataType: ExportDataType;
+  frequency: "daily" | "weekly" | "monthly";
+  dayOfWeek?: number;
+  dayOfMonth?: number;
+  timeOfDay: string;
+  timezone: string;
+  deliveryMethod: "email" | "download";
+  emailAddress?: string;
+  filters: ExportFilters;
+  isActive: boolean;
+  lastRunAt: string | null;
+  nextRunAt: string | null;
+  createdAt: string;
+}
+
+export interface CreateScheduledExportRequest {
+  name: string;
+  format: ExportFormat;
+  dataType: ExportDataType;
+  frequency: "daily" | "weekly" | "monthly";
+  dayOfWeek?: number;
+  dayOfMonth?: number;
+  timeOfDay: string;
+  timezone: string;
+  deliveryMethod: "email" | "download";
+  emailAddress?: string;
+  filters: ExportFilters;
+}
+
+export function listScheduledExports() {
+  return fetchApi<{ schedules: ScheduledExport[] }>("/exports/schedules");
+}
+
+export function createScheduledExport(payload: CreateScheduledExportRequest) {
+  return fetchApi<{ schedule: ScheduledExport }>("/exports/schedules", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+export function updateScheduledExport(
+  id: string,
+  payload: Partial<CreateScheduledExportRequest> & { isActive?: boolean }
+) {
+  return fetchApi<{ schedule: ScheduledExport }>(`/exports/schedules/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(payload),
+  });
+}
+
+export function deleteScheduledExport(id: string) {
+  return fetchApi<Record<string, never>>(`/exports/schedules/${id}`, {
+    method: "DELETE",
+  });
+}
+
+export function runScheduledExportNow(id: string) {
+  return fetchApi<{ export: ExportRecord }>(`/exports/schedules/${id}/run`, {
+    method: "POST",
+  });
+}

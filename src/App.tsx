@@ -31,6 +31,10 @@ const DataProvenanceGraph = lazy(() => import("./pages/DataProvenanceGraph"));
 const AlertSimulationSandbox = lazy(() => import("./pages/AlertSimulationSandbox"));
 const LiquidityFragmentation = lazy(() => import("./pages/LiquidityFragmentation"));
 const OperationalAccessAudit = lazy(() => import("./pages/OperationalAccessAudit"));
+const BridgeHealthTimeline = lazy(() => import("./pages/BridgeHealthTimeline"));
+const ExportScheduler = lazy(() => import("./pages/ExportScheduler"));
+const AssetComparison = lazy(() => import("./pages/AssetComparison"));
+const MetricsSidebarPage = lazy(() => import("./pages/MetricsSidebar"));
 
 function NotificationInitializer() {
   useNotifications();
@@ -78,6 +82,10 @@ function App() {
               <Route path="/data-provenance" element={<DataProvenanceGraph />} />
               <Route path="/alert-sandbox" element={<AlertSimulationSandbox />} />
               <Route path="/liquidity-fragmentation" element={<LiquidityFragmentation />} />
+              <Route path="/bridge-health-timeline" element={<BridgeHealthTimeline />} />
+              <Route path="/export-scheduler" element={<ExportScheduler />} />
+              <Route path="/asset-comparison" element={<AssetComparison />} />
+              <Route path="/metrics-sidebar" element={<MetricsSidebarPage />} />
             </Route>
           </Routes>
         </Suspense>

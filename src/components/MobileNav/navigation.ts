@@ -23,6 +23,8 @@ export const navGroups: NavGroup[] = [
       { to: "/data-provenance", label: "Provenance", description: "Trace metric lineage from source to destination" },
       { to: "/watchlist", label: "Watchlist", description: "Tracked assets and alerts" },
       { to: "/reports", label: "Reports", description: "Operational reporting views" },
+      { to: "/bridge-health-timeline", label: "Health Timeline", description: "Bridge health score progression over time" },
+      { to: "/asset-comparison", label: "Asset Matrix", description: "Compare multiple assets across key metrics" },
     ],
   },
   {
@@ -48,6 +50,8 @@ export const navGroups: NavGroup[] = [
         description: "Review operator roles, permissions, and access history",
       },
       { to: "/settings", label: "Settings", description: "Notification and dashboard preferences" },
+      { to: "/export-scheduler", label: "Export Scheduler", description: "Schedule recurring report exports" },
+      { to: "/metrics-sidebar", label: "Pinned Metrics", description: "Pin and manage frequently viewed metrics" },
     ],
   },
 ];
