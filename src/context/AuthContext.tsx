@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useMemo } from "react";
 
-export type Role = "Viewer" | "Operator" | "SuperAdmin";
+export type Role = "Viewer" | "Operator" | "SuperAdmin" | "Admin" | "Lead Auditor";
 
 export interface UserProfile {
   id: string;
