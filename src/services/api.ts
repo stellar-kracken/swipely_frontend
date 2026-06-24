@@ -870,3 +870,61 @@ export interface IncidentReplayTimeline {
 export function getIncidentReplayTimeline(incidentId: string) {
   return fetchApi<IncidentReplayTimeline>(`/incidents/${encodeURIComponent(incidentId)}/replay`);
 }
+
+export interface SavedMetric {
+  id: string;
+  name: string;
+  description: string | null;
+  formula: string;
+  isShared: boolean;
+  createdBy: string;
+  cacheTtl: number;
+  metadata: Record<string, unknown>;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MetricValidationResponse {
+  valid: boolean;
+  errors: string[];
+  preview?: {
+    rowCount: number;
+    columns: string[];
+    sampleRows: Record<string, unknown>[];
+  };
+}
+
+export function listSavedMetrics() {
+  return fetchApi<{ success: boolean; data: SavedMetric[] }>("/analytics/saved-metrics").then(
+    (r) => r.data,
+  );
+}
+
+export function createSavedMetric(payload: {
+  name: string;
+  description?: string;
+  formula: string;
+  isShared?: boolean;
+  cacheTtl?: number;
+}) {
+  return fetchApi<{ success: boolean; data: SavedMetric }>("/analytics/saved-metrics", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+export function validateMetricFormula(formula: string) {
+  return fetchApi<{ success: boolean; data: MetricValidationResponse }>(
+    "/analytics/saved-metrics/validate",
+    {
+      method: "POST",
+      body: JSON.stringify({ formula }),
+    },
+  );
+}
+
+export function deleteSavedMetric(id: string) {
+  return fetchApi<{ success: boolean }>(`/analytics/saved-metrics/${id}`, {
+    method: "DELETE",
+  });
+}
