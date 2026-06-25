@@ -4,6 +4,7 @@ import { MetricsDrilldown } from "../components/MetricsDrilldown";
 import SnapshotCard from "../components/analytics/SnapshotCard";
 import BridgeComparison from "../components/analytics/BridgeComparison";
 import IncidentHeatmap from "../components/IncidentHeatmap";
+import AnomalyTrendCharts from "../components/AnomalyTrendCharts";
 import type { BridgeAnalytics } from "../hooks/useAnalytics";
 import { useAssetsWithHealth } from "../hooks/useAssets";
 import { usePricesForSymbols } from "../hooks/usePrices";
@@ -237,6 +238,9 @@ export default function Analytics() {
 
       {/* Incident Heatmap */}
       <IncidentHeatmap />
+
+      {/* Anomaly Trend Charts */}
+      <AnomalyTrendCharts />
 
       {/* Health Score Trends */}
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">

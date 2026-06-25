@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import UserActivityHeatmap from "../components/UserActivityHeatmap";
 
 const API = "/api/v1/admin/access-audit";
 
@@ -292,7 +293,7 @@ function SessionsTab() {
   );
 }
 
-const TABS = ["Access Changes", "Roles", "Sessions"] as const;
+const TABS = ["Access Changes", "Roles", "Sessions", "Activity Heatmap"] as const;
 type Tab = (typeof TABS)[number];
 
 export default function OperationalAccessAudit() {
@@ -328,6 +329,7 @@ export default function OperationalAccessAudit() {
       {tab === "Access Changes" && <AccessChangesTab />}
       {tab === "Roles" && <RolesTab />}
       {tab === "Sessions" && <SessionsTab />}
+      {tab === "Activity Heatmap" && <UserActivityHeatmap />}
     </div>
   );
 }
