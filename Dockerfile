@@ -15,7 +15,7 @@ WORKDIR /app
 # BuildKit cache mount keeps npm's package cache across builds so even an
 # invalidated install re-downloads as little as possible.
 COPY package.json ./
-RUN --mount=type=cache,target=/root/.npm npm install
+RUN --mount=type=cache,sharing=locked,target=/root/.npm npm install
 
 # -----------------------------------------------------------------------------
 # Development — Vite dev server with hot module replacement
