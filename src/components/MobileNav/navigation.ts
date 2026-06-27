@@ -26,6 +26,7 @@ export const navGroups: NavGroup[] = [
       { to: "/reconciliation", label: "Reconciliation", description: "Supply drift and reserve backing triage" },
       { to: "/cross-chain-verification", label: "State Verification", description: "Cryptographic cross-chain state proof validation" },
       { to: "/analytics", label: "Analytics", labelKey: "nav.analytics", description: "Trend analysis and health scoring" },
+      { to: "/freshness", label: "Freshness", description: "Data freshness and staleness status for monitored sources" },
       { to: "/analytics/metric-builder", label: "Metric Builder", description: "Create and save custom SQL metrics" },
       { to: "/data-provenance", label: "Provenance", description: "Trace metric lineage from source to destination" },
       { to: "/watchlist", label: "Watchlist", description: "Tracked assets and alerts" },

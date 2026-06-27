@@ -987,3 +987,72 @@ export function triggerCrossChainVerification(bridgeId: string): Promise<CrossCh
     { method: "POST" }
   );
 }
+
+export interface FreshnessSourceStatus {
+  key: string;
+  label: string;
+  status: "fresh" | "stale" | "unknown";
+  lastUpdated: string | null;
+  expectedIntervalMs: number;
+  trend?: "improving" | "stable" | "degrading" | null;
+  ageMs?: number | null;
+}
+
+export interface FreshnessSnapshot {
+  sources: FreshnessSourceStatus[];
+  staleSources: number;
+  freshSources: number;
+  timestamp: string;
+}
+
+export interface FreshnessSourceDetail extends FreshnessSourceStatus {
+  history?: Array<{ timestamp: string; ageMs: number }>;
+  recentIntervalsMs?: number[];
+}
+
+export interface FreshnessAlert {
+  source: string;
+  label: string;
+  severity: "warning" | "critical";
+  message: string;
+  since: string;
+}
+
+export function getFreshnessSnapshot(opts?: {
+  includeHistory?: boolean;
+  historyLimit?: number;
+}): Promise<FreshnessSnapshot> {
+  const params = new URLSearchParams();
+  if (opts?.includeHistory) params.set("includeHistory", "true");
+  if (opts?.historyLimit != null) params.set("historyLimit", String(opts.historyLimit));
+  const qs = params.toString();
+  return fetchApi<FreshnessSnapshot>(`/freshness${qs ? `?${qs}` : ""}`);
+}
+
+export function getFreshnessSource(
+  source: string,
+  opts?: { historyLimit?: number }
+): Promise<FreshnessSourceDetail> {
+  const params = new URLSearchParams();
+  if (opts?.historyLimit != null) params.set("historyLimit", String(opts.historyLimit));
+  const qs = params.toString();
+  return fetchApi<FreshnessSourceDetail>(
+    `/freshness/${encodeURIComponent(source)}${qs ? `?${qs}` : ""}`
+  );
+}
+
+export function getFreshnessSourceTrend(
+  source: string,
+  opts?: { historyLimit?: number }
+): Promise<FreshnessSourceDetail> {
+  const params = new URLSearchParams();
+  if (opts?.historyLimit != null) params.set("historyLimit", String(opts.historyLimit));
+  const qs = params.toString();
+  return fetchApi<FreshnessSourceDetail>(
+    `/freshness/${encodeURIComponent(source)}/trend${qs ? `?${qs}` : ""}`
+  );
+}
+
+export function getFreshnessAlerts(): Promise<{ alerts: FreshnessAlert[]; timestamp: string }> {
+  return fetchApi<{ alerts: FreshnessAlert[]; timestamp: string }>("/freshness/alerts");
+}
