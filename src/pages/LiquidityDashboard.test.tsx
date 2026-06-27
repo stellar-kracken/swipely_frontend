@@ -25,7 +25,7 @@ vi.mock("../hooks/useLiquidity", () => ({
 }));
 
 vi.mock("../hooks/useLocalStorageState", () => ({
-  useLocalStorageState: (key: string, defaultValue: unknown) => [defaultValue, vi.fn()],
+  useLocalStorageState: (_key: string, defaultValue: unknown) => [defaultValue, vi.fn()],
 }));
 
 vi.mock("../components/liquidity", () => ({
