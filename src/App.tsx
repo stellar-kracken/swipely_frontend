@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
+import { LoadingFallback } from "./components/LoadingFallback";
 import { GlobalErrorBoundary } from "./components/ErrorBoundary";
 import { NotificationProvider } from "./context/NotificationContext";
 import { useNotifications } from "./hooks/useNotifications";
@@ -51,13 +52,7 @@ function App() {
     <GlobalErrorBoundary>
       <NotificationProvider>
         <NotificationInitializer />
-        <Suspense
-          fallback={
-            <div className="min-h-screen bg-stellar-dark flex items-center justify-center text-stellar-text-secondary">
-              Loading page...
-            </div>
-          }
-        >
+        <Suspense fallback={<LoadingFallback />}>
           <Routes>
             <Route path="/" element={<Landing />} />
 
