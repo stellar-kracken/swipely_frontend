@@ -6,13 +6,15 @@ import { selectUnreadCount, useNotificationStore } from "../stores/notificationS
 import EntitySwitcher from "./EntitySwitcher";
 import HamburgerButton from "./MobileNav/HamburgerButton";
 import MobileMenu from "./MobileNav/MobileMenu";
-import { desktopNavItems, isNavItemActive } from "./MobileNav/navigation";
+import { isNavItemActive } from "./MobileNav/navigation";
+import { useTranslatedDesktopNavItems } from "../hooks/useTranslatedNav";
 import NotificationsDrawer from "./NotificationsDrawer";
 import GlobalSearch from "./search/GlobalSearch";
 import UnreadCountBadge from "./UnreadCountBadge";
 
 export default function Navbar() {
   const location = useLocation();
+  const desktopNavItems = useTranslatedDesktopNavItems();
   const { activeSymbols } = useWatchlist();
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
