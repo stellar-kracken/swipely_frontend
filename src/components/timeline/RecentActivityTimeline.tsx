@@ -28,7 +28,7 @@ interface RecentActivityTimelineProps {
   sourceOptions?: string[];
 }
 
-const ACTIVITY_FILTERS_STORAGE_KEY = "bridge-watch:activity-filters";
+const ACTIVITY_FILTERS_STORAGE_KEY = "swipely:activity-filters";
 
 function buildInitialFilters(
   defaults: Partial<TimelineFiltersType>,

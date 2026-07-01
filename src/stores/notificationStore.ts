@@ -70,7 +70,7 @@ export interface NotificationActions {
 }
 
 const MAX_HISTORY_DEFAULT = 100;
-const NOTIFICATION_READ_STATE_KEY = "bridge-watch-notification-read-state";
+const NOTIFICATION_READ_STATE_KEY = "swipely-notification-read-state";
 
 export const NOTIFICATION_PRIORITY_ORDER: NotificationPriority[] = [
   "critical",

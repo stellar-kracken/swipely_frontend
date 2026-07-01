@@ -100,7 +100,7 @@ export default function Watchlist() {
             const url = URL.createObjectURL(blob);
             const anchor = document.createElement("a");
             anchor.href = url;
-            anchor.download = "bridgewatch-watchlists.json";
+            anchor.download = "swipely-watchlists.json";
             anchor.click();
             URL.revokeObjectURL(url);
           }}

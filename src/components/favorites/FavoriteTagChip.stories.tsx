@@ -3,7 +3,7 @@ import { useState } from "react";
 import FavoriteTagChip from "./FavoriteTagChip";
 
 const meta = {
-  title: "Bridge Watch/Favorites/FavoriteTagChip",
+  title: "Swipely/Favorites/FavoriteTagChip",
   component: FavoriteTagChip,
   tags: ["autodocs"],
   argTypes: {

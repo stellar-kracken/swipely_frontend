@@ -102,7 +102,7 @@ const PRESETS = [
   },
 ] as const;
 
-const ADMIN_TOKEN_KEY = "bw_admin_token";
+const ADMIN_TOKEN_KEY = "swipely_admin_token";
 
 function loadToken(): string {
   try {

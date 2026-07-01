@@ -4,7 +4,7 @@
 
 The navigation bar includes a shared entity switcher for assets, bridges, and incident views. It supports text search, arrow-key navigation, Enter selection, Escape close, and recent selections persisted in local storage.
 
-Recent selections are stored under `bridge-watch:entity-switcher-recents`.
+Recent selections are stored under `swipely:entity-switcher-recents`.
 
 ## Inline status cards
 

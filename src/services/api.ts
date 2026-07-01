@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../config/apiBase";
 import type {
   AlertRoutingAuditEntry,
   AlertRoutingRule,
@@ -30,7 +31,6 @@ import type {
   CrossChainStateResult,
   CrossChainVerificationSummary,
 } from "../types";
-const API_BASE_URL = "/api/v1";
 
 async function fetchApi<T>(
   endpoint: string,

@@ -284,7 +284,7 @@ describe("DateRangePicker", () => {
         );
       }
 
-      const stored = JSON.parse(localStorage.getItem("bridgewatch.recentRanges.v1") || "[]");
+      const stored = JSON.parse(localStorage.getItem("swipely.recentRanges.v1") || "[]");
       expect(stored).toHaveLength(5);
     }, 20_000);
 
@@ -295,7 +295,7 @@ describe("DateRangePicker", () => {
         end: "2026-04-20T00:00:00.000Z",
       };
 
-      localStorage.setItem("bridgewatch.recentRanges.v1", JSON.stringify([recentRange]));
+      localStorage.setItem("swipely.recentRanges.v1", JSON.stringify([recentRange]));
 
       const { rerender } = render(
         <DateRangePicker onApply={mockOnApply} onClear={mockOnClear} />
@@ -320,7 +320,7 @@ describe("DateRangePicker", () => {
       const button = screen.getByRole("button", { name: "24H" });
       await user.click(button);
 
-      const stored = localStorage.getItem("bridgewatch.recentRanges.v1");
+      const stored = localStorage.getItem("swipely.recentRanges.v1");
       expect(stored).toBeNull();
     });
   });

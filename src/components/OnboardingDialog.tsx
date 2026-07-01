@@ -19,7 +19,7 @@ export default function OnboardingDialog({ open, onClose, onComplete }: Props) {
   const steps: OnboardingStep[] = useMemo(
     () => [
       {
-        title: "Welcome to Bridge Watch",
+        title: "Welcome to Swipely",
         body: (
           <p className="text-sm text-stellar-text-secondary">
             This dashboard helps you monitor bridged assets on Stellar: health scores, bridge

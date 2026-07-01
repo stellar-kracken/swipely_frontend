@@ -166,7 +166,7 @@ export default function MobileMenu({
         <div className="flex items-start justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-[0.3em] text-stellar-blue">
-              Bridge Watch
+              Swipely
             </p>
             <h2 className="mt-2 text-2xl font-semibold text-white">
               Control surface

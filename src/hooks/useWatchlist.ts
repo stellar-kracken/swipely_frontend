@@ -19,7 +19,7 @@ interface WatchlistStore {
   lists: Watchlist[];
 }
 
-const STORAGE_KEY = "bridgewatch.watchlists.v1";
+const STORAGE_KEY = "swipely.watchlists.v1";
 
 function slugify(value: string): string {
   return value

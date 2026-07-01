@@ -11,7 +11,7 @@ import type { TradingPair, VenueLiquidity } from "../types/liquidity";
 
 export default function LiquidityDashboard() {
   const [pair, setPair] = useLocalStorageState<TradingPair>(
-    "bridge-watch:liquidity-pair:v1",
+    "swipely:liquidity-pair:v1",
     "USDC/XLM"
   );
 

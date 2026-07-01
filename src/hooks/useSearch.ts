@@ -13,8 +13,8 @@ export interface SearchResult {
   matchText?: string;
 }
 
-const STORAGE_KEY = "bridge-watch:recent-searches";
-const SAVED_STORAGE_KEY = "bridge-watch:saved-searches";
+const STORAGE_KEY = "swipely:recent-searches";
+const SAVED_STORAGE_KEY = "swipely:saved-searches";
 const MAX_RECENT = 8;
 const MAX_SAVED = 30;
 const DEBOUNCE_MS = 200;

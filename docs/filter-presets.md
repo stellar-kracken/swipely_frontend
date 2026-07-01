@@ -47,7 +47,7 @@ interface DashboardFilterPreset {
 
 ## Persistence
 
-- Storage key: `bridge-watch:dashboard-filter-presets:v1`.
+- Storage key: `swipely:dashboard-filter-presets:v1`.
 - Stored as a JSON array of `DashboardFilterPreset` objects.
 - Presets saved before the shared/timestamp fields existed are normalized on read
   (`shared` defaults to `false`, timestamps default to the current time).

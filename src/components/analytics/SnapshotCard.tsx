@@ -64,7 +64,7 @@ export default function SnapshotCard({ title, bridges, timestamp }: SnapshotCard
         <div className="flex-1 overflow-hidden">
           <p className="text-[10px] text-stellar-text-secondary mb-1">Shareable Link</p>
           <div className="bg-stellar-dark border border-stellar-border rounded px-2 py-1 text-[10px] text-stellar-blue truncate select-all">
-            https://bridge-watch.stellar.org/snapshots/{btoa(title + timestamp).slice(0, 12)}
+            https://swipely.stellar.org/snapshots/{btoa(title + timestamp).slice(0, 12)}
           </div>
         </div>
         <button 

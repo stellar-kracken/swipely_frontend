@@ -32,7 +32,7 @@ function withSparklineData(symbol: string) {
 }
 
 const meta = {
-  title: "Bridge Watch/Assets/HealthScoreCard",
+  title: "Swipely/Assets/HealthScoreCard",
   component: HealthScoreCard,
   tags: ["autodocs"],
 } satisfies Meta<typeof HealthScoreCard>;

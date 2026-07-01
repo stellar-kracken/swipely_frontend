@@ -4,15 +4,23 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stellar Bridge Watch</title>
+    <title>Swipely — Cross-Chain Bridge & Liquidity Monitoring</title>
     <meta
       name="description"
-      content="Open-source monitoring platform for cross-chain asset bridges, DEX liquidity, and bridged asset health on the Stellar network"
+      content="Swipely is a monitoring platform for cross-chain asset bridges and DEX liquidity on the Stellar network — real-time health scores, reconciliation, and alerting in one dashboard."
     />
+    <meta name="theme-color" content="#0057FF" />
+    <meta property="og:title" content="Swipely — Cross-Chain Bridge & Liquidity Monitoring" />
+    <meta
+      property="og:description"
+      content="Real-time health scores, reconciliation, and alerting for cross-chain asset bridges and DEX liquidity on the Stellar network."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
     <script>
       (function () {
         try {
-          var key = "bridge-watch:theme:v1";
+          var key = "swipely:theme:v1";
           var stored = localStorage.getItem(key);
           var mode = stored === "light" || stored === "dark" || stored === "system" ? stored : "system";
           var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;

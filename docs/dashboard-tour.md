@@ -56,7 +56,7 @@ Region markers currently used on the dashboard:
 
 ## Persistence
 
-- Storage key: `bridge-watch:dashboard-tour:v1`.
+- Storage key: `swipely:dashboard-tour:v1`.
 - Stored shape: `{ completed: boolean, lastStep: number, seen: boolean }`.
   - `seen` suppresses auto-start after the first run.
   - `lastStep` enables skip-and-resume.

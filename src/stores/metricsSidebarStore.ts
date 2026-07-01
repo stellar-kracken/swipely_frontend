@@ -72,7 +72,7 @@ export const useMetricsSidebarStore = create<MetricsSidebarState>()(
       },
     }),
     {
-      name: "bridge-watch:metrics-sidebar",
+      name: "swipely:metrics-sidebar",
       storage: createJSONStorage(() => localStorage),
     }
   )

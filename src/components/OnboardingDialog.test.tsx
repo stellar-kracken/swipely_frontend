@@ -19,7 +19,7 @@ describe("OnboardingDialog", () => {
     const results = await axe(container);
     expect(results).toHaveNoViolations();
 
-    expect(screen.getByRole("heading", { name: "Welcome to Bridge Watch" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "Welcome to Swipely" })).toBeInTheDocument();
 
     fireEvent.click(screen.getByRole("button", { name: "Next" }));
     expect(screen.getByRole("heading", { name: "Start on the Dashboard" })).toBeInTheDocument();

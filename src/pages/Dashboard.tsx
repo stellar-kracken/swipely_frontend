@@ -507,7 +507,7 @@ export default function Dashboard() {
 
   const currentShareUrl =
     typeof window === "undefined"
-      ? `https://bridge-watch.local${location.pathname}${location.search}`
+      ? `https://swipely.local${location.pathname}${location.search}`
       : window.location.href;
 
   return (

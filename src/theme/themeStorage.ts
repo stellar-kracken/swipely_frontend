@@ -1,6 +1,6 @@
 import type { ThemeMode, ThemeName } from "./ThemeContext";
 
-export const THEME_STORAGE_KEY = "bridge-watch:theme:v1";
+export const THEME_STORAGE_KEY = "swipely:theme:v1";
 
 export function getSystemTheme(): ThemeName {
   if (typeof window === "undefined") return "dark";

@@ -1,6 +1,6 @@
 import { useLocalStorageState } from "./useLocalStorageState";
 
-const STORAGE_KEY = "bridge-watch.preferences.v1";
+const STORAGE_KEY = "swipely.preferences.v1";
 
 export type UserPreferences = {
   /** Prefer abbreviated numbers (e.g. 1.2M) where supported */

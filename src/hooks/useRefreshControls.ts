@@ -35,7 +35,7 @@ export function useRefreshControls({
 }: UseRefreshControlsOptions) {
   const queryClient = useQueryClient();
   const [preferences, setPreferences] = useLocalStorageState<StoredPreferences>(
-    `bridge-watch:refresh-preferences:${viewId}:v1`,
+    `swipely:refresh-preferences:${viewId}:v1`,
     {
       autoRefreshEnabled: false,
       refreshIntervalMs: defaultIntervalMs,

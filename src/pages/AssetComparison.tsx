@@ -4,7 +4,7 @@ import { useLocalStorageState } from "../hooks/useLocalStorageState";
 import { AssetSelector, AssetComparisonMatrix } from "../components/AssetComparison";
 
 const MAX_COMPARE = 8;
-const STORAGE_KEY = "bridge-watch:asset-comparison:v1";
+const STORAGE_KEY = "swipely:asset-comparison:v1";
 
 export default function AssetComparison() {
   const { data: allAssets = [], isLoading, error } = useAssetsWithHealth();

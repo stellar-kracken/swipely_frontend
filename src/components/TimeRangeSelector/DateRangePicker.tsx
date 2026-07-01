@@ -53,7 +53,7 @@ function getRecentRanges(): TimeRangeSelection[] {
   }
 
   try {
-    const stored = window.localStorage.getItem("bridgewatch.recentRanges.v1");
+    const stored = window.localStorage.getItem("swipely.recentRanges.v1");
     if (!stored) {
       return [];
     }
@@ -77,7 +77,7 @@ function saveRecentRange(selection: TimeRangeSelection): void {
       (r) => !(r.start === selection.start && r.end === selection.end)
     );
     const updated = [selection, ...filtered].slice(0, 5);
-    window.localStorage.setItem("bridgewatch.recentRanges.v1", JSON.stringify(updated));
+    window.localStorage.setItem("swipely.recentRanges.v1", JSON.stringify(updated));
   } catch {
     // Silently fail if localStorage is unavailable
   }

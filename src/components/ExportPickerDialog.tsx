@@ -3,7 +3,7 @@ import type { AssetWithHealth, Bridge, ExportFormat, ExportDataType, ExportRecor
 import { requestExport, getExportStatus, generateExportDownloadLink } from "../services/api";
 import { useLocalStorageState } from "../hooks/useLocalStorageState";
 
-const STORAGE_KEY = "bridge-watch.export-picker.v1";
+const STORAGE_KEY = "swipely.export-picker.v1";
 
 const formatOptions: Array<{ label: string; value: ExportFormat; description?: string }> = [
   { label: "CSV", value: "csv" },

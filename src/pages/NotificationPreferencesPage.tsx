@@ -15,7 +15,7 @@ interface ExtendedPrefs {
   priority: Priority;
 }
 
-const STORAGE_KEY = "bridge-watch:notification-extended-prefs:v1";
+const STORAGE_KEY = "swipely:notification-extended-prefs:v1";
 
 function loadExtendedPrefs(): ExtendedPrefs {
   try {

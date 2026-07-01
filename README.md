@@ -1,6 +1,7 @@
 # Swipely — Frontend
 
 The web dashboard for **Swipely**, a monitoring platform for cross-chain asset
+
 bridges and DEX liquidity on the Stellar network. The app surfaces real-time
 bridge health, liquidity, reconciliation, and incident data consumed from the
 Swipely backend API, and gives operators the tooling to investigate and act on
@@ -75,13 +76,17 @@ different backend, set `VITE_API_BASE_URL` in a local `.env` file.
 
 ## Environment variables
 
+See [`.env.example`](./.env.example).
+
 | Variable | Description | Default |
 | --- | --- | --- |
-| `VITE_API_BASE_URL` | Base URL for backend API requests used by some pages | `http://localhost:3000` (most requests instead go through the same-origin `/api/v1` path, proxied in dev and by Nginx in production) |
+| `VITE_API_BASE_URL` | Absolute origin of the backend API (REST + WebSocket) | Unset — REST/WS calls use same-origin relative paths, proxied by Vite in dev and by Nginx in the Docker production image |
 
-Vite only exposes variables prefixed with `VITE_` to client code. Create a
-`.env.local` (already git-ignored) for machine-specific overrides rather than
-editing checked-in config.
+Set `VITE_API_BASE_URL` when the static build is served without a same-origin
+proxy in front of it (e.g. a Vercel deployment) — it's used for both REST
+requests and the WebSocket connection. Vite only exposes variables prefixed
+with `VITE_` to client code. Create a `.env.local` (already git-ignored) for
+machine-specific overrides rather than editing checked-in config.
 
 ## Available scripts
 

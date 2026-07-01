@@ -20,13 +20,13 @@ export default function Layout() {
 
   // Listen for open-shortcuts event dispatched by Navbar "?" button
   useEffect(() => {
-    window.addEventListener("bridgewatch:open-shortcuts", openHelp);
-    return () => window.removeEventListener("bridgewatch:open-shortcuts", openHelp);
+    window.addEventListener("swipely:open-shortcuts", openHelp);
+    return () => window.removeEventListener("swipely:open-shortcuts", openHelp);
   }, [openHelp]);
 
   // Forward "/" shortcut to GlobalSearch via custom event (avoids tight coupling)
   const openSearch = useCallback(() => {
-    window.dispatchEvent(new CustomEvent("bridgewatch:open-search"));
+    window.dispatchEvent(new CustomEvent("swipely:open-search"));
   }, []);
 
   useKeyboardShortcuts({ onOpenHelp: openHelp, onOpenSearch: openSearch });

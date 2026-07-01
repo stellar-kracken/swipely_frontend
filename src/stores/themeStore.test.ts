@@ -5,7 +5,7 @@
 import { describe, it, expect, beforeEach } from "vitest";
 import { useThemeStore } from "./themeStore";
 
-const PERSIST_KEY = "bridge-watch-theme";
+const PERSIST_KEY = "swipely-theme";
 
 function resetStoreState() {
   const initialState = useThemeStore.getInitialState();

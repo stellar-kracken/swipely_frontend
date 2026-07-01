@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { resolveWsUrl } from "../config/apiBase";
 
 export type IncidentSeverity = "critical" | "high" | "medium" | "low";
 export type IncidentStatus = "open" | "investigating" | "resolved";
@@ -58,7 +59,7 @@ async function markIncidentRead(incidentId: string, userSession: string): Promis
 }
 
 function getOrCreateSession(): string {
-  const key = "bw_user_session";
+  const key = "swipely_user_session";
   let session = localStorage.getItem(key);
   if (!session) {
     session = `session_${Date.now()}_${Math.random().toString(36).slice(2)}`;
@@ -73,7 +74,7 @@ export function useIncidentFeed(filters: IncidentFilters = {}) {
 
   const [readIds, setReadIds] = useState<Set<string>>(() => {
     try {
-      const stored = localStorage.getItem("bw_read_incidents");
+      const stored = localStorage.getItem("swipely_read_incidents");
       return stored ? new Set(JSON.parse(stored) as string[]) : new Set();
     } catch {
       return new Set();
@@ -93,7 +94,7 @@ export function useIncidentFeed(filters: IncidentFilters = {}) {
       setReadIds((prev) => {
         const next = new Set(prev);
         next.add(incidentId);
-        localStorage.setItem("bw_read_incidents", JSON.stringify([...next]));
+        localStorage.setItem("swipely_read_incidents", JSON.stringify([...next]));
         return next;
       });
       queryClient.invalidateQueries({ queryKey: ["incidents"] });
@@ -107,7 +108,9 @@ export function useIncidentFeed(filters: IncidentFilters = {}) {
 
   // Subscribe to real-time updates via WebSocket channel
   useEffect(() => {
-    const ws = new WebSocket(`ws://${window.location.host}/api/v1/ws`);
+    const ws = new WebSocket(
+      resolveWsUrl("/api/v1/ws") ?? `ws://${window.location.host}/api/v1/ws`
+    );
     const onMessage = (event: MessageEvent) => {
       try {
         const msg = JSON.parse(event.data as string) as { channel?: string };

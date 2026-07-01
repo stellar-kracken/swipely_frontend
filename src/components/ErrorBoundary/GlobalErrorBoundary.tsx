@@ -74,7 +74,7 @@ export default class GlobalErrorBoundary extends React.Component<
               resetError={this.resetError}
               severity="critical"
               title="Application Error"
-              message="Bridge Watch encountered an unexpected error. You can try again or reload the page."
+              message="Swipely encountered an unexpected error. You can try again or reload the page."
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 # Timeline Components
 
-A comprehensive timeline system for displaying recent bridge, asset, and alert activity in the StellaBridge application.
+A comprehensive timeline system for displaying recent bridge, asset, and alert activity in the Swipely application.
 
 ## Components
 
@@ -153,4 +153,4 @@ Navigate to "Components/Timeline" to view all component variations.
 
 ## License
 
-Part of the StellaBridge project.
+Part of the Swipely project.

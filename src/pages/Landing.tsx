@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAssetsWithHealth } from "../hooks/useAssets";
 import { useBridges } from "../hooks/useBridges";
+import SwipelyMark from "../components/SwipelyMark";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -14,7 +15,7 @@ interface StatItem {
 }
 
 // ---------------------------------------------------------------------------
-// Helpers — scroll-based reveal animation
+// Scroll-based reveal animation
 // ---------------------------------------------------------------------------
 
 function useIntersection(threshold = 0.15) {
@@ -42,11 +43,6 @@ function useIntersection(threshold = 0.15) {
   return { ref, visible };
 }
 
-// ---------------------------------------------------------------------------
-// Sub-components
-// ---------------------------------------------------------------------------
-
-/** Animated section wrapper — fades + slides in when scrolled into view. */
 function AnimatedSection({
   children,
   className = "",
@@ -73,7 +69,10 @@ function AnimatedSection({
   );
 }
 
-/** Single feature highlight card. */
+// ---------------------------------------------------------------------------
+// Sub-components
+// ---------------------------------------------------------------------------
+
 function FeatureCard({
   icon,
   title,
@@ -86,12 +85,12 @@ function FeatureCard({
   delay: number;
 }) {
   return (
-    <AnimatedSection delay={delay}>
-      <div className="group rounded-2xl border border-stellar-border bg-stellar-card p-6 hover:border-stellar-blue/50 transition-colors duration-300 h-full">
+    <AnimatedSection delay={delay} className="h-full">
+      <div className="group h-full rounded-2xl border border-stellar-border bg-stellar-card p-6 hover:border-stellar-blue/50 transition-colors duration-300">
         <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-stellar-blue/10 text-stellar-blue group-hover:bg-stellar-blue group-hover:text-white transition-colors duration-300">
           {icon}
         </div>
-        <h3 className="text-lg font-semibold text-white">{title}</h3>
+        <h3 className="text-lg font-semibold text-stellar-text-primary">{title}</h3>
         <p className="mt-2 text-sm leading-relaxed text-stellar-text-secondary">
           {description}
         </p>
@@ -100,11 +99,10 @@ function FeatureCard({
   );
 }
 
-/** Live statistic counter card. */
 function StatCard({ label, value, suffix = "" }: StatItem) {
   return (
     <div className="rounded-2xl border border-stellar-border bg-stellar-card p-6 text-center">
-      <p className="text-3xl font-bold text-white">
+      <p className="text-3xl font-bold text-stellar-text-primary">
         {value}
         <span className="text-stellar-blue">{suffix}</span>
       </p>
@@ -113,7 +111,6 @@ function StatCard({ label, value, suffix = "" }: StatItem) {
   );
 }
 
-/** "How It Works" numbered step. */
 function StepCard({
   step,
   title,
@@ -132,7 +129,7 @@ function StepCard({
           {step}
         </div>
         <div>
-          <h3 className="font-semibold text-white">{title}</h3>
+          <h3 className="font-semibold text-stellar-text-primary">{title}</h3>
           <p className="mt-1 text-sm text-stellar-text-secondary leading-relaxed">
             {description}
           </p>
@@ -143,18 +140,24 @@ function StepCard({
 }
 
 // ---------------------------------------------------------------------------
-// Icons (inline SVG to avoid external icon-library dependency)
+// Icons (inline SVG, no external icon-library dependency)
 // ---------------------------------------------------------------------------
 
 const Icon = {
+  Activity: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+    </svg>
+  ),
   Shield: () => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
     </svg>
   ),
-  Activity: () => (
+  Bell: () => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
     </svg>
   ),
   BarChart: () => (
@@ -164,23 +167,26 @@ const Icon = {
       <line x1="6" y1="20" x2="6" y2="14" />
     </svg>
   ),
+  GitBranch: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="6" y1="3" x2="6" y2="15" />
+      <circle cx="18" cy="6" r="3" />
+      <circle cx="6" cy="18" r="3" />
+      <path d="M18 9a9 9 0 0 1-9 9" />
+    </svg>
+  ),
+  Layers: () => (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polygon points="12 2 2 7 12 12 22 7 12 2" />
+      <polyline points="2 17 12 22 22 17" />
+      <polyline points="2 12 12 17 22 12" />
+    </svg>
+  ),
   Globe: () => (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <circle cx="12" cy="12" r="10" />
       <line x1="2" y1="12" x2="22" y2="12" />
       <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-    </svg>
-  ),
-  Bell: () => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-    </svg>
-  ),
-  Lock: () => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
     </svg>
   ),
   Code: () => (
@@ -189,33 +195,26 @@ const Icon = {
       <polyline points="8 6 2 12 8 18" />
     </svg>
   ),
-  Zap: () => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
-    </svg>
-  ),
   ArrowRight: () => (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <line x1="5" y1="12" x2="19" y2="12" />
       <polyline points="12 5 19 12 12 19" />
     </svg>
   ),
-  Star: () => (
+  Sparkle: () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8L12 2z" />
     </svg>
   ),
 };
 
 // ---------------------------------------------------------------------------
-// API Preview snippet
+// API preview snippet — illustrative only, not a live/linked endpoint
 // ---------------------------------------------------------------------------
 
-const API_SNIPPET = `// Bridge Watch REST API — example
-const response = await fetch(
-  "https://api.bridgewatch.io/v1/assets/USDC/health"
-);
-const { overallScore, factors, trend } = await response.json();
+const API_SNIPPET = `// Swipely REST API — example
+const res = await fetch("/api/v1/assets/USDC/health");
+const { overallScore, factors, trend } = await res.json();
 // overallScore: 94
 // factors: { liquidityDepth: 96, priceStability: 91, ... }
 // trend: "improving"`;
@@ -251,94 +250,100 @@ export default function Landing() {
       icon: <Icon.Activity />,
       title: "Real-Time Health Scores",
       description:
-        "Composite 0–100 health score per asset, updated live via WebSocket. Track liquidity depth, price stability, and bridge uptime in one view.",
+        "A composite 0–100 health score per asset, streamed live over WebSocket. Liquidity depth, price stability, and bridge uptime, in one number.",
     },
     {
       icon: <Icon.Shield />,
-      title: "Supply Mismatch Detection",
+      title: "Supply & Reconciliation Checks",
       description:
-        "Automatically flag discrepancies between Stellar-issued supply and source-chain collateral, down to 0.1 bp resolution.",
+        "Automatically reconcile Stellar-issued supply against source-chain collateral and flag mismatches down to fine-grained resolution.",
     },
     {
       icon: <Icon.Bell />,
-      title: "Price Deviation Alerts",
+      title: "Configurable Alerts & Playbooks",
       description:
-        "Configurable low / medium / high severity alerts fire instantly when any asset deviates from its reference price.",
+        "Route low / medium / high severity alerts to the right team, attach response playbooks, and rehearse them in the alert simulation sandbox.",
     },
     {
       icon: <Icon.BarChart />,
-      title: "Multi-DEX Liquidity Depth",
+      title: "Multi-DEX Liquidity Analytics",
       description:
-        "Aggregate liquidity from Stellar DEX venues at multiple price-impact tiers (0.1 %, 0.5 %, 1 %, 5 %) for USDC/XLM, EURC/XLM, and more.",
+        "Aggregate liquidity across Stellar DEX venues at multiple price-impact tiers, and surface fragmentation across pairs and pools.",
     },
     {
-      icon: <Icon.Globe />,
-      title: "Cross-Bridge Analytics",
+      icon: <Icon.GitBranch />,
+      title: "Bridge & Asset Topology",
       description:
-        "Side-by-side comparison across all monitored bridges. Historical trend charts, volume analytics, and bridge performance tables.",
+        "Explore how assets, bridges, and chains relate with an interactive topology graph, supply-chain view, and side-by-side comparisons.",
     },
     {
-      icon: <Icon.Lock />,
-      title: "On-Chain Security Controls",
+      icon: <Icon.Layers />,
+      title: "Data Provenance & Drift Detection",
       description:
-        "Emergency pause, two-step admin transfer, and per-role permissions are enforced directly by the Soroban smart contract — not off-chain middleware.",
+        "Trace any metric back to its source, and get notified when upstream schemas drift or data freshness falls outside expected bounds.",
     },
     {
       icon: <Icon.Code />,
-      title: "Open REST & WebSocket API",
+      title: "REST & WebSocket API",
       description:
-        "Every data point is available via a versioned REST API and a real-time WebSocket feed. Embed Bridge Watch data into your own dashboards in minutes.",
+        "Every data point is available through a versioned REST API and a real-time WebSocket feed, so you can embed Swipely into your own tooling.",
     },
     {
-      icon: <Icon.Zap />,
-      title: "Automated Health Calculation",
+      icon: <Icon.Globe />,
+      title: "Built for Global Teams",
       description:
-        "Submit raw component scores and let the contract compute the weighted composite automatically — or supply a manual override for full transparency.",
+        "The dashboard ships with support for eight languages out of the box, so distributed operations teams can work in their own language.",
     },
   ];
 
   const steps = [
     {
-      title: "Connect to Stellar",
+      title: "Point it at Stellar",
       description:
-        "Bridge Watch indexes Stellar mainnet (and testnet) events in real time. No wallet connection needed to view public monitoring data.",
+        "Swipely indexes Stellar mainnet and testnet events in real time — no wallet connection required to view monitoring data.",
     },
     {
-      title: "Monitor Your Assets",
+      title: "Watch your assets",
       description:
-        "Registered assets appear on the dashboard with live health scores. Set deviation thresholds and mismatch alerts tailored to each token.",
+        "Registered assets and bridges appear on the dashboard with live health scores. Set deviation thresholds tailored to each one.",
     },
     {
-      title: "Act on Insights",
+      title: "Act on what you see",
       description:
-        "Use the dashboard, REST API, or Soroban contract query functions to integrate Bridge Watch data into your own trading, compliance, or ops tooling.",
+        "Use the dashboard, the REST API, or the WebSocket feed to plug Swipely's data into your own trading, compliance, or ops workflows.",
     },
     {
-      title: "Generate Reports",
+      title: "Report and export",
       description:
-        "Export print-ready PDF reports of network overviews, per-asset breakdowns, and bridge status summaries with a single click.",
+        "Generate print-ready reports and scheduled exports covering network overviews, per-asset breakdowns, and bridge status.",
     },
   ];
 
   return (
     <div className="min-h-screen bg-stellar-dark">
-
       {/* ── Navbar ── */}
       <nav className="sticky top-0 z-50 border-b border-stellar-border bg-stellar-dark/80 backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link
               to="/"
-              className="text-xl font-bold text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-sm"
+              className="flex items-center gap-2 text-xl font-bold text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded-sm"
             >
-              Bridge <span className="text-stellar-blue">Watch</span>
+              <SwipelyMark />
+              Swipely
             </Link>
             <div className="flex items-center gap-3">
               <Link
                 to="/dashboard"
-                className="hidden sm:block text-sm text-stellar-text-secondary hover:text-white transition-colors"
+                className="hidden sm:block text-sm text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
               >
                 Dashboard
+              </Link>
+              <Link
+                to="/help"
+                className="hidden sm:block text-sm text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
+              >
+                Docs
               </Link>
               <Link
                 to="/dashboard"
@@ -354,31 +359,27 @@ export default function Landing() {
 
       {/* ── Hero ── */}
       <section className="relative overflow-hidden pt-24 pb-32 sm:pt-32 sm:pb-40">
-        {/* Background glow */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 flex items-center justify-center"
-        >
-          <div className="h-[520px] w-[520px] rounded-full bg-stellar-blue/10 blur-3xl" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+          <div className="absolute left-1/2 top-0 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-stellar-blue/10 blur-3xl" />
+          <div className="absolute right-0 bottom-0 h-[380px] w-[380px] translate-x-1/3 translate-y-1/3 rounded-full bg-[#00D4AA]/10 blur-3xl" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          {/* Pill badge */}
           <div className="inline-flex items-center gap-1.5 rounded-full border border-stellar-blue/30 bg-stellar-blue/10 px-3 py-1 text-xs font-medium text-stellar-blue mb-6">
-            <Icon.Star />
-            Open-source · Stellar Network
+            <Icon.Sparkle />
+            Monitoring, built for Stellar
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight tracking-tight">
-            Real-Time Bridge Monitoring
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-stellar-text-primary leading-tight tracking-tight">
+            Know the health of every
             <br />
-            <span className="text-stellar-blue">for Stellar</span>
+            <span className="text-stellar-blue">bridge and asset</span>, instantly
           </h1>
 
           <p className="mt-6 text-lg sm:text-xl text-stellar-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Bridge Watch gives you instant visibility into cross-chain asset health,
-            supply consistency, and liquidity depth — all powered by an auditable
-            Soroban smart contract on the Stellar network.
+            Swipely is a monitoring platform for cross-chain asset bridges and DEX
+            liquidity on the Stellar network — real-time health scores, reconciliation,
+            and alerting in a single dashboard.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -390,12 +391,10 @@ export default function Landing() {
               <Icon.ArrowRight />
             </Link>
             <a
-              href="https://github.com/StellaBridge/Bridge-Watch"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border border-stellar-border px-7 py-3.5 text-base font-semibold text-white hover:border-stellar-blue/50 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              href="#product-preview"
+              className="inline-flex items-center gap-2 rounded-xl border border-stellar-border px-7 py-3.5 text-base font-semibold text-stellar-text-primary hover:border-stellar-blue/50 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             >
-              View on GitHub
+              See how it works
             </a>
           </div>
         </div>
@@ -406,7 +405,7 @@ export default function Landing() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection>
             <p className="text-center text-sm font-semibold uppercase tracking-widest text-stellar-text-secondary mb-8">
-              Live Network Statistics
+              Live network statistics
             </p>
           </AnimatedSection>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -423,12 +422,12 @@ export default function Landing() {
       <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="text-center mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold text-stellar-text-primary">
               Everything you need to monitor bridges
             </h2>
             <p className="mt-4 text-stellar-text-secondary max-w-2xl mx-auto">
-              From raw on-chain data to actionable health scores, Bridge Watch covers
-              the full observability stack for bridged assets on Stellar.
+              From raw on-chain data to actionable health scores, Swipely covers the
+              full observability stack for bridged assets on Stellar.
             </p>
           </AnimatedSection>
 
@@ -440,13 +439,80 @@ export default function Landing() {
         </div>
       </section>
 
+      {/* ── Product preview ── */}
+      <section id="product-preview" className="py-24 bg-stellar-card border-y border-stellar-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <AnimatedSection className="text-center mb-14">
+            <h2 className="text-3xl sm:text-4xl font-bold text-stellar-text-primary">
+              One dashboard, full visibility
+            </h2>
+            <p className="mt-4 text-stellar-text-secondary max-w-xl mx-auto">
+              Health scores, liquidity, and incidents side by side — no more
+              switching between block explorers and spreadsheets.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={100}>
+            <div className="mx-auto max-w-4xl rounded-2xl border border-stellar-border bg-stellar-dark overflow-hidden shadow-2xl">
+              <div className="flex items-center gap-1.5 px-4 py-3 border-b border-stellar-border bg-stellar-card">
+                {["#FF5F57", "#FFBD2E", "#27C93F"].map((color) => (
+                  <div key={color} className="h-3 w-3 rounded-full" style={{ backgroundColor: color }} />
+                ))}
+                <span className="ml-2 text-xs text-stellar-text-secondary font-mono">
+                  swipely — dashboard
+                </span>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-6">
+                <div className="md:col-span-2 rounded-xl border border-stellar-border bg-stellar-card p-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stellar-text-secondary mb-4">
+                    Bridge health, 24h
+                  </p>
+                  <div className="flex items-end gap-2 h-32">
+                    {[62, 74, 58, 81, 90, 76, 95, 88, 92, 84, 97, 91].map((h, i) => (
+                      <div
+                        key={i}
+                        className="flex-1 rounded-t-sm bg-gradient-to-t from-stellar-blue/40 to-stellar-blue"
+                        style={{ height: `${h}%` }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="rounded-xl border border-stellar-border bg-stellar-card p-4 flex flex-col justify-between">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stellar-text-secondary mb-2">
+                    Composite score
+                  </p>
+                  <p className="text-4xl font-bold text-stellar-text-primary">
+                    94<span className="text-[#00D4AA] text-xl">/100</span>
+                  </p>
+                  <p className="mt-2 text-xs text-[#00D4AA] font-medium">▲ improving</p>
+                </div>
+                {[
+                  { label: "USDC · Allbridge", score: 97, status: "Healthy" },
+                  { label: "EURC · Allbridge", score: 91, status: "Healthy" },
+                  { label: "wBTC · Wormhole", score: 68, status: "Watch" },
+                ].map((row) => (
+                  <div
+                    key={row.label}
+                    className="md:col-span-3 flex items-center justify-between rounded-xl border border-stellar-border bg-stellar-card px-4 py-3 text-sm"
+                  >
+                    <span className="text-stellar-text-primary font-medium">{row.label}</span>
+                    <span className="text-stellar-text-secondary">{row.status}</span>
+                    <span className="font-mono text-stellar-blue">{row.score}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </AnimatedSection>
+        </div>
+      </section>
+
       {/* ── How It Works ── */}
-      <section className="py-24 bg-stellar-card border-y border-stellar-border">
+      <section className="py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-14">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">How it works</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-stellar-text-primary">How it works</h2>
             <p className="mt-4 text-stellar-text-secondary max-w-xl">
-              Get from zero to full bridge visibility in four simple steps.
+              Get from zero to full bridge visibility in four steps.
             </p>
           </AnimatedSection>
 
@@ -459,27 +525,26 @@ export default function Landing() {
       </section>
 
       {/* ── API Preview ── */}
-      <section className="py-24">
+      <section className="py-24 bg-stellar-card border-y border-stellar-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <AnimatedSection>
               <span className="inline-block rounded-full bg-stellar-blue/10 px-3 py-1 text-xs font-semibold text-stellar-blue uppercase tracking-widest mb-4">
                 Developer API
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              <h2 className="text-3xl sm:text-4xl font-bold text-stellar-text-primary">
                 Integrate in minutes
               </h2>
               <p className="mt-4 text-stellar-text-secondary leading-relaxed">
-                A clean, versioned REST API and real-time WebSocket feed let you embed
-                Bridge Watch data into your own applications, bots, and dashboards
-                without any blockchain SDK.
+                A versioned REST API and a real-time WebSocket feed let you embed
+                Swipely's data into your own applications, bots, and dashboards.
               </p>
               <ul className="mt-6 space-y-2 text-sm text-stellar-text-secondary">
                 {[
                   "REST endpoints for assets, bridges, prices, and health scores",
                   "WebSocket channel for live health score updates",
                   "Pagination, filtering, and date-range queries",
-                  "OpenAPI spec available for code generation",
+                  "API keys managed directly from the dashboard",
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <span className="mt-0.5 flex-shrink-0 text-stellar-blue">✓</span>
@@ -489,27 +554,23 @@ export default function Landing() {
               </ul>
               <div className="mt-8">
                 <Link
-                  to="/dashboard"
+                  to="/api-docs"
                   className="inline-flex items-center gap-2 rounded-xl bg-stellar-blue px-6 py-3 text-sm font-semibold text-white hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                 >
-                  Explore the dashboard
+                  Read the API docs
                   <Icon.ArrowRight />
                 </Link>
               </div>
             </AnimatedSection>
 
             <AnimatedSection delay={150}>
-              <div className="rounded-2xl border border-stellar-border bg-stellar-card overflow-hidden">
-                <div className="flex items-center gap-1.5 px-4 py-3 border-b border-stellar-border bg-stellar-dark/50">
+              <div className="rounded-2xl border border-stellar-border bg-stellar-dark overflow-hidden">
+                <div className="flex items-center gap-1.5 px-4 py-3 border-b border-stellar-border bg-stellar-card">
                   {["#FF5F57", "#FFBD2E", "#27C93F"].map((color) => (
-                    <div
-                      key={color}
-                      className="h-3 w-3 rounded-full"
-                      style={{ backgroundColor: color }}
-                    />
+                    <div key={color} className="h-3 w-3 rounded-full" style={{ backgroundColor: color }} />
                   ))}
                   <span className="ml-2 text-xs text-stellar-text-secondary font-mono">
-                    bridge-watch-api.ts
+                    example.ts
                   </span>
                 </div>
                 <pre className="overflow-x-auto p-5 text-xs leading-relaxed text-green-300 font-mono">
@@ -522,32 +583,23 @@ export default function Landing() {
       </section>
 
       {/* ── Call to Action ── */}
-      <section className="py-24 bg-stellar-card border-t border-stellar-border">
+      <section className="py-24">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+            <h2 className="text-3xl sm:text-4xl font-bold text-stellar-text-primary">
               Start monitoring your bridges today
             </h2>
             <p className="mt-4 text-stellar-text-secondary max-w-xl mx-auto">
-              Bridge Watch is fully open-source. Contributions, forks, and integrations
-              are welcome.
+              No wallet connection required to explore the public dashboard.
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-10 flex items-center justify-center">
               <Link
                 to="/dashboard"
-                className="inline-flex items-center gap-2 rounded-xl bg-stellar-blue px-8 py-4 text-base font-semibold text-white shadow-lg shadow-stellar-blue/25 hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card"
+                className="inline-flex items-center gap-2 rounded-xl bg-stellar-blue px-8 py-4 text-base font-semibold text-white shadow-lg shadow-stellar-blue/25 hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-dark"
               >
                 Open the Dashboard
                 <Icon.ArrowRight />
               </Link>
-              <a
-                href="https://github.com/StellaBridge/Bridge-Watch"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-stellar-border px-8 py-4 text-base font-semibold text-white hover:border-stellar-blue/50 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
-              >
-                Contribute on GitHub
-              </a>
             </div>
           </AnimatedSection>
         </div>
@@ -556,33 +608,30 @@ export default function Landing() {
       {/* ── Footer ── */}
       <footer className="border-t border-stellar-border py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-stellar-text-secondary">
-          <p>
-            © {new Date().getFullYear()}{" "}
-            <span className="text-white font-medium">Bridge Watch</span> — Built on
-            Stellar
+          <p className="flex items-center gap-2">
+            <SwipelyMark size={18} />
+            <span>
+              © {new Date().getFullYear()}{" "}
+              <span className="text-stellar-text-primary font-medium">Swipely</span> — Built
+              on Stellar
+            </span>
           </p>
           <div className="flex items-center gap-6">
-            <Link to="/dashboard" className="hover:text-white transition-colors">
+            <Link to="/dashboard" className="hover:text-stellar-text-primary transition-colors">
               Dashboard
             </Link>
-            <Link to="/bridges" className="hover:text-white transition-colors">
+            <Link to="/bridges" className="hover:text-stellar-text-primary transition-colors">
               Bridges
             </Link>
-            <Link to="/analytics" className="hover:text-white transition-colors">
+            <Link to="/analytics" className="hover:text-stellar-text-primary transition-colors">
               Analytics
             </Link>
-            <a
-              href="https://github.com/StellaBridge/Bridge-Watch"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white transition-colors"
-            >
-              GitHub
-            </a>
+            <Link to="/help" className="hover:text-stellar-text-primary transition-colors">
+              Help
+            </Link>
           </div>
         </div>
       </footer>
     </div>
   );
 }
-

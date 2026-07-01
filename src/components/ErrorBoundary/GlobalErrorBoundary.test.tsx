@@ -34,7 +34,7 @@ describe("GlobalErrorBoundary", () => {
     );
     expect(screen.getByRole("alert")).toBeInTheDocument();
     expect(screen.getByText("Application Error")).toBeInTheDocument();
-    expect(screen.getByText(/Bridge Watch encountered an unexpected error/)).toBeInTheDocument();
+    expect(screen.getByText(/Swipely encountered an unexpected error/)).toBeInTheDocument();
   });
 
   it("logs error as critical", () => {

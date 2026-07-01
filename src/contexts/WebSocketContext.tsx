@@ -6,10 +6,12 @@ import {
   type ReactNode,
 } from "react";
 import { wsService } from "../services/websocket";
+import { resolveWsUrl } from "../config/apiBase";
 import { WebSocketContext } from "./WebSocketContextValue";
 import type { ConnectionState } from "../types";
 
-const WS_URL = `ws://${window.location.hostname}:3002/api/v1/ws`;
+const WS_URL =
+  resolveWsUrl("/api/v1/ws") ?? `ws://${window.location.hostname}:3002/api/v1/ws`;
 
 export function WebSocketProvider({ children }: { children: ReactNode }) {
   const [connectionState, setConnectionState] =

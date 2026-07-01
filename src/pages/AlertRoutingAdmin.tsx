@@ -52,7 +52,7 @@ function parseCsv(value: string): string[] {
 
 export default function AlertRoutingAdmin() {
   const [adminToken, setAdminToken] = useLocalStorageState(
-    "bridge-watch:admin-api-key:v1",
+    "swipely:admin-api-key:v1",
     ""
   );
   const [ownerFilter, setOwnerFilter] = useState("");

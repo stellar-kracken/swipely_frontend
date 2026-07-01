@@ -4,7 +4,7 @@ import FavoriteTagChip from "./favorites/FavoriteTagChip";
 import { useState } from "react";
 
 const meta = {
-  title: "Bridge Watch/Bridges/BridgeStatusCard",
+  title: "Swipely/Bridges/BridgeStatusCard",
   component: BridgeStatusCard,
   tags: ["autodocs"],
 } satisfies Meta<typeof BridgeStatusCard>;

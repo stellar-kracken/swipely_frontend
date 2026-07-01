@@ -32,7 +32,7 @@ export default function Status() {
       <header>
         <h1 className="text-3xl font-bold text-white">Service status</h1>
         <p className="mt-2 text-stellar-text-secondary">
-          API availability and bridge connectivity signals used by Bridge Watch.
+          API availability and bridge connectivity signals used by Swipely.
         </p>
       </header>
 

@@ -6,7 +6,7 @@ export function useWidgetCollapse(
   defaultCollapsed: boolean = false,
 ) {
   const [isCollapsed, setIsCollapsed] = useLocalStorageState<boolean>(
-    `bridge-watch:widget-collapsed:${widgetId}`,
+    `swipely:widget-collapsed:${widgetId}`,
     defaultCollapsed,
   );
 

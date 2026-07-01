@@ -96,7 +96,7 @@ describe("SearchModal", () => {
       href: "/",
     };
     localStorage.setItem(
-      "bridge-watch:recent-searches",
+      "swipely:recent-searches",
       JSON.stringify([recentItem])
     );
 
@@ -106,7 +106,7 @@ describe("SearchModal", () => {
       expect(screen.getByText("Recent")).toBeInTheDocument();
     });
 
-    localStorage.removeItem("bridge-watch:recent-searches");
+    localStorage.removeItem("swipely:recent-searches");
   });
 
   it("clears search query when the clear button is clicked", async () => {

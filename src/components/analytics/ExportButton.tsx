@@ -17,7 +17,7 @@ function buildCsv(
   const lines: string[] = [];
   const ts = new Date().toISOString();
 
-  lines.push(`Bridge Watch Analytics Export`);
+  lines.push(`Swipely Analytics Export`);
   lines.push(`Period,${period}`);
   lines.push(`Generated,${ts}`);
   lines.push("");
@@ -119,7 +119,7 @@ function printAsPdf(
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Bridge Watch Analytics - ${period}</title>
+  <title>Swipely Analytics - ${period}</title>
   <style>
     body { font-family: system-ui, sans-serif; margin: 2rem; color: #111; }
     h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
@@ -133,7 +133,7 @@ function printAsPdf(
   </style>
 </head>
 <body>
-  <h1>Bridge Watch Analytics Report</h1>
+  <h1>Swipely Analytics Report</h1>
   <p class="meta">Period: ${period} &nbsp;|&nbsp; Generated: ${ts}</p>
 
   <h2>Bridge Performance</h2>
@@ -190,7 +190,7 @@ export default function ExportButton({
   const onCsv = () => {
     const csv = buildCsv(bridgeData, assetsData, period);
     const date = new Date().toISOString().slice(0, 10);
-    downloadFile(csv, `bridge-watch-analytics-${period.toLowerCase()}-${date}.csv`, "text/csv");
+    downloadFile(csv, `swipely-analytics-${period.toLowerCase()}-${date}.csv`, "text/csv");
     setOpen(false);
   };
 

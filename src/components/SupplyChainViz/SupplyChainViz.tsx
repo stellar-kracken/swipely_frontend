@@ -375,7 +375,7 @@ export default function SupplyChainViz({ data, isLoading, error }: Props) {
       />
 
       {/* Export */}
-      <ExportButton svgRef={svgRef} filename="bridge-watch-supply-chain" />
+      <ExportButton svgRef={svgRef} filename="swipely-supply-chain" />
 
       {/* Stats footer */}
       <div className="absolute bottom-4 left-1/2 -translate-x-1/2 text-xs text-slate-500 pointer-events-none">

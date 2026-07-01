@@ -16,7 +16,7 @@ export interface BridgeNote {
   updatedAt: string;   // ISO-8601
 }
 
-const STORAGE_KEY = "bridgewatch:bridge-notes";
+const STORAGE_KEY = "swipely:bridge-notes";
 
 function readAll(): BridgeNote[] {
   try {

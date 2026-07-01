@@ -42,7 +42,7 @@ function normalizeAnnotation(input: ChartAnnotationInput, existing?: ChartAnnota
 
 export function useChartAnnotations(symbol: string) {
   const [annotations, setAnnotations] = useLocalStorageState<ChartAnnotation[]>(
-    `bridge-watch:chart-annotations:${symbol.toUpperCase()}:v1`,
+    `swipely:chart-annotations:${symbol.toUpperCase()}:v1`,
     []
   );
 

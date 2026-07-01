@@ -154,14 +154,14 @@ export const releaseNotes: ReleaseNote[] = [
     id: "v1.0.0",
     version: "1.0.0",
     date: "2025-12-01",
-    summary: "Initial public release of Bridge Watch.",
+    summary: "Initial public release of Swipely.",
     tags: ["new"],
     entries: [
       {
         tag: "new",
         title: "Initial Release",
         description:
-          "Bridge Watch is live. Monitor Stellar bridge assets, track incidents, and receive real-time alerts.",
+          "Swipely is live. Monitor Stellar bridge assets, track incidents, and receive real-time alerts.",
       },
     ],
   },
