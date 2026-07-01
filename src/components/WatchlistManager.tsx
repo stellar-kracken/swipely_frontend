@@ -38,7 +38,7 @@ export function WatchlistManager() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "bridgewatch_watchlists.json";
+    a.download = "swipely_watchlists.json";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

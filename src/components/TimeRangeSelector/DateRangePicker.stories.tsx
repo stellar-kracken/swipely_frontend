@@ -4,7 +4,7 @@ import DateRangePicker from "./DateRangePicker";
 import type { TimeRangeSelection } from "../../utils/timeRange";
 
 const meta = {
-  title: "Bridge Watch/Components/DateRangePicker",
+  title: "Swipely/Components/DateRangePicker",
   component: DateRangePicker,
   tags: ["autodocs"],
   parameters: {
@@ -215,7 +215,7 @@ export const WithRecentRanges: Story = {
     ];
 
     if (typeof window !== "undefined") {
-      localStorage.setItem("bridgewatch.recentRanges.v1", JSON.stringify(recentRanges));
+      localStorage.setItem("swipely.recentRanges.v1", JSON.stringify(recentRanges));
     }
 
     const [applied, setApplied] = useState<TimeRangeSelection | undefined>();
@@ -259,7 +259,7 @@ export const Interactive: Story = {
 
     // Pre-populate with some recent ranges
     if (typeof window !== "undefined" && showRecent) {
-      const existing = localStorage.getItem("bridgewatch.recentRanges.v1");
+      const existing = localStorage.getItem("swipely.recentRanges.v1");
       if (!existing) {
         const recentRanges: TimeRangeSelection[] = [
           {
@@ -267,7 +267,7 @@ export const Interactive: Story = {
             end: "2026-04-20T23:59:59.999Z",
           },
         ];
-        localStorage.setItem("bridgewatch.recentRanges.v1", JSON.stringify(recentRanges));
+        localStorage.setItem("swipely.recentRanges.v1", JSON.stringify(recentRanges));
       }
     }
 
@@ -281,7 +281,7 @@ export const Interactive: Story = {
               onChange={(e) => {
                 setShowRecent(e.target.checked);
                 if (!e.target.checked) {
-                  localStorage.removeItem("bridgewatch.recentRanges.v1");
+                  localStorage.removeItem("swipely.recentRanges.v1");
                 }
               }}
               className="mr-2"

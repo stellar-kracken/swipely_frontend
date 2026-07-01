@@ -50,7 +50,7 @@ export interface SimulationResult {
   summary: SimulationSummary;
 }
 
-const HISTORY_KEY = "bw_sim_history";
+const HISTORY_KEY = "swipely_sim_history";
 const MAX_HISTORY = 20;
 
 function loadHistory(): SimulationResult[] {

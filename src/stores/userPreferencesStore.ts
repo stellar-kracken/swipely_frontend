@@ -144,7 +144,7 @@ export const useUserPreferencesStore = create<UserPreferencesState>()(
         },
       }),
       {
-        name: "bridge-watch-user-preferences",
+        name: "swipely-user-preferences",
         storage: createJSONStorage(() => localStorage),
         version: 2,
         migrate: (persisted: unknown, version: number) => {

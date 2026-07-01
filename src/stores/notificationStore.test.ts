@@ -3,7 +3,7 @@ import {
   useNotificationStore,
 } from "./notificationStore";
 
-const PERSIST_KEY = "bridge-watch-notification-read-state";
+const PERSIST_KEY = "swipely-notification-read-state";
 
 function resetStoreState() {
   const initialState = useNotificationStore.getInitialState();

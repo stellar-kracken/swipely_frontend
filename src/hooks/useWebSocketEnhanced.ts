@@ -1,6 +1,7 @@
 import { useShallow } from "zustand/react/shallow";
 import { useEffect, useRef, useCallback } from "react";
 import { wsService } from "../services/websocket";
+import { resolveWsUrl } from "../config/apiBase";
 import {
   useWebSocketStore,
   selectIsConnected,
@@ -9,7 +10,8 @@ import {
   type WebSocketActions,
 } from "../stores";
 
-const WS_URL = `ws://${window.location.hostname}:3002/api/v1/ws`;
+const WS_URL =
+  resolveWsUrl("/api/v1/ws") ?? `ws://${window.location.hostname}:3002/api/v1/ws`;
 
 /**
  * Enhanced WebSocket hook that integrates with the Zustand WebSocket store.

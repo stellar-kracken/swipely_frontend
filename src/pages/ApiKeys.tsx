@@ -24,7 +24,7 @@ const DEFAULT_FORM = {
 
 export default function ApiKeys() {
   const [adminToken, setAdminToken] = useLocalStorageState(
-    "bridge-watch:admin-api-key:v1",
+    "swipely:admin-api-key:v1",
     ""
   );
   const [keys, setKeys] = useState<ApiKeyRecord[]>([]);

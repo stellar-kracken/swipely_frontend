@@ -8,7 +8,7 @@ Keyboard shortcuts:
 - Cmd+K / Ctrl+K: Open/close the palette
 - On mobile a visible Search button (the Navbar Search button) opens the palette
 
-Recent actions are persisted to localStorage under key bridgewatch:recent_actions.
+Recent actions are persisted to localStorage under key swipely:recent_actions.
 
 To register actions, import registerAction from the component and call it during app initialization or component mount. Example:
 

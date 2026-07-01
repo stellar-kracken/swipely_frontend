@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { CommandAction, actionsRegistry } from "../utils/commandRegistry";
 
-const STORAGE_KEY = "bridgewatch:recent_actions";
+const STORAGE_KEY = "swipely:recent_actions";
 
 function fuzzyScore(q: string, text: string) {
   if (!q) return 1;

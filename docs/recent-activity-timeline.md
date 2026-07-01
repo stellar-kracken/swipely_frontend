@@ -122,7 +122,7 @@ Filters can be applied for:
 - **Date Range**: Filter by date range (future enhancement)
 
 The top activity filter bar stores its state in local storage under
-`bridge-watch:activity-filters`.
+`swipely:activity-filters`.
 
 ## Accessibility
 

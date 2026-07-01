@@ -1,6 +1,6 @@
 # State Management Architecture
 
-This document describes the centralized state management solution for Stellar Bridge Watch using Zustand.
+This document describes the centralized state management solution for Swipely using Zustand.
 
 ## Overview
 
@@ -386,8 +386,8 @@ const { isDark, toggle, setMode } = useTheme();
 
 Stores marked as persistent automatically sync with localStorage:
 
-- **User Preferences Store** - `bridge-watch-user-preferences`
-- **Theme Store** - `bridge-watch-theme`
+- **User Preferences Store** - `swipely-user-preferences`
+- **Theme Store** - `swipely-theme`
 
 Non-persistent stores:
 - UI Store (transient UI state)

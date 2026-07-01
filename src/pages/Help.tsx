@@ -9,7 +9,7 @@ import { Tabs, TabList, Tab, TabPanel } from "../components/Tabs";
 
 type RatingMap = Record<string, number>;
 
-const STORAGE_KEY = "bridge-watch:help:ratings:v1";
+const STORAGE_KEY = "swipely:help:ratings:v1";
 
 function loadRatings(): RatingMap {
   try {
@@ -267,7 +267,7 @@ export default function Help() {
                 className="rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               />
               <a
-                href="mailto:support@bridgewatch.io"
+                href="mailto:support@swipely.io"
                 className="rounded-md border border-stellar-border px-3 py-2 text-center text-sm text-stellar-blue hover:bg-stellar-dark"
               >
                 Contact support directly

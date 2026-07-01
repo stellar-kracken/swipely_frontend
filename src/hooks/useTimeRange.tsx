@@ -30,7 +30,7 @@ const TimeRangeContext = createContext<TimeRangeContextValue | undefined>(
   undefined
 );
 
-const STORAGE_KEY = "bridgewatch.timeRanges.v1";
+const STORAGE_KEY = "swipely.timeRanges.v1";
 const DEFAULT_APPLY_GLOBALLY = true;
 
 interface PersistedTimeRangeState {

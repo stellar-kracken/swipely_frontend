@@ -11,6 +11,7 @@ import { useTranslatedDesktopNavItems } from "../hooks/useTranslatedNav";
 import NotificationsDrawer from "./NotificationsDrawer";
 import GlobalSearch from "./search/GlobalSearch";
 import UnreadCountBadge from "./UnreadCountBadge";
+import SwipelyMark from "./SwipelyMark";
 
 export default function Navbar() {
   const location = useLocation();
@@ -41,8 +42,12 @@ export default function Navbar() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between gap-3">
             <div className="flex min-w-0 items-center gap-6">
-              <Link to="/dashboard" className="shrink-0 text-xl font-bold text-white">
-                Bridge Watch
+              <Link
+                to="/dashboard"
+                className="flex shrink-0 items-center gap-2 text-xl font-bold text-stellar-text-primary"
+              >
+                <SwipelyMark size={26} />
+                Swipely
               </Link>
 
               <div className="hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
@@ -77,7 +82,7 @@ export default function Navbar() {
                 type="button"
                 className="hidden rounded-md px-2 py-1 text-sm text-stellar-text-secondary hover:bg-stellar-dark hover:text-white lg:inline-flex"
                 onClick={() =>
-                  window.dispatchEvent(new CustomEvent("bridgewatch:open-shortcuts"))
+                  window.dispatchEvent(new CustomEvent("swipely:open-shortcuts"))
                 }
                 aria-label="Keyboard shortcuts"
               >

@@ -406,7 +406,7 @@ export const useThemeStore = create<ThemeState & ThemeActions>()(
         },
       }),
       {
-        name: "bridge-watch-theme",
+        name: "swipely-theme",
         storage: createJSONStorage(() => localStorage),
         version: 2,
         migrate: (persisted: unknown, version: number) => {

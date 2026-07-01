@@ -1,7 +1,7 @@
 /**
  * EmptyIllustration
  *
- * A set of lightweight inline SVG illustrations for each Bridge-Watch empty
+ * A set of lightweight inline SVG illustrations for each Swipely empty
  * state. All illustrations:
  *   - Use `currentColor` so they inherit the parent's text colour
  *   - Are sized via CSS (pass className or wrap in a sized div)

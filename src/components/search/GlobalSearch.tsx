@@ -31,8 +31,8 @@ export default function GlobalSearch() {
   // Listen for open-search events dispatched by useKeyboardShortcuts ("/" shortcut)
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
-    window.addEventListener("bridgewatch:open-search", handleOpen);
-    return () => window.removeEventListener("bridgewatch:open-search", handleOpen);
+    window.addEventListener("swipely:open-search", handleOpen);
+    return () => window.removeEventListener("swipely:open-search", handleOpen);
   }, []);
 
   return (

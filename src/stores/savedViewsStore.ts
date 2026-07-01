@@ -115,7 +115,7 @@ export const useSavedViewsStore = create<SavedViewsState>()(
         },
       }),
       {
-        name: "bridge-watch-saved-views",
+        name: "swipely-saved-views",
         storage: createJSONStorage(() => localStorage),
       }
     ),

@@ -26,7 +26,7 @@ export default function ApiDocs() {
       <div>
         <h1 className="text-3xl font-bold text-white">API Reference</h1>
         <p className="mt-2 text-stellar-text-secondary">
-          Interactive documentation for the Stellar Bridge Watch REST and WebSocket API.
+          Interactive documentation for the Swipely REST and WebSocket API.
         </p>
       </div>
 
@@ -50,7 +50,7 @@ export default function ApiDocs() {
       {/* Base URL */}
       <div className="bg-stellar-card border border-stellar-border rounded-lg px-4 py-3 flex items-center gap-3">
         <span className="text-xs text-stellar-text-secondary shrink-0">Base URL</span>
-        <code className="text-sm text-white font-mono">https://api.bridgewatch.stellar.org</code>
+        <code className="text-sm text-white font-mono">https://api.swipely.stellar.org</code>
       </div>
 
       {/* Search + category filter */}

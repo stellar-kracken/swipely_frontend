@@ -120,7 +120,7 @@ export const useExportSchedulerStore = create<ExportSchedulerState>()(
       },
     }),
     {
-      name: "bridge-watch:export-schedules",
+      name: "swipely:export-schedules",
       storage: createJSONStorage(() => localStorage),
     }
   )

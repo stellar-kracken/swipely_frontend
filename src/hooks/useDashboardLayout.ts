@@ -20,7 +20,7 @@ interface DashboardLayout {
   widgets: DashboardWidgetConfig[];
 }
 
-const STORAGE_KEY = "bridge-watch:dashboard-layout:v1";
+const STORAGE_KEY = "swipely:dashboard-layout:v1";
 
 const widgetDefinitions: DashboardWidgetDefinition[] = [
   {

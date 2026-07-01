@@ -42,7 +42,7 @@ export const THEME_PRESETS: ThemePresetDefinition[] = [
   {
     id: "stellar",
     label: "Stellar Default",
-    description: "Blue / violet balance used by the original Bridge Watch palette.",
+    description: "Blue / violet balance used by the original Swipely palette.",
     light: { ...baseLight },
     dark: { ...baseDark },
   },

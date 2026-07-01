@@ -76,7 +76,7 @@ function ActionButton({ action, index }: { action: EmptyStateAction; index: numb
 /**
  * EmptyState
  *
- * Standardised empty-state component for Bridge-Watch. Renders an optional
+ * Standardised empty-state component for Swipely. Renders an optional
  * illustration, a title, a description, and up to two action buttons.
  *
  * @example

@@ -99,7 +99,7 @@ export function getVisualizationTheme({
   };
 }
 
-const COLORBLIND_STORAGE_KEY = "bridgewatch.colorblindMode";
+const COLORBLIND_STORAGE_KEY = "swipely.colorblindMode";
 
 export function getColorblindModePreference(): boolean {
   if (typeof window === "undefined") {

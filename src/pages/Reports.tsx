@@ -78,7 +78,7 @@ function ReportHeader({
       <div className="flex items-start justify-between">
         <div>
           <p className="text-xs font-semibold uppercase tracking-widest text-stellar-blue">
-            Bridge Watch · Stellar Network Monitor
+            Swipely · Stellar Network Monitor
           </p>
           <h1 className="mt-1 text-2xl font-bold text-white">{title}</h1>
           {dateRange.from && dateRange.to && (
@@ -100,7 +100,7 @@ function ReportHeader({
 function ReportFooter() {
   return (
     <div className="print-footer hidden text-center text-xs text-stellar-text-secondary">
-      Bridge Watch · Stellar Network Monitor · Confidential — for internal use
+      Swipely · Stellar Network Monitor · Confidential — for internal use
       only
     </div>
   );
@@ -760,7 +760,7 @@ export default function Reports() {
         <div className="no-print flex items-center justify-between border-b border-stellar-border pb-4">
           <div>
             <p className="text-xs uppercase tracking-widest text-stellar-blue font-semibold">
-              Bridge Watch · Stellar Network Monitor
+              Swipely · Stellar Network Monitor
             </p>
             <h2 className="text-xl font-bold text-white mt-1">
               {TEMPLATES.find((t) => t.id === activeTemplate)?.label}

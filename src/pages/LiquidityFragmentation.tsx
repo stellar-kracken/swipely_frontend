@@ -58,7 +58,7 @@ const SUPPORTED_ASSETS = ["USDC", "EURC", "PYUSD", "FOBXX", "XLM"];
 
 export default function LiquidityFragmentation() {
   const [selectedAsset, setSelectedAsset] = useLocalStorageState<string>(
-    "bridge-watch:fragmentation-asset:v1",
+    "swipely:fragmentation-asset:v1",
     "USDC"
   );
 

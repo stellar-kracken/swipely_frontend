@@ -25,7 +25,7 @@ export default function Analytics() {
 
   const { data: assetsData, isLoading: isAssetsLoading, error } = useAssetsWithHealth();
   const [selectedSymbols, setSelectedSymbols] = useLocalStorageState<string[]>(
-    "bridge-watch:analytics-compare:v1",
+    "swipely:analytics-compare:v1",
     []
   );
 

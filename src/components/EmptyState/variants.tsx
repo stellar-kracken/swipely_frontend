@@ -2,7 +2,7 @@
  * EmptyState Variants
  *
  * Ready-to-use compositions of EmptyState + EmptyIllustration for each
- * Bridge-Watch view. Import the variant that matches the page rather than
+ * Swipely view. Import the variant that matches the page rather than
  * constructing props from scratch — this keeps copy and illustrations
  * consistent across the app.
  *
@@ -45,7 +45,7 @@ export function EmptyBridges({ hasFilters, onClearFilters }: EmptyBridgesProps) 
       variant="page"
       illustration={<EmptyIllustration.NoBridges />}
       title="No bridges yet"
-      description="Bridge-Watch hasn't detected any bridges. Data is fetched from the Stellar network automatically — check back shortly."
+      description="Swipely hasn't detected any bridges. Data is fetched from the Stellar network automatically — check back shortly."
       ariaLabel="No bridges found"
     />
   );
@@ -152,7 +152,7 @@ export function EmptyConnection({ onRetry }: EmptyConnectionProps) {
       variant="page"
       illustration={<EmptyIllustration.Disconnected />}
       title="Unable to connect"
-      description="Bridge-Watch can't reach the Stellar network right now. Check your connection and try again."
+      description="Swipely can't reach the Stellar network right now. Check your connection and try again."
       actions={onRetry ? [{ label: "Retry", onClick: onRetry, variant: "primary" }] : []}
       ariaLabel="Connection error"
     />

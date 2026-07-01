@@ -70,7 +70,7 @@ describe("useWatchlist", () => {
       result.current.addAsset("BTC");
     });
 
-    const storedRaw = window.localStorage.getItem("bridgewatch.watchlists.v1");
+    const storedRaw = window.localStorage.getItem("swipely.watchlists.v1");
     expect(storedRaw).toBeTruthy();
     
     const stored = JSON.parse(storedRaw!);

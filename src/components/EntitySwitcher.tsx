@@ -15,7 +15,7 @@ interface EntityItem {
   href: string;
 }
 
-const RECENTS_KEY = "bridge-watch:entity-switcher-recents";
+const RECENTS_KEY = "swipely:entity-switcher-recents";
 const MAX_RECENTS = 6;
 
 const KIND_LABEL: Record<EntityKind, string> = {

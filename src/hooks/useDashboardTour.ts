@@ -43,7 +43,7 @@ interface UseDashboardTourOptions {
  */
 export function useDashboardTour({
   stepCount,
-  storageKey = "bridge-watch:dashboard-tour:v1",
+  storageKey = "swipely:dashboard-tour:v1",
   autoStart = true,
 }: UseDashboardTourOptions) {
   const [progress, setProgress] = useLocalStorageState<TourProgress>(storageKey, DEFAULT_PROGRESS);

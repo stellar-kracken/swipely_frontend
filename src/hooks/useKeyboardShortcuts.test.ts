@@ -65,22 +65,22 @@ describe("SHORTCUTS registry", () => {
 // Custom event integration tests (DOM-level, no React)
 // ---------------------------------------------------------------------------
 
-describe("bridgewatch:open-search custom event", () => {
+describe("swipely:open-search custom event", () => {
   it("dispatches and is received by event listener", () => {
     const listener = vi.fn();
-    window.addEventListener("bridgewatch:open-search", listener);
-    window.dispatchEvent(new CustomEvent("bridgewatch:open-search"));
+    window.addEventListener("swipely:open-search", listener);
+    window.dispatchEvent(new CustomEvent("swipely:open-search"));
     expect(listener).toHaveBeenCalledOnce();
-    window.removeEventListener("bridgewatch:open-search", listener);
+    window.removeEventListener("swipely:open-search", listener);
   });
 });
 
-describe("bridgewatch:open-shortcuts custom event", () => {
+describe("swipely:open-shortcuts custom event", () => {
   it("dispatches and is received by event listener", () => {
     const listener = vi.fn();
-    window.addEventListener("bridgewatch:open-shortcuts", listener);
-    window.dispatchEvent(new CustomEvent("bridgewatch:open-shortcuts"));
+    window.addEventListener("swipely:open-shortcuts", listener);
+    window.dispatchEvent(new CustomEvent("swipely:open-shortcuts"));
     expect(listener).toHaveBeenCalledOnce();
-    window.removeEventListener("bridgewatch:open-shortcuts", listener);
+    window.removeEventListener("swipely:open-shortcuts", listener);
   });
 });

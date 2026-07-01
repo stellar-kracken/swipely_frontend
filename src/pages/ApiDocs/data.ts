@@ -36,7 +36,7 @@ export const ENDPOINTS: Endpoint[] = [
     method: "GET",
     path: "/api/v1/assets",
     summary: "List all monitored assets",
-    description: "Returns all assets currently monitored by Bridge Watch, including symbol, name, and bridge provider.",
+    description: "Returns all assets currently monitored by Swipely, including symbol, name, and bridge provider.",
     category: "Assets",
     responseCodes: [
       { code: 200, description: "Success" },
@@ -228,7 +228,7 @@ export const ENDPOINTS: Endpoint[] = [
 export function generateSnippet(
   endpoint: Endpoint,
   lang: "curl" | "js" | "python",
-  baseUrl = "https://api.bridgewatch.stellar.org"
+  baseUrl = "https://api.swipely.stellar.org"
 ): string {
   const examplePath = endpoint.path.replace(
     /:(\w+)/g,

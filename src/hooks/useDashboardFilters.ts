@@ -22,7 +22,7 @@ export interface DashboardFilterPreset {
   updatedAt: number;
 }
 
-const FILTER_PRESET_STORAGE_KEY = "bridge-watch:dashboard-filter-presets:v1";
+const FILTER_PRESET_STORAGE_KEY = "swipely:dashboard-filter-presets:v1";
 const VALID_STATUSES: FilterStatus[] = ["all", "healthy", "warning", "critical"];
 const VALID_TIME_RANGES: DashboardTimeRangePreset[] = ["all", "24h", "7d", "30d"];
 
@@ -137,7 +137,7 @@ export function buildPresetShareUrl(preset: DashboardFilterPreset, pathname = "/
   const query = params.toString();
   const origin =
     typeof window === "undefined" || !window.location?.origin
-      ? "https://bridge-watch.local"
+      ? "https://swipely.local"
       : window.location.origin;
   return `${origin}${pathname}${query ? `?${query}` : ""}`;
 }
