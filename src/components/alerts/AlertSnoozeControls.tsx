@@ -32,7 +32,7 @@ export default function AlertSnoozeControls({
             key={duration.value}
             type="button"
             onClick={() => onSnooze(duration.value)}
-            className="rounded-md border border-stellar-border bg-stellar-dark px-2 py-1 text-xs font-medium text-stellar-text-secondary transition-colors hover:text-white hover:border-stellar-blue focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="rounded-md border border-stellar-border bg-stellar-dark px-2 py-1 text-xs font-medium text-stellar-text-secondary transition-colors hover:text-stellar-text-primary hover:border-stellar-blue focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             aria-label={`Snooze ${label} for ${duration.label}`}
           >
             Snooze {duration.label}

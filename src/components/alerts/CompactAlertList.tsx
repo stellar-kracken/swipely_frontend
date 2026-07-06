@@ -185,7 +185,7 @@ function AlertRow({
           <span
             className={`text-sm truncate ${
               isUnread
-                ? "text-white font-medium"
+                ? "text-stellar-text-primary font-medium"
                 : "text-stellar-text-secondary"
             }`}
           >
@@ -373,7 +373,7 @@ export default function CompactAlertList({
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h2 className="text-lg font-semibold text-white">Alerts</h2>
+          <h2 className="text-lg font-semibold text-stellar-text-primary">Alerts</h2>
           {unreadCount > 0 && (
             <span className="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
               {unreadCount} new
@@ -394,7 +394,7 @@ export default function CompactAlertList({
             title="Compact rows"
             className={`flex items-center justify-center w-8 h-7 rounded transition-colors ${
               density === "compact"
-                ? "bg-stellar-card text-white shadow-sm"
+                ? "bg-stellar-card text-stellar-text-primary shadow-sm"
                 : "text-stellar-text-muted hover:text-stellar-text-secondary"
             }`}
           >
@@ -411,7 +411,7 @@ export default function CompactAlertList({
             title="Comfortable rows"
             className={`flex items-center justify-center w-8 h-7 rounded transition-colors ${
               density === "comfortable"
-                ? "bg-stellar-card text-white shadow-sm"
+                ? "bg-stellar-card text-stellar-text-primary shadow-sm"
                 : "text-stellar-text-muted hover:text-stellar-text-secondary"
             }`}
           >
@@ -431,7 +431,7 @@ export default function CompactAlertList({
           placeholder="Search alerts…"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-white placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue w-full sm:w-56"
+          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue w-full sm:w-56"
           aria-label="Search alerts"
         />
         <select
@@ -439,7 +439,7 @@ export default function CompactAlertList({
           onChange={(e) =>
             setSeverityFilter(e.target.value as IncidentSeverity | "")
           }
-          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-stellar-blue"
+          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary focus:outline-none focus:border-stellar-blue"
           aria-label="Filter by severity"
         >
           <option value="">All severities</option>
@@ -453,7 +453,7 @@ export default function CompactAlertList({
           onChange={(e) =>
             setStatusFilter(e.target.value as IncidentStatus | "")
           }
-          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-stellar-blue"
+          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary focus:outline-none focus:border-stellar-blue"
           aria-label="Filter by status"
         >
           <option value="">All statuses</option>
@@ -477,7 +477,7 @@ export default function CompactAlertList({
             <button
               type="button"
               onClick={handleBulkMarkRead}
-              className="px-3 py-1.5 text-xs rounded-md border border-stellar-border text-stellar-text-secondary hover:text-white hover:border-stellar-blue transition-colors"
+              className="px-3 py-1.5 text-xs rounded-md border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary hover:border-stellar-blue transition-colors"
             >
               Mark read
             </button>
@@ -615,7 +615,7 @@ export default function CompactAlertList({
                 d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <p className="font-medium text-white text-sm">No alerts found</p>
+            <p className="font-medium text-stellar-text-primary text-sm">No alerts found</p>
             <p className="text-xs text-stellar-text-muted mt-1">
               {dismissedIds.size > 0
                 ? `${dismissedIds.size} alert${dismissedIds.size !== 1 ? "s" : ""} dismissed. Adjust filters to see more.`

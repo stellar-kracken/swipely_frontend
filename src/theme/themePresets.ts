@@ -15,34 +15,34 @@ export type ThemePresetDefinition = {
 };
 
 const baseLight: ThemeColors = {
-  primary: "#3b82f6",
-  secondary: "#64748b",
-  accent: "#8b5cf6",
+  primary: "#18181b",
+  secondary: "#71717a",
+  accent: "#3f3f46",
   background: "#ffffff",
-  surface: "#f8fafc",
+  surface: "#fafafa",
   error: "#ef4444",
   warning: "#f59e0b",
   success: "#10b981",
-  info: "#3b82f6",
+  info: "#52525b",
 };
 
 const baseDark: ThemeColors = {
-  primary: "#60a5fa",
-  secondary: "#94a3b8",
-  accent: "#a78bfa",
-  background: "#0f172a",
-  surface: "#1e293b",
+  primary: "#fafafa",
+  secondary: "#a1a1aa",
+  accent: "#d4d4d8",
+  background: "#09090b",
+  surface: "#18181b",
   error: "#f87171",
   warning: "#fbbf24",
   success: "#34d399",
-  info: "#60a5fa",
+  info: "#a1a1aa",
 };
 
 export const THEME_PRESETS: ThemePresetDefinition[] = [
   {
     id: "stellar",
-    label: "Stellar Default",
-    description: "Blue / violet balance used by the original Swipely palette.",
+    label: "Swipely Default",
+    description: "Black, white, and grey — the default Swipely palette.",
     light: { ...baseLight },
     dark: { ...baseDark },
   },

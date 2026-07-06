@@ -23,7 +23,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({ title, value, subtitle, 
         {loading ? (
           <div className="h-10 w-32 bg-slate-100 dark:bg-slate-700 rounded" />
         ) : (
-          <div className="text-2xl font-semibold text-slate-900 dark:text-white">{value}</div>
+          <div className="text-2xl font-semibold text-slate-900 dark:text-stellar-text-primary">{value}</div>
         )}
       </div>
     </div>

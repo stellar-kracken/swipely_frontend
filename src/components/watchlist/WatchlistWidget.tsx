@@ -68,7 +68,7 @@ export default function WatchlistWidget() {
       title="Watchlist quick access"
       headerActions={headerActions}
       defaultCollapsed={false}
-      headerClassName="text-lg font-semibold text-white"
+      headerClassName="text-lg font-semibold text-stellar-text-primary"
     >
       <p className="mb-3 text-xs text-stellar-text-secondary">
         Active list: {activeWatchlist?.name ?? "None"}
@@ -82,7 +82,7 @@ export default function WatchlistWidget() {
             <Link
               key={symbol}
               to={`/assets/${symbol}`}
-              className="rounded border border-stellar-border px-3 py-1 text-xs text-white hover:bg-stellar-dark"
+              className="rounded border border-stellar-border px-3 py-1 text-xs text-stellar-text-primary hover:bg-stellar-dark"
             >
               {symbol}
             </Link>
@@ -92,7 +92,7 @@ export default function WatchlistWidget() {
 
       <div className="mt-4">
         <div className="mb-2 flex items-center justify-between gap-2">
-          <h3 className="text-sm font-medium text-white">Watchlist alerts</h3>
+          <h3 className="text-sm font-medium text-stellar-text-primary">Watchlist alerts</h3>
           {visibleAlerts.length > 0 ? (
             <AlertSnoozeControls
               label="all watchlist alerts"
@@ -121,7 +121,7 @@ export default function WatchlistWidget() {
               return (
                 <li key={`${alert.symbol}-${index}`} className="rounded border border-stellar-border p-2">
                   <div className="flex items-center justify-between gap-2">
-                    <span className="font-medium text-white">{alert.symbol}</span>
+                    <span className="font-medium text-stellar-text-primary">{alert.symbol}</span>
                     <span
                       className={
                         alert.severity === "error"

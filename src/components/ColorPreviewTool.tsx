@@ -15,7 +15,7 @@ function ColorRow({
 }) {
   return (
     <div>
-      <p className="mb-2 text-sm font-medium text-white">{title}</p>
+      <p className="mb-2 text-sm font-medium text-stellar-text-primary">{title}</p>
       <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8">
         {colors.map((color) => (
           <div key={color} className="rounded border border-stellar-border p-2">
@@ -42,12 +42,12 @@ export default function ColorPreviewTool() {
     [colorblindMode]
   );
 
-  const ratio = contrastRatio(theme.axis, "#0B0E1A").toFixed(2);
+  const ratio = contrastRatio(theme.axis, "#09090B").toFixed(2);
 
   return (
     <div className="space-y-4 rounded-lg border border-stellar-border bg-stellar-card p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h3 className="text-lg font-semibold text-white">Visualization color preview</h3>
+        <h3 className="text-lg font-semibold text-stellar-text-primary">Visualization color preview</h3>
         <label className="inline-flex items-center gap-2 text-sm text-stellar-text-secondary">
           <input
             type="checkbox"

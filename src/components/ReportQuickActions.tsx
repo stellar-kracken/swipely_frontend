@@ -101,10 +101,10 @@ function ActionButton({
 
   const variantClass =
     action.variant === "primary"
-      ? "border-stellar-blue bg-stellar-blue/15 text-stellar-blue hover:bg-stellar-blue hover:text-white"
+      ? "border-stellar-blue bg-stellar-blue/15 text-stellar-blue hover:bg-stellar-blue hover:text-stellar-ink"
       : action.variant === "danger"
         ? "border-red-500/40 bg-red-500/10 text-red-400 hover:bg-red-500/20"
-        : "border-stellar-border bg-stellar-card text-stellar-text-secondary hover:text-white";
+        : "border-stellar-border bg-stellar-card text-stellar-text-secondary hover:text-stellar-text-primary";
 
   return (
     <button

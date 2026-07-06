@@ -83,8 +83,8 @@ export default function Bridges() {
             type="button"
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
               favoritesFilterMode === "all"
-                ? "bg-stellar-blue text-white"
-                : "text-stellar-text-secondary hover:text-white"
+                ? "bg-stellar-blue text-stellar-ink"
+                : "text-stellar-text-secondary hover:text-stellar-text-primary"
             }`}
             aria-pressed={favoritesFilterMode === "all"}
             onClick={() => setFavoritesFilterMode("all")}
@@ -95,8 +95,8 @@ export default function Bridges() {
             type="button"
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
               favoritesFilterMode === "favorites"
-                ? "bg-stellar-blue text-white"
-                : "text-stellar-text-secondary hover:text-white"
+                ? "bg-stellar-blue text-stellar-ink"
+                : "text-stellar-text-secondary hover:text-stellar-text-primary"
             }`}
             aria-pressed={favoritesFilterMode === "favorites"}
             onClick={() => setFavoritesFilterMode("favorites")}
@@ -109,7 +109,7 @@ export default function Bridges() {
           onClick={() => {
             void pullToRefresh.refresh();
           }}
-          className="rounded-md border border-stellar-border px-4 py-2 text-sm text-white hover:bg-stellar-border"
+          className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border"
         >
           Refresh now
         </button>
@@ -167,7 +167,7 @@ export default function Bridges() {
       </ErrorBoundary>
 
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-xl font-semibold text-white mb-4">Bridge Performance</h2>
+        <h2 className="text-xl font-semibold text-stellar-text-primary mb-4">Bridge Performance</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <caption className="sr-only">Bridge performance metrics table</caption>

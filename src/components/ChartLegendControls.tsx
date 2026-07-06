@@ -77,7 +77,7 @@ export default function ChartLegendControls({
         <select
           value={sortMode}
           onChange={(event) => onSortModeChange(event.target.value as LegendSortMode)}
-          className="min-h-9 rounded-md border border-stellar-border bg-stellar-card px-2 py-1 text-xs text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="min-h-9 rounded-md border border-stellar-border bg-stellar-card px-2 py-1 text-xs text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           aria-label="Sort chart legend"
         >
           <option value="name">Name</option>

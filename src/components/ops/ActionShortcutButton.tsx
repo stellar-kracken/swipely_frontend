@@ -39,7 +39,7 @@ export const ActionShortcutButton: React.FC<Props> = ({ action, onExecute }) => 
         className="w-full text-left flex items-center gap-3">
         <div className="flex-1">
           <div className="flex items-center gap-2">
-            <span className="font-medium text-slate-800 dark:text-white">{action.label}</span>
+            <span className="font-medium text-slate-800 dark:text-stellar-text-primary">{action.label}</span>
             {action.destructive && <span className="ml-2 text-xs text-red-600">DESTRUCTIVE</span>}
           </div>
           {action.description && <div className="text-xs text-slate-500">{action.description}</div>}

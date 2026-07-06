@@ -7,7 +7,7 @@ export default function NotificationPreferences() {
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-6 space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-medium text-white">Notification Sounds</h3>
+          <h3 className="text-lg font-medium text-stellar-text-primary">Notification Sounds</h3>
           <p className="text-sm text-stellar-text-secondary">
             Play a sound when a new notification arrives.
           </p>
@@ -28,7 +28,7 @@ export default function NotificationPreferences() {
       </div>
 
       <div className="pt-4 border-t border-stellar-border">
-        <h3 className="text-lg font-medium text-white decoration-stellar-text-muted line-through opacity-50">
+        <h3 className="text-lg font-medium text-stellar-text-primary decoration-stellar-text-muted line-through opacity-50">
           Browser Push Notifications
         </h3>
         <p className="text-sm text-stellar-text-secondary opacity-50">

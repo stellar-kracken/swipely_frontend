@@ -21,26 +21,26 @@ function TopologyDetailPanel({
   if (node) {
     return (
       <div className="space-y-3 text-sm">
-        <h3 className="text-lg font-semibold text-white">{node.label}</h3>
+        <h3 className="text-lg font-semibold text-stellar-text-primary">{node.label}</h3>
         <dl className="space-y-2">
           <div>
             <dt className="text-stellar-text-secondary">Chain ID</dt>
-            <dd className="text-white">{node.id}</dd>
+            <dd className="text-stellar-text-primary">{node.id}</dd>
           </div>
           <div>
             <dt className="text-stellar-text-secondary">Health score</dt>
-            <dd className="text-white">{node.healthScore}</dd>
+            <dd className="text-stellar-text-primary">{node.healthScore}</dd>
           </div>
           <div>
             <dt className="text-stellar-text-secondary">Total supply (USD)</dt>
-            <dd className="text-white">${node.totalSupplyUsd.toLocaleString()}</dd>
+            <dd className="text-stellar-text-primary">${node.totalSupplyUsd.toLocaleString()}</dd>
           </div>
         </dl>
         <div>
           <p className="text-stellar-text-secondary">Assets</p>
           <ul className="mt-1 space-y-1">
             {node.assets.map((asset) => (
-              <li key={asset.symbol} className="text-white">
+              <li key={asset.symbol} className="text-stellar-text-primary">
                 {asset.symbol}: locked {asset.lockedAmount.toLocaleString()}, minted{" "}
                 {asset.mintedAmount.toLocaleString()}
               </li>
@@ -54,25 +54,25 @@ function TopologyDetailPanel({
   if (edge) {
     return (
       <div className="space-y-3 text-sm">
-        <h3 className="text-lg font-semibold text-white">{edge.bridgeName}</h3>
+        <h3 className="text-lg font-semibold text-stellar-text-primary">{edge.bridgeName}</h3>
         <dl className="space-y-2">
           <div>
             <dt className="text-stellar-text-secondary">Route</dt>
-            <dd className="text-white">
+            <dd className="text-stellar-text-primary">
               {edge.source} → {edge.target}
             </dd>
           </div>
           <div>
             <dt className="text-stellar-text-secondary">Status</dt>
-            <dd className="text-white">{edge.status}</dd>
+            <dd className="text-stellar-text-primary">{edge.status}</dd>
           </div>
           <div>
             <dt className="text-stellar-text-secondary">24h volume (USD)</dt>
-            <dd className="text-white">${edge.volume24hUsd.toLocaleString()}</dd>
+            <dd className="text-stellar-text-primary">${edge.volume24hUsd.toLocaleString()}</dd>
           </div>
           <div>
             <dt className="text-stellar-text-secondary">Assets</dt>
-            <dd className="text-white">{edge.assets.join(", ")}</dd>
+            <dd className="text-stellar-text-primary">{edge.assets.join(", ")}</dd>
           </div>
         </dl>
       </div>
@@ -149,7 +149,7 @@ export default function BridgeTopologyExplorer() {
         <label className="text-sm text-stellar-text-secondary">
           Filter chains
           <input
-            className="ml-2 rounded-md border border-stellar-border bg-stellar-dark px-3 py-1.5 text-white"
+            className="ml-2 rounded-md border border-stellar-border bg-stellar-dark px-3 py-1.5 text-stellar-text-primary"
             value={chainFilter}
             onChange={(e) => setChainFilter(e.target.value)}
             placeholder="stellar, ethereum..."
@@ -159,7 +159,7 @@ export default function BridgeTopologyExplorer() {
         <label className="text-sm text-stellar-text-secondary">
           Filter bridges
           <input
-            className="ml-2 rounded-md border border-stellar-border bg-stellar-dark px-3 py-1.5 text-white"
+            className="ml-2 rounded-md border border-stellar-border bg-stellar-dark px-3 py-1.5 text-stellar-text-primary"
             value={bridgeFilter}
             onChange={(e) => setBridgeFilter(e.target.value)}
             placeholder="allbridge, wormhole..."

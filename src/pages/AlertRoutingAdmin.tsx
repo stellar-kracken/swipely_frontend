@@ -188,7 +188,7 @@ export default function AlertRoutingAdmin() {
       <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-xs uppercase tracking-[0.3em] text-stellar-blue">Admin</p>
-          <h1 className="mt-2 text-3xl font-bold text-white">Alert routing</h1>
+          <h1 className="mt-2 text-3xl font-bold text-stellar-text-primary">Alert routing</h1>
           <p className="mt-2 max-w-2xl text-stellar-text-secondary">
             Route alert events by severity, source, and asset with suppression windows,
             fallback channels, and full dispatch audit history.
@@ -199,7 +199,7 @@ export default function AlertRoutingAdmin() {
           <p className="text-xs uppercase tracking-[0.2em] text-stellar-text-secondary">
             Active rules
           </p>
-          <p className="mt-2 text-3xl font-semibold text-white">{activeRules}</p>
+          <p className="mt-2 text-3xl font-semibold text-stellar-text-primary">{activeRules}</p>
           <p className="mt-1 text-sm text-stellar-text-secondary">Total rules: {rules.length}</p>
         </div>
       </header>
@@ -210,7 +210,7 @@ export default function AlertRoutingAdmin() {
           className="rounded-3xl border border-stellar-border bg-stellar-card/80 p-6 space-y-6"
         >
           <div>
-            <h2 className="text-xl font-semibold text-white">Create routing rule</h2>
+            <h2 className="text-xl font-semibold text-stellar-text-primary">Create routing rule</h2>
             <p className="mt-1 text-sm text-stellar-text-secondary">
               Rules are evaluated in ascending priority order. The first matching rule drives
               channel dispatch.
@@ -218,31 +218,31 @@ export default function AlertRoutingAdmin() {
           </div>
 
           <label className="block">
-            <span className="mb-2 block text-sm font-medium text-white">Admin token</span>
+            <span className="mb-2 block text-sm font-medium text-stellar-text-primary">Admin token</span>
             <input
               type="password"
               value={adminToken}
               onChange={(event) => setAdminToken(event.target.value)}
               placeholder="Paste admin API key"
-              className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+              className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
             />
           </label>
 
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-2 block text-sm font-medium text-white">Rule name</span>
+              <span className="mb-2 block text-sm font-medium text-stellar-text-primary">Rule name</span>
               <input
                 type="text"
                 value={form.name}
                 onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
                 placeholder="Critical bridge incidents"
-                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
                 required
               />
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-sm font-medium text-white">
+              <span className="mb-2 block text-sm font-medium text-stellar-text-primary">
                 Owner address (optional)
               </span>
               <input
@@ -252,13 +252,13 @@ export default function AlertRoutingAdmin() {
                   setForm((current) => ({ ...current, ownerAddress: event.target.value }))
                 }
                 placeholder="G..."
-                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
               />
             </label>
           </div>
 
           <div>
-            <p className="mb-2 text-sm font-medium text-white">Severities</p>
+            <p className="mb-2 text-sm font-medium text-stellar-text-primary">Severities</p>
             <div className="grid gap-2 sm:grid-cols-4">
               {ALL_SEVERITIES.map((severity) => {
                 const checked = form.severityLevels.includes(severity);
@@ -274,7 +274,7 @@ export default function AlertRoutingAdmin() {
                     }
                     className={`rounded-2xl border px-3 py-2 text-sm transition ${
                       checked
-                        ? "border-stellar-blue bg-stellar-blue/10 text-white"
+                        ? "border-stellar-blue bg-stellar-blue/10 text-stellar-text-primary"
                         : "border-stellar-border bg-stellar-dark text-stellar-text-secondary"
                     }`}
                   >
@@ -286,7 +286,7 @@ export default function AlertRoutingAdmin() {
           </div>
 
           <div>
-            <p className="mb-2 text-sm font-medium text-white">Primary channels</p>
+            <p className="mb-2 text-sm font-medium text-stellar-text-primary">Primary channels</p>
             <div className="grid gap-2 sm:grid-cols-3">
               {ALL_CHANNELS.map((channel) => {
                 const checked = form.channels.includes(channel);
@@ -302,7 +302,7 @@ export default function AlertRoutingAdmin() {
                     }
                     className={`rounded-2xl border px-3 py-2 text-sm transition ${
                       checked
-                        ? "border-stellar-blue bg-stellar-blue/10 text-white"
+                        ? "border-stellar-blue bg-stellar-blue/10 text-stellar-text-primary"
                         : "border-stellar-border bg-stellar-dark text-stellar-text-secondary"
                     }`}
                   >
@@ -314,7 +314,7 @@ export default function AlertRoutingAdmin() {
           </div>
 
           <div>
-            <p className="mb-2 text-sm font-medium text-white">Fallback channels</p>
+            <p className="mb-2 text-sm font-medium text-stellar-text-primary">Fallback channels</p>
             <div className="grid gap-2 sm:grid-cols-3">
               {ALL_CHANNELS.map((channel) => {
                 const checked = form.fallbackChannels.includes(channel);
@@ -334,7 +334,7 @@ export default function AlertRoutingAdmin() {
                     }
                     className={`rounded-2xl border px-3 py-2 text-sm transition ${
                       checked
-                        ? "border-stellar-blue bg-stellar-blue/10 text-white"
+                        ? "border-stellar-blue bg-stellar-blue/10 text-stellar-text-primary"
                         : "border-stellar-border bg-stellar-dark text-stellar-text-secondary"
                     }`}
                   >
@@ -347,7 +347,7 @@ export default function AlertRoutingAdmin() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-2 block text-sm font-medium text-white">
+              <span className="mb-2 block text-sm font-medium text-stellar-text-primary">
                 Asset filter (CSV)
               </span>
               <input
@@ -357,12 +357,12 @@ export default function AlertRoutingAdmin() {
                   setForm((current) => ({ ...current, assetCodesText: event.target.value }))
                 }
                 placeholder="USDC, EURC"
-                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
               />
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-sm font-medium text-white">
+              <span className="mb-2 block text-sm font-medium text-stellar-text-primary">
                 Source filter (CSV)
               </span>
               <input
@@ -372,14 +372,14 @@ export default function AlertRoutingAdmin() {
                   setForm((current) => ({ ...current, sourceTypesText: event.target.value }))
                 }
                 placeholder="bridge_downtime, supply_mismatch"
-                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
               />
             </label>
           </div>
 
           <div className="grid gap-4 sm:grid-cols-3">
             <label className="block">
-              <span className="mb-2 block text-sm font-medium text-white">Suppression (sec)</span>
+              <span className="mb-2 block text-sm font-medium text-stellar-text-primary">Suppression (sec)</span>
               <input
                 type="number"
                 min={0}
@@ -390,12 +390,12 @@ export default function AlertRoutingAdmin() {
                     suppressionWindowSeconds: Number(event.target.value),
                   }))
                 }
-                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
               />
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-sm font-medium text-white">Priority order</span>
+              <span className="mb-2 block text-sm font-medium text-stellar-text-primary">Priority order</span>
               <input
                 type="number"
                 min={1}
@@ -406,12 +406,12 @@ export default function AlertRoutingAdmin() {
                     priorityOrder: Number(event.target.value),
                   }))
                 }
-                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
               />
             </label>
 
             <label className="flex items-center justify-between rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 mt-6 sm:mt-0">
-              <span className="text-sm font-medium text-white">Active</span>
+              <span className="text-sm font-medium text-stellar-text-primary">Active</span>
               <input
                 type="checkbox"
                 checked={form.isActive}
@@ -433,14 +433,14 @@ export default function AlertRoutingAdmin() {
             <button
               type="submit"
               disabled={loading}
-              className="rounded-2xl bg-stellar-blue px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-2xl bg-stellar-blue px-5 py-3 text-sm font-semibold text-stellar-ink transition hover:bg-stellar-blue/90 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? "Saving..." : "Create rule"}
             </button>
             <button
               type="button"
               onClick={() => void loadData()}
-              className="rounded-2xl border border-stellar-border px-5 py-3 text-sm font-semibold text-stellar-text-secondary transition hover:border-stellar-blue hover:text-white"
+              className="rounded-2xl border border-stellar-border px-5 py-3 text-sm font-semibold text-stellar-text-secondary transition hover:border-stellar-blue hover:text-stellar-text-primary"
             >
               Refresh
             </button>
@@ -450,13 +450,13 @@ export default function AlertRoutingAdmin() {
         <section className="space-y-6">
           <div className="rounded-3xl border border-stellar-border bg-stellar-card/80 p-6">
             <div className="flex items-center justify-between gap-3">
-              <h2 className="text-xl font-semibold text-white">Rules</h2>
+              <h2 className="text-xl font-semibold text-stellar-text-primary">Rules</h2>
               <input
                 type="text"
                 value={ownerFilter}
                 onChange={(event) => setOwnerFilter(event.target.value)}
                 placeholder="Filter owner"
-                className="w-44 rounded-xl border border-stellar-border bg-stellar-dark px-3 py-2 text-xs text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                className="w-44 rounded-xl border border-stellar-border bg-stellar-dark px-3 py-2 text-xs text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
               />
             </div>
 
@@ -470,7 +470,7 @@ export default function AlertRoutingAdmin() {
                   <article key={rule.id} className="rounded-2xl border border-stellar-border bg-stellar-dark/70 p-4">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <h3 className="text-sm font-semibold text-white">{rule.name}</h3>
+                        <h3 className="text-sm font-semibold text-stellar-text-primary">{rule.name}</h3>
                         <p className="mt-1 text-xs text-stellar-text-secondary">
                           {rule.ownerAddress ?? "global"} • order {rule.priorityOrder}
                         </p>
@@ -492,7 +492,7 @@ export default function AlertRoutingAdmin() {
                       <button
                         type="button"
                         onClick={() => void handleToggleActive(rule)}
-                        className="rounded-full border border-stellar-border px-3 py-1 text-xs text-stellar-text-secondary transition hover:border-stellar-blue hover:text-white"
+                        className="rounded-full border border-stellar-border px-3 py-1 text-xs text-stellar-text-secondary transition hover:border-stellar-blue hover:text-stellar-text-primary"
                       >
                         {rule.isActive ? "Disable" : "Enable"}
                       </button>
@@ -511,7 +511,7 @@ export default function AlertRoutingAdmin() {
           </div>
 
           <div className="rounded-3xl border border-stellar-border bg-stellar-card/80 p-6">
-            <h2 className="text-xl font-semibold text-white">Dispatch audit</h2>
+            <h2 className="text-xl font-semibold text-stellar-text-primary">Dispatch audit</h2>
             <p className="mt-1 text-sm text-stellar-text-secondary">
               Latest routing outcomes for suppression, primary dispatch, and fallback behavior.
             </p>
@@ -525,7 +525,7 @@ export default function AlertRoutingAdmin() {
                 audit.map((entry) => (
                   <article key={entry.id} className="rounded-2xl border border-stellar-border bg-stellar-dark/70 p-3">
                     <div className="flex items-center justify-between gap-3 text-xs">
-                      <span className="font-medium text-white">
+                      <span className="font-medium text-stellar-text-primary">
                         {entry.assetCode} • {entry.sourceType}
                       </span>
                       <span className="text-stellar-text-secondary">{entry.status}</span>

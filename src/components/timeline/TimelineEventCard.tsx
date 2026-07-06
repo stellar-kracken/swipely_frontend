@@ -270,7 +270,7 @@ export default function TimelineEventCard({ event, mode = "compact", onRemove }:
             </span>
           </div>
 
-          <h3 className="text-sm font-semibold text-white truncate">{event.title}</h3>
+          <h3 className="text-sm font-semibold text-stellar-text-primary truncate">{event.title}</h3>
 
           <p className="text-sm text-stellar-text-secondary mt-1 line-clamp-2">
             {event.description}

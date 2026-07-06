@@ -165,7 +165,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search assets, bridges, incidents, alerts, pages..."
-            className="flex-1 bg-transparent py-4 text-white placeholder-stellar-text-secondary text-sm outline-none"
+            className="flex-1 bg-transparent py-4 text-stellar-text-primary placeholder-stellar-text-secondary text-sm outline-none"
             aria-autocomplete="list"
             aria-controls="search-results-list"
             autoComplete="off"
@@ -175,7 +175,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
             <button
               type="button"
               onClick={() => saveCurrentQuery()}
-              className="flex-none px-2 py-1 text-xs rounded-md border border-stellar-border text-stellar-text-secondary hover:text-white hover:border-stellar-blue/60"
+              className="flex-none px-2 py-1 text-xs rounded-md border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary hover:border-stellar-blue/60"
             >
               Save
             </button>
@@ -210,7 +210,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
             <button
               type="button"
               onClick={() => setQuery("")}
-              className="flex-none text-stellar-text-secondary hover:text-white transition-colors"
+              className="flex-none text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
               aria-label="Clear search"
             >
               <svg
@@ -294,7 +294,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                       ) : (
                         <button
                           type="button"
-                          className="text-sm text-left hover:text-white text-stellar-text-primary"
+                          className="text-sm text-left hover:text-stellar-text-primary text-stellar-text-primary"
                           onClick={() => {
                             applySavedSearch(saved.id);
                           }}
@@ -309,7 +309,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             setRenameTarget(saved.id);
                             setRenameValue(saved.name);
                           }}
-                          className="text-stellar-text-secondary hover:text-white"
+                          className="text-stellar-text-secondary hover:text-stellar-text-primary"
                         >
                           Rename
                         </button>
@@ -326,7 +326,7 @@ export default function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             const url = getSavedSearchShareUrl(saved);
                             await navigator.clipboard.writeText(url);
                           }}
-                          className="text-stellar-text-secondary hover:text-white"
+                          className="text-stellar-text-secondary hover:text-stellar-text-primary"
                         >
                           Copy link
                         </button>

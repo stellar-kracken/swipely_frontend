@@ -50,7 +50,7 @@ export default function PriceImpactCalculator({ depth }: Props) {
   }, [depth, tradeSize]);
 
   const slippageColor =
-    !result ? "text-white"
+    !result ? "text-stellar-text-primary"
       : result.slippagePct < 0.1 ? "text-green-400"
         : result.slippagePct < 0.5 ? "text-yellow-400"
           : "text-red-400";
@@ -87,7 +87,7 @@ export default function PriceImpactCalculator({ depth }: Props) {
             placeholder="e.g. 10000"
             value={tradeSize}
             onChange={(e) => setTradeSize(e.target.value)}
-            className="w-full bg-stellar-dark border border-stellar-border rounded-md px-3 py-2 text-sm text-white placeholder-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full bg-stellar-dark border border-stellar-border rounded-md px-3 py-2 text-sm text-stellar-text-primary placeholder-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           />
           {depth && (
             <div className="absolute right-3 top-2 text-xs text-stellar-text-secondary">
@@ -102,7 +102,7 @@ export default function PriceImpactCalculator({ depth }: Props) {
           <dl className="space-y-3 text-sm bg-stellar-dark/50 p-4 rounded-lg border border-stellar-border/50">
             <div className="flex justify-between">
               <dt className="text-stellar-text-secondary">Expected Price</dt>
-              <dd className="text-white font-mono">{result.expectedPrice.toFixed(7)}</dd>
+              <dd className="text-stellar-text-primary font-mono">{result.expectedPrice.toFixed(7)}</dd>
             </div>
             <div className="flex justify-between items-center">
               <dt className="text-stellar-text-secondary">Price Impact / Slippage</dt>
@@ -113,7 +113,7 @@ export default function PriceImpactCalculator({ depth }: Props) {
             </div>
             <div className="flex justify-between">
               <dt className="text-stellar-text-secondary">Fillable Liquidity</dt>
-              <dd className="text-white font-mono">
+              <dd className="text-stellar-text-primary font-mono">
                 {result.fillableLiquidity.toLocaleString(undefined, { maximumFractionDigits: 2 })}
               </dd>
             </div>
@@ -134,7 +134,7 @@ export default function PriceImpactCalculator({ depth }: Props) {
             </button>
             <button
               onClick={exportData}
-              className="px-3 py-1 bg-stellar-border hover:bg-stellar-border-heavy text-white text-xs rounded transition-colors"
+              className="px-3 py-1 bg-stellar-border hover:bg-stellar-border-heavy text-stellar-text-primary text-xs rounded transition-colors"
             >
               Export CSV
             </button>

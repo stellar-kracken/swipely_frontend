@@ -40,7 +40,7 @@ export default function EndpointCard({ endpoint }: Props) {
         <span className={`text-xs font-bold px-2 py-0.5 rounded font-mono shrink-0 ${METHOD_COLORS[endpoint.method]}`}>
           {endpoint.method}
         </span>
-        <span className="text-sm font-mono text-white">{endpoint.path}</span>
+        <span className="text-sm font-mono text-stellar-text-primary">{endpoint.path}</span>
         <span className="text-sm text-stellar-text-secondary ml-2 hidden sm:block">{endpoint.summary}</span>
         <span className="ml-auto text-stellar-text-secondary text-xs">{open ? "▲" : "▼"}</span>
       </button>
@@ -65,7 +65,7 @@ export default function EndpointCard({ endpoint }: Props) {
                 <tbody>
                   {endpoint.pathParams!.map((p) => (
                     <tr key={p.name} className="border-b border-stellar-border last:border-0">
-                      <td className="py-1.5 pr-4 font-mono text-white">{p.name}</td>
+                      <td className="py-1.5 pr-4 font-mono text-stellar-text-primary">{p.name}</td>
                       <td className="py-1.5 pr-4 text-blue-300">{p.type}</td>
                       <td className="py-1.5 pr-4 text-yellow-400">{p.required ? "yes" : "no"}</td>
                       <td className="py-1.5 text-stellar-text-secondary">{p.description}</td>
@@ -82,7 +82,7 @@ export default function EndpointCard({ endpoint }: Props) {
               <h4 className="text-xs font-semibold text-stellar-text-secondary uppercase tracking-wide mb-2">Response Codes</h4>
               <div className="flex flex-wrap gap-2">
                 {endpoint.responseCodes.map((r) => (
-                  <span key={r.code} className={`text-xs font-mono ${STATUS_COLORS[r.code] ?? "text-white"}`}>
+                  <span key={r.code} className={`text-xs font-mono ${STATUS_COLORS[r.code] ?? "text-stellar-text-primary"}`}>
                     <span className="font-bold">{r.code}</span> — {r.description}
                   </span>
                 ))}
@@ -106,7 +106,7 @@ export default function EndpointCard({ endpoint }: Props) {
                     key={l}
                     onClick={() => setLang(l)}
                     className={`text-xs px-2 py-0.5 rounded transition-colors ${
-                      lang === l ? "bg-stellar-blue text-white" : "text-stellar-text-secondary hover:text-white"
+                      lang === l ? "bg-stellar-blue text-stellar-ink" : "text-stellar-text-secondary hover:text-stellar-text-primary"
                     }`}
                   >
                     {l === "js" ? "JavaScript" : l === "python" ? "Python" : "cURL"}

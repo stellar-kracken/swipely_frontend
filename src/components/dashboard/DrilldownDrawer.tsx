@@ -96,7 +96,7 @@ export default function DrilldownDrawer({
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs uppercase text-stellar-text-secondary">Drilldown</p>
-              <h2 id="drilldown-drawer-title" className="text-xl font-semibold text-white">
+              <h2 id="drilldown-drawer-title" className="text-xl font-semibold text-stellar-text-primary">
                 {context.title}
               </h2>
               {context.subtitle ? (
@@ -106,7 +106,7 @@ export default function DrilldownDrawer({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-md px-2 py-1 text-sm text-stellar-text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              className="rounded-md px-2 py-1 text-sm text-stellar-text-secondary hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               aria-label="Close drilldown"
             >
               x
@@ -131,7 +131,7 @@ export default function DrilldownDrawer({
                 className="rounded-lg border border-stellar-border bg-stellar-card p-4"
               >
                 <p className="text-xs uppercase text-stellar-text-secondary">{metric.label}</p>
-                <p className="mt-2 text-2xl font-semibold text-white">{metric.value}</p>
+                <p className="mt-2 text-2xl font-semibold text-stellar-text-primary">{metric.value}</p>
                 {metric.detail ? (
                   <p className="mt-1 text-xs text-stellar-text-secondary">{metric.detail}</p>
                 ) : null}
@@ -142,13 +142,13 @@ export default function DrilldownDrawer({
           {context.rows?.length ? (
             <div className="rounded-lg border border-stellar-border bg-stellar-card">
               <div className="border-b border-stellar-border px-4 py-3">
-                <h3 className="text-sm font-semibold text-white">Details</h3>
+                <h3 className="text-sm font-semibold text-stellar-text-primary">Details</h3>
               </div>
               <div className="divide-y divide-stellar-border">
                 {context.rows.map((row) => (
                   <div key={row.label} className="flex items-center justify-between gap-4 px-4 py-3">
                     <div>
-                      <p className="text-sm font-medium text-white">{row.label}</p>
+                      <p className="text-sm font-medium text-stellar-text-primary">{row.label}</p>
                       {row.status ? (
                         <p className="text-xs text-stellar-text-secondary">{row.status}</p>
                       ) : null}

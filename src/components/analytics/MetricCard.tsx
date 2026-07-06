@@ -52,7 +52,7 @@ export default function MetricCard({
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-5 hover:border-stellar-blue/40 transition-colors">
       <p className="text-sm text-stellar-text-secondary truncate">{label}</p>
-      <p className="mt-2 text-2xl font-bold text-white tracking-tight">{value}</p>
+      <p className="mt-2 text-2xl font-bold text-stellar-text-primary tracking-tight">{value}</p>
       <div className="mt-1.5 flex items-center gap-2 flex-wrap">
         {subtitle && (
           <span className="text-xs text-stellar-text-secondary">{subtitle}</span>
