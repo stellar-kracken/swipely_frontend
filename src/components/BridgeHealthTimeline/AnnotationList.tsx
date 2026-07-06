@@ -38,7 +38,7 @@ export default function AnnotationList({ points }: Props) {
           className="flex items-start gap-3 text-sm border-l-2 border-yellow-500/60 pl-3"
         >
           <div className="flex-1 min-w-0">
-            <p className="text-white">{p.annotation}</p>
+            <p className="text-stellar-text-primary">{p.annotation}</p>
             <p className="text-stellar-text-secondary text-xs">{formatTime(p.timestamp)}</p>
           </div>
           <span className={`font-semibold shrink-0 ${scoreColor(p.score)}`}>

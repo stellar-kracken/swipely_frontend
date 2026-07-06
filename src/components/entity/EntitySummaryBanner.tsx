@@ -98,7 +98,7 @@ function SummaryFieldCard({
             aria-hidden="true"
           />
         ) : null}
-        <span className="text-lg font-semibold text-white">{field.value}</span>
+        <span className="text-lg font-semibold text-stellar-text-primary">{field.value}</span>
         {field.trend ? (
           <span
             className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[11px] ${trendClasses[field.trend.direction]}`}
@@ -116,7 +116,7 @@ function SummaryFieldCard({
       {field.to ? (
         <Link
           to={field.to}
-          className="mt-2 inline-flex items-center text-xs font-medium text-stellar-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+          className="mt-2 inline-flex items-center text-xs font-medium text-stellar-blue hover:text-stellar-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
         >
           {drilldownLabel} →
         </Link>
@@ -124,7 +124,7 @@ function SummaryFieldCard({
         <button
           type="button"
           onClick={field.onDrilldown}
-          className="mt-2 inline-flex items-center text-xs font-medium text-stellar-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+          className="mt-2 inline-flex items-center text-xs font-medium text-stellar-blue hover:text-stellar-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
         >
           {drilldownLabel} →
         </button>
@@ -156,7 +156,7 @@ export default function EntitySummaryBanner({
   return (
     <section
       aria-label={`${entityType} summary: ${title}`}
-      className={`rounded-2xl border border-stellar-border bg-gradient-to-br from-stellar-card via-stellar-card to-stellar-dark/40 p-5 ${className}`}
+      className={`rounded-2xl border border-stellar-border bg-stellar-card p-5 ${className}`}
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex items-start gap-3">
@@ -169,7 +169,7 @@ export default function EntitySummaryBanner({
             <span className="inline-block rounded-full border border-stellar-border px-2 py-0.5 text-[11px] uppercase tracking-wide text-stellar-text-secondary">
               {entityType}
             </span>
-            <h2 className="mt-1 text-2xl font-bold text-white">{title}</h2>
+            <h2 className="mt-1 text-2xl font-bold text-stellar-text-primary">{title}</h2>
             {subtitle ? (
               <p className="mt-1 text-sm text-stellar-text-secondary">{subtitle}</p>
             ) : null}
@@ -182,7 +182,7 @@ export default function EntitySummaryBanner({
             type="button"
             onClick={() => setMode((prev) => (prev === "compact" ? "expanded" : "compact"))}
             aria-pressed={expanded}
-            className="rounded-full border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary transition-colors hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+            className="rounded-full border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary transition-colors hover:text-stellar-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
           >
             {expanded ? "Compact view" : "Expanded view"}
           </button>

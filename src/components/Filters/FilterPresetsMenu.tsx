@@ -107,7 +107,7 @@ export default function FilterPresetsMenu({
         onClick={() => setOpen((prev) => !prev)}
         aria-haspopup="menu"
         aria-expanded={open}
-        className="flex items-center gap-2 rounded-full border border-stellar-border px-4 py-2 text-sm text-white transition-colors hover:bg-stellar-border"
+        className="flex items-center gap-2 rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary transition-colors hover:bg-stellar-border"
       >
         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707L15 12.414V19a1 1 0 01-1.447.894l-4-2A1 1 0 019 17v-4.586L3.293 6.707A1 1 0 013 6V4z" />
@@ -145,7 +145,7 @@ export default function FilterPresetsMenu({
                 type="button"
                 onClick={handleSave}
                 disabled={!canSaveCurrent || presetName.trim().length === 0}
-                className="rounded-md border border-stellar-blue bg-stellar-blue/20 px-3 py-1.5 text-xs text-white transition-colors hover:bg-stellar-blue/30 disabled:cursor-not-allowed disabled:opacity-60"
+                className="rounded-md border border-stellar-blue bg-stellar-blue/20 px-3 py-1.5 text-xs text-stellar-text-primary transition-colors hover:bg-stellar-blue/30 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 Save
               </button>
@@ -185,7 +185,7 @@ export default function FilterPresetsMenu({
                         <button
                           type="button"
                           onClick={commitRename}
-                          className="rounded border border-stellar-border px-2 py-1 text-xs text-stellar-text-secondary hover:text-white"
+                          className="rounded border border-stellar-border px-2 py-1 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
                         >
                           Save
                         </button>
@@ -200,7 +200,7 @@ export default function FilterPresetsMenu({
                               onApplyPreset(preset.id);
                               setOpen(false);
                             }}
-                            className="flex-1 truncate text-left text-sm text-stellar-text-primary hover:text-white"
+                            className="flex-1 truncate text-left text-sm text-stellar-text-primary hover:text-stellar-text-primary"
                             title={`Apply ${preset.name}`}
                           >
                             {preset.name}
@@ -222,14 +222,14 @@ export default function FilterPresetsMenu({
                           <button
                             type="button"
                             onClick={() => startRename(preset)}
-                            className="text-stellar-text-secondary hover:text-white"
+                            className="text-stellar-text-secondary hover:text-stellar-text-primary"
                           >
                             Rename
                           </button>
                           <button
                             type="button"
                             onClick={() => onToggleShared(preset.id, !preset.shared)}
-                            className="text-stellar-text-secondary hover:text-white"
+                            className="text-stellar-text-secondary hover:text-stellar-text-primary"
                           >
                             {preset.shared ? "Make private" : "Make shared"}
                           </button>
@@ -239,7 +239,7 @@ export default function FilterPresetsMenu({
                               onClick={() => {
                                 void handleCopyShareLink(preset);
                               }}
-                              className="text-stellar-blue hover:text-white"
+                              className="text-stellar-blue hover:text-stellar-text-primary"
                             >
                               {copiedId === preset.id ? "Copied!" : "Copy link"}
                             </button>

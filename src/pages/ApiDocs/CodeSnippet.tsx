@@ -21,7 +21,7 @@ export default function CodeSnippet({ code, lang }: Props) {
         <span className="text-xs text-stellar-text-secondary font-mono">{lang}</span>
         <button
           onClick={copy}
-          className="text-xs text-stellar-text-secondary hover:text-white transition-colors"
+          className="text-xs text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
           aria-label="Copy code"
         >
           {copied ? "✓ Copied" : "Copy"}

@@ -46,7 +46,7 @@ export default function IncidentHeatmap() {
 
   return (
     <section aria-label="Incident heatmap" className="overflow-auto p-4">
-      <h2 className="text-xl font-semibold mb-4 text-white">Incident Heatmap</h2>
+      <h2 className="text-xl font-semibold mb-4 text-stellar-text-primary">Incident Heatmap</h2>
       {error && (
         <div className="text-red-400" role="alert">
           Failed to load incidents.

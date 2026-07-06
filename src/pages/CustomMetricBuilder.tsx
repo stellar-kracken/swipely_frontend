@@ -69,7 +69,7 @@ export default function CustomMetricBuilder() {
             </label>
             <input
               id="metric-name"
-              className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white"
+              className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary"
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Bridge verification rate"
@@ -82,7 +82,7 @@ export default function CustomMetricBuilder() {
             </label>
             <input
               id="metric-description"
-              className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white"
+              className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Weekly verification counts by bridge"
@@ -95,7 +95,7 @@ export default function CustomMetricBuilder() {
             </label>
             <textarea
               id="metric-formula"
-              className="mt-1 h-48 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 font-mono text-sm text-white"
+              className="mt-1 h-48 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 font-mono text-sm text-stellar-text-primary"
               value={formula}
               onChange={(e) => setFormula(e.target.value)}
               spellCheck={false}
@@ -114,7 +114,7 @@ export default function CustomMetricBuilder() {
           <div className="flex flex-wrap gap-3">
             <button
               type="button"
-              className="rounded-md border border-stellar-border px-4 py-2 text-sm text-white hover:bg-stellar-dark"
+              className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary hover:bg-stellar-dark"
               onClick={handleValidate}
               disabled={validateMutation.isPending}
             >
@@ -122,7 +122,7 @@ export default function CustomMetricBuilder() {
             </button>
             <button
               type="button"
-              className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+              className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-stellar-ink disabled:opacity-50"
               onClick={handleSave}
               disabled={!canSave}
             >
@@ -136,7 +136,7 @@ export default function CustomMetricBuilder() {
 
           {preview && (
             <div className="rounded-md border border-stellar-border bg-stellar-dark p-4">
-              <p className="text-sm font-medium text-white">Preview ({preview.rowCount} rows)</p>
+              <p className="text-sm font-medium text-stellar-text-primary">Preview ({preview.rowCount} rows)</p>
               <pre className="mt-2 overflow-auto text-xs text-stellar-text-secondary">
                 {JSON.stringify(preview.sampleRows, null, 2)}
               </pre>
@@ -145,7 +145,7 @@ export default function CustomMetricBuilder() {
         </section>
 
         <aside className="rounded-xl border border-stellar-border bg-stellar-card p-6">
-          <h2 className="text-lg font-semibold text-white">Saved metrics</h2>
+          <h2 className="text-lg font-semibold text-stellar-text-primary">Saved metrics</h2>
           <p className="mt-1 text-sm text-stellar-text-secondary">
             See `docs/custom-metric-syntax.md` for query language reference.
           </p>
@@ -163,7 +163,7 @@ export default function CustomMetricBuilder() {
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>
-                      <p className="font-medium text-white">{metric.name}</p>
+                      <p className="font-medium text-stellar-text-primary">{metric.name}</p>
                       {metric.description && (
                         <p className="text-xs text-stellar-text-secondary">{metric.description}</p>
                       )}

@@ -67,7 +67,7 @@ export default function HealthBreakdown({
     <div className="space-y-6">
       {/* Factor breakdown */}
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">
+        <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">
           Health Score Breakdown
         </h3>
 
@@ -83,7 +83,7 @@ export default function HealthBreakdown({
                   <div key={key}>
                     <div className="flex items-center justify-between mb-1.5">
                       <div>
-                        <span className="text-sm text-white font-medium">
+                        <span className="text-sm text-stellar-text-primary font-medium">
                           {config.label}
                         </span>
                         <p className="text-xs text-stellar-text-secondary">
@@ -125,7 +125,7 @@ export default function HealthBreakdown({
 
       {/* Health history chart */}
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-white mb-4">
+        <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">
           Health Score Trend
         </h3>
 
@@ -138,10 +138,10 @@ export default function HealthBreakdown({
         ) : history.length > 0 ? (
           <ResponsiveContainer width="100%" height={280}>
             <LineChart data={history}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1E2340" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#27272A" />
               <XAxis
                 dataKey="timestamp"
-                stroke="#8A8FA8"
+                stroke="#A1A1AA"
                 tick={{ fontSize: 12 }}
                 tickFormatter={(val: string) =>
                   new Date(val).toLocaleDateString(undefined, {
@@ -151,14 +151,14 @@ export default function HealthBreakdown({
                 }
               />
               <YAxis
-                stroke="#8A8FA8"
+                stroke="#A1A1AA"
                 tick={{ fontSize: 12 }}
                 domain={[0, 100]}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: "#141829",
-                  border: "1px solid #1E2340",
+                  backgroundColor: "#18181B",
+                  border: "1px solid #27272A",
                   borderRadius: "8px",
                   color: "#FFFFFF",
                 }}
@@ -170,10 +170,10 @@ export default function HealthBreakdown({
               <Line
                 type="monotone"
                 dataKey="score"
-                stroke="#0057FF"
+                stroke="#A1A1AA"
                 strokeWidth={2}
                 dot={false}
-                activeDot={{ r: 4, fill: "#0057FF" }}
+                activeDot={{ r: 4, fill: "#A1A1AA" }}
               />
             </LineChart>
           </ResponsiveContainer>

@@ -34,7 +34,7 @@ export function AssetWatchlistButton({ symbol, className = "", size = "md" }: As
     <button
       onClick={toggleWatchlist}
       className={`focus:outline-none transition-colors 
-      ${isTrailing ? "text-yellow-400 hover:text-yellow-300" : "text-gray-400 hover:text-white"} 
+      ${isTrailing ? "text-yellow-400 hover:text-yellow-300" : "text-gray-400 hover:text-stellar-text-primary"} 
       ${className}`}
       title={isTrailing ? "Remove from Watchlist" : "Add to Watchlist"}
       aria-label={isTrailing ? `Remove ${symbol} from Watchlist` : `Add ${symbol} to Watchlist`}

@@ -74,7 +74,7 @@ export default function WatchlistPage() {
     <div className="space-y-8 animate-in fade-in duration-500">
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-white">Watchlists</h1>
+          <h1 className="text-3xl font-bold text-stellar-text-primary">Watchlists</h1>
           <p className="text-stellar-text-secondary mt-1">
             Monitor and manage your custom asset watchlists.
           </p>
@@ -84,7 +84,7 @@ export default function WatchlistPage() {
       {activeWatchlist && (
         <div className="bg-stellar-card border border-stellar-border rounded-lg overflow-hidden shadow-lg">
           <div className="p-6 border-b border-stellar-border">
-            <h2 className="text-xl font-bold text-white flex items-center gap-3">
+            <h2 className="text-xl font-bold text-stellar-text-primary flex items-center gap-3">
               {activeWatchlist.name}
               <span className="text-sm font-normal text-stellar-blue bg-stellar-dark px-2 py-0.5 rounded-full">
                 Active
@@ -135,11 +135,11 @@ export default function WatchlistPage() {
                             <div className="w-8 h-8 rounded-full bg-stellar-blue/10 flex items-center justify-center border border-stellar-blue/20 group-hover:border-stellar-blue transition-colors">
                               <span className="text-sm font-bold text-stellar-blue">{symbol.slice(0, 2)}</span>
                             </div>
-                            <span className="font-medium text-white group-hover:text-stellar-blue transition-colors">{symbol}</span>
+                            <span className="font-medium text-stellar-text-primary group-hover:text-stellar-blue transition-colors">{symbol}</span>
                           </Link>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap text-right">
-                          <span className="text-white font-mono">
+                          <span className="text-stellar-text-primary font-mono">
                             {isLoading ? "..." : data?.price?.vwap ? `$${data.price.vwap.toFixed(4)}` : "—"}
                           </span>
                         </td>

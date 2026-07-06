@@ -39,8 +39,8 @@ export default function CopyButton({
 
   const buttonBaseClass =
     variant === "inline"
-      ? "text-xs font-medium text-stellar-blue hover:text-white underline underline-offset-2 focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded px-1 py-0.5"
-      : "inline-flex items-center justify-center min-h-9 px-3 py-1.5 text-xs font-medium rounded-md border border-stellar-border text-stellar-text-secondary hover:text-white hover:border-stellar-blue focus:outline-none focus:ring-2 focus:ring-stellar-blue transition-colors";
+      ? "text-xs font-medium text-stellar-blue hover:text-stellar-text-primary underline underline-offset-2 focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded px-1 py-0.5"
+      : "inline-flex items-center justify-center min-h-9 px-3 py-1.5 text-xs font-medium rounded-md border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary hover:border-stellar-blue focus:outline-none focus:ring-2 focus:ring-stellar-blue transition-colors";
 
   const handleCopy = async (event?: MouseEvent | KeyboardEvent) => {
     if (stopPropagation && event) {

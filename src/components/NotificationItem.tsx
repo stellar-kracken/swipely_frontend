@@ -37,7 +37,7 @@ export default function NotificationItem({ notification, onRead }: NotificationI
         </div>
         <div className="flex-grow min-w-0">
           <div className="flex justify-between items-start">
-            <h4 className={`text-sm font-semibold truncate ${notification.read ? "text-stellar-text-secondary" : "text-white"}`}>
+            <h4 className={`text-sm font-semibold truncate ${notification.read ? "text-stellar-text-secondary" : "text-stellar-text-primary"}`}>
               {notification.title}
             </h4>
             {!notification.read && (

@@ -103,7 +103,7 @@ export default function MetricsSidebar() {
       <button
         type="button"
         onClick={toggleCollapse}
-        className="flex items-center justify-center h-10 border-b border-stellar-border text-stellar-text-secondary hover:text-white transition-colors focus:outline-none"
+        className="flex items-center justify-center h-10 border-b border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary transition-colors focus:outline-none"
         aria-label={isCollapsed ? "Expand metrics sidebar" : "Collapse metrics sidebar"}
         title={isCollapsed ? "Expand" : "Collapse"}
       >

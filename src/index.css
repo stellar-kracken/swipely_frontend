@@ -4,11 +4,13 @@
 
 :root {
   color-scheme: light;
-  --stellar-bg: 248 250 252;
+  --stellar-bg: 250 250 250;
   --stellar-card: 255 255 255;
-  --stellar-border: 226 232 240;
-  --stellar-text-primary: 15 23 42;
-  --stellar-text-secondary: 71 85 105;
+  --stellar-border: 228 228 231;
+  --stellar-text-primary: 24 24 27;
+  --stellar-text-secondary: 113 113 122;
+  --stellar-accent: 24 24 27;
+  --stellar-accent-ink: 255 255 255;
   --spacing-base: 1rem;
   --card-padding: 1.5rem;
   --section-gap: 2rem;
@@ -16,11 +18,13 @@
 
 .dark {
   color-scheme: dark;
-  --stellar-bg: 11 14 26;
-  --stellar-card: 20 24 41;
-  --stellar-border: 30 35 64;
-  --stellar-text-primary: 255 255 255;
-  --stellar-text-secondary: 138 143 168;
+  --stellar-bg: 9 9 11;
+  --stellar-card: 24 24 27;
+  --stellar-border: 39 39 42;
+  --stellar-text-primary: 250 250 250;
+  --stellar-text-secondary: 161 161 170;
+  --stellar-accent: 250 250 250;
+  --stellar-accent-ink: 9 9 11;
 }
 
 [data-density="compact"] {
@@ -126,7 +130,7 @@ body {
     color: #555555 !important;
   }
   .text-stellar-blue {
-    color: #0057ff !important;
+    color: #111111 !important;
   }
 
   /* Page break helpers */
@@ -146,7 +150,7 @@ body {
   /* Printed report header / footer */
   .print-header {
     display: block !important;
-    border-bottom: 2px solid #0057ff;
+    border-bottom: 2px solid #111111;
     padding-bottom: 8pt;
     margin-bottom: 16pt;
   }

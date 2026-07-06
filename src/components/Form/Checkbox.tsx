@@ -58,7 +58,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
                 ${hasError ? "border-red-500" : "border-stellar-border"}`}
                         >
                             <svg
-                                className="w-full h-full text-white opacity-0 peer-checked:opacity-100 transition-opacity p-0.5"
+                                className="w-full h-full text-stellar-text-primary opacity-0 peer-checked:opacity-100 transition-opacity p-0.5"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"

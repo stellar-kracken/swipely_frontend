@@ -56,7 +56,7 @@ const CustomTooltip = ({
       <p className="text-stellar-text-secondary mb-1">
         {label ? formatXAxis(label, period) : ""}
       </p>
-      <p className="text-white font-semibold text-base" style={{ color: scoreColor(score) }}>
+      <p className="text-stellar-text-primary font-semibold text-base" style={{ color: scoreColor(score) }}>
         {score}
         <span className="text-stellar-text-secondary font-normal ml-1">/ 100</span>
       </p>
@@ -96,8 +96,8 @@ export default function HealthTimelineChart({ points, period, bridgeName, isMock
         <AreaChart data={points} margin={{ top: 10, right: 16, left: 0, bottom: 0 }}>
           <defs>
             <linearGradient id="healthGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#0057FF" stopOpacity={0.3} />
-              <stop offset="95%" stopColor="#0057FF" stopOpacity={0.02} />
+              <stop offset="5%" stopColor="#A1A1AA" stopOpacity={0.3} />
+              <stop offset="95%" stopColor="#A1A1AA" stopOpacity={0.02} />
             </linearGradient>
           </defs>
 
@@ -107,14 +107,14 @@ export default function HealthTimelineChart({ points, period, bridgeName, isMock
             dataKey="timestamp"
             tickFormatter={(v) => formatXAxis(v, period)}
             interval={tickInterval}
-            tick={{ fill: "#8A8FA8", fontSize: 11 }}
+            tick={{ fill: "#A1A1AA", fontSize: 11 }}
             axisLine={false}
             tickLine={false}
           />
           <YAxis
             domain={[0, 100]}
             ticks={[0, 25, 50, 75, 100]}
-            tick={{ fill: "#8A8FA8", fontSize: 11 }}
+            tick={{ fill: "#A1A1AA", fontSize: 11 }}
             axisLine={false}
             tickLine={false}
             width={32}
@@ -128,11 +128,11 @@ export default function HealthTimelineChart({ points, period, bridgeName, isMock
           <Area
             type="monotone"
             dataKey="score"
-            stroke="#0057FF"
+            stroke="#A1A1AA"
             strokeWidth={2}
             fill="url(#healthGradient)"
             dot={false}
-            activeDot={{ r: 4, fill: "#0057FF", stroke: "#fff", strokeWidth: 1.5 }}
+            activeDot={{ r: 4, fill: "#A1A1AA", stroke: "#fff", strokeWidth: 1.5 }}
           />
 
           {annotations.map((point, i) => (
@@ -142,7 +142,7 @@ export default function HealthTimelineChart({ points, period, bridgeName, isMock
               y={point.score}
               r={5}
               fill="#f59e0b"
-              stroke="#0057FF"
+              stroke="#A1A1AA"
               strokeWidth={1.5}
             />
           ))}

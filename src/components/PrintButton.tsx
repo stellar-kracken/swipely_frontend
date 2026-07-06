@@ -50,7 +50,7 @@ export default function PrintButton({
       className={[
         "print-include no-print inline-flex items-center gap-2 rounded-lg border",
         "border-stellar-blue bg-stellar-blue/10 px-4 py-2 text-sm font-medium",
-        "text-stellar-blue transition-colors hover:bg-stellar-blue hover:text-white",
+        "text-stellar-blue transition-colors hover:bg-stellar-blue hover:text-stellar-ink",
         "focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2",
         "focus:ring-offset-stellar-dark disabled:opacity-50 disabled:cursor-not-allowed",
         className,

@@ -12,9 +12,9 @@ export const AuditExportButton: React.FC<AuditExportButtonProps> = ({ filters })
 
   return (
     <div className="flex space-x-2">
-      <button onClick={() => handleExport('CSV')} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Export CSV</button>
-      <button onClick={() => handleExport('JSON')} className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Export JSON</button>
-      <button onClick={() => handleExport('PDF')} className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">Export PDF</button>
+      <button onClick={() => handleExport('CSV')} className="bg-zinc-900 text-white px-4 py-2 rounded hover:bg-zinc-800">Export CSV</button>
+      <button onClick={() => handleExport('JSON')} className="bg-zinc-900 text-white px-4 py-2 rounded hover:bg-zinc-800">Export JSON</button>
+      <button onClick={() => handleExport('PDF')} className="bg-zinc-900 text-white px-4 py-2 rounded hover:bg-zinc-800">Export PDF</button>
     </div>
   );
 };

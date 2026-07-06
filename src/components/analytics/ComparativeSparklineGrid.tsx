@@ -15,7 +15,7 @@ export default function ComparativeSparklineGrid({ items }: ComparativeSparkline
   if (items.length === 0) {
     return (
       <div className="rounded-lg border border-stellar-border bg-stellar-card p-6">
-        <h2 className="text-lg font-semibold text-white">Comparative sparklines</h2>
+        <h2 className="text-lg font-semibold text-stellar-text-primary">Comparative sparklines</h2>
         <p className="mt-2 text-sm text-stellar-text-secondary">
           No assets available for comparison yet.
         </p>
@@ -24,10 +24,10 @@ export default function ComparativeSparklineGrid({ items }: ComparativeSparkline
   }
 
   return (
-    <section className="space-y-4 rounded-2xl border border-stellar-border bg-gradient-to-br from-stellar-card to-stellar-dark/35 p-6">
+    <section className="space-y-4 rounded-2xl border border-stellar-border bg-stellar-card p-6">
       <div className="flex items-end justify-between gap-3">
         <div>
-          <h2 className="text-xl font-semibold text-white">Comparative sparklines</h2>
+          <h2 className="text-xl font-semibold text-stellar-text-primary">Comparative sparklines</h2>
           <p className="mt-1 text-sm text-stellar-text-secondary">
             Compare short-term health trends across the most monitored assets.
           </p>
@@ -45,7 +45,7 @@ export default function ComparativeSparklineGrid({ items }: ComparativeSparkline
           >
             <div className="mb-3 flex items-center justify-between gap-2">
               <div>
-                <h3 className="text-base font-semibold text-white">
+                <h3 className="text-base font-semibold text-stellar-text-primary">
                   <Link to={`/assets/${item.symbol}`} className="hover:text-stellar-blue">
                     {item.symbol}
                   </Link>

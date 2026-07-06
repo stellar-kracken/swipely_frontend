@@ -148,7 +148,7 @@ export default function LiquidityFragmentation() {
     <div className="space-y-6">
       <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">Liquidity Fragmentation Analysis</h1>
+          <h1 className="text-3xl font-bold text-stellar-text-primary">Liquidity Fragmentation Analysis</h1>
           <p className="mt-1 text-stellar-text-secondary text-sm">
             DEX fragmentation patterns, optimal routing, and arbitrage opportunities
           </p>
@@ -157,7 +157,7 @@ export default function LiquidityFragmentation() {
         <select
           value={selectedAsset}
           onChange={(e) => setSelectedAsset(e.target.value)}
-          className="bg-stellar-bg border border-stellar-border rounded-lg px-4 py-2 text-white"
+          className="bg-stellar-bg border border-stellar-border rounded-lg px-4 py-2 text-stellar-text-primary"
         >
           {SUPPORTED_ASSETS.map((asset) => (
             <option key={asset} value={asset}>
@@ -190,27 +190,27 @@ export default function LiquidityFragmentation() {
 
           <div className="bg-stellar-card border border-stellar-border rounded-lg p-4">
             <p className="text-xs text-stellar-text-secondary">Total Liquidity</p>
-            <p className="mt-1 text-xl font-bold text-white">
+            <p className="mt-1 text-xl font-bold text-stellar-text-primary">
               ${metrics.totalLiquidity.toLocaleString(undefined, { maximumFractionDigits: 0 })}
             </p>
           </div>
 
           <div className="bg-stellar-card border border-stellar-border rounded-lg p-4">
             <p className="text-xs text-stellar-text-secondary">Herfindahl Index</p>
-            <p className="mt-1 text-xl font-bold text-white">{metrics.herfindahlIndex.toFixed(4)}</p>
+            <p className="mt-1 text-xl font-bold text-stellar-text-primary">{metrics.herfindahlIndex.toFixed(4)}</p>
             <p className="text-xs text-stellar-text-secondary mt-1">Concentration measure</p>
           </div>
 
           <div className="bg-stellar-card border border-stellar-border rounded-lg p-4">
             <p className="text-xs text-stellar-text-secondary">DEX Count</p>
-            <p className="mt-1 text-xl font-bold text-white">{metrics.dexCount}</p>
+            <p className="mt-1 text-xl font-bold text-stellar-text-primary">{metrics.dexCount}</p>
           </div>
         </div>
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-white mb-4">Liquidity Distribution</h2>
+          <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">Liquidity Distribution</h2>
           {isLoading ? (
             <div className="flex items-center justify-center py-8">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-stellar-primary"></div>
@@ -220,7 +220,7 @@ export default function LiquidityFragmentation() {
               {distribution.map((dex) => (
                 <div key={dex.dex} className="flex items-center justify-between">
                   <div className="flex items-center gap-3 flex-1">
-                    <span className="text-sm font-medium text-white">{dex.rank}.</span>
+                    <span className="text-sm font-medium text-stellar-text-primary">{dex.rank}.</span>
                     <span className="text-sm text-stellar-text-secondary">{dex.dex}</span>
                     <div className="flex-1 h-2 bg-stellar-bg rounded-full overflow-hidden">
                       <div
@@ -230,7 +230,7 @@ export default function LiquidityFragmentation() {
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm font-medium text-white">{dex.share.toFixed(2)}%</p>
+                    <p className="text-sm font-medium text-stellar-text-primary">{dex.share.toFixed(2)}%</p>
                     <p className="text-xs text-stellar-text-secondary">
                       ${dex.liquidity.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                     </p>
@@ -242,7 +242,7 @@ export default function LiquidityFragmentation() {
         </section>
 
         <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-white mb-4">Optimal Route Calculator</h2>
+          <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">Optimal Route Calculator</h2>
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               <div>
@@ -250,7 +250,7 @@ export default function LiquidityFragmentation() {
                 <select
                   value={routeParams.fromAsset}
                   onChange={(e) => setRouteParams({ ...routeParams, fromAsset: e.target.value })}
-                  className="w-full bg-stellar-bg border border-stellar-border rounded px-3 py-2 text-white text-sm"
+                  className="w-full bg-stellar-bg border border-stellar-border rounded px-3 py-2 text-stellar-text-primary text-sm"
                 >
                   {SUPPORTED_ASSETS.map((asset) => (
                     <option key={asset} value={asset}>
@@ -265,7 +265,7 @@ export default function LiquidityFragmentation() {
                 <select
                   value={routeParams.toAsset}
                   onChange={(e) => setRouteParams({ ...routeParams, toAsset: e.target.value })}
-                  className="w-full bg-stellar-bg border border-stellar-border rounded px-3 py-2 text-white text-sm"
+                  className="w-full bg-stellar-bg border border-stellar-border rounded px-3 py-2 text-stellar-text-primary text-sm"
                 >
                   {SUPPORTED_ASSETS.map((asset) => (
                     <option key={asset} value={asset}>
@@ -282,14 +282,14 @@ export default function LiquidityFragmentation() {
                 type="number"
                 value={routeParams.amount}
                 onChange={(e) => setRouteParams({ ...routeParams, amount: e.target.value })}
-                className="w-full bg-stellar-bg border border-stellar-border rounded px-3 py-2 text-white text-sm"
+                className="w-full bg-stellar-bg border border-stellar-border rounded px-3 py-2 text-stellar-text-primary text-sm"
                 placeholder="Enter amount"
               />
             </div>
 
             <button
               onClick={calculateRoute}
-              className="w-full bg-stellar-primary hover:bg-stellar-primary-hover text-white font-medium py-2 px-4 rounded transition-colors"
+              className="w-full bg-stellar-primary hover:bg-stellar-primary-hover text-stellar-text-primary font-medium py-2 px-4 rounded transition-colors"
             >
               Calculate Route
             </button>
@@ -299,7 +299,7 @@ export default function LiquidityFragmentation() {
                 <div className="bg-stellar-bg rounded p-3">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-xs text-stellar-text-secondary">Estimated Output</span>
-                    <span className="text-sm font-medium text-white">
+                    <span className="text-sm font-medium text-stellar-text-primary">
                       {optimalRoute.estimatedOutput.toFixed(4)} {optimalRoute.toAsset}
                     </span>
                   </div>
@@ -323,7 +323,7 @@ export default function LiquidityFragmentation() {
                     <div key={idx} className="bg-stellar-bg rounded p-2 text-xs">
                       <div className="flex justify-between">
                         <span className="text-stellar-text-secondary">{step.dex}</span>
-                        <span className="text-white font-medium">
+                        <span className="text-stellar-text-primary font-medium">
                           {(step.share * 100).toFixed(1)}%
                         </span>
                       </div>
@@ -340,7 +340,7 @@ export default function LiquidityFragmentation() {
       </div>
 
       <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-lg font-semibold text-white mb-4">Arbitrage Opportunities</h2>
+        <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">Arbitrage Opportunities</h2>
         {isLoading ? (
           <div className="flex items-center justify-center py-8">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-stellar-primary"></div>
@@ -377,13 +377,13 @@ export default function LiquidityFragmentation() {
               <tbody>
                 {arbitrageOps.map((op, idx) => (
                   <tr key={idx} className="border-b border-stellar-border/50">
-                    <td className="py-2 px-3 text-white font-medium">{op.assetPair}</td>
+                    <td className="py-2 px-3 text-stellar-text-primary font-medium">{op.assetPair}</td>
                     <td className="py-2 px-3 text-stellar-text-secondary">{op.buyDex}</td>
                     <td className="py-2 px-3 text-stellar-text-secondary">{op.sellDex}</td>
                     <td className="py-2 px-3 text-right text-green-400 font-medium">
                       {op.spreadPercent.toFixed(2)}%
                     </td>
-                    <td className="py-2 px-3 text-right text-white">
+                    <td className="py-2 px-3 text-right text-stellar-text-primary">
                       ${op.potentialProfit.toFixed(2)}
                     </td>
                     <td className="py-2 px-3 text-right">

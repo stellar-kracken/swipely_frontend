@@ -42,7 +42,7 @@ export default function GlobalSearch() {
         type="button"
         onClick={open}
         aria-label="Open search (Ctrl+K)"
-        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-stellar-border/60 border border-stellar-border hover:border-stellar-blue/60 hover:bg-stellar-border transition-colors text-stellar-text-secondary hover:text-white group"
+        className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-stellar-border/60 border border-stellar-border hover:border-stellar-blue/60 hover:bg-stellar-border transition-colors text-stellar-text-secondary hover:text-stellar-text-primary group"
       >
         {/* Search icon */}
         <svg
