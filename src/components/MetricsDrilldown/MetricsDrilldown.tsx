@@ -60,11 +60,11 @@ export default function MetricsDrilldown({
       >
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-stellar-border bg-stellar-dark/30">
-          <h2 className="text-xl font-semibold text-white">{title}</h2>
+          <h2 className="text-xl font-semibold text-stellar-text-primary">{title}</h2>
           <button
             type="button"
             onClick={onClose}
-            className="text-stellar-text-secondary hover:text-white transition-colors"
+            className="text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
             aria-label="Close drilldown panel"
           >
             <svg
@@ -118,7 +118,7 @@ export default function MetricsDrilldown({
 
           {/* Chart Section */}
           <div className="mt-8">
-            <h3 className="text-lg font-semibold text-white mb-4">Detailed Metrics</h3>
+            <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">Detailed Metrics</h3>
             <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
               {loading ? (
                 <div className="h-64 flex items-center justify-center">
@@ -138,7 +138,7 @@ export default function MetricsDrilldown({
 
           {/* Table Section */}
           <div className="mt-8">
-            <h3 className="text-lg font-semibold text-white mb-4">Underlying Data</h3>
+            <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">Underlying Data</h3>
             <div className="bg-stellar-card border border-stellar-border rounded-lg overflow-hidden">
               {loading ? (
                 <div className="p-6 space-y-3">
@@ -164,7 +164,7 @@ export default function MetricsDrilldown({
           <button
             type="button"
             onClick={onClose}
-            className="px-4 py-2 bg-stellar-blue text-white rounded-lg hover:bg-stellar-blue/80 transition-colors"
+            className="px-4 py-2 bg-stellar-blue text-stellar-ink rounded-lg hover:bg-stellar-blue/80 transition-colors"
           >
             Close
           </button>

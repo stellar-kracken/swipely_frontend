@@ -37,7 +37,7 @@ export default function UserActivityHeatmap() {
     <section aria-label="User activity heatmap" className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-semibold text-white">User Activity Heatmap</h2>
+          <h2 className="text-xl font-semibold text-stellar-text-primary">User Activity Heatmap</h2>
           <p className="text-stellar-text-secondary text-sm mt-0.5">
             Operator actions by day and hour — hover cells for details
           </p>
@@ -48,10 +48,10 @@ export default function UserActivityHeatmap() {
             placeholder="Filter by user…"
             value={filterUser}
             onChange={(e) => setFilterUser(e.target.value)}
-            className="bg-stellar-card border border-stellar-border text-white text-sm rounded-lg px-3 py-1.5 placeholder:text-stellar-text-secondary focus:outline-none focus:ring-1 focus:ring-stellar-blue"
+            className="bg-stellar-card border border-stellar-border text-stellar-text-primary text-sm rounded-lg px-3 py-1.5 placeholder:text-stellar-text-secondary focus:outline-none focus:ring-1 focus:ring-stellar-blue"
           />
           <select
-            className="bg-stellar-card border border-stellar-border text-white text-sm rounded-lg px-3 py-1.5"
+            className="bg-stellar-card border border-stellar-border text-stellar-text-primary text-sm rounded-lg px-3 py-1.5"
             value={rangeDays}
             onChange={(e) => setRangeDays(Number(e.target.value))}
             aria-label="Time range"
@@ -181,7 +181,7 @@ export default function UserActivityHeatmap() {
           className="fixed z-50 bg-stellar-card border border-stellar-border rounded-lg p-3 text-xs shadow-xl pointer-events-none"
           style={{ left: tooltip.x + 12, top: tooltip.y - 60 }}
         >
-          <p className="text-white font-medium mb-1">{tooltip.actorId}</p>
+          <p className="text-stellar-text-primary font-medium mb-1">{tooltip.actorId}</p>
           <p className="text-stellar-text-secondary">
             {DAY_LABELS[tooltip.cell.dayOfWeek]} {tooltip.cell.hour}:00–{tooltip.cell.hour + 1}:00
           </p>

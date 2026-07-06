@@ -143,12 +143,12 @@ function HistoryTooltip({
   const point = payload[0]?.payload;
   return (
     <div className="rounded-lg border border-stellar-border bg-stellar-card p-3 text-xs shadow-xl">
-      <p className="font-medium text-white">{label}</p>
+      <p className="font-medium text-stellar-text-primary">{label}</p>
       <p className="mt-1 text-stellar-text-secondary">
-        Mismatch: <span className="text-white">{formatMismatch(point?.mismatch ?? null)}</span>
+        Mismatch: <span className="text-stellar-text-primary">{formatMismatch(point?.mismatch ?? null)}</span>
       </p>
       <p className="text-stellar-text-secondary">
-        Status: <span className="text-white">{titleCase(point?.status ?? "unknown")}</span>
+        Status: <span className="text-stellar-text-primary">{titleCase(point?.status ?? "unknown")}</span>
       </p>
     </div>
   );
@@ -169,31 +169,31 @@ function SourceDatumCard({ datum }: { datum: ReconciliationSourceDatum }) {
     <article className="rounded-lg border border-stellar-border bg-stellar-card p-5">
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h3 className="text-base font-semibold text-white">{datum.label}</h3>
+          <h3 className="text-base font-semibold text-stellar-text-primary">{datum.label}</h3>
           <p className="mt-1 text-sm text-stellar-text-secondary">{datum.source}</p>
         </div>
         <span className="rounded-full border border-stellar-border px-2 py-1 text-xs text-stellar-text-secondary">
           {titleCase(datum.status)}
         </span>
       </div>
-      <p className="mt-4 text-2xl font-semibold text-white">
+      <p className="mt-4 text-2xl font-semibold text-stellar-text-primary">
         {formatFullSupply(datum.value)} <span className="text-sm text-stellar-text-secondary">{datum.unit}</span>
       </p>
       <dl className="mt-4 space-y-2 text-sm">
         <div className="flex justify-between gap-3">
           <dt className="text-stellar-text-secondary">Observed</dt>
-          <dd className="text-right text-white">{formatTime(datum.observedAt)}</dd>
+          <dd className="text-right text-stellar-text-primary">{formatTime(datum.observedAt)}</dd>
         </div>
         <div className="flex justify-between gap-3">
           <dt className="text-stellar-text-secondary">Reference</dt>
-          <dd className="max-w-[14rem] truncate text-right text-white" title={datum.reference ?? undefined}>
+          <dd className="max-w-[14rem] truncate text-right text-stellar-text-primary" title={datum.reference ?? undefined}>
             {datum.reference ?? "--"}
           </dd>
         </div>
         {detailEntries.slice(0, 4).map(([key, value]) => (
           <div key={key} className="flex justify-between gap-3">
             <dt className="text-stellar-text-secondary">{titleCase(key)}</dt>
-            <dd className="max-w-[14rem] truncate text-right text-white" title={String(value)}>
+            <dd className="max-w-[14rem] truncate text-right text-stellar-text-primary" title={String(value)}>
               {String(value)}
             </dd>
           </div>
@@ -222,14 +222,14 @@ function SummaryRow({
           onClick={() => onSelect(latest.id)}
           className="text-left focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
-          <span className="block font-medium text-white">{summary.assetCode}</span>
+          <span className="block font-medium text-stellar-text-primary">{summary.assetCode}</span>
           <span className="text-xs text-stellar-text-secondary">{summary.bridgeName}</span>
         </button>
       </td>
       <td className="px-4 py-3">
         <SeverityBadge severity={summary.severity} />
       </td>
-      <td className="px-4 py-3 text-white">{formatMismatch(latest.mismatchPercentage)}</td>
+      <td className="px-4 py-3 text-stellar-text-primary">{formatMismatch(latest.mismatchPercentage)}</td>
       <td className="px-4 py-3 text-stellar-text-secondary">{trendLabel[summary.trendDirection]}</td>
       <td className={`px-4 py-3 ${triageClass[latest.triageStatus]}`}>
         {titleCase(latest.triageStatus)}
@@ -367,7 +367,7 @@ export default function Reconciliation() {
     <div className="space-y-8">
       <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-white">Reconciliation</h1>
+          <h1 className="text-3xl font-bold text-stellar-text-primary">Reconciliation</h1>
           <p className="mt-2 max-w-3xl text-stellar-text-secondary">
             Compare on-chain supply, reserve attestations, and reported backing across monitored bridges.
           </p>
@@ -375,7 +375,7 @@ export default function Reconciliation() {
         <button
           type="button"
           onClick={() => void summaryQuery.refetch()}
-          className="self-start rounded-md border border-stellar-border px-4 py-2 text-sm font-medium text-white transition hover:border-stellar-blue"
+          className="self-start rounded-md border border-stellar-border px-4 py-2 text-sm font-medium text-stellar-text-primary transition hover:border-stellar-blue"
         >
           Refresh
         </button>
@@ -386,7 +386,7 @@ export default function Reconciliation() {
           { label: "Unresolved", value: stats.unresolved.toString(), tone: stats.unresolved > 0 ? "text-yellow-300" : "text-green-300" },
           { label: "Critical drift", value: stats.critical.toString(), tone: stats.critical > 0 ? "text-red-300" : "text-green-300" },
           { label: "Highest mismatch", value: formatMismatch(stats.highestMismatch), tone: stats.highestMismatch > 1 ? "text-orange-300" : "text-green-300" },
-          { label: "Absolute discrepancy", value: formatSupply(stats.totalDiscrepancy), tone: "text-white" },
+          { label: "Absolute discrepancy", value: formatSupply(stats.totalDiscrepancy), tone: "text-stellar-text-primary" },
         ].map((stat) => (
           <div key={stat.label} className="rounded-lg border border-stellar-border bg-stellar-card p-5">
             <p className="text-sm text-stellar-text-secondary">{stat.label}</p>
@@ -403,7 +403,7 @@ export default function Reconciliation() {
               <select
                 value={filters.assetCode}
                 onChange={(event) => updateFilter("assetCode", event.target.value)}
-                className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 <option value="">All assets</option>
                 {(summaryQuery.data?.availableFilters.assets ?? []).map((asset) => (
@@ -416,7 +416,7 @@ export default function Reconciliation() {
               <select
                 value={filters.bridge}
                 onChange={(event) => updateFilter("bridge", event.target.value)}
-                className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 <option value="">All bridges</option>
                 {(summaryQuery.data?.availableFilters.bridges ?? []).map((bridge) => (
@@ -434,8 +434,8 @@ export default function Reconciliation() {
                 aria-pressed={filters.range === option.value}
                 className={`min-w-14 rounded px-3 py-2 text-sm font-medium transition ${
                   filters.range === option.value
-                    ? "bg-stellar-blue text-white"
-                    : "text-stellar-text-secondary hover:text-white"
+                    ? "bg-stellar-blue text-stellar-ink"
+                    : "text-stellar-text-secondary hover:text-stellar-text-primary"
                 }`}
               >
                 {option.label}
@@ -448,7 +448,7 @@ export default function Reconciliation() {
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[minmax(0,1.55fr)_minmax(22rem,0.75fr)]">
         <section className="rounded-lg border border-stellar-border bg-stellar-card">
           <div className="flex items-center justify-between border-b border-stellar-border px-4 py-3">
-            <h2 className="text-lg font-semibold text-white">Drift Queue</h2>
+            <h2 className="text-lg font-semibold text-stellar-text-primary">Drift Queue</h2>
             <span className="text-sm text-stellar-text-secondary">
               {summaryQuery.isFetching ? "Updating" : `${summaries.length} rows`}
             </span>
@@ -496,7 +496,7 @@ export default function Reconciliation() {
         <section className="rounded-lg border border-stellar-border bg-stellar-card p-5">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h2 className="text-lg font-semibold text-white">Triage</h2>
+              <h2 className="text-lg font-semibold text-stellar-text-primary">Triage</h2>
               {selectedRun && (
                 <p className="mt-1 text-sm text-stellar-text-secondary">
                   {selectedRun.assetCode} on {selectedRun.bridgeName}
@@ -513,7 +513,7 @@ export default function Reconciliation() {
                 <select
                   value={triageStatus}
                   onChange={(event) => setTriageStatus(event.target.value as ReconciliationTriageStatus)}
-                  className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                  className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                 >
                   {triageOptions.map((option) => (
                     <option key={option.value} value={option.value}>{option.label}</option>
@@ -525,7 +525,7 @@ export default function Reconciliation() {
                 <input
                   value={triageOwner}
                   onChange={(event) => setTriageOwner(event.target.value)}
-                  className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                  className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                   placeholder="ops-oncall"
                 />
               </label>
@@ -535,13 +535,13 @@ export default function Reconciliation() {
                   value={triageNote}
                   onChange={(event) => setTriageNote(event.target.value)}
                   rows={5}
-                  className="mt-1 w-full resize-none rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                  className="mt-1 w-full resize-none rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                 />
               </label>
               <button
                 type="submit"
                 disabled={triageMutation.isPending}
-                className="w-full rounded-md bg-stellar-blue px-4 py-2 text-sm font-semibold text-white transition hover:bg-stellar-blue/90 disabled:cursor-not-allowed disabled:opacity-60"
+                className="w-full rounded-md bg-stellar-blue px-4 py-2 text-sm font-semibold text-stellar-ink transition hover:bg-stellar-blue/90 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 {triageMutation.isPending ? "Saving" : "Save triage"}
               </button>
@@ -563,7 +563,7 @@ export default function Reconciliation() {
           <div className="rounded-lg border border-stellar-border bg-stellar-card p-5">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
               <div>
-                <h2 className="text-lg font-semibold text-white">Mismatch History</h2>
+                <h2 className="text-lg font-semibold text-stellar-text-primary">Mismatch History</h2>
                 <p className="mt-1 text-sm text-stellar-text-secondary">
                   {selectedRun.assetCode} discrepancy over {filters.range}
                 </p>
@@ -579,11 +579,11 @@ export default function Reconciliation() {
               {chartData.length > 0 ? (
                 <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartData} margin={{ top: 8, right: 12, left: 0, bottom: 0 }}>
-                    <CartesianGrid stroke="#1E2340" strokeDasharray="3 3" vertical={false} />
-                    <XAxis dataKey="time" tick={{ fill: "#8A8FA8", fontSize: 12 }} axisLine={false} tickLine={false} />
+                    <CartesianGrid stroke="#27272A" strokeDasharray="3 3" vertical={false} />
+                    <XAxis dataKey="time" tick={{ fill: "#A1A1AA", fontSize: 12 }} axisLine={false} tickLine={false} />
                     <YAxis
                       tickFormatter={(value) => `${Number(value).toFixed(1)}%`}
-                      tick={{ fill: "#8A8FA8", fontSize: 12 }}
+                      tick={{ fill: "#A1A1AA", fontSize: 12 }}
                       axisLine={false}
                       tickLine={false}
                       width={48}
@@ -609,7 +609,7 @@ export default function Reconciliation() {
           </div>
 
           <div className="rounded-lg border border-stellar-border bg-stellar-card p-5">
-            <h2 className="text-lg font-semibold text-white">Current Values</h2>
+            <h2 className="text-lg font-semibold text-stellar-text-primary">Current Values</h2>
             <dl className="mt-5 space-y-3 text-sm">
               {[
                 { label: "On-chain supply", value: `${formatFullSupply(selectedRun.stellarSupply)} ${selectedRun.assetCode}` },
@@ -620,7 +620,7 @@ export default function Reconciliation() {
               ].map((item) => (
                 <div key={item.label} className="flex justify-between gap-4 border-b border-stellar-border/60 pb-3 last:border-0 last:pb-0">
                   <dt className="text-stellar-text-secondary">{item.label}</dt>
-                  <dd className="text-right font-medium text-white">{item.value}</dd>
+                  <dd className="text-right font-medium text-stellar-text-primary">{item.value}</dd>
                 </div>
               ))}
             </dl>
@@ -630,7 +630,7 @@ export default function Reconciliation() {
 
       {sourceData.length > 0 && (
         <section className="space-y-4">
-          <h2 className="text-lg font-semibold text-white">Source Data</h2>
+          <h2 className="text-lg font-semibold text-stellar-text-primary">Source Data</h2>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
             {sourceData.map((datum) => (
               <SourceDatumCard key={datum.id} datum={datum} />
@@ -642,7 +642,7 @@ export default function Reconciliation() {
       {selectedRun && (
         <section className="rounded-lg border border-stellar-border bg-stellar-card">
           <div className="border-b border-stellar-border px-4 py-3">
-            <h2 className="text-lg font-semibold text-white">Run History</h2>
+            <h2 className="text-lg font-semibold text-stellar-text-primary">Run History</h2>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full min-w-[680px] text-sm">
@@ -660,8 +660,8 @@ export default function Reconciliation() {
                 {(detailQuery.data?.history ?? []).map((run: ReconciliationRun) => (
                   <tr key={run.id}>
                     <td className="px-4 py-3 text-stellar-text-secondary">{formatTime(run.startedAt)}</td>
-                    <td className="px-4 py-3 text-white">{titleCase(run.status)}</td>
-                    <td className="px-4 py-3 text-white">{formatMismatch(run.mismatchPercentage)}</td>
+                    <td className="px-4 py-3 text-stellar-text-primary">{titleCase(run.status)}</td>
+                    <td className="px-4 py-3 text-stellar-text-primary">{formatMismatch(run.mismatchPercentage)}</td>
                     <td className="px-4 py-3 text-stellar-text-secondary">{formatSupply(run.stellarSupply)}</td>
                     <td className="px-4 py-3 text-stellar-text-secondary">{formatSupply(run.reportedSupply)}</td>
                     <td className={`px-4 py-3 ${triageClass[run.triageStatus]}`}>{titleCase(run.triageStatus)}</td>

@@ -89,14 +89,14 @@ export default function MetricsInspectorDrawer({
           <div className="flex items-start justify-between gap-3">
             <div>
               <p className="text-xs uppercase text-stellar-text-secondary">Metric inspector</p>
-              <h2 id="metrics-inspector-title" className="text-xl font-semibold text-white">
+              <h2 id="metrics-inspector-title" className="text-xl font-semibold text-stellar-text-primary">
                 {metric.label}
               </h2>
             </div>
             <button
               type="button"
               onClick={onClose}
-              className="min-h-10 rounded-md px-3 text-sm text-stellar-text-secondary hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+              className="min-h-10 rounded-md px-3 text-sm text-stellar-text-secondary hover:text-stellar-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
               aria-label="Close metrics inspector"
             >
               x
@@ -106,24 +106,24 @@ export default function MetricsInspectorDrawer({
 
         <div className="flex-1 space-y-4 overflow-y-auto p-4">
           <section className="rounded-lg border border-stellar-border bg-stellar-card p-4">
-            <h3 className="text-sm font-semibold text-white">Definition</h3>
+            <h3 className="text-sm font-semibold text-stellar-text-primary">Definition</h3>
             <p className="mt-2 text-sm leading-6 text-stellar-text-secondary">
               {metric.definition}
             </p>
           </section>
 
           <section className="rounded-lg border border-stellar-border bg-stellar-card p-4">
-            <h3 className="text-sm font-semibold text-white">Source</h3>
+            <h3 className="text-sm font-semibold text-stellar-text-primary">Source</h3>
             <p className="mt-2 text-sm leading-6 text-stellar-text-secondary">{metric.source}</p>
           </section>
 
           <section className="rounded-lg border border-stellar-border bg-stellar-card p-4">
-            <h3 className="text-sm font-semibold text-white">Current context</h3>
+            <h3 className="text-sm font-semibold text-stellar-text-primary">Current context</h3>
             <p className="mt-2 text-sm leading-6 text-stellar-text-secondary">{metric.context}</p>
           </section>
 
           <section className="rounded-lg border border-stellar-border bg-stellar-card p-4">
-            <h3 className="text-sm font-semibold text-white">Refresh cadence</h3>
+            <h3 className="text-sm font-semibold text-stellar-text-primary">Refresh cadence</h3>
             <p className="mt-2 text-sm leading-6 text-stellar-text-secondary">{metric.refresh}</p>
           </section>
         </div>

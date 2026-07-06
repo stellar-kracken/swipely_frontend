@@ -21,14 +21,14 @@ export default function SnapshotCard({ title, bridges, timestamp }: SnapshotCard
     <div className="bg-stellar-card border border-stellar-border rounded-xl p-6 shadow-lg print:shadow-none print:border-gray-300">
       <div className="flex justify-between items-start mb-6">
         <div>
-          <h3 className="text-xl font-bold text-white print:text-black">{title}</h3>
+          <h3 className="text-xl font-bold text-stellar-text-primary print:text-black">{title}</h3>
           <p className="text-sm text-stellar-text-secondary print:text-gray-600">
             Metric Comparison Snapshot
           </p>
         </div>
         <div className="text-right">
           <p className="text-xs text-stellar-text-secondary print:text-gray-600">Generated on</p>
-          <p className="text-sm font-medium text-white print:text-black">{timestamp}</p>
+          <p className="text-sm font-medium text-stellar-text-primary print:text-black">{timestamp}</p>
         </div>
       </div>
 
@@ -47,13 +47,13 @@ export default function SnapshotCard({ title, bridges, timestamp }: SnapshotCard
         <h4 className="text-sm font-semibold text-stellar-text-primary print:text-black underline">Bridge Highlights</h4>
         {bridges.map((b) => (
           <div key={b.name} className="flex items-center justify-between py-2 border-b border-stellar-border/50 last:border-0 print:border-gray-100">
-            <span className="text-sm text-white print:text-black font-medium">{b.name}</span>
+            <span className="text-sm text-stellar-text-primary print:text-black font-medium">{b.name}</span>
             <div className="flex gap-4">
               <span className="text-xs text-stellar-text-secondary print:text-gray-600">
-                TVL: <span className="text-white print:text-black">{formatCurrency(b.tvl)}</span>
+                TVL: <span className="text-stellar-text-primary print:text-black">{formatCurrency(b.tvl)}</span>
               </span>
               <span className="text-xs text-stellar-text-secondary print:text-gray-600">
-                24h: <span className="text-white print:text-black">{formatCurrency(b.volume24h)}</span>
+                24h: <span className="text-stellar-text-primary print:text-black">{formatCurrency(b.volume24h)}</span>
               </span>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function SnapshotCard({ title, bridges, timestamp }: SnapshotCard
         </div>
         <button 
           onClick={() => window.print()}
-          className="px-4 py-2 bg-stellar-blue text-white rounded-md text-sm font-medium hover:bg-stellar-blue/90 transition-colors shrink-0"
+          className="px-4 py-2 bg-stellar-blue text-stellar-ink rounded-md text-sm font-medium hover:bg-stellar-blue/90 transition-colors shrink-0"
         >
           Print PDF
         </button>

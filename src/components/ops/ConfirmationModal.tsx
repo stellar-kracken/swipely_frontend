@@ -31,7 +31,7 @@ export const ConfirmationModal: React.FC<ConfirmationModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="w-full max-w-2xl p-6 bg-white dark:bg-slate-800 rounded shadow-lg">
-        <h3 className="text-lg font-semibold text-slate-900 dark:text-white">{title}</h3>
+        <h3 className="text-lg font-semibold text-slate-900 dark:text-stellar-text-primary">{title}</h3>
         {description && <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{description}</p>}
 
         {phraseRequired && (

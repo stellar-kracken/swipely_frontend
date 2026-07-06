@@ -54,7 +54,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
     <>
       {parts.map((part, i) =>
         part.toLowerCase() === query.toLowerCase() ? (
-          <mark key={i} className="bg-stellar-blue/30 text-white rounded-sm px-0.5">
+          <mark key={i} className="bg-stellar-blue/30 text-stellar-text-primary rounded-sm px-0.5">
             {part}
           </mark>
         ) : (
@@ -91,7 +91,7 @@ function ResultCard({ result, query }: { result: IndexedSearchResult; query: str
       </span>
       <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="text-sm font-semibold text-white truncate">
+          <span className="text-sm font-semibold text-stellar-text-primary truncate">
             <Highlight text={result.title} query={query} />
           </span>
           <span className="flex-none text-xs px-1.5 py-0.5 rounded bg-stellar-border text-stellar-text-secondary uppercase tracking-wide">
@@ -122,7 +122,7 @@ function EmptyState({ query }: { query: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-20 text-center">
       <span className="text-5xl mb-4 opacity-40">⊘</span>
-      <p className="text-lg font-semibold text-white">
+      <p className="text-lg font-semibold text-stellar-text-primary">
         No results for &ldquo;{query}&rdquo;
       </p>
       <p className="mt-2 text-sm text-stellar-text-secondary max-w-sm">
@@ -176,7 +176,7 @@ function Pagination({
         type="button"
         disabled={page <= 1}
         onClick={() => onPageChange(page - 1)}
-        className="px-3 py-1.5 rounded-lg text-sm text-stellar-text-secondary hover:text-white hover:bg-stellar-border disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        className="px-3 py-1.5 rounded-lg text-sm text-stellar-text-secondary hover:text-stellar-text-primary hover:bg-stellar-border disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
       >
         ← Prev
       </button>
@@ -192,8 +192,8 @@ function Pagination({
             onClick={() => onPageChange(p)}
             className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
               p === page
-                ? "bg-stellar-blue text-white"
-                : "text-stellar-text-secondary hover:text-white hover:bg-stellar-border"
+                ? "bg-stellar-blue text-stellar-ink"
+                : "text-stellar-text-secondary hover:text-stellar-text-primary hover:bg-stellar-border"
             }`}
           >
             {p}
@@ -204,7 +204,7 @@ function Pagination({
         type="button"
         disabled={page >= totalPages}
         onClick={() => onPageChange(page + 1)}
-        className="px-3 py-1.5 rounded-lg text-sm text-stellar-text-secondary hover:text-white hover:bg-stellar-border disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+        className="px-3 py-1.5 rounded-lg text-sm text-stellar-text-secondary hover:text-stellar-text-primary hover:bg-stellar-border disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
       >
         Next →
       </button>
@@ -347,13 +347,13 @@ export default function SearchResultsPage() {
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             placeholder="Search assets, bridges, incidents, alerts…"
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-stellar-card border border-stellar-border text-white placeholder:text-stellar-text-secondary focus:outline-none focus:border-stellar-blue/60 transition-colors"
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-stellar-card border border-stellar-border text-stellar-text-primary placeholder:text-stellar-text-secondary focus:outline-none focus:border-stellar-blue/60 transition-colors"
             autoFocus
           />
         </div>
         <button
           type="submit"
-          className="px-5 py-2.5 rounded-xl bg-stellar-blue text-white font-medium hover:bg-stellar-blue/90 transition-colors text-sm"
+          className="px-5 py-2.5 rounded-xl bg-stellar-blue text-stellar-ink font-medium hover:bg-stellar-blue/90 transition-colors text-sm"
         >
           Search
         </button>
@@ -375,13 +375,13 @@ export default function SearchResultsPage() {
                   onClick={() => handleTypeChange(t)}
                   className={`px-3 py-1 rounded-full text-xs font-medium transition-colors ${
                     isActive
-                      ? "bg-stellar-blue text-white"
-                      : "bg-stellar-border text-stellar-text-secondary hover:text-white hover:bg-stellar-border/80"
+                      ? "bg-stellar-blue text-stellar-ink"
+                      : "bg-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary hover:bg-stellar-border/80"
                   }`}
                 >
                   {TYPE_LABELS[t]}
                   {!isFetching && (
-                    <span className={`ml-1.5 ${isActive ? "text-white/80" : "text-stellar-text-secondary"}`}>
+                    <span className={`ml-1.5 ${isActive ? "text-stellar-text-primary/80" : "text-stellar-text-secondary"}`}>
                       {count}
                     </span>
                   )}
@@ -401,7 +401,7 @@ export default function SearchResultsPage() {
                 className={`flex items-center gap-1 px-2 py-0.5 rounded transition-colors ${
                   sortParam === f
                     ? "text-stellar-blue"
-                    : "text-stellar-text-secondary hover:text-white"
+                    : "text-stellar-text-secondary hover:text-stellar-text-primary"
                 }`}
               >
                 {f.charAt(0).toUpperCase() + f.slice(1)}

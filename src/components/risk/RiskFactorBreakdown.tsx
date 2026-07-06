@@ -16,7 +16,7 @@ export const RiskFactorBreakdown: React.FC<{ factors: Factors }> = ({ factors })
         <span className="text-sm font-medium text-gray-700">{value}/100</span>
       </div>
       <div className="w-full bg-gray-200 rounded-full h-2.5">
-        <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${value}%` }}></div>
+        <div className="bg-zinc-900 h-2.5 rounded-full" style={{ width: `${value}%` }}></div>
       </div>
     </div>
   );

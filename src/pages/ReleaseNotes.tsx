@@ -97,8 +97,8 @@ export default function ReleaseNotes() {
             onClick={() => setActiveTag("all")}
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
               activeTag === "all"
-                ? "bg-stellar-blue text-white"
-                : "border border-stellar-border text-stellar-text-secondary hover:text-white"
+                ? "bg-stellar-blue text-stellar-ink"
+                : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
             }`}
           >
             All
@@ -111,7 +111,7 @@ export default function ReleaseNotes() {
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                 activeTag === tag
                   ? TAG_COLORS[tag]
-                  : "border border-stellar-border text-stellar-text-secondary hover:text-white"
+                  : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
               }`}
             >
               {TAG_LABELS[tag]}
@@ -140,7 +140,7 @@ export default function ReleaseNotes() {
                 aria-hidden="true"
               >
                 {release.tags.includes("breaking") && (
-                  <svg className="h-3 w-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <svg className="h-3 w-3 text-stellar-text-primary" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495zM10 5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0v-3.5A.75.75 0 0110 5zm0 9a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" />
                   </svg>
                 )}
@@ -164,7 +164,7 @@ export default function ReleaseNotes() {
                     type="button"
                     onClick={() => copyLink(release.version)}
                     title="Copy shareable link"
-                    className="rounded-md p-1.5 text-stellar-text-secondary hover:text-white hover:bg-stellar-dark transition-colors"
+                    className="rounded-md p-1.5 text-stellar-text-secondary hover:text-stellar-text-primary hover:bg-stellar-dark transition-colors"
                   >
                     <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />

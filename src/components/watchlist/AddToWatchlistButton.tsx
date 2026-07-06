@@ -26,7 +26,7 @@ export default function AddToWatchlistButton({
 
         addAsset(symbol);
       }}
-      className={`rounded border border-stellar-border px-2.5 py-1 text-xs text-stellar-text-secondary transition hover:text-white ${className}`}
+      className={`rounded border border-stellar-border px-2.5 py-1 text-xs text-stellar-text-secondary transition hover:text-stellar-text-primary ${className}`}
       aria-pressed={inWatchlist}
       aria-label={inWatchlist ? `Remove ${symbol} from watchlist` : `Add ${symbol} to watchlist`}
     >

@@ -70,7 +70,7 @@ export default function HealthTrendChart({
 
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-      <h2 className="flex items-center gap-2 text-lg font-semibold text-white mb-0.5">
+      <h2 className="flex items-center gap-2 text-lg font-semibold text-stellar-text-primary mb-0.5">
         Health Score Trends
         <HelpIcon
           title="Health Score"
@@ -90,10 +90,10 @@ export default function HealthTrendChart({
       ) : (
         <ResponsiveContainer width="100%" height={260}>
           <LineChart data={data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#1E2340" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#27272A" vertical={false} />
             <XAxis
               dataKey="date"
-              tick={{ fill: "#8A8FA8", fontSize: 11 }}
+              tick={{ fill: "#A1A1AA", fontSize: 11 }}
               axisLine={false}
               tickLine={false}
               interval="preserveStartEnd"
@@ -101,13 +101,13 @@ export default function HealthTrendChart({
             />
             <YAxis
               domain={[0, 100]}
-              tick={{ fill: "#8A8FA8", fontSize: 11 }}
+              tick={{ fill: "#A1A1AA", fontSize: 11 }}
               axisLine={false}
               tickLine={false}
               width={32}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: 12, color: "#8A8FA8" }} />
+            <Legend wrapperStyle={{ fontSize: 12, color: "#A1A1AA" }} />
             {assetKeys.map((key, i) => (
               <Line
                 key={key}

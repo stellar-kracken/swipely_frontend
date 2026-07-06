@@ -30,7 +30,7 @@ export default function Status() {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-3xl font-bold text-white">Service status</h1>
+        <h1 className="text-3xl font-bold text-stellar-text-primary">Service status</h1>
         <p className="mt-2 text-stellar-text-secondary">
           API availability and bridge connectivity signals used by Swipely.
         </p>
@@ -41,7 +41,7 @@ export default function Status() {
           className="rounded-xl border border-stellar-border bg-stellar-card p-6"
           aria-labelledby="api-status-heading"
         >
-          <h2 id="api-status-heading" className="text-lg font-semibold text-white mb-4">
+          <h2 id="api-status-heading" className="text-lg font-semibold text-stellar-text-primary mb-4">
             API server
           </h2>
           {healthQuery.isLoading && (
@@ -54,7 +54,7 @@ export default function Status() {
           )}
           {healthQuery.data && (
             <ul className="space-y-2 text-sm">
-              <li className="flex items-center gap-2 text-white">
+              <li className="flex items-center gap-2 text-stellar-text-primary">
                 {statusDot(healthQuery.data.status === "ok" ? "healthy" : "unknown")}
                 <span>Status: {healthQuery.data.status}</span>
               </li>
@@ -69,7 +69,7 @@ export default function Status() {
           className="rounded-xl border border-stellar-border bg-stellar-card p-6 md:col-span-2"
           aria-labelledby="bridges-status-heading"
         >
-          <h2 id="bridges-status-heading" className="text-lg font-semibold text-white mb-4">
+          <h2 id="bridges-status-heading" className="text-lg font-semibold text-stellar-text-primary mb-4">
             Bridges
           </h2>
           {bridgesQuery.isLoading && (
@@ -98,7 +98,7 @@ export default function Status() {
                 <tbody>
                   {bridgesQuery.data.map((b) => (
                     <tr key={b.name} className="border-b border-stellar-border/60">
-                      <td className="py-3 pr-4 text-white">{b.name}</td>
+                      <td className="py-3 pr-4 text-stellar-text-primary">{b.name}</td>
                       <td className="py-3 pr-4">
                         <span className="inline-flex items-center gap-2 text-stellar-text-secondary">
                           {statusDot(b.status)}

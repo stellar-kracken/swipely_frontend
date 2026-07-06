@@ -19,7 +19,7 @@ export default function IncidentReplay() {
         </div>
         <Link
           to="/incidents"
-          className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary hover:text-white"
+          className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary hover:text-stellar-text-primary"
         >
           Back to incidents
         </Link>

@@ -61,7 +61,7 @@ function DepthTooltip({ active, payload, label }: CustomTooltipProps) {
       role="tooltip"
     >
       <p className="text-stellar-text-muted mb-1">
-        Price: <span className="text-white font-medium">${Number(label).toLocaleString()}</span>
+        Price: <span className="text-stellar-text-primary font-medium">${Number(label).toLocaleString()}</span>
       </p>
       {item && (
         <p className={isBid ? "text-green-400" : "text-red-400"}>
@@ -118,7 +118,7 @@ export default function MarketDepthMiniChart({
       {/* Header */}
       <div className="flex items-center justify-between mb-3 gap-2 flex-wrap">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm font-semibold text-white">Market Depth</h3>
+          <h3 className="text-sm font-semibold text-stellar-text-primary">Market Depth</h3>
           {data && (
             <span className="text-xs text-stellar-text-muted">
               Spread:{" "}
@@ -134,7 +134,7 @@ export default function MarketDepthMiniChart({
           <select
             value={selectedAsset}
             onChange={(e) => setSelectedAsset(e.target.value)}
-            className="bg-stellar-card border border-stellar-border rounded px-2 py-1 text-xs text-white focus:outline-none focus:border-stellar-blue"
+            className="bg-stellar-card border border-stellar-border rounded px-2 py-1 text-xs text-stellar-text-primary focus:outline-none focus:border-stellar-blue"
             aria-label="Select asset for market depth chart"
           >
             {availableAssets.map((a) => (
@@ -150,7 +150,7 @@ export default function MarketDepthMiniChart({
       {data && data.midPrice > 0 && (
         <div className="flex justify-center mb-2">
           <span className="text-xs bg-stellar-border/50 rounded px-2 py-0.5 text-stellar-text-secondary">
-            Mid: <span className="text-white font-medium">${data.midPrice.toLocaleString()}</span>
+            Mid: <span className="text-stellar-text-primary font-medium">${data.midPrice.toLocaleString()}</span>
           </span>
         </div>
       )}

@@ -139,7 +139,7 @@ function SparklineImpl({
     if (trend === "down") {
       return { stroke: "#ef4444", fade: "rgba(239, 68, 68, 0)" };
     }
-    return { stroke: "#8A8FA8", fade: "rgba(138, 143, 168, 0)" };
+    return { stroke: "#A1A1AA", fade: "rgba(138, 143, 168, 0)" };
   }, [trend]);
 
   const valueFormatter = formatter ?? defaultFormatter(metric);
@@ -197,7 +197,7 @@ function SparklineImpl({
                     y={minMax.min.value}
                     r={3}
                     fill={colors.stroke}
-                    stroke={stellarVarRgb("--stellar-card", "rgb(20 24 41)")}
+                    stroke={stellarVarRgb("--stellar-card", "rgb(24 24 27)")}
                     strokeWidth={1}
                     ifOverflow="extendDomain"
                   />
@@ -206,7 +206,7 @@ function SparklineImpl({
                     y={minMax.max.value}
                     r={3}
                     fill={colors.stroke}
-                    stroke={stellarVarRgb("--stellar-card", "rgb(20 24 41)")}
+                    stroke={stellarVarRgb("--stellar-card", "rgb(24 24 27)")}
                     strokeWidth={1}
                     ifOverflow="extendDomain"
                   />

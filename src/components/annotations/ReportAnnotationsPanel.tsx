@@ -49,7 +49,7 @@ export const ReportAnnotationsPanel: React.FC<Props> = ({ reportId, onJumpToSect
           <label className="text-xs text-slate-600 mt-2 block">Note</label>
           <textarea value={newContent} onChange={(e) => setNewContent(e.target.value)} placeholder="Write a short note..." className="w-full mt-1 p-2 border rounded bg-white dark:bg-slate-800" />
           <div className="mt-2 flex justify-end">
-            <button disabled={localBusy || !user} onClick={handleCreate} className="px-3 py-1 rounded bg-stellar-blue text-white disabled:opacity-50">Add Note</button>
+            <button disabled={localBusy || !user} onClick={handleCreate} className="px-3 py-1 rounded bg-stellar-blue text-stellar-ink disabled:opacity-50">Add Note</button>
           </div>
         </div>
 

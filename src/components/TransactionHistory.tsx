@@ -193,7 +193,7 @@ export default function TransactionHistory({
             type="button"
             disabled={page <= 1}
             onClick={() => setPage(page - 1)}
-            className="px-3 py-2 text-sm rounded-lg border border-stellar-border text-white hover:bg-stellar-border disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="px-3 py-2 text-sm rounded-lg border border-stellar-border text-stellar-text-primary hover:bg-stellar-border disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             Previous
           </button>
@@ -217,8 +217,8 @@ export default function TransactionHistory({
                 onClick={() => setPage(pageNum)}
                 className={`px-3 py-2 text-sm rounded-lg border transition-colors ${
                   pageNum === page
-                    ? "bg-stellar-blue border-stellar-blue text-white"
-                    : "border-stellar-border text-stellar-text-secondary hover:bg-stellar-border hover:text-white"
+                    ? "bg-stellar-blue border-stellar-blue text-stellar-ink"
+                    : "border-stellar-border text-stellar-text-secondary hover:bg-stellar-border hover:text-stellar-text-primary"
                 }`}
               >
                 {pageNum}
@@ -230,7 +230,7 @@ export default function TransactionHistory({
             type="button"
             disabled={page >= totalPages}
             onClick={() => setPage(page + 1)}
-            className="px-3 py-2 text-sm rounded-lg border border-stellar-border text-white hover:bg-stellar-border disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+            className="px-3 py-2 text-sm rounded-lg border border-stellar-border text-stellar-text-primary hover:bg-stellar-border disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
           >
             Next
           </button>

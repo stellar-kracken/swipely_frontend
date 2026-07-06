@@ -65,7 +65,7 @@ export default function SummaryCard({
               {title}
             </span>
           </div>
-          <div className="text-3xl font-bold text-white">{value}</div>
+          <div className="text-3xl font-bold text-stellar-text-primary">{value}</div>
           {trend && (
             <div className={`flex items-center gap-1 mt-2 text-xs ${TREND_COLORS[trend.direction]}`}>
               <span>{TREND_ICONS[trend.direction]}</span>

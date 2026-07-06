@@ -35,7 +35,7 @@ export default function AlertPlaybookViewer() {
         </div>
         <button
           type="button"
-          className="rounded-md border border-stellar-border px-4 py-2 text-sm text-white"
+          className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary"
           onClick={handlePrint}
         >
           Print playbook
@@ -50,7 +50,7 @@ export default function AlertPlaybookViewer() {
             </label>
             <input
               id="playbook-search"
-              className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white"
+              className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="supply mismatch, bridge downtime..."
@@ -62,7 +62,7 @@ export default function AlertPlaybookViewer() {
             </label>
             <input
               id="alert-type-filter"
-              className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white"
+              className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary"
               value={alertType}
               onChange={(e) => setAlertType(e.target.value)}
               placeholder="supply_mismatch"
@@ -80,8 +80,8 @@ export default function AlertPlaybookViewer() {
                     type="button"
                     className={`w-full rounded-md border px-3 py-2 text-left text-sm ${
                       playbook.id === activeId
-                        ? "border-stellar-blue bg-stellar-blue/10 text-white"
-                        : "border-stellar-border text-stellar-text-secondary hover:text-white"
+                        ? "border-stellar-blue bg-stellar-blue/10 text-stellar-text-primary"
+                        : "border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
                     }`}
                     onClick={() => setSelectedId(playbook.id)}
                   >
@@ -103,7 +103,7 @@ export default function AlertPlaybookViewer() {
                   {selectedPlaybook.severity.length > 0 &&
                     ` · ${selectedPlaybook.severity.join(" / ")}`}
                 </p>
-                <h2 className="mt-1 text-2xl font-semibold text-white print:text-black">
+                <h2 className="mt-1 text-2xl font-semibold text-stellar-text-primary print:text-black">
                   {selectedPlaybook.title}
                 </h2>
                 <p className="mt-2 text-stellar-text-secondary print:text-black">
@@ -114,7 +114,7 @@ export default function AlertPlaybookViewer() {
               <ol className="mt-6 space-y-4">
                 {selectedPlaybook.steps.map((step) => (
                   <li key={step.order} className="rounded-md border border-stellar-border p-4 print:break-inside-avoid">
-                    <p className="font-medium text-white print:text-black">
+                    <p className="font-medium text-stellar-text-primary print:text-black">
                       Step {step.order}: {step.title}
                     </p>
                     <p className="mt-2 whitespace-pre-wrap text-sm text-stellar-text-secondary print:text-black">
