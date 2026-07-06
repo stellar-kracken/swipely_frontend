@@ -124,7 +124,7 @@ export default function ChartAnnotationPanel({
     <section className="rounded-lg border border-stellar-border bg-stellar-card p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold text-stellar-text-primary">Chart annotations</h3>
+          <h3 className="text-lg font-semibold text-white">Chart annotations</h3>
           <p className="mt-1 text-sm text-stellar-text-secondary">
             Mark milestones, notes, and comparison labels directly from the asset chart.
           </p>
@@ -133,14 +133,14 @@ export default function ChartAnnotationPanel({
           <button
             type="button"
             onClick={downloadAnnotations}
-            className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border"
+            className="rounded-md border border-stellar-border px-3 py-2 text-sm text-white hover:bg-stellar-border"
           >
             Export
           </button>
           <button
             type="button"
             onClick={clearAnnotations}
-            className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-stellar-text-primary"
+            className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-white"
           >
             Clear all
           </button>
@@ -151,11 +151,11 @@ export default function ChartAnnotationPanel({
         <div className="space-y-3">
           <div className="grid gap-3 md:grid-cols-2">
             <label className="space-y-2 text-sm text-stellar-text-secondary">
-              <span className="block text-stellar-text-primary">Type</span>
+              <span className="block text-white">Type</span>
               <select
                 value={kind}
                 onChange={(event) => setKind(event.target.value as ChartAnnotationInput["kind"])}
-                className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 <option value="note">Note</option>
                 <option value="marker">Marker</option>
@@ -163,40 +163,40 @@ export default function ChartAnnotationPanel({
               </select>
             </label>
             <label className="space-y-2 text-sm text-stellar-text-secondary">
-              <span className="block text-stellar-text-primary">Anchor time</span>
+              <span className="block text-white">Anchor time</span>
               <input
                 type="datetime-local"
                 value={toLocalDateTimeInput(timestamp)}
                 onChange={(event) => setTimestamp(fromLocalDateTimeInput(event.target.value))}
-                className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               />
             </label>
           </div>
 
           <label className="space-y-2 text-sm text-stellar-text-secondary">
-            <span className="block text-stellar-text-primary">Label</span>
+            <span className="block text-white">Label</span>
             <input
               value={label}
               onChange={(event) => setLabel(event.target.value)}
               placeholder="Add a short annotation label"
-              className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary placeholder:text-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white placeholder:text-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             />
           </label>
 
           <label className="space-y-2 text-sm text-stellar-text-secondary">
-            <span className="block text-stellar-text-primary">Notes</span>
+            <span className="block text-white">Notes</span>
             <textarea
               value={notes}
               onChange={(event) => setNotes(event.target.value)}
               rows={4}
               placeholder="Add contextual notes for the chart review"
-              className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary placeholder:text-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white placeholder:text-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             />
           </label>
 
           <div className="flex flex-wrap items-center gap-3">
             <label className="flex items-center gap-2 text-sm text-stellar-text-secondary">
-              <span className="text-stellar-text-primary">Color</span>
+              <span className="text-white">Color</span>
               <input
                 type="color"
                 value={color}
@@ -209,7 +209,7 @@ export default function ChartAnnotationPanel({
               type="button"
               onClick={submitForm}
               disabled={!canSubmit}
-              className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-stellar-ink transition-colors hover:bg-stellar-blue/90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {editingId ? "Update annotation" : "Add annotation"}
             </button>
@@ -217,7 +217,7 @@ export default function ChartAnnotationPanel({
               <button
                 type="button"
                 onClick={() => resetForm(defaultTimestamp)}
-                className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary hover:text-stellar-text-primary"
+                className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary hover:text-white"
               >
                 Cancel edit
               </button>
@@ -233,7 +233,7 @@ export default function ChartAnnotationPanel({
 
         <div className="rounded-lg border border-stellar-border/80 bg-stellar-dark/30 p-4">
           <div className="mb-3 flex items-center justify-between">
-            <h4 className="text-sm font-semibold text-stellar-text-primary">Saved annotations</h4>
+            <h4 className="text-sm font-semibold text-white">Saved annotations</h4>
             <span className="text-xs text-stellar-text-secondary">{annotations.length} total</span>
           </div>
 
@@ -252,7 +252,7 @@ export default function ChartAnnotationPanel({
                         style={{ backgroundColor: annotation.color }}
                         aria-hidden="true"
                       />
-                      <span className="text-sm font-medium text-stellar-text-primary">{annotation.label}</span>
+                      <span className="text-sm font-medium text-white">{annotation.label}</span>
                       <span className="rounded-full border border-stellar-border px-2 py-0.5 text-[11px] uppercase tracking-wider text-stellar-text-secondary">
                         {annotation.kind}
                       </span>

@@ -37,10 +37,10 @@ export default function AssetSelector({ assets, selected, max, onToggle, isLoadi
               aria-pressed={isSelected}
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
                 isSelected
-                  ? "bg-stellar-blue text-stellar-ink"
+                  ? "bg-stellar-blue text-white"
                   : isDisabled
                     ? "border border-stellar-border text-stellar-text-muted opacity-50 cursor-not-allowed"
-                    : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary hover:border-stellar-blue/50"
+                    : "border border-stellar-border text-stellar-text-secondary hover:text-white hover:border-stellar-blue/50"
               }`}
             >
               {a.symbol}

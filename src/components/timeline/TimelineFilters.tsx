@@ -91,7 +91,7 @@ export default function TimelineFilters({
             placeholder="Search events..."
             value={filters.searchQuery || ""}
             onChange={(e) => handleSearchChange(e.target.value)}
-            className="w-full bg-stellar-card border border-stellar-border rounded px-3 py-2 pl-9 text-sm text-stellar-text-primary placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue"
+            className="w-full bg-stellar-card border border-stellar-border rounded px-3 py-2 pl-9 text-sm text-white placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue"
             aria-label="Search events"
           />
           <svg
@@ -111,7 +111,7 @@ export default function TimelineFilters({
 
         <button
           onClick={() => setIsExpanded((prev) => !prev)}
-          className="px-4 py-2 bg-stellar-card border border-stellar-border rounded text-sm text-stellar-text-primary hover:bg-stellar-card-hover transition-colors flex items-center gap-2"
+          className="px-4 py-2 bg-stellar-card border border-stellar-border rounded text-sm text-white hover:bg-stellar-card-hover transition-colors flex items-center gap-2"
           aria-label="Toggle filters"
           aria-expanded={isExpanded}
         >
@@ -125,7 +125,7 @@ export default function TimelineFilters({
           </svg>
           Filters
           {activeFilterCount > 0 && (
-            <span className="bg-stellar-blue text-stellar-ink text-xs font-bold px-1.5 py-0.5 rounded-full">
+            <span className="bg-stellar-blue text-white text-xs font-bold px-1.5 py-0.5 rounded-full">
               {activeFilterCount}
             </span>
           )}
@@ -157,7 +157,7 @@ export default function TimelineFilters({
                   onClick={() => handleTypeToggle(type.value)}
                   className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                     filters.types?.includes(type.value)
-                      ? "bg-stellar-blue text-stellar-ink"
+                      ? "bg-stellar-blue text-white"
                       : "bg-stellar-card border border-stellar-border text-stellar-text-secondary hover:bg-stellar-card-hover"
                   }`}
                   aria-pressed={filters.types?.includes(type.value)}
@@ -180,7 +180,7 @@ export default function TimelineFilters({
                   onClick={() => handleSeverityToggle(severity.value)}
                   className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                     filters.severities?.includes(severity.value)
-                      ? "bg-stellar-blue text-stellar-ink"
+                      ? "bg-stellar-blue text-white"
                       : "bg-stellar-card border border-stellar-border text-stellar-text-secondary hover:bg-stellar-card-hover"
                   }`}
                   aria-pressed={filters.severities?.includes(severity.value)}
@@ -203,7 +203,7 @@ export default function TimelineFilters({
                   onClick={() => handleStatusToggle(status.value)}
                   className={`px-3 py-1.5 rounded text-sm font-medium transition-colors ${
                     filters.statuses?.includes(status.value)
-                      ? "bg-stellar-blue text-stellar-ink"
+                      ? "bg-stellar-blue text-white"
                       : "bg-stellar-card border border-stellar-border text-stellar-text-secondary hover:bg-stellar-card-hover"
                   }`}
                   aria-pressed={filters.statuses?.includes(status.value)}
@@ -229,7 +229,7 @@ export default function TimelineFilters({
                 placeholder="e.g., USDC"
                 value={filters.assetSymbol || ""}
                 onChange={(e) => onFiltersChange({ ...filters, assetSymbol: e.target.value })}
-                className="w-full bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue"
+                className="w-full bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-white placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue"
               />
             </div>
 
@@ -246,7 +246,7 @@ export default function TimelineFilters({
                 placeholder="e.g., Circle"
                 value={filters.bridgeName || ""}
                 onChange={(e) => onFiltersChange({ ...filters, bridgeName: e.target.value })}
-                className="w-full bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue"
+                className="w-full bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-white placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue"
               />
             </div>
           </div>

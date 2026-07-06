@@ -55,14 +55,14 @@ export default function ExportButton({ svgRef, filename = "supply-chain" }: Prop
     <div className="absolute bottom-4 left-4 flex gap-1">
       <button
         onClick={handleExportSvg}
-        className="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-stellar-text-primary rounded px-2 py-1 transition-colors"
+        className="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white rounded px-2 py-1 transition-colors"
         aria-label="Export as SVG"
       >
         SVG
       </button>
       <button
         onClick={handleExportPng}
-        className="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-stellar-text-primary rounded px-2 py-1 transition-colors"
+        className="text-xs bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-300 hover:text-white rounded px-2 py-1 transition-colors"
         aria-label="Export as PNG"
       >
         PNG

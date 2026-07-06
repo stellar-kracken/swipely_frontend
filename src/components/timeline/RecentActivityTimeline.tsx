@@ -116,7 +116,7 @@ export default function RecentActivityTimeline({
       {showHeader && (
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <h2 className="text-lg font-semibold text-stellar-text-primary">Recent Activity</h2>
+            <h2 className="text-lg font-semibold text-white">Recent Activity</h2>
             {!isConnected && (
               <span className="text-xs text-yellow-400 flex items-center gap-1">
                 <svg className="w-3 h-3 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
@@ -253,7 +253,7 @@ export default function RecentActivityTimeline({
               d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
             />
           </svg>
-          <p className="font-medium text-stellar-text-primary">No activity yet</p>
+          <p className="font-medium text-white">No activity yet</p>
           <p className="text-sm text-stellar-text-secondary mt-1">
             {totalEvents === 0
               ? "Events will appear here as they occur."

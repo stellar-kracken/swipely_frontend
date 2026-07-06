@@ -65,7 +65,7 @@ export default function ErrorFallback({
         <button
           type="button"
           onClick={resetError}
-          className={`shrink-0 px-3 py-1 text-xs text-stellar-text-primary rounded-md ${styles.btn}`}
+          className={`shrink-0 px-3 py-1 text-xs text-white rounded-md ${styles.btn}`}
         >
           Retry
         </button>
@@ -97,7 +97,7 @@ export default function ErrorFallback({
         <button
           type="button"
           onClick={resetError}
-          className={`px-4 py-2 text-stellar-text-primary rounded-md ${styles.btn} focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-stellar-dark`}
+          className={`px-4 py-2 text-white rounded-md ${styles.btn} focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-stellar-dark`}
         >
           Try Again
         </button>

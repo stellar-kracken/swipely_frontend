@@ -43,7 +43,7 @@ export default function RefreshSettingsPanel({
 
   return (
     <div className="rounded-lg border border-stellar-border bg-stellar-card p-4">
-      <h3 className="text-sm font-semibold text-stellar-text-primary">Refresh settings</h3>
+      <h3 className="text-sm font-semibold text-white">Refresh settings</h3>
 
       <div className="mt-3 grid gap-4 md:grid-cols-2">
         <label className="flex flex-col gap-2 text-sm text-stellar-text-secondary">
@@ -51,7 +51,7 @@ export default function RefreshSettingsPanel({
           <select
             value={refreshIntervalMs}
             onChange={(event) => onRefreshIntervalChange(Number(event.target.value))}
-            className="rounded-md border border-stellar-border bg-stellar-dark px-2 py-2 text-stellar-text-primary"
+            className="rounded-md border border-stellar-border bg-stellar-dark px-2 py-2 text-white"
           >
             {INTERVAL_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -74,7 +74,7 @@ export default function RefreshSettingsPanel({
 
       <fieldset className="mt-4">
         <legend className="text-sm text-stellar-text-secondary">Refresh scope</legend>
-        <label className="mt-2 inline-flex items-center gap-2 text-sm text-stellar-text-primary">
+        <label className="mt-2 inline-flex items-center gap-2 text-sm text-white">
           <input
             type="checkbox"
             checked={allSelected}
@@ -88,7 +88,7 @@ export default function RefreshSettingsPanel({
 
         <div className="mt-2 flex flex-wrap gap-4">
           {targets.map((target) => (
-            <label key={target.id} className="inline-flex items-center gap-2 text-sm text-stellar-text-primary">
+            <label key={target.id} className="inline-flex items-center gap-2 text-sm text-white">
               <input
                 type="checkbox"
                 checked={selectedTargetIds.includes(target.id)}

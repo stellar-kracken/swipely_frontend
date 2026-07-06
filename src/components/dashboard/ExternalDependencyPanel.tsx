@@ -82,7 +82,7 @@ export default function ExternalDependencyPanel() {
           key={label}
           className="rounded-full border border-stellar-border bg-stellar-card px-3 py-1 text-xs text-stellar-text-secondary"
         >
-          {label}: <span className="text-stellar-text-primary">{count}</span>
+          {label}: <span className="text-white">{count}</span>
         </span>
       ))}
     </div>
@@ -109,7 +109,7 @@ export default function ExternalDependencyPanel() {
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-sm font-semibold text-stellar-text-primary">{dependency.displayName}</p>
+                  <p className="text-sm font-semibold text-white">{dependency.displayName}</p>
                   <p className="mt-1 text-xs text-stellar-text-secondary">
                     {dependency.category} · {formatEndpoint(dependency.endpoint)}
                   </p>
@@ -124,13 +124,13 @@ export default function ExternalDependencyPanel() {
                   <p className="text-[11px] uppercase tracking-wide text-stellar-text-secondary">
                     Last Latency
                   </p>
-                  <p className="mt-1 text-stellar-text-primary">{formatLatency(dependency.lastLatencyMs)}</p>
+                  <p className="mt-1 text-white">{formatLatency(dependency.lastLatencyMs)}</p>
                 </div>
                 <div className="rounded-md bg-stellar-border/30 px-3 py-2">
                   <p className="text-[11px] uppercase tracking-wide text-stellar-text-secondary">
                     Consecutive Failures
                   </p>
-                  <p className="mt-1 text-stellar-text-primary">{dependency.consecutiveFailures}</p>
+                  <p className="mt-1 text-white">{dependency.consecutiveFailures}</p>
                 </div>
               </div>
 

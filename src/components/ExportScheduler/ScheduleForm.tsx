@@ -120,7 +120,7 @@ export default function ScheduleForm({ onCreated }: Props) {
           value={form.name}
           onChange={(e) => set("name", e.target.value)}
           placeholder="Weekly analytics export"
-          className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary placeholder:text-stellar-text-muted focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white placeholder:text-stellar-text-muted focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           aria-required="true"
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? "sched-name-err" : undefined}
@@ -140,7 +140,7 @@ export default function ScheduleForm({ onCreated }: Props) {
             id="sched-format"
             value={form.format}
             onChange={(e) => set("format", e.target.value as "csv" | "json")}
-            className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           >
             {FORMATS.map((f) => (
               <option key={f.id} value={f.id}>{f.label}</option>
@@ -156,7 +156,7 @@ export default function ScheduleForm({ onCreated }: Props) {
             id="sched-data-type"
             value={form.dataType}
             onChange={(e) => set("dataType", e.target.value as typeof form.dataType)}
-            className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           >
             {DATA_TYPES.map((dt) => (
               <option key={dt.id} value={dt.id}>{dt.label}</option>
@@ -177,8 +177,8 @@ export default function ScheduleForm({ onCreated }: Props) {
               aria-pressed={form.frequency === f.id}
               className={`rounded px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
                 form.frequency === f.id
-                  ? "bg-stellar-blue text-stellar-ink"
-                  : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
+                  ? "bg-stellar-blue text-white"
+                  : "border border-stellar-border text-stellar-text-secondary hover:text-white"
               }`}
             >
               {f.label}
@@ -197,7 +197,7 @@ export default function ScheduleForm({ onCreated }: Props) {
             id="sched-dow"
             value={form.dayOfWeek}
             onChange={(e) => set("dayOfWeek", Number(e.target.value))}
-            className="w-full max-w-xs rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full max-w-xs rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           >
             {DAYS_OF_WEEK.map((d) => (
               <option key={d.value} value={d.value}>{d.label}</option>
@@ -218,7 +218,7 @@ export default function ScheduleForm({ onCreated }: Props) {
             max={28}
             value={form.dayOfMonth}
             onChange={(e) => set("dayOfMonth", Math.min(28, Math.max(1, Number(e.target.value))))}
-            className="w-24 rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-24 rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           />
           <p className="mt-1 text-xs text-stellar-text-muted">1–28 (safe for all months)</p>
         </div>
@@ -235,7 +235,7 @@ export default function ScheduleForm({ onCreated }: Props) {
             type="time"
             value={form.timeOfDay}
             onChange={(e) => set("timeOfDay", e.target.value)}
-            className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           />
         </div>
 
@@ -247,7 +247,7 @@ export default function ScheduleForm({ onCreated }: Props) {
             id="sched-tz"
             value={form.timezone}
             onChange={(e) => set("timezone", e.target.value)}
-            className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           >
             {TIMEZONES.slice(0, 100).map((tz: string) => (
               <option key={tz} value={tz}>{tz}</option>
@@ -268,8 +268,8 @@ export default function ScheduleForm({ onCreated }: Props) {
               aria-pressed={form.deliveryMethod === method}
               className={`rounded px-4 py-2 text-sm font-medium capitalize transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
                 form.deliveryMethod === method
-                  ? "bg-stellar-blue text-stellar-ink"
-                  : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
+                  ? "bg-stellar-blue text-white"
+                  : "border border-stellar-border text-stellar-text-secondary hover:text-white"
               }`}
             >
               {method === "download" ? "In-app Download" : "Email"}
@@ -289,7 +289,7 @@ export default function ScheduleForm({ onCreated }: Props) {
             value={form.emailAddress ?? ""}
             onChange={(e) => set("emailAddress", e.target.value)}
             placeholder="analyst@example.com"
-            className="w-full max-w-md rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary placeholder:text-stellar-text-muted focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full max-w-md rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white placeholder:text-stellar-text-muted focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             aria-required="true"
             aria-invalid={!!errors.emailAddress}
             aria-describedby={errors.emailAddress ? "sched-email-err" : undefined}
@@ -305,7 +305,7 @@ export default function ScheduleForm({ onCreated }: Props) {
       <div className="pt-2">
         <button
           type="submit"
-          className="rounded-lg bg-stellar-blue px-6 py-2.5 text-sm font-semibold text-stellar-ink hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="rounded-lg bg-stellar-blue px-6 py-2.5 text-sm font-semibold text-white hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           Create Schedule
         </button>

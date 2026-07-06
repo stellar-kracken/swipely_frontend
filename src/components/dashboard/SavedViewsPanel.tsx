@@ -59,7 +59,7 @@ export default function SavedViewsPanel({
         </h3>
         <button
           onClick={() => setShowSaveForm((prev) => !prev)}
-          className="rounded bg-zinc-900 dark:bg-zinc-100 px-2.5 py-1 text-xs font-medium text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200 focus:outline-none focus:ring-2 focus:ring-zinc-500"
+          className="rounded bg-blue-600 px-2.5 py-1 text-xs font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
           aria-expanded={showSaveForm}
         >
           {showSaveForm ? "Cancel" : "Save current view"}
@@ -67,7 +67,7 @@ export default function SavedViewsPanel({
       </div>
 
       {showSaveForm && (
-        <div className="mb-4 rounded-md border border-zinc-200 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-800/50">
+        <div className="mb-4 rounded-md border border-blue-200 bg-blue-50 p-3 dark:border-blue-700 dark:bg-blue-900/30">
           <div className="mb-2">
             <label
               htmlFor="saved-view-name"
@@ -81,7 +81,7 @@ export default function SavedViewsPanel({
               value={newViewName}
               onChange={(e) => setNewViewName(e.target.value)}
               placeholder="e.g. Critical assets only"
-              className="w-full rounded border border-gray-300 px-2 py-1 text-sm focus:border-zinc-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+              className="w-full rounded border border-gray-300 px-2 py-1 text-sm focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
               autoFocus
             />
           </div>
@@ -98,13 +98,13 @@ export default function SavedViewsPanel({
               value={newViewDescription}
               onChange={(e) => setNewViewDescription(e.target.value)}
               placeholder="Short description of this view"
-              className="w-full rounded border border-gray-300 px-2 py-1 text-sm focus:border-zinc-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+              className="w-full rounded border border-gray-300 px-2 py-1 text-sm focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
             />
           </div>
           <button
             onClick={handleSave}
             disabled={!newViewName.trim()}
-            className="rounded bg-zinc-900 dark:bg-zinc-100 px-3 py-1 text-xs font-medium text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200 disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-zinc-500"
+            className="rounded bg-blue-600 px-3 py-1 text-xs font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             Save
           </button>
@@ -122,7 +122,7 @@ export default function SavedViewsPanel({
               key={view.id}
               className={`rounded-md border p-3 transition-colors ${
                 activeViewId === view.id
-                  ? "border-zinc-400 bg-zinc-100 dark:border-zinc-500 dark:bg-zinc-700/40"
+                  ? "border-blue-400 bg-blue-50 dark:border-blue-600 dark:bg-blue-900/20"
                   : "border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-700/30"
               }`}
             >
@@ -152,7 +152,7 @@ export default function SavedViewsPanel({
               <div className="flex flex-wrap gap-1.5 mt-2">
                 <button
                   onClick={() => onApplyView(view)}
-                  className="rounded bg-zinc-900 dark:bg-zinc-100 px-2 py-0.5 text-xs font-medium text-white dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-zinc-200 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                  className="rounded bg-blue-600 px-2 py-0.5 text-xs font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   aria-label={`Apply view: ${view.name}`}
                 >
                   Apply

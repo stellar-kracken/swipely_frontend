@@ -275,7 +275,7 @@ export default function AssetDetail() {
               onClick={() => {
                 void pullToRefresh.refresh();
               }}
-              className="rounded-full border border-stellar-border px-4 py-1.5 text-xs text-stellar-text-primary hover:bg-stellar-border"
+              className="rounded-full border border-stellar-border px-4 py-1.5 text-xs text-white hover:bg-stellar-border"
             >
               Refresh views
             </button>
@@ -305,7 +305,7 @@ export default function AssetDetail() {
               <div className="bg-stellar-card border border-stellar-border rounded-lg p-4">
                 {priceData?.history && priceData.history.length > 0 ? (
                   <div>
-                    <div className="text-2xl font-bold text-stellar-text-primary">
+                    <div className="text-2xl font-bold text-white">
                       ${priceData.history[priceData.history.length - 1].price?.toFixed(4) ?? "--"}
                     </div>
                     <p className="text-sm text-stellar-text-secondary mt-1">
@@ -386,7 +386,7 @@ export default function AssetDetail() {
             />
 
             <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">Price Sources</h3>
+              <h3 className="text-lg font-semibold text-white mb-4">Price Sources</h3>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
@@ -397,7 +397,7 @@ export default function AssetDetail() {
                       <th className="pb-3">Deviation</th>
                     </tr>
                   </thead>
-                  <tbody className="text-stellar-text-primary">
+                  <tbody className="text-white">
                     {priceData?.sources && priceData.sources.length > 0 ? (
                       priceData.sources.map(
                         (source: {

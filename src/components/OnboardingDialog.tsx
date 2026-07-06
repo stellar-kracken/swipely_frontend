@@ -141,7 +141,7 @@ export default function OnboardingDialog({ open, onClose, onComplete }: Props) {
                   if (isLast) onComplete();
                   else setStepIndex((i) => Math.min(steps.length - 1, i + 1));
                 }}
-                className="bg-stellar-blue rounded-lg px-3 py-2 text-sm text-stellar-ink hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card"
+                className="bg-stellar-blue rounded-lg px-3 py-2 text-sm text-white hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card"
               >
                 {isLast ? "Finish" : "Next"}
               </button>

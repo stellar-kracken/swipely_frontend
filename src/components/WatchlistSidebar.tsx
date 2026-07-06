@@ -52,14 +52,14 @@ function SortableAssetItem({ id, onRemove }: SortableItemProps) {
         <button
           {...attributes}
           {...listeners}
-          className="text-gray-400 hover:text-stellar-text-primary cursor-grab active:cursor-grabbing p-1"
+          className="text-gray-400 hover:text-white cursor-grab active:cursor-grabbing p-1"
           aria-label="Drag handle"
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8h16M4 16h16" />
           </svg>
         </button>
-        <Link to={`/assets/${id}`} className="font-bold text-stellar-text-primary hover:text-stellar-blue transition-colors">
+        <Link to={`/assets/${id}`} className="font-bold text-white hover:text-stellar-blue transition-colors">
           {id}
         </Link>
       </div>
@@ -124,12 +124,12 @@ export function WatchlistSidebar({ isOpen, onClose }: WatchlistSidebarProps) {
       />
       <div className="fixed inset-y-0 right-0 z-50 w-80 bg-stellar-card border-l border-stellar-border shadow-2xl flex flex-col transform transition-transform duration-300">
         <div className="p-4 border-b border-stellar-border flex items-center justify-between">
-          <h2 className="text-lg font-bold text-stellar-text-primary">
+          <h2 className="text-lg font-bold text-white">
             {activeWatchlist?.name || "Watchlist"}
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-stellar-text-primary p-1"
+            className="text-gray-400 hover:text-white p-1"
             aria-label="Close sidebar"
           >
             <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -166,7 +166,7 @@ export function WatchlistSidebar({ isOpen, onClose }: WatchlistSidebarProps) {
           <Link
             to="/watchlist"
             onClick={onClose}
-            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-stellar-ink bg-stellar-blue hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-stellar-blue"
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-stellar-blue hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-stellar-blue"
           >
             Manage Watchlists
           </Link>

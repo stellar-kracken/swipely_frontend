@@ -57,7 +57,7 @@ export default function LiquidityDepthChart({
   if (isLoading) {
     return (
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">
+        <h3 className="text-lg font-semibold text-white mb-4">
           {symbol} Liquidity Depth
         </h3>
         <div className="h-64 flex items-center justify-center">
@@ -72,7 +72,7 @@ export default function LiquidityDepthChart({
   if (filteredData.length === 0) {
     return (
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">
+        <h3 className="text-lg font-semibold text-white mb-4">
           {symbol} Liquidity Depth
         </h3>
         <div className="h-64 flex items-center justify-center">
@@ -86,7 +86,7 @@ export default function LiquidityDepthChart({
 
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-      <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">
+      <h3 className="text-lg font-semibold text-white mb-4">
         {symbol} Liquidity Depth by DEX
       </h3>
       <ResponsiveContainer width="100%" height={300}>

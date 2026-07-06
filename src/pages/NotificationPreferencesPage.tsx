@@ -175,8 +175,8 @@ export default function NotificationPreferencesPage() {
               onClick={() => update({ digestFrequency: opt.id })}
               className={`rounded-full px-4 py-1.5 text-sm font-medium transition-colors ${
                 extended.digestFrequency === opt.id
-                  ? "bg-stellar-blue text-stellar-ink"
-                  : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
+                  ? "bg-stellar-blue text-white"
+                  : "border border-stellar-border text-stellar-text-secondary hover:text-white"
               }`}
             >
               {opt.label}

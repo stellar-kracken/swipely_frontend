@@ -51,9 +51,9 @@ export default function RequestBuilder({ endpoint }: Props) {
           <p className="text-xs font-semibold text-stellar-text-secondary uppercase tracking-wide">Path Parameters</p>
           {endpoint.pathParams!.map((p) => (
             <div key={p.name} className="flex items-center gap-3">
-              <label className="w-24 text-sm font-mono text-stellar-text-primary shrink-0">{p.name}</label>
+              <label className="w-24 text-sm font-mono text-white shrink-0">{p.name}</label>
               <input
-                className="flex-1 bg-stellar-dark border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary placeholder-stellar-text-secondary focus:outline-none focus:border-stellar-blue"
+                className="flex-1 bg-stellar-dark border border-stellar-border rounded px-3 py-1.5 text-sm text-white placeholder-stellar-text-secondary focus:outline-none focus:border-stellar-blue"
                 placeholder={p.example ?? p.name}
                 value={pathValues[p.name] ?? ""}
                 onChange={(e) => setPathValues((v) => ({ ...v, [p.name]: e.target.value }))}
@@ -66,13 +66,13 @@ export default function RequestBuilder({ endpoint }: Props) {
       {/* Resolved URL preview */}
       <div className="flex items-center gap-2 bg-stellar-dark border border-stellar-border rounded px-3 py-2">
         <span className="text-xs font-mono text-stellar-text-secondary shrink-0">URL</span>
-        <span className="text-sm font-mono text-stellar-text-primary truncate">{resolvedPath}</span>
+        <span className="text-sm font-mono text-white truncate">{resolvedPath}</span>
       </div>
 
       <button
         onClick={tryIt}
         disabled={loading}
-        className="px-4 py-2 bg-stellar-blue text-stellar-ink text-sm font-medium rounded hover:bg-stellar-blue/90 disabled:opacity-50 transition-colors"
+        className="px-4 py-2 bg-stellar-blue text-white text-sm font-medium rounded hover:bg-blue-600 disabled:opacity-50 transition-colors"
       >
         {loading ? "Sending…" : "Try it out"}
       </button>

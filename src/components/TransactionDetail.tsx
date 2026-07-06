@@ -51,7 +51,7 @@ function DetailRow({
   return (
     <div className="flex flex-col sm:flex-row sm:justify-between gap-1 py-2.5 border-b border-stellar-border last:border-b-0">
       <span className="text-sm text-stellar-text-secondary">{label}</span>
-      <span className="text-sm text-stellar-text-primary break-all sm:text-right">
+      <span className="text-sm text-white break-all sm:text-right">
         {children}
       </span>
     </div>
@@ -79,13 +79,13 @@ export default function TransactionDetail({
       <div className="relative w-full max-w-lg max-h-[90vh] overflow-y-auto bg-stellar-card border border-stellar-border rounded-xl shadow-2xl">
         {/* Header */}
         <div className="sticky top-0 bg-stellar-card border-b border-stellar-border px-6 py-4 flex items-center justify-between rounded-t-xl">
-          <h2 className="text-lg font-semibold text-stellar-text-primary">
+          <h2 className="text-lg font-semibold text-white">
             Transaction Details
           </h2>
           <button
             type="button"
             onClick={onClose}
-            className="text-stellar-text-secondary hover:text-stellar-text-primary transition-colors p-1"
+            className="text-stellar-text-secondary hover:text-white transition-colors p-1"
             aria-label="Close"
           >
             <svg

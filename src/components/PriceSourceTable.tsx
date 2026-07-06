@@ -48,7 +48,7 @@ export default function PriceSourceTable({
   if (isLoading) {
     return (
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">
+        <h3 className="text-lg font-semibold text-white mb-4">
           Price Sources
         </h3>
         <div className="space-y-3">
@@ -63,11 +63,11 @@ export default function PriceSourceTable({
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-stellar-text-primary">Price Sources</h3>
+        <h3 className="text-lg font-semibold text-white">Price Sources</h3>
         {vwap !== null && (
           <div className="text-right">
             <span className="text-xs text-stellar-text-secondary">VWAP</span>
-            <p className="text-lg font-bold text-stellar-text-primary">${vwap.toFixed(4)}</p>
+            <p className="text-lg font-bold text-white">${vwap.toFixed(4)}</p>
           </div>
         )}
       </div>
@@ -84,7 +84,7 @@ export default function PriceSourceTable({
                 <th className="pb-3 font-medium">Status</th>
               </tr>
             </thead>
-            <tbody className="text-stellar-text-primary">
+            <tbody className="text-white">
               {sources.map((source) => (
                 <tr
                   key={source.source}

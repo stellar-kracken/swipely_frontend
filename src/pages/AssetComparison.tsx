@@ -58,7 +58,7 @@ export default function AssetComparison() {
   return (
     <div className="space-y-8">
       <header>
-        <h1 className="text-3xl font-bold text-stellar-text-primary">Asset Comparison Matrix</h1>
+        <h1 className="text-3xl font-bold text-white">Asset Comparison Matrix</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Select multiple assets and compare them side-by-side across all health metrics.
         </p>
@@ -67,7 +67,7 @@ export default function AssetComparison() {
       {/* Asset selection */}
       <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-stellar-text-primary">Select Assets</h2>
+          <h2 className="text-lg font-semibold text-white">Select Assets</h2>
           {selected.length > 0 && (
             <button
               type="button"
@@ -96,7 +96,7 @@ export default function AssetComparison() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="bg-stellar-card border border-stellar-border rounded-lg p-4">
             <p className="text-xs text-stellar-text-secondary uppercase tracking-wide">Assets Selected</p>
-            <p className="mt-1 text-2xl font-bold text-stellar-text-primary">{selectedAssets.length}</p>
+            <p className="mt-1 text-2xl font-bold text-white">{selectedAssets.length}</p>
           </div>
           <div className="bg-stellar-card border border-stellar-border rounded-lg p-4">
             <p className="text-xs text-stellar-text-secondary uppercase tracking-wide">Average Health</p>
@@ -108,7 +108,7 @@ export default function AssetComparison() {
                     : avgHealth >= 50
                       ? "text-yellow-400"
                       : "text-red-400"
-                  : "text-stellar-text-primary"
+                  : "text-white"
               }`}
             >
               {avgHealth ?? "—"}
@@ -116,7 +116,7 @@ export default function AssetComparison() {
           </div>
           <div className="bg-stellar-card border border-stellar-border rounded-lg p-4">
             <p className="text-xs text-stellar-text-secondary uppercase tracking-wide">Best / Worst</p>
-            <p className="mt-1 text-sm font-semibold text-stellar-text-primary">
+            <p className="mt-1 text-sm font-semibold text-white">
               <span className="text-green-400">{best?.symbol ?? "—"}</span>
               {" · "}
               <span className="text-red-400">{worst?.symbol !== best?.symbol ? (worst?.symbol ?? "—") : "—"}</span>
@@ -128,14 +128,14 @@ export default function AssetComparison() {
       {/* Filter + matrix */}
       <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
         <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-          <h2 className="text-lg font-semibold text-stellar-text-primary">Comparison Matrix</h2>
+          <h2 className="text-lg font-semibold text-white">Comparison Matrix</h2>
           {selectedAssets.length > 0 && (
             <input
               type="search"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               placeholder="Filter assets…"
-              className="rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary placeholder:text-stellar-text-muted focus:outline-none focus:ring-2 focus:ring-stellar-blue w-full sm:w-56"
+              className="rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white placeholder:text-stellar-text-muted focus:outline-none focus:ring-2 focus:ring-stellar-blue w-full sm:w-56"
               aria-label="Filter assets in matrix"
             />
           )}

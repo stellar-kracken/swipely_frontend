@@ -100,27 +100,27 @@ export interface ThemeActions {
 }
 
 const defaultLightColors: ThemeColors = {
-  primary: "#18181b",
-  secondary: "#71717a",
-  accent: "#3f3f46",
+  primary: "#3b82f6",
+  secondary: "#64748b",
+  accent: "#8b5cf6",
   background: "#ffffff",
-  surface: "#fafafa",
+  surface: "#f8fafc",
   error: "#ef4444",
   warning: "#f59e0b",
   success: "#10b981",
-  info: "#52525b",
+  info: "#3b82f6",
 };
 
 const defaultDarkColors: ThemeColors = {
-  primary: "#fafafa",
-  secondary: "#a1a1aa",
-  accent: "#d4d4d8",
-  background: "#09090b",
-  surface: "#18181b",
+  primary: "#60a5fa",
+  secondary: "#94a3b8",
+  accent: "#a78bfa",
+  background: "#0f172a",
+  surface: "#1e293b",
   error: "#f87171",
   warning: "#fbbf24",
   success: "#34d399",
-  info: "#a1a1aa",
+  info: "#60a5fa",
 };
 
 const stellarBoot = getPresetById("stellar");

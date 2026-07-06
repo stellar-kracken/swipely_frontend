@@ -44,7 +44,7 @@ const CustomTooltip = ({
           <span className="font-medium">{formatVolume(p.value ?? 0)}</span>
         </p>
       ))}
-      <p className="text-stellar-text-primary font-semibold mt-1 pt-1 border-t border-stellar-border flex justify-between">
+      <p className="text-white font-semibold mt-1 pt-1 border-t border-stellar-border flex justify-between">
         <span>Total</span>
         <span>{formatVolume(total)}</span>
       </p>
@@ -74,7 +74,7 @@ export default function VolumeBreakdown({
 
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-      <h2 className="text-lg font-semibold text-stellar-text-primary mb-0.5">Volume Breakdown</h2>
+      <h2 className="text-lg font-semibold text-white mb-0.5">Volume Breakdown</h2>
       <p className="text-xs text-stellar-text-secondary mb-4">
         Daily transfer volume by bridge over {period}
       </p>
@@ -109,10 +109,10 @@ export default function VolumeBreakdown({
                 </linearGradient>
               ))}
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#27272A" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#1E2340" vertical={false} />
             <XAxis
               dataKey="date"
-              tick={{ fill: "#A1A1AA", fontSize: 11 }}
+              tick={{ fill: "#8A8FA8", fontSize: 11 }}
               axisLine={false}
               tickLine={false}
               interval="preserveStartEnd"
@@ -120,13 +120,13 @@ export default function VolumeBreakdown({
             />
             <YAxis
               tickFormatter={(v) => formatVolume(v)}
-              tick={{ fill: "#A1A1AA", fontSize: 11 }}
+              tick={{ fill: "#8A8FA8", fontSize: 11 }}
               axisLine={false}
               tickLine={false}
               width={60}
             />
             <Tooltip content={<CustomTooltip />} />
-            <Legend wrapperStyle={{ fontSize: 12, color: "#A1A1AA" }} />
+            <Legend wrapperStyle={{ fontSize: 12, color: "#8A8FA8" }} />
             {bridgeNames.map((name, i) => (
               <Area
                 key={name}

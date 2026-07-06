@@ -200,7 +200,7 @@ export default function EntitySwitcher() {
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
-        className="inline-flex min-h-10 items-center gap-2 rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+        className="inline-flex min-h-10 items-center gap-2 rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
         aria-expanded={open}
         aria-haspopup="dialog"
       >
@@ -249,7 +249,7 @@ export default function EntitySwitcher() {
                       onClick={() => selectItem(item)}
                       className={`flex min-h-14 w-full items-center justify-between gap-3 rounded-md px-3 py-2 text-left transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue ${
                         activeIndex === index
-                          ? "bg-stellar-blue text-stellar-ink"
+                          ? "bg-stellar-blue text-white"
                           : "text-stellar-text-primary hover:bg-stellar-dark"
                       }`}
                     >
@@ -257,7 +257,7 @@ export default function EntitySwitcher() {
                         <span className="block truncate text-sm font-medium">{item.title}</span>
                         <span
                           className={`block truncate text-xs ${
-                            activeIndex === index ? "text-stellar-text-primary/80" : "text-stellar-text-secondary"
+                            activeIndex === index ? "text-white/80" : "text-stellar-text-secondary"
                           }`}
                         >
                           {item.subtitle}
@@ -267,7 +267,7 @@ export default function EntitySwitcher() {
                         <span
                           className={`rounded-full border px-2 py-0.5 text-[11px] ${
                             activeIndex === index
-                              ? "border-white/50 text-stellar-text-primary"
+                              ? "border-white/50 text-white"
                               : "border-stellar-border text-stellar-text-secondary"
                           }`}
                         >
@@ -276,7 +276,7 @@ export default function EntitySwitcher() {
                         {item.status ? (
                           <span
                             className={`text-[11px] ${
-                              activeIndex === index ? "text-stellar-text-primary/80" : "text-stellar-text-secondary"
+                              activeIndex === index ? "text-white/80" : "text-stellar-text-secondary"
                             }`}
                           >
                             {item.status}

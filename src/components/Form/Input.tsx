@@ -45,7 +45,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
                     disabled={disabled || loading}
                     aria-invalid={hasError ? "true" : "false"}
                     aria-describedby={`${helpTextId} ${errorId}`}
-                    className={`w-full bg-stellar-dark border rounded-md px-3 py-2 text-sm text-stellar-text-primary transition-all focus:outline-none focus:ring-2 focus:ring-stellar-blue
+                    className={`w-full bg-stellar-dark border rounded-md px-3 py-2 text-sm text-white transition-all focus:outline-none focus:ring-2 focus:ring-stellar-blue
             ${hasError ? "border-red-500 focus:ring-red-500/50" : "border-stellar-border focus:ring-stellar-blue/50"}
             ${disabled || loading ? "opacity-60 cursor-not-allowed bg-opacity-50" : "hover:border-stellar-text-secondary"}
             ${className}`}

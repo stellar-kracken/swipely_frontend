@@ -89,14 +89,14 @@ export default function AnomalyTrendCharts() {
     <section aria-label="Anomaly trend charts" className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-semibold text-stellar-text-primary">Anomaly Trends</h2>
+          <h2 className="text-xl font-semibold text-white">Anomaly Trends</h2>
           <p className="text-stellar-text-secondary text-sm mt-0.5">
             Frequency and severity of detected anomalies over time
           </p>
         </div>
         <div className="flex items-center gap-3 flex-wrap">
           <select
-            className="bg-stellar-card border border-stellar-border text-stellar-text-primary text-sm rounded-lg px-3 py-1.5"
+            className="bg-stellar-card border border-stellar-border text-white text-sm rounded-lg px-3 py-1.5"
             value={selectedAsset}
             onChange={(e) => setSelectedAsset(e.target.value)}
             aria-label="Filter by asset"
@@ -110,7 +110,7 @@ export default function AnomalyTrendCharts() {
           </select>
 
           <select
-            className="bg-stellar-card border border-stellar-border text-stellar-text-primary text-sm rounded-lg px-3 py-1.5"
+            className="bg-stellar-card border border-stellar-border text-white text-sm rounded-lg px-3 py-1.5"
             value={days}
             onChange={(e) => setDays(Number(e.target.value))}
             aria-label="Time range"
@@ -128,8 +128,8 @@ export default function AnomalyTrendCharts() {
                 onClick={() => setChartType(t)}
                 className={`px-3 py-1.5 text-sm font-medium transition-colors ${
                   chartType === t
-                    ? "bg-stellar-blue text-stellar-ink"
-                    : "text-stellar-text-secondary hover:text-stellar-text-primary"
+                    ? "bg-stellar-blue text-white"
+                    : "text-stellar-text-secondary hover:text-white"
                 }`}
               >
                 {t === "area" ? "Area" : "Bar"}
@@ -140,7 +140,7 @@ export default function AnomalyTrendCharts() {
           <button
             onClick={handleExport}
             disabled={!trendData}
-            className="px-3 py-1.5 bg-stellar-card border border-stellar-border text-stellar-text-secondary text-sm rounded-lg hover:text-stellar-text-primary transition-colors disabled:opacity-50"
+            className="px-3 py-1.5 bg-stellar-card border border-stellar-border text-stellar-text-secondary text-sm rounded-lg hover:text-white transition-colors disabled:opacity-50"
           >
             Export CSV
           </button>
@@ -243,7 +243,7 @@ export default function AnomalyTrendCharts() {
               const max = topAssets[0][1];
               return (
                 <div key={asset} className="flex items-center gap-3">
-                  <span className="text-stellar-text-primary text-sm w-16 shrink-0">{asset}</span>
+                  <span className="text-white text-sm w-16 shrink-0">{asset}</span>
                   <div className="flex-1 bg-stellar-border rounded-full h-2">
                     <div
                       className="bg-stellar-blue h-2 rounded-full transition-all"

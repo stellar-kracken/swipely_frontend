@@ -93,7 +93,7 @@ export function TableFooterSummary({
               key={col.id}
               aria-label={col.ariaLabel}
               className={[
-                "py-3 pr-4 text-sm font-semibold text-stellar-text-primary",
+                "py-3 pr-4 text-sm font-semibold text-white",
                 ALIGN_CLASSES[align],
                 col.className ?? "",
               ]
@@ -155,7 +155,7 @@ export function TableSummaryCard({ items, note, className = "" }: TableSummaryCa
             <dt className="text-xs text-stellar-text-secondary whitespace-nowrap">
               {item.label}
             </dt>
-            <dd className={`text-sm font-semibold text-stellar-text-primary ${item.className ?? ""}`}>
+            <dd className={`text-sm font-semibold text-white ${item.className ?? ""}`}>
               {item.value}
             </dd>
           </div>

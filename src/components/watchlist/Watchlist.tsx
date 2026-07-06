@@ -24,12 +24,12 @@ export default function Watchlist() {
   return (
     <div className="space-y-4 rounded-lg border border-stellar-border bg-stellar-card p-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h2 className="text-xl font-semibold text-stellar-text-primary">Watchlists</h2>
+        <h2 className="text-xl font-semibold text-white">Watchlists</h2>
         <div className="flex flex-wrap items-center gap-2">
           <select
             value={activeListId}
             onChange={(event) => setActiveWatchlist(event.target.value)}
-            className="rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary"
+            className="rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white"
             aria-label="Select active watchlist"
           >
             {watchlists.map((list) => (
@@ -47,7 +47,7 @@ export default function Watchlist() {
                 createWatchlist(name);
               }
             }}
-            className="rounded border border-stellar-border px-3 py-2 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+            className="rounded border border-stellar-border px-3 py-2 text-xs text-stellar-text-secondary hover:text-white"
           >
             New list
           </button>
@@ -64,7 +64,7 @@ export default function Watchlist() {
                 renameWatchlist(activeWatchlist.id, next);
               }
             }}
-            className="rounded border border-stellar-border px-3 py-2 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+            className="rounded border border-stellar-border px-3 py-2 text-xs text-stellar-text-secondary hover:text-white"
           >
             Rename
           </button>
@@ -104,7 +104,7 @@ export default function Watchlist() {
             anchor.click();
             URL.revokeObjectURL(url);
           }}
-          className="rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+          className="rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary hover:text-white"
         >
           Export
         </button>
@@ -112,7 +112,7 @@ export default function Watchlist() {
         <button
           type="button"
           onClick={() => fileInputRef.current?.click()}
-          className="rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+          className="rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary hover:text-white"
         >
           Import
         </button>
@@ -138,7 +138,7 @@ export default function Watchlist() {
         <button
           type="button"
           onClick={clearActiveWatchlist}
-          className="rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+          className="rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary hover:text-white"
         >
           Clear list
         </button>
@@ -155,7 +155,7 @@ export default function Watchlist() {
               key={symbol}
               className="flex flex-wrap items-center justify-between gap-2 rounded border border-stellar-border px-3 py-2"
             >
-              <Link to={`/assets/${symbol}`} className="text-sm font-medium text-stellar-text-primary hover:underline">
+              <Link to={`/assets/${symbol}`} className="text-sm font-medium text-white hover:underline">
                 {symbol}
               </Link>
 
@@ -163,14 +163,14 @@ export default function Watchlist() {
                 <button
                   type="button"
                   onClick={() => reorderAsset(symbol, "up")}
-                  className="rounded border border-stellar-border px-2 py-1 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+                  className="rounded border border-stellar-border px-2 py-1 text-xs text-stellar-text-secondary hover:text-white"
                 >
                   ↑
                 </button>
                 <button
                   type="button"
                   onClick={() => reorderAsset(symbol, "down")}
-                  className="rounded border border-stellar-border px-2 py-1 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+                  className="rounded border border-stellar-border px-2 py-1 text-xs text-stellar-text-secondary hover:text-white"
                 >
                   ↓
                 </button>

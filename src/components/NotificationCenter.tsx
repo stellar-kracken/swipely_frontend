@@ -41,7 +41,7 @@ export default function NotificationCenter({ isOpen, onClose }: NotificationCent
       <div className="absolute right-0 top-full mt-2 w-80 md:w-96 max-h-[calc(100vh-5rem)] bg-stellar-card border border-stellar-border rounded-lg shadow-2xl z-50 flex flex-col overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
         <div className="p-4 border-b border-stellar-border flex justify-between items-center bg-stellar-dark/50">
           <div>
-            <h3 className="text-lg font-bold text-stellar-text-primary">Notifications</h3>
+            <h3 className="text-lg font-bold text-white">Notifications</h3>
             {unreadCount > 0 && (
               <p className="text-xs text-stellar-text-secondary">{unreadCount} unread</p>
             )}
@@ -55,7 +55,7 @@ export default function NotificationCenter({ isOpen, onClose }: NotificationCent
             </button>
             <button 
               onClick={onClose}
-              className="text-stellar-text-secondary hover:text-stellar-text-primary md:hidden"
+              className="text-stellar-text-secondary hover:text-white md:hidden"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -96,7 +96,7 @@ export default function NotificationCenter({ isOpen, onClose }: NotificationCent
             </button>
             <Link 
               to="/settings#notifications" 
-              className="text-xs text-stellar-text-secondary hover:text-stellar-text-primary transition-colors flex items-center gap-1"
+              className="text-xs text-stellar-text-secondary hover:text-white transition-colors flex items-center gap-1"
               onClick={onClose}
             >
               <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">

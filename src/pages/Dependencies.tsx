@@ -97,7 +97,7 @@ export default function Dependencies() {
     <section className="space-y-6">
       <header className="rounded-xl border border-stellar-border bg-stellar-card p-5 flex justify-between items-center">
         <div>
-          <h1 className="text-2xl font-bold text-stellar-text-primary">Service Dependency Graph</h1>
+          <h1 className="text-2xl font-bold text-white">Service Dependency Graph</h1>
           <p className="mt-2 text-sm text-stellar-text-secondary">
             Visualize bridge system dependencies, status overlays, and operational impact.
           </p>
@@ -105,13 +105,13 @@ export default function Dependencies() {
         <div className="flex bg-stellar-dark p-1 rounded-lg border border-stellar-border">
           <button
             onClick={() => setViewMode("list")}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${viewMode === "list" ? "bg-stellar-blue text-stellar-ink" : "text-stellar-text-secondary hover:text-stellar-ink"}`}
+            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${viewMode === "list" ? "bg-stellar-blue text-white" : "text-stellar-text-secondary hover:text-white"}`}
           >
             List
           </button>
           <button
             onClick={() => setViewMode("topology")}
-            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${viewMode === "topology" ? "bg-stellar-blue text-stellar-ink" : "text-stellar-text-secondary hover:text-stellar-ink"}`}
+            className={`px-3 py-1.5 text-xs font-medium rounded-md transition-colors ${viewMode === "topology" ? "bg-stellar-blue text-white" : "text-stellar-text-secondary hover:text-white"}`}
           >
             Topology
           </button>
@@ -122,7 +122,7 @@ export default function Dependencies() {
         <label className="space-y-1 text-sm text-stellar-text-secondary">
           Service type
           <select
-            className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             value={typeFilter}
             onChange={(event) => setTypeFilter(event.target.value)}
           >
@@ -137,7 +137,7 @@ export default function Dependencies() {
         <label className="space-y-1 text-sm text-stellar-text-secondary">
           Service status
           <select
-            className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             value={statusFilter}
             onChange={(event) => setStatusFilter(event.target.value)}
           >
@@ -156,7 +156,7 @@ export default function Dependencies() {
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Bridge, RPC, queue..."
-            className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary placeholder:text-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-white placeholder:text-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           />
         </label>
       </div>
@@ -178,7 +178,7 @@ export default function Dependencies() {
           <div className="grid gap-3 sm:grid-cols-3">
             <article className="rounded-xl border border-stellar-border bg-stellar-card p-4">
               <p className="text-xs uppercase tracking-wide text-stellar-text-secondary">Services</p>
-              <p className="mt-2 text-2xl font-semibold text-stellar-text-primary">{graph.summary.totalNodes}</p>
+              <p className="mt-2 text-2xl font-semibold text-white">{graph.summary.totalNodes}</p>
             </article>
             <article className="rounded-xl border border-stellar-border bg-stellar-card p-4">
               <p className="text-xs uppercase tracking-wide text-stellar-text-secondary">Degraded</p>
@@ -203,7 +203,7 @@ export default function Dependencies() {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h2 className="text-lg font-semibold text-stellar-text-primary">{node.label}</h2>
+                      <h2 className="text-lg font-semibold text-white">{node.label}</h2>
                       <p className="mt-1 text-sm text-stellar-text-secondary">{node.description}</p>
                     </div>
                     <span className="rounded-md border border-stellar-border bg-stellar-dark px-2 py-1 text-[11px] text-stellar-text-secondary">

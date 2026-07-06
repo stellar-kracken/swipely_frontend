@@ -150,7 +150,7 @@ export default function IncidentReplayPlayer({
           <div className="mb-4 flex flex-wrap items-center gap-3">
             <button
               type="button"
-              className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-stellar-ink hover:bg-stellar-blue/90"
+              className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-white hover:bg-stellar-blue/90"
               onClick={() => (isPlaying ? stopPlayback() : setIsPlaying(true))}
               aria-label={isPlaying ? "Pause replay" : "Play replay"}
             >
@@ -158,7 +158,7 @@ export default function IncidentReplayPlayer({
             </button>
             <button
               type="button"
-              className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-stellar-text-primary"
+              className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-white"
               onClick={() => {
                 stopPlayback();
                 setCurrentIndex(0);
@@ -169,7 +169,7 @@ export default function IncidentReplayPlayer({
             <label className="flex items-center gap-2 text-sm text-stellar-text-secondary">
               Speed
               <select
-                className="rounded-md border border-stellar-border bg-stellar-dark px-2 py-1 text-stellar-text-primary"
+                className="rounded-md border border-stellar-border bg-stellar-dark px-2 py-1 text-white"
                 value={speed}
                 onChange={(e) => setSpeed(Number(e.target.value) as (typeof SPEED_OPTIONS)[number])}
                 aria-label="Playback speed"
@@ -183,7 +183,7 @@ export default function IncidentReplayPlayer({
             </label>
             <button
               type="button"
-              className="ml-auto rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-stellar-text-primary"
+              className="ml-auto rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-white"
               onClick={exportReplay}
             >
               Export JSON
@@ -260,16 +260,16 @@ export default function IncidentReplayPlayer({
               <dl className="space-y-2 text-sm">
                 <div>
                   <dt className="text-stellar-text-secondary">Type</dt>
-                  <dd className="text-stellar-text-primary">{selectedEvent.eventType}</dd>
+                  <dd className="text-white">{selectedEvent.eventType}</dd>
                 </div>
                 <div>
                   <dt className="text-stellar-text-secondary">Timestamp</dt>
-                  <dd className="text-stellar-text-primary">{formatTimestamp(selectedEvent.timestamp)}</dd>
+                  <dd className="text-white">{formatTimestamp(selectedEvent.timestamp)}</dd>
                 </div>
                 {selectedEvent.severity && (
                   <div>
                     <dt className="text-stellar-text-secondary">Severity</dt>
-                    <dd className="text-stellar-text-primary">{selectedEvent.severity}</dd>
+                    <dd className="text-white">{selectedEvent.severity}</dd>
                   </div>
                 )}
               </dl>

@@ -14,7 +14,7 @@ export default function HamburgerButton({
       aria-expanded={open}
       aria-controls="mobile-navigation-panel"
       aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stellar-border bg-stellar-card/90 text-stellar-text-primary shadow-lg shadow-black/20 transition hover:border-stellar-blue hover:text-stellar-blue focus:outline-none focus:ring-2 focus:ring-stellar-blue md:hidden"
+      className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-stellar-border bg-stellar-card/90 text-white shadow-lg shadow-black/20 transition hover:border-stellar-blue hover:text-stellar-blue focus:outline-none focus:ring-2 focus:ring-stellar-blue md:hidden"
     >
       <span className="relative h-4 w-5">
         <span

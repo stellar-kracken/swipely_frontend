@@ -101,7 +101,7 @@ export default function Help() {
               >
                 <Tab
                   id="all"
-                  activeClassName="bg-stellar-blue text-stellar-ink border-transparent"
+                  activeClassName="bg-stellar-blue text-white border-transparent"
                   inactiveClassName="text-stellar-text-secondary hover:bg-stellar-dark hover:text-stellar-text-primary border-transparent"
                   className="rounded-md px-3 py-2 text-left text-sm"
                 >
@@ -111,7 +111,7 @@ export default function Help() {
                   <Tab
                     key={category.id}
                     id={category.id}
-                    activeClassName="bg-stellar-blue text-stellar-ink border-transparent"
+                    activeClassName="bg-stellar-blue text-white border-transparent"
                     inactiveClassName="text-stellar-text-secondary hover:bg-stellar-dark hover:text-stellar-text-primary border-transparent"
                     className="rounded-md px-3 py-2 text-left text-sm"
                   >
@@ -209,7 +209,7 @@ export default function Help() {
                       onClick={() => setArticleRating(selectedArticle.id, value)}
                       className={`h-8 w-8 rounded-full border text-sm transition-colors ${
                         (ratings[selectedArticle.id] ?? 0) >= value
-                          ? "border-stellar-blue bg-stellar-blue text-stellar-ink"
+                          ? "border-stellar-blue bg-stellar-blue text-white"
                           : "border-stellar-border text-stellar-text-secondary hover:border-stellar-blue"
                       }`}
                       aria-label={`Rate ${value} star`}
@@ -286,7 +286,7 @@ export default function Help() {
             <button
               type="button"
               onClick={submitFeedback}
-              className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-stellar-ink hover:bg-stellar-blue/90"
+              className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-white hover:bg-blue-500"
             >
               Send feedback
             </button>

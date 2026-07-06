@@ -37,7 +37,7 @@ export const AuditDetailModal: React.FC<AuditDetailModalProps> = ({ event, onClo
         </div>
 
         <div className="mt-6 flex justify-end">
-          <button onClick={onClose} className="px-4 py-2 bg-gray-800 text-stellar-text-primary rounded hover:bg-gray-700">Close</button>
+          <button onClick={onClose} className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700">Close</button>
         </div>
       </div>
     </div>

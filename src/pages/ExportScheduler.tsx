@@ -8,7 +8,7 @@ export default function ExportScheduler() {
     <div className="space-y-8">
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-stellar-text-primary">Export Scheduler</h1>
+          <h1 className="text-3xl font-bold text-white">Export Scheduler</h1>
           <p className="mt-2 text-stellar-text-secondary">
             Schedule recurring report exports for delivery to email or in-app download.
           </p>
@@ -16,7 +16,7 @@ export default function ExportScheduler() {
         <button
           type="button"
           onClick={() => setShowForm((v) => !v)}
-          className="rounded-lg bg-stellar-blue px-5 py-2.5 text-sm font-semibold text-stellar-ink hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="rounded-lg bg-stellar-blue px-5 py-2.5 text-sm font-semibold text-white hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           aria-expanded={showForm}
         >
           {showForm ? "Cancel" : "+ New Schedule"}
@@ -28,21 +28,21 @@ export default function ExportScheduler() {
           className="bg-stellar-card border border-stellar-border rounded-lg p-6"
           aria-label="New schedule form"
         >
-          <h2 className="text-lg font-semibold text-stellar-text-primary mb-5">Create Schedule</h2>
+          <h2 className="text-lg font-semibold text-white mb-5">Create Schedule</h2>
           <ScheduleForm onCreated={() => setShowForm(false)} />
         </section>
       )}
 
       <section aria-label="Scheduled exports">
         <div className="flex items-center gap-3 mb-4">
-          <h2 className="text-lg font-semibold text-stellar-text-primary">Scheduled Exports</h2>
+          <h2 className="text-lg font-semibold text-white">Scheduled Exports</h2>
         </div>
         <ScheduleList />
       </section>
 
       {/* Info panel */}
       <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-3">How it works</h2>
+        <h2 className="text-lg font-semibold text-white mb-3">How it works</h2>
         <div className="grid sm:grid-cols-3 gap-4 text-sm text-stellar-text-secondary">
           {[
             {
@@ -76,7 +76,7 @@ export default function ExportScheduler() {
             <div key={item.title} className="flex gap-3">
               <div className="flex-shrink-0 mt-0.5">{item.icon}</div>
               <div>
-                <p className="text-stellar-text-primary font-medium">{item.title}</p>
+                <p className="text-white font-medium">{item.title}</p>
                 <p className="mt-0.5">{item.body}</p>
               </div>
             </div>

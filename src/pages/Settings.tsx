@@ -151,7 +151,7 @@ export default function Settings() {
                 </span>
               </span>
               <select
-                className="rounded-md border border-stellar-border bg-stellar-dark px-3 py-1 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="rounded-md border border-stellar-border bg-stellar-dark px-3 py-1 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                 value={density}
                 onChange={(e) => {
                   setDensity(e.target.value as "compact" | "comfortable" | "spacious");
@@ -191,7 +191,7 @@ export default function Settings() {
                     <Tab
                       key={opt.value}
                       id={String(opt.value)}
-                      activeClassName="bg-stellar-blue text-stellar-ink border-stellar-blue"
+                      activeClassName="bg-stellar-blue text-white border-stellar-blue"
                       inactiveClassName="bg-stellar-dark text-stellar-text-secondary hover:text-stellar-text-primary border border-stellar-border"
                     >
                       {opt.label}
@@ -255,7 +255,7 @@ export default function Settings() {
           <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
             <h3 className="text-stellar-text-primary font-medium mb-2">{t("settings.profileInfo")}</h3>
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 rounded-full bg-stellar-blue flex items-center justify-center text-xl font-bold text-stellar-ink">
+              <div className="w-12 h-12 rounded-full bg-stellar-blue flex items-center justify-center text-xl font-bold text-white">
                 JS
               </div>
               <div>

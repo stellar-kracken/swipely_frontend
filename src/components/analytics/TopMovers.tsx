@@ -35,15 +35,15 @@ function MoverRow({ mover }: { mover: TopMover }) {
   return (
     <div className="flex items-center gap-3 py-2.5">
       {/* Icon */}
-      <div className="flex-none w-8 h-8 rounded-full bg-stellar-border flex items-center justify-center text-sm font-mono text-stellar-text-primary">
+      <div className="flex-none w-8 h-8 rounded-full bg-stellar-border flex items-center justify-center text-sm font-mono text-white">
         {icon}
       </div>
 
       {/* Symbol + bar */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center justify-between mb-1">
-          <span className="text-sm font-medium text-stellar-text-primary">{mover.symbol}</span>
-          <span className="text-sm font-bold text-stellar-text-primary tabular-nums">
+          <span className="text-sm font-medium text-white">{mover.symbol}</span>
+          <span className="text-sm font-bold text-white tabular-nums">
             {mover.currentScore.toFixed(1)}
           </span>
         </div>
@@ -84,7 +84,7 @@ export default function TopMovers({ movers, isLoading, period }: TopMoversProps)
   if (movers.length === 0) {
     return (
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">Top Movers</h2>
+        <h2 className="text-lg font-semibold text-white mb-4">Top Movers</h2>
         <p className="text-stellar-text-secondary text-sm">No data available</p>
       </div>
     );
@@ -95,7 +95,7 @@ export default function TopMovers({ movers, isLoading, period }: TopMoversProps)
 
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-      <h2 className="text-lg font-semibold text-stellar-text-primary mb-0.5">Top Movers</h2>
+      <h2 className="text-lg font-semibold text-white mb-0.5">Top Movers</h2>
       <p className="text-xs text-stellar-text-secondary mb-4">Health score change over {period}</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">

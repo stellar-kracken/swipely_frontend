@@ -29,7 +29,7 @@ export default function LoadingSpinner({
         <div className="absolute inset-0 rounded-full border-2 border-stellar-border" />
         <div className="absolute inset-0 rounded-full border-2 border-t-stellar-blue animate-spin" />
       </div>
-      <p className="text-stellar-text-primary text-sm font-medium">{message}</p>
+      <p className="text-white text-sm font-medium">{message}</p>
 
       {normalizedProgress != null && (
         <div className="w-full h-2.5 bg-stellar-border rounded overflow-hidden">

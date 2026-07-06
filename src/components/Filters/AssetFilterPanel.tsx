@@ -56,7 +56,7 @@ function FilterSection({
         onClick={onToggle}
         aria-expanded={expanded}
         aria-controls={`${id}-content`}
-        className="w-full flex items-center justify-between gap-2 py-3 px-1 text-sm font-medium text-stellar-text-primary hover:text-stellar-text-primary transition-colors"
+        className="w-full flex items-center justify-between gap-2 py-3 px-1 text-sm font-medium text-stellar-text-primary hover:text-white transition-colors"
       >
         <span>{title}</span>
         <svg

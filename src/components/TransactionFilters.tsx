@@ -57,7 +57,7 @@ export default function TransactionFilters({
           placeholder="Search by tx hash or address…"
           value={filters.search}
           onChange={(e) => onFilterChange({ search: e.target.value })}
-          className="w-full bg-stellar-dark border border-stellar-border rounded-lg px-4 py-2.5 text-sm text-stellar-text-primary placeholder-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="w-full bg-stellar-dark border border-stellar-border rounded-lg px-4 py-2.5 text-sm text-white placeholder-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         />
       </div>
 
@@ -66,7 +66,7 @@ export default function TransactionFilters({
         <select
           value={filters.bridge}
           onChange={(e) => onFilterChange({ bridge: e.target.value })}
-          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           aria-label="Filter by bridge"
         >
           {BRIDGE_OPTIONS.map((opt) => (
@@ -79,7 +79,7 @@ export default function TransactionFilters({
         <select
           value={filters.asset}
           onChange={(e) => onFilterChange({ asset: e.target.value })}
-          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           aria-label="Filter by asset"
         >
           {ASSET_OPTIONS.map((opt) => (
@@ -96,7 +96,7 @@ export default function TransactionFilters({
               status: e.target.value as Filters["status"],
             })
           }
-          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           aria-label="Filter by status"
         >
           {STATUS_OPTIONS.map((opt) => (
@@ -111,14 +111,14 @@ export default function TransactionFilters({
           type="date"
           value={filters.dateFrom}
           onChange={(e) => onFilterChange({ dateFrom: e.target.value })}
-          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           aria-label="From date"
         />
         <input
           type="date"
           value={filters.dateTo}
           onChange={(e) => onFilterChange({ dateTo: e.target.value })}
-          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="bg-stellar-dark border border-stellar-border rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           aria-label="To date"
         />
       </div>
@@ -140,7 +140,7 @@ export default function TransactionFilters({
         <button
           type="button"
           onClick={onExport}
-          className="inline-flex items-center gap-1.5 bg-stellar-dark border border-stellar-border rounded-lg px-4 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="inline-flex items-center gap-1.5 bg-stellar-dark border border-stellar-border rounded-lg px-4 py-2 text-sm text-white hover:bg-stellar-border transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

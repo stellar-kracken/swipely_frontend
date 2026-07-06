@@ -100,7 +100,7 @@ function NoteCard({
           <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-stellar-blue/20 text-xs font-semibold text-stellar-blue uppercase">
             {note.author[0]}
           </span>
-          <span className="text-sm font-medium text-stellar-text-primary truncate">{note.author}</span>
+          <span className="text-sm font-medium text-white truncate">{note.author}</span>
         </div>
         <div className="flex items-center gap-1 shrink-0">
           <time
@@ -120,7 +120,7 @@ function NoteCard({
                 type="button"
                 onClick={handleEdit}
                 aria-label="Edit note"
-                className="ml-1 rounded p-1 text-stellar-text-secondary opacity-0 transition-opacity hover:text-stellar-text-primary group-hover:opacity-100 focus:opacity-100"
+                className="ml-1 rounded p-1 text-stellar-text-secondary opacity-0 transition-opacity hover:text-white group-hover:opacity-100 focus:opacity-100"
               >
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                   <path d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.609zm1.414 1.06a.25.25 0 00-.354 0L3.64 10.92l-.534 1.866 1.866-.534 8.433-8.433a.25.25 0 000-.354l-1.378-1.379z" />
@@ -150,7 +150,7 @@ function NoteCard({
             onChange={(e) => setDraft(e.target.value)}
             onKeyDown={handleKeyDown}
             rows={4}
-            className="w-full rounded border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-stellar-text-primary placeholder-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue resize-none"
+            className="w-full rounded border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-white placeholder-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue resize-none"
             placeholder="Write your note… (**bold**, _italic_)"
             aria-label="Edit note content"
           />
@@ -162,7 +162,7 @@ function NoteCard({
               <button
                 type="button"
                 onClick={() => { setEditing(false); setDraft(note.content); }}
-                className="rounded border border-stellar-border px-3 py-1 text-xs text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
+                className="rounded border border-stellar-border px-3 py-1 text-xs text-stellar-text-secondary hover:text-white transition-colors"
               >
                 Cancel
               </button>
@@ -170,7 +170,7 @@ function NoteCard({
                 type="button"
                 onClick={handleSave}
                 disabled={!draft.trim()}
-                className="rounded bg-stellar-blue px-3 py-1 text-xs font-medium text-stellar-ink hover:bg-stellar-blue/80 disabled:opacity-40 transition-colors"
+                className="rounded bg-stellar-blue px-3 py-1 text-xs font-medium text-white hover:bg-stellar-blue/80 disabled:opacity-40 transition-colors"
               >
                 Save
               </button>
@@ -225,17 +225,17 @@ function ComposeForm({
         onKeyDown={handleKeyDown}
         rows={3}
         placeholder="Add an operator note… (**bold**, _italic_)"
-        className="w-full rounded-lg border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-stellar-text-primary placeholder-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue resize-none"
+        className="w-full rounded-lg border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-white placeholder-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue resize-none"
         aria-label="New bridge note"
       />
       <div className="flex items-center justify-between gap-2">
         <p className="text-xs text-stellar-text-secondary">
-          Posting as <span className="font-medium text-stellar-text-primary">{CURRENT_USER}</span>
+          Posting as <span className="font-medium text-white">{CURRENT_USER}</span>
         </p>
         <button
           type="submit"
           disabled={!value.trim()}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-stellar-blue px-4 py-1.5 text-sm font-medium text-stellar-ink hover:bg-stellar-blue/80 disabled:opacity-40 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-stellar-blue px-4 py-1.5 text-sm font-medium text-white hover:bg-stellar-blue/80 disabled:opacity-40 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zm.75 4.75a.75.75 0 00-1.5 0v2.5h-2.5a.75.75 0 000 1.5h2.5v2.5a.75.75 0 001.5 0v-2.5h2.5a.75.75 0 000-1.5h-2.5v-2.5z" />
@@ -265,12 +265,12 @@ export default function BridgeNotesPanel({ bridgeName }: BridgeNotesPanelProps) 
         <div>
           <h2
             id="bridge-notes-heading"
-            className="text-lg font-semibold text-stellar-text-primary"
+            className="text-lg font-semibold text-white"
           >
             Operator Notes
           </h2>
           <p className="mt-0.5 text-sm text-stellar-text-secondary">
-            Internal coordination notes for <span className="font-medium text-stellar-text-primary">{bridgeName}</span>
+            Internal coordination notes for <span className="font-medium text-white">{bridgeName}</span>
           </p>
         </div>
         {notes.length > 0 && (

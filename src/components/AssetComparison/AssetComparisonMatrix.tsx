@@ -173,7 +173,7 @@ export default function AssetComparisonMatrix({ assets, filter }: Props) {
         <button
           type="button"
           onClick={() => exportCsv(sorted)}
-          className="flex items-center gap-1.5 rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
+          className="flex items-center gap-1.5 rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary hover:text-white transition-colors"
         >
           <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -196,7 +196,7 @@ export default function AssetComparisonMatrix({ assets, filter }: Props) {
                   <button
                     type="button"
                     onClick={() => handleSort(col.id)}
-                    className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-stellar-text-secondary hover:text-stellar-text-primary transition-colors focus:outline-none"
+                    className="flex items-center gap-1 text-xs font-semibold uppercase tracking-wide text-stellar-text-secondary hover:text-white transition-colors focus:outline-none"
                     title={col.hint}
                     aria-sort={
                       sortCol === col.id
@@ -225,7 +225,7 @@ export default function AssetComparisonMatrix({ assets, filter }: Props) {
                   if (col.id === "symbol") {
                     return (
                       <td key={col.id} className="px-4 py-3">
-                        <span className="font-mono font-semibold text-stellar-text-primary">{asset.symbol}</span>
+                        <span className="font-mono font-semibold text-white">{asset.symbol}</span>
                         <br />
                         <span className="text-xs text-stellar-text-secondary">{asset.name}</span>
                       </td>

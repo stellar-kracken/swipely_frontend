@@ -181,13 +181,13 @@ export default function DashboardTour({
           <button
             type="button"
             onClick={onSkip}
-            className="text-xs text-stellar-text-secondary hover:text-stellar-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+            className="text-xs text-stellar-text-secondary hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
           >
             Skip
           </button>
         </div>
 
-        <h3 id={titleId} className="mt-2 text-base font-semibold text-stellar-text-primary">
+        <h3 id={titleId} className="mt-2 text-base font-semibold text-white">
           {step.title}
         </h3>
         <p id={bodyId} className="mt-1 text-sm text-stellar-text-secondary" aria-live="polite">
@@ -211,14 +211,14 @@ export default function DashboardTour({
             type="button"
             onClick={onPrev}
             disabled={isFirst}
-            className="rounded-md border border-stellar-border px-3 py-1.5 text-sm text-stellar-text-secondary transition-colors hover:text-stellar-text-primary disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+            className="rounded-md border border-stellar-border px-3 py-1.5 text-sm text-stellar-text-secondary transition-colors hover:text-white disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
           >
             Back
           </button>
           <button
             type="button"
             onClick={isLast ? onFinish : onNext}
-            className="rounded-md border border-stellar-blue bg-stellar-blue/20 px-4 py-1.5 text-sm font-medium text-stellar-text-primary transition-colors hover:bg-stellar-blue/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+            className="rounded-md border border-stellar-blue bg-stellar-blue/20 px-4 py-1.5 text-sm font-medium text-white transition-colors hover:bg-stellar-blue/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
           >
             {isLast ? "Finish" : "Next"}
           </button>

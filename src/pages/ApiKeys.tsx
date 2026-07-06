@@ -164,7 +164,7 @@ export default function ApiKeys() {
           <p className="text-xs uppercase tracking-[0.3em] text-stellar-blue">
             Admin
           </p>
-          <h1 className="mt-2 text-3xl font-bold text-stellar-text-primary">API keys</h1>
+          <h1 className="mt-2 text-3xl font-bold text-white">API keys</h1>
           <p className="mt-2 max-w-2xl text-stellar-text-secondary">
             Manage external integrator credentials, revoke compromised keys,
             and track active usage without leaving the dashboard.
@@ -175,7 +175,7 @@ export default function ApiKeys() {
           <p className="text-xs uppercase tracking-[0.2em] text-stellar-text-secondary">
             Active credentials
           </p>
-          <p className="mt-2 text-3xl font-semibold text-stellar-text-primary">{activeCount}</p>
+          <p className="mt-2 text-3xl font-semibold text-white">{activeCount}</p>
           <p className="mt-1 text-sm text-stellar-text-secondary">
             Total keys tracked: {keys.length}
           </p>
@@ -189,7 +189,7 @@ export default function ApiKeys() {
         >
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h2 className="text-xl font-semibold text-stellar-text-primary">
+              <h2 className="text-xl font-semibold text-white">
                 Issue new integrator key
               </h2>
               <p className="mt-1 text-sm text-stellar-text-secondary">
@@ -203,7 +203,7 @@ export default function ApiKeys() {
 
           <div className="mt-6 space-y-5">
             <label className="block">
-              <span className="mb-2 block text-sm font-medium text-stellar-text-primary">
+              <span className="mb-2 block text-sm font-medium text-white">
                 Admin or bootstrap token
               </span>
               <input
@@ -211,12 +211,12 @@ export default function ApiKeys() {
                 value={adminToken}
                 onChange={(event) => setAdminToken(event.target.value)}
                 placeholder="Paste your admin API key"
-                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
               />
             </label>
 
             <label className="block">
-              <span className="mb-2 block text-sm font-medium text-stellar-text-primary">
+              <span className="mb-2 block text-sm font-medium text-white">
                 Key name
               </span>
               <input
@@ -226,12 +226,12 @@ export default function ApiKeys() {
                   setForm((current) => ({ ...current, name: event.target.value }))
                 }
                 placeholder="Partner monitor"
-                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
               />
             </label>
 
             <div>
-              <p className="mb-3 text-sm font-medium text-stellar-text-primary">Scopes</p>
+              <p className="mb-3 text-sm font-medium text-white">Scopes</p>
               <div className="grid gap-3 sm:grid-cols-3">
                 {AVAILABLE_SCOPES.map((scope) => {
                   const checked = form.scopes.includes(scope);
@@ -240,7 +240,7 @@ export default function ApiKeys() {
                       key={scope}
                       className={`rounded-2xl border px-4 py-3 transition ${
                         checked
-                          ? "border-stellar-blue bg-stellar-blue/10 text-stellar-text-primary"
+                          ? "border-stellar-blue bg-stellar-blue/10 text-white"
                           : "border-stellar-border bg-stellar-dark text-stellar-text-secondary"
                       }`}
                     >
@@ -259,7 +259,7 @@ export default function ApiKeys() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
-                <span className="mb-2 block text-sm font-medium text-stellar-text-primary">
+                <span className="mb-2 block text-sm font-medium text-white">
                   Rate limit / minute
                 </span>
                 <input
@@ -272,12 +272,12 @@ export default function ApiKeys() {
                       rateLimitPerMinute: Number(event.target.value),
                     }))
                   }
-                  className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                  className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
                 />
               </label>
 
               <label className="block">
-                <span className="mb-2 block text-sm font-medium text-stellar-text-primary">
+                <span className="mb-2 block text-sm font-medium text-white">
                   Expires in days
                 </span>
                 <input
@@ -290,7 +290,7 @@ export default function ApiKeys() {
                       expiresInDays: Number(event.target.value),
                     }))
                   }
-                  className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-stellar-text-primary outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
+                  className="w-full rounded-2xl border border-stellar-border bg-stellar-dark px-4 py-3 text-white outline-none transition focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue"
                 />
               </label>
             </div>
@@ -302,7 +302,7 @@ export default function ApiKeys() {
                 <p className="text-xs uppercase tracking-[0.2em] text-emerald-300">
                   Generated key
                 </p>
-                <code className="mt-2 block overflow-x-auto text-sm text-stellar-text-primary">
+                <code className="mt-2 block overflow-x-auto text-sm text-white">
                   {generatedKey}
                 </code>
               </div>
@@ -317,7 +317,7 @@ export default function ApiKeys() {
             <button
               type="submit"
               disabled={loading}
-              className="rounded-2xl bg-stellar-blue px-5 py-3 text-sm font-semibold text-stellar-ink transition hover:bg-stellar-blue/90 disabled:cursor-not-allowed disabled:opacity-60"
+              className="rounded-2xl bg-stellar-blue px-5 py-3 text-sm font-semibold text-white transition hover:bg-blue-500 disabled:cursor-not-allowed disabled:opacity-60"
             >
               {loading ? "Processing..." : "Create API key"}
             </button>
@@ -327,7 +327,7 @@ export default function ApiKeys() {
         <section className="rounded-3xl border border-stellar-border bg-stellar-card/80 p-6">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h2 className="text-xl font-semibold text-stellar-text-primary">Existing keys</h2>
+              <h2 className="text-xl font-semibold text-white">Existing keys</h2>
               <p className="mt-1 text-sm text-stellar-text-secondary">
                 Rotate compromised credentials, revoke stale ones, or extend
                 active partner access.
@@ -336,7 +336,7 @@ export default function ApiKeys() {
             <button
               type="button"
               onClick={() => void loadKeys()}
-              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary transition hover:border-stellar-blue hover:text-stellar-text-primary"
+              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary transition hover:border-stellar-blue hover:text-white"
             >
               Refresh
             </button>
@@ -359,7 +359,7 @@ export default function ApiKeys() {
                 <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                   <div>
                     <div className="flex flex-wrap items-center gap-3">
-                      <h3 className="text-lg font-medium text-stellar-text-primary">{key.name}</h3>
+                      <h3 className="text-lg font-medium text-white">{key.name}</h3>
                       <span
                         className={`rounded-full px-3 py-1 text-xs uppercase tracking-[0.2em] ${
                           key.revokedAt
@@ -391,14 +391,14 @@ export default function ApiKeys() {
                     <button
                       type="button"
                       onClick={() => void handleRotate(key.id)}
-                      className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary transition hover:border-stellar-blue hover:text-stellar-text-primary"
+                      className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary transition hover:border-stellar-blue hover:text-white"
                     >
                       Rotate
                     </button>
                     <button
                       type="button"
                       onClick={() => void handleExtend(key.id)}
-                      className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary transition hover:border-stellar-blue hover:text-stellar-text-primary"
+                      className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-secondary transition hover:border-stellar-blue hover:text-white"
                     >
                       Extend +30d
                     </button>

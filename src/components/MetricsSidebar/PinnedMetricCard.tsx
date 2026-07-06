@@ -69,7 +69,7 @@ export default function PinnedMetricCard({ metric, liveValue, onUnpin }: Props) 
       <div className="flex-1 min-w-0">
         <p className="text-xs text-stellar-text-secondary truncate">{metric.label}</p>
         <div className="flex items-baseline gap-1 mt-0.5">
-          <p className="text-base font-semibold text-stellar-text-primary truncate">
+          <p className="text-base font-semibold text-white truncate">
             {displayVal}
           </p>
           {liveValue?.unit && (

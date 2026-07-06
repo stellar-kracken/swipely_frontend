@@ -24,7 +24,7 @@ function HighlightedText({
         regex.test(part) ? (
           <mark
             key={i}
-            className="bg-stellar-blue/30 text-stellar-text-primary rounded-sm px-0.5"
+            className="bg-stellar-blue/30 text-white rounded-sm px-0.5"
           >
             {part}
           </mark>
@@ -81,8 +81,8 @@ export function ResultItem({
       aria-selected={isActive}
       className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors rounded-lg ${
         isActive
-          ? "bg-stellar-blue/20 text-stellar-text-primary"
-          : "text-stellar-text-secondary hover:bg-stellar-border/50 hover:text-stellar-text-primary"
+          ? "bg-stellar-blue/20 text-white"
+          : "text-stellar-text-secondary hover:bg-stellar-border/50 hover:text-white"
       }`}
       onClick={() => onSelect(result)}
       onMouseEnter={onMouseEnter}
@@ -90,7 +90,7 @@ export function ResultItem({
       {/* Category icon */}
       <span
         className={`flex-none w-8 h-8 flex items-center justify-center rounded-md text-base font-mono ${
-          isActive ? "bg-stellar-blue text-stellar-ink" : "bg-stellar-border text-stellar-text-secondary"
+          isActive ? "bg-stellar-blue text-white" : "bg-stellar-border text-stellar-text-secondary"
         }`}
       >
         {icon}
@@ -98,7 +98,7 @@ export function ResultItem({
 
       {/* Text */}
       <span className="min-w-0 flex-1">
-        <span className="block text-sm font-medium truncate text-stellar-text-primary">
+        <span className="block text-sm font-medium truncate text-white">
           <HighlightedText
             text={result.title}
             query={query}
@@ -209,7 +209,7 @@ export function RecentSearches({
         <button
           type="button"
           onClick={onClear}
-          className="text-xs text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
+          className="text-xs text-stellar-text-secondary hover:text-white transition-colors"
         >
           Clear
         </button>
@@ -234,7 +234,7 @@ export function EmptyState({ query }: { query: string }) {
   return (
     <div className="px-4 py-10 text-center">
       <p className="text-2xl mb-2">¿</p>
-      <p className="text-sm font-medium text-stellar-text-primary">
+      <p className="text-sm font-medium text-white">
         No results for &ldquo;{query}&rdquo;
       </p>
       <p className="text-xs text-stellar-text-secondary mt-1">

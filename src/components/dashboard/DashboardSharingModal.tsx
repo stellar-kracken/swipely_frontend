@@ -51,7 +51,7 @@ export default function DashboardSharingModal({
         <div className="border-b border-stellar-border bg-stellar-card/80 px-5 py-4">
           <div className="flex items-start justify-between gap-3">
             <div>
-              <h2 id="dashboard-share-title" className="text-xl font-semibold text-stellar-text-primary">
+              <h2 id="dashboard-share-title" className="text-xl font-semibold text-white">
                 Share dashboard
               </h2>
               <p className="mt-1 text-sm text-stellar-text-secondary">
@@ -61,7 +61,7 @@ export default function DashboardSharingModal({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-md px-2 py-1 text-sm text-stellar-text-secondary hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              className="rounded-md px-2 py-1 text-sm text-stellar-text-secondary hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               aria-label="Close sharing"
             >
               x
@@ -76,7 +76,7 @@ export default function DashboardSharingModal({
               <select
                 value={expiration}
                 onChange={(event) => setExpiration(event.target.value)}
-                className="w-full rounded-md border border-stellar-border bg-stellar-card px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="w-full rounded-md border border-stellar-border bg-stellar-card px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 {expirationOptions.map((option) => (
                   <option key={option.value} value={option.value}>
@@ -99,12 +99,12 @@ export default function DashboardSharingModal({
 
           <div className="rounded-lg border border-stellar-border bg-stellar-card p-4">
             <p className="text-xs uppercase text-stellar-text-secondary">Share link</p>
-            <p className="mt-2 break-all text-sm text-stellar-text-primary">{shareUrl}</p>
+            <p className="mt-2 break-all text-sm text-white">{shareUrl}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               <CopyButton value={shareUrl} label="Copy link" copiedLabel="Copied" />
               <a
                 href={shareUrl}
-                className="inline-flex min-h-9 items-center rounded-md border border-stellar-border px-3 py-1.5 text-xs font-medium text-stellar-text-secondary hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="inline-flex min-h-9 items-center rounded-md border border-stellar-border px-3 py-1.5 text-xs font-medium text-stellar-text-secondary hover:border-stellar-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 Open preview
               </a>
@@ -112,7 +112,7 @@ export default function DashboardSharingModal({
           </div>
 
           <div className="rounded-lg border border-stellar-border bg-stellar-card p-4">
-            <p className="text-sm font-medium text-stellar-text-primary">Permission hints</p>
+            <p className="text-sm font-medium text-white">Permission hints</p>
             <p className="mt-1 text-sm text-stellar-text-secondary">
               Shared links preserve filters, selected dashboard view, drawer state, and bridge
               status. Read-only links do not grant export or configuration permissions.

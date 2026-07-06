@@ -307,7 +307,7 @@ export default function RelationshipExplorer() {
           <button
             type="button"
             onClick={() => setSelectedId(null)}
-            className="rounded-lg border border-stellar-border bg-stellar-dark px-3 py-1.5 text-sm text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
+            className="rounded-lg border border-stellar-border bg-stellar-dark px-3 py-1.5 text-sm text-stellar-text-secondary hover:text-white transition-colors"
           >
             Clear selection
           </button>

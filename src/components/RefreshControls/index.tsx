@@ -69,7 +69,7 @@ export default function RefreshControls({
         <button
           type="button"
           onClick={() => setSettingsOpen((prev) => !prev)}
-          className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-stellar-text-primary"
+          className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-white"
         >
           {settingsOpen ? "Hide settings" : "Refresh settings"}
         </button>

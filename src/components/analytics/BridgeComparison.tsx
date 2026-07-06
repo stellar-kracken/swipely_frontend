@@ -19,7 +19,7 @@ const STATUS_COLORS: Record<string, string> = {
   healthy: "#22c55e",
   degraded: "#eab308",
   down: "#ef4444",
-  unknown: "#A1A1AA",
+  unknown: "#8A8FA8",
 };
 
 function formatMillions(v: number) {
@@ -41,7 +41,7 @@ const CustomTooltip = ({
   if (!active || !payload?.length) return null;
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-3 text-xs shadow-xl">
-      <p className="text-stellar-text-primary font-semibold mb-1">{label}</p>
+      <p className="text-white font-semibold mb-1">{label}</p>
       {payload.map((p) => (
         <p key={p.name} style={{ color: p.color }} className="flex justify-between gap-4">
           <span>{p.name}</span>
@@ -73,7 +73,7 @@ export default function BridgeComparison({ bridges, isLoading }: BridgeCompariso
   if (data.length === 0) {
     return (
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">Bridge Comparison</h2>
+        <h2 className="text-lg font-semibold text-white mb-4">Bridge Comparison</h2>
         <div className="h-64 flex items-center justify-center text-stellar-text-secondary text-sm">
           No bridge data available
         </div>
@@ -84,7 +84,7 @@ export default function BridgeComparison({ bridges, isLoading }: BridgeCompariso
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
       <div className="flex items-center justify-between mb-1">
-        <h2 className="text-lg font-semibold text-stellar-text-primary">Bridge Comparison</h2>
+        <h2 className="text-lg font-semibold text-white">Bridge Comparison</h2>
         <div className="flex items-center gap-3">
           {bridges.map((b) => (
             <span key={b.name} className="flex items-center gap-1 text-xs text-stellar-text-secondary">
@@ -100,11 +100,11 @@ export default function BridgeComparison({ bridges, isLoading }: BridgeCompariso
       <p className="text-xs text-stellar-text-secondary mb-4">TVL · 24h Volume · 7d Volume</p>
       <ResponsiveContainer width="100%" height={260}>
         <BarChart data={data} barGap={4}>
-          <CartesianGrid strokeDasharray="3 3" stroke="#27272A" vertical={false} />
-          <XAxis dataKey="name" tick={{ fill: "#A1A1AA", fontSize: 12 }} axisLine={false} tickLine={false} />
-          <YAxis tickFormatter={(v) => formatMillions(v)} tick={{ fill: "#A1A1AA", fontSize: 11 }} axisLine={false} tickLine={false} width={60} />
+          <CartesianGrid strokeDasharray="3 3" stroke="#1E2340" vertical={false} />
+          <XAxis dataKey="name" tick={{ fill: "#8A8FA8", fontSize: 12 }} axisLine={false} tickLine={false} />
+          <YAxis tickFormatter={(v) => formatMillions(v)} tick={{ fill: "#8A8FA8", fontSize: 11 }} axisLine={false} tickLine={false} width={60} />
           <Tooltip content={<CustomTooltip />} cursor={{ fill: "rgba(255,255,255,0.04)" }} />
-          <Legend wrapperStyle={{ fontSize: 12, color: "#A1A1AA" }} />
+          <Legend wrapperStyle={{ fontSize: 12, color: "#8A8FA8" }} />
           <Bar dataKey="TVL" fill="#0057FF" radius={[3, 3, 0, 0]} />
           <Bar dataKey="Vol 24h" fill="#00D4AA" radius={[3, 3, 0, 0]} />
           <Bar dataKey="Vol 7d" fill="#8B5CF6" radius={[3, 3, 0, 0]} />

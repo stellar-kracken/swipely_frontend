@@ -116,8 +116,8 @@ export default function AssetDiscoverySection({
               type="button"
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                 dashboardLayout === "grid"
-                  ? "bg-stellar-blue text-stellar-ink"
-                  : "text-stellar-text-secondary hover:text-stellar-text-primary"
+                  ? "bg-stellar-blue text-white"
+                  : "text-stellar-text-secondary hover:text-white"
               }`}
               aria-pressed={dashboardLayout === "grid"}
               onClick={() => setPreference("dashboardLayout", "grid")}
@@ -128,8 +128,8 @@ export default function AssetDiscoverySection({
               type="button"
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                 dashboardLayout === "list"
-                  ? "bg-stellar-blue text-stellar-ink"
-                  : "text-stellar-text-secondary hover:text-stellar-text-primary"
+                  ? "bg-stellar-blue text-white"
+                  : "text-stellar-text-secondary hover:text-white"
               }`}
               aria-pressed={dashboardLayout === "list"}
               onClick={() => setPreference("dashboardLayout", "list")}
@@ -144,7 +144,7 @@ export default function AssetDiscoverySection({
             onChange={(e) =>
               setPreference("assetSort", e.target.value as "symbol" | "health")
             }
-            className="rounded-md border border-stellar-border bg-stellar-card px-2 py-1 text-xs text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="rounded-md border border-stellar-border bg-stellar-card px-2 py-1 text-xs text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             aria-label="Sort assets"
           >
             <option value="symbol">Symbol (A–Z)</option>
@@ -156,8 +156,8 @@ export default function AssetDiscoverySection({
               type="button"
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                 favoritesFilterMode === "all"
-                  ? "bg-stellar-blue text-stellar-ink"
-                  : "text-stellar-text-secondary hover:text-stellar-text-primary"
+                  ? "bg-stellar-blue text-white"
+                  : "text-stellar-text-secondary hover:text-white"
               }`}
               aria-pressed={favoritesFilterMode === "all"}
               onClick={() => setFavoritesFilterMode("all")}
@@ -168,8 +168,8 @@ export default function AssetDiscoverySection({
               type="button"
               className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
                 favoritesFilterMode === "favorites"
-                  ? "bg-stellar-blue text-stellar-ink"
-                  : "text-stellar-text-secondary hover:text-stellar-text-primary"
+                  ? "bg-stellar-blue text-white"
+                  : "text-stellar-text-secondary hover:text-white"
               }`}
               aria-pressed={favoritesFilterMode === "favorites"}
               onClick={() => setFavoritesFilterMode("favorites")}
@@ -241,7 +241,7 @@ export default function AssetDiscoverySection({
                         <button
                           type="button"
                           onClick={() => openInsightsTray(asset.symbol)}
-                          className="w-full rounded-md border border-stellar-border px-3 py-2 text-xs font-medium text-stellar-text-secondary transition-colors hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                          className="w-full rounded-md border border-stellar-border px-3 py-2 text-xs font-medium text-stellar-text-secondary transition-colors hover:border-stellar-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                           aria-label={`Open insights for ${asset.name ?? asset.symbol}`}
                         >
                           Insights

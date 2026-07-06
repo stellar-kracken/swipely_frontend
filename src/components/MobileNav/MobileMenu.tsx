@@ -168,7 +168,7 @@ export default function MobileMenu({
             <p className="text-xs uppercase tracking-[0.3em] text-stellar-blue">
               Swipely
             </p>
-            <h2 className="mt-2 text-2xl font-semibold text-stellar-text-primary">
+            <h2 className="mt-2 text-2xl font-semibold text-white">
               Control surface
             </h2>
             <p className="mt-1 text-sm text-stellar-text-secondary">
@@ -178,7 +178,7 @@ export default function MobileMenu({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary transition hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="rounded-full border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary transition hover:border-stellar-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           >
             Close
           </button>
@@ -188,7 +188,7 @@ export default function MobileMenu({
           <p className="text-xs uppercase tracking-[0.2em] text-stellar-text-secondary">
             Account
           </p>
-          <p className="mt-2 text-base font-medium text-stellar-text-primary">Wave Operator</p>
+          <p className="mt-2 text-base font-medium text-white">Wave Operator</p>
           <p className="mt-1 text-sm text-stellar-text-secondary">
             Mobile command center for bridge monitoring and admin actions.
           </p>
@@ -212,7 +212,7 @@ export default function MobileMenu({
                       <span className="block text-xs uppercase tracking-[0.2em] text-stellar-text-secondary">
                         {group.label}
                       </span>
-                      <span className="mt-1 block text-sm font-medium text-stellar-text-primary">
+                      <span className="mt-1 block text-sm font-medium text-white">
                         {group.items.length} destinations
                       </span>
                     </span>
@@ -232,8 +232,8 @@ export default function MobileMenu({
                             onClick={onClose}
                             className={`block rounded-2xl border px-3 py-3 transition focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
                               isActive
-                                ? "border-stellar-blue bg-stellar-blue/15 text-stellar-text-primary"
-                                : "border-transparent bg-stellar-dark/60 text-stellar-text-secondary hover:border-stellar-border hover:text-stellar-text-primary"
+                                ? "border-stellar-blue bg-stellar-blue/15 text-white"
+                                : "border-transparent bg-stellar-dark/60 text-stellar-text-secondary hover:border-stellar-border hover:text-white"
                             }`}
                           >
                             <span className="block text-sm font-medium">
@@ -261,14 +261,14 @@ export default function MobileMenu({
             <Link
               to="/analytics"
               onClick={onClose}
-              className="rounded-2xl bg-stellar-blue px-4 py-3 text-center text-sm font-medium text-stellar-ink transition hover:bg-stellar-blue/90 focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              className="rounded-2xl bg-stellar-blue px-4 py-3 text-center text-sm font-medium text-white transition hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             >
               Open analytics
             </Link>
             <Link
               to="/admin/api-keys"
               onClick={onClose}
-              className="rounded-2xl border border-stellar-border px-4 py-3 text-center text-sm font-medium text-stellar-text-secondary transition hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              className="rounded-2xl border border-stellar-border px-4 py-3 text-center text-sm font-medium text-stellar-text-secondary transition hover:border-stellar-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             >
               Manage keys
             </Link>

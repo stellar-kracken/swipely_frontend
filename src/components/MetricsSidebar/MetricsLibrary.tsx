@@ -43,8 +43,8 @@ export default function MetricsLibrary({
             aria-pressed={category === c.id}
             className={`rounded-full px-3 py-1 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
               category === c.id
-                ? "bg-stellar-blue text-stellar-ink"
-                : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
+                ? "bg-stellar-blue text-white"
+                : "border border-stellar-border text-stellar-text-secondary hover:text-white"
             }`}
           >
             {c.label}
@@ -62,7 +62,7 @@ export default function MetricsLibrary({
               className="flex items-center justify-between rounded-lg border border-stellar-border bg-stellar-dark px-3 py-2.5"
             >
               <div className="min-w-0">
-                <p className="text-sm text-stellar-text-primary truncate">{m.label}</p>
+                <p className="text-sm text-white truncate">{m.label}</p>
                 <p className="text-xs text-stellar-text-muted capitalize">{m.category}</p>
               </div>
               <button

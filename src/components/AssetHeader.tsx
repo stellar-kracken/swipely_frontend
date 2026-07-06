@@ -86,19 +86,19 @@ export default function AssetHeader({
 
   const score = health?.overallScore ?? null;
   const status = score !== null ? getHealthStatus(score) : null;
-  const statusColor = status ? getStatusColor(status) : "#A1A1AA";
+  const statusColor = status ? getStatusColor(status) : "#8A8FA8";
 
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
       <div className="flex items-center gap-2 mb-4">
         <Link
           to="/"
-          className="text-sm text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
+          className="text-sm text-stellar-text-secondary hover:text-white transition-colors"
         >
           Dashboard
         </Link>
         <span className="text-stellar-text-secondary">/</span>
-        <span className="text-sm text-stellar-text-primary">{symbol}</span>
+        <span className="text-sm text-white">{symbol}</span>
       </div>
 
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
@@ -111,7 +111,7 @@ export default function AssetHeader({
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-3 flex-wrap">
-            <h1 className="text-2xl font-bold text-stellar-text-primary">{symbol}</h1>
+            <h1 className="text-2xl font-bold text-white">{symbol}</h1>
             {assetInfo && (
               <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-stellar-border text-stellar-text-secondary">
                 {(assetInfo.type && TYPE_LABELS[assetInfo.type]) || assetInfo.type}
@@ -152,7 +152,7 @@ export default function AssetHeader({
 
         {score !== null && (
           <div className="flex flex-col items-center flex-shrink-0">
-            <span className="text-4xl font-bold text-stellar-text-primary">{score}</span>
+            <span className="text-4xl font-bold text-white">{score}</span>
             <span className="text-xs text-stellar-text-secondary">Health Score</span>
             {health?.trend && (
               <span
@@ -170,7 +170,7 @@ export default function AssetHeader({
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
             <div>
               <span className="text-stellar-text-secondary">Issuer: </span>
-              <span className="text-stellar-text-primary font-mono text-xs">
+              <span className="text-white font-mono text-xs">
                 {assetInfo.issuer.length > 20
                   ? `${assetInfo.issuer.slice(0, 10)}...${assetInfo.issuer.slice(-10)}`
                   : assetInfo.issuer}
@@ -179,7 +179,7 @@ export default function AssetHeader({
             {health?.lastUpdated && (
               <div>
                 <span className="text-stellar-text-secondary">Last updated: </span>
-                <span className="text-stellar-text-primary">
+                <span className="text-white">
                   {new Date(health.lastUpdated).toLocaleString()}
                 </span>
               </div>

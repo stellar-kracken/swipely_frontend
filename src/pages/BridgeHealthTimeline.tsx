@@ -46,7 +46,7 @@ export default function BridgeHealthTimeline() {
   return (
     <div className="space-y-6">
       <header>
-        <h1 className="text-3xl font-bold text-stellar-text-primary">Bridge Health Timeline</h1>
+        <h1 className="text-3xl font-bold text-white">Bridge Health Timeline</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Track health score progression for any bridge over a selected time period.
         </p>
@@ -66,7 +66,7 @@ export default function BridgeHealthTimeline() {
             value={selectedBridge || effectiveBridge}
             onChange={(e) => setSelectedBridge(e.target.value)}
             disabled={bridgesLoading}
-            className="w-full rounded-lg border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue disabled:opacity-50"
+            className="w-full rounded-lg border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue disabled:opacity-50"
           >
             {bridgesLoading && (
               <option value="">Loading bridges…</option>
@@ -93,8 +93,8 @@ export default function BridgeHealthTimeline() {
                 aria-pressed={period === p.id}
                 className={`rounded px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
                   period === p.id
-                    ? "bg-stellar-blue text-stellar-ink"
-                    : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
+                    ? "bg-stellar-blue text-white"
+                    : "border border-stellar-border text-stellar-text-secondary hover:text-white"
                 }`}
               >
                 {p.label}
@@ -125,7 +125,7 @@ export default function BridgeHealthTimeline() {
               <p className="text-xs text-stellar-text-secondary uppercase tracking-wide">{stat.label}</p>
               <p
                 className={`mt-1 text-2xl font-bold ${
-                  typeof stat.value === "number" ? stat.colorFn(stat.value) : "text-stellar-text-primary"
+                  typeof stat.value === "number" ? stat.colorFn(stat.value) : "text-white"
                 }`}
               >
                 {stat.value}
@@ -142,7 +142,7 @@ export default function BridgeHealthTimeline() {
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h2 className="text-lg font-semibold text-stellar-text-primary">
+            <h2 className="text-lg font-semibold text-white">
               {effectiveBridge || "Select a bridge"}
             </h2>
             <p className="text-xs text-stellar-text-secondary mt-0.5">
@@ -196,7 +196,7 @@ export default function BridgeHealthTimeline() {
 
       {/* Annotations panel */}
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-3">Health Change Events</h2>
+        <h2 className="text-lg font-semibold text-white mb-3">Health Change Events</h2>
         {isLoading ? (
           <div className="space-y-2">
             {[...Array(3)].map((_, i) => (

@@ -20,7 +20,7 @@ const CustomTooltip = ({
       <p style={{ color: entry.payload.color }} className="font-semibold">
         {entry.name}
       </p>
-      <p className="text-stellar-text-primary mt-0.5">{entry.value} assets</p>
+      <p className="text-white mt-0.5">{entry.value} assets</p>
     </div>
   );
 };
@@ -39,7 +39,7 @@ export default function HealthDistribution({ data, isLoading }: HealthDistributi
 
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-      <h2 className="text-lg font-semibold text-stellar-text-primary mb-1">Asset Health Distribution</h2>
+      <h2 className="text-lg font-semibold text-white mb-1">Asset Health Distribution</h2>
       <p className="text-xs text-stellar-text-secondary mb-4">{total} assets total</p>
 
       {data.length === 0 ? (
@@ -66,7 +66,7 @@ export default function HealthDistribution({ data, isLoading }: HealthDistributi
               <Tooltip content={<CustomTooltip />} />
               <Legend
                 formatter={(value) => (
-                  <span style={{ color: "#A1A1AA", fontSize: 12 }}>{value}</span>
+                  <span style={{ color: "#8A8FA8", fontSize: 12 }}>{value}</span>
                 )}
               />
             </PieChart>

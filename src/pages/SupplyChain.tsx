@@ -7,7 +7,7 @@ export default function SupplyChain() {
   return (
     <div className="flex flex-col h-full gap-4 p-4">
       <div>
-        <h1 className="text-xl font-semibold text-stellar-text-primary">Supply Chain</h1>
+        <h1 className="text-xl font-semibold text-white">Supply Chain</h1>
         <p className="text-sm text-slate-400 mt-0.5">
           Cross-chain asset flow and bridge health overview
         </p>

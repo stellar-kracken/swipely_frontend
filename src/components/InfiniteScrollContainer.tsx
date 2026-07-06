@@ -89,7 +89,7 @@ export function InfiniteScrollContainer<T>({
         </p>
         <button
           onClick={retry}
-          className="px-4 py-2 bg-zinc-900 text-white rounded-lg hover:bg-zinc-800 transition-colors"
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
         >
           Try Again
         </button>
@@ -161,7 +161,7 @@ export function InfiniteScrollContainer<T>({
           <p className="text-red-600 mb-3">Failed to load more {itemName}</p>
           <button
             onClick={retry}
-            className="px-4 py-2 bg-zinc-900 text-white rounded-lg hover:bg-zinc-800 transition-colors text-sm"
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
           >
             Retry
           </button>
@@ -182,7 +182,7 @@ export function InfiniteScrollContainer<T>({
       {showBackToTop && showBackButton && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 p-3 bg-zinc-900 text-white rounded-full shadow-lg hover:bg-zinc-800 transition-all duration-300 z-50"
+          className="fixed bottom-8 right-8 p-3 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300 z-50"
           aria-label="Back to top"
         >
           <svg

@@ -24,7 +24,7 @@ export default function LiquidityDashboard() {
     <div className="space-y-6">
       <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-3xl font-bold text-stellar-text-primary">Liquidity</h1>
+          <h1 className="text-3xl font-bold text-white">Liquidity</h1>
           <p className="mt-1 text-stellar-text-secondary text-sm">
             Aggregated depth across SDEX, StellarX AMM, and Phoenix
           </p>
@@ -68,7 +68,7 @@ export default function LiquidityDashboard() {
             className="bg-stellar-card border border-stellar-border rounded-lg p-4"
           >
             <p className="text-xs text-stellar-text-secondary">{stat.label}</p>
-            <p className="mt-1 text-xl font-bold text-stellar-text-primary">{stat.value}</p>
+            <p className="mt-1 text-xl font-bold text-white">{stat.value}</p>
           </div>
         ))}
       </div>
@@ -79,7 +79,7 @@ export default function LiquidityDashboard() {
         aria-label={`${pair} order book depth`}
       >
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-stellar-text-primary">Order Book Depth</h2>
+          <h2 className="text-lg font-semibold text-white">Order Book Depth</h2>
           {lastUpdated && (
             <span className="text-xs text-stellar-text-secondary">
               Updated {new Date(lastUpdated).toLocaleTimeString()}
@@ -95,7 +95,7 @@ export default function LiquidityDashboard() {
           className="bg-stellar-card border border-stellar-border rounded-lg p-6"
           aria-label="Liquidity by venue"
         >
-          <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">
+          <h2 className="text-lg font-semibold text-white mb-4">
             Liquidity by Venue
           </h2>
           <LiquidityByVenue venues={venues} isLoading={isLoading} />
@@ -114,14 +114,14 @@ export default function LiquidityDashboard() {
               <tbody>
                 {venues.map((v: VenueLiquidity) => (
                   <tr key={v.venue} className="border-b border-stellar-border/50">
-                    <td className="py-2 text-stellar-text-primary">{v.venue}</td>
+                    <td className="py-2 text-white">{v.venue}</td>
                     <td className="py-2 text-right text-stellar-text-secondary">
                       ${v.bidDepth.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                     </td>
                     <td className="py-2 text-right text-stellar-text-secondary">
                       ${v.askDepth.toLocaleString(undefined, { maximumFractionDigits: 0 })}
                     </td>
-                    <td className="py-2 text-right text-stellar-text-primary font-medium">
+                    <td className="py-2 text-right text-white font-medium">
                       {v.share.toFixed(1)}%
                     </td>
                   </tr>
@@ -135,7 +135,7 @@ export default function LiquidityDashboard() {
           className="bg-stellar-card border border-stellar-border rounded-lg p-6"
           aria-label="Price impact calculator"
         >
-          <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">
+          <h2 className="text-lg font-semibold text-white mb-4">
             Price Impact Calculator
           </h2>
           <PriceImpactCalculator depth={depth} />
@@ -147,7 +147,7 @@ export default function LiquidityDashboard() {
         className="bg-stellar-card border border-stellar-border rounded-lg p-6"
         aria-label="Liquidity trend"
       >
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">
+        <h2 className="text-lg font-semibold text-white mb-4">
           Liquidity Trend
         </h2>
         <LiquidityTrend history={history} isLoading={isLoading} />

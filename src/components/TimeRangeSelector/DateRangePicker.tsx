@@ -223,7 +223,7 @@ export default function DateRangePicker({
             type="datetime-local"
             value={start}
             onChange={(event) => setStart(event.target.value)}
-            className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary transition-all focus:outline-none focus:ring-2 focus:ring-stellar-blue/50"
+            className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white transition-all focus:outline-none focus:ring-2 focus:ring-stellar-blue/50"
             aria-invalid={isInvalid}
             aria-describedby={isInvalid ? "range-error" : undefined}
           />
@@ -235,7 +235,7 @@ export default function DateRangePicker({
             type="datetime-local"
             value={end}
             onChange={(event) => setEnd(event.target.value)}
-            className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary transition-all focus:outline-none focus:ring-2 focus:ring-stellar-blue/50"
+            className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white transition-all focus:outline-none focus:ring-2 focus:ring-stellar-blue/50"
             aria-invalid={isInvalid}
             aria-describedby={isInvalid ? "range-error" : undefined}
           />
@@ -266,8 +266,8 @@ export default function DateRangePicker({
                 onClick={() => handleApplyPreset(preset.id)}
                 className={`rounded px-2.5 py-1 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-stellar-blue/50 ${
                   isActive
-                    ? "bg-stellar-blue text-stellar-ink"
-                    : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
+                    ? "bg-stellar-blue text-white"
+                    : "border border-stellar-border text-stellar-text-secondary hover:text-white"
                 }`}
                 aria-pressed={isActive}
               >
@@ -293,7 +293,7 @@ export default function DateRangePicker({
                   key={`${range.start}-${range.end}-${index}`}
                   type="button"
                   onClick={() => handleApplyRecent(range)}
-                  className="rounded border border-stellar-border px-2.5 py-1 text-xs text-stellar-text-secondary transition-colors hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-stellar-blue/50"
+                  className="rounded border border-stellar-border px-2.5 py-1 text-xs text-stellar-text-secondary transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-stellar-blue/50"
                   title={label}
                 >
                   {label}
@@ -310,7 +310,7 @@ export default function DateRangePicker({
           type="button"
           onClick={handleApplyCustom}
           disabled={!canApply}
-          className="rounded bg-stellar-blue px-3 py-1.5 text-xs font-medium text-stellar-ink transition-all disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-stellar-blue/50"
+          className="rounded bg-stellar-blue px-3 py-1.5 text-xs font-medium text-white transition-all disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-stellar-blue/50"
         >
           Apply custom range
         </button>
@@ -318,7 +318,7 @@ export default function DateRangePicker({
         <button
           type="button"
           onClick={handleClear}
-          className="rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary transition-colors hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-stellar-blue/50"
+          className="rounded border border-stellar-border px-3 py-1.5 text-xs text-stellar-text-secondary transition-colors hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-1 focus:ring-stellar-blue/50"
         >
           Clear
         </button>

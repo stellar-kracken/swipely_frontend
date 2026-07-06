@@ -156,9 +156,9 @@ export interface TabProps {
 }
 
 const DEFAULT_ACTIVE =
-  "border-stellar-blue bg-stellar-blue/15 text-stellar-text-primary";
+  "border-stellar-blue bg-stellar-blue/15 text-white";
 const DEFAULT_INACTIVE =
-  "border-stellar-border text-stellar-text-secondary hover:border-stellar-blue hover:text-stellar-text-primary";
+  "border-stellar-border text-stellar-text-secondary hover:border-stellar-blue hover:text-white";
 const DEFAULT_DISABLED =
   "border-stellar-border text-stellar-text-secondary opacity-40 cursor-not-allowed";
 

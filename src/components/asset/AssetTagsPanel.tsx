@@ -29,7 +29,7 @@ export default function AssetTagsPanel({
     <section className="rounded-lg border border-stellar-border bg-stellar-card p-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold text-stellar-text-primary">Asset tags</h3>
+          <h3 className="text-lg font-semibold text-white">Asset tags</h3>
           <p className="mt-1 text-sm text-stellar-text-secondary">
             Organize {symbol} with backend-synced tags for filtering and review.
           </p>
@@ -46,7 +46,7 @@ export default function AssetTagsPanel({
               key={tag}
               type="button"
               onClick={() => onRemoveTag(tag)}
-              className="rounded-full border border-stellar-border bg-stellar-dark/40 px-3 py-1 text-sm text-stellar-text-primary transition-colors hover:border-red-400 hover:text-red-200"
+              className="rounded-full border border-stellar-border bg-stellar-dark/40 px-3 py-1 text-sm text-white transition-colors hover:border-red-400 hover:text-red-200"
               aria-label={`Remove tag ${tag}`}
               title="Click to remove"
             >
@@ -69,21 +69,21 @@ export default function AssetTagsPanel({
             }
           }}
           placeholder="Add a tag and press Enter"
-          className="flex-1 rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary placeholder:text-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="flex-1 rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white placeholder:text-stellar-text-secondary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           aria-label={`Add a tag for ${symbol}`}
         />
         <div className="flex gap-2">
           <button
             type="button"
             onClick={onAddTag}
-            className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border"
+            className="rounded-md border border-stellar-border px-3 py-2 text-sm text-white hover:bg-stellar-border"
           >
             Add tag
           </button>
           <button
             type="button"
             onClick={onReset}
-            className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-stellar-text-primary"
+            className="rounded-md border border-stellar-border px-3 py-2 text-sm text-stellar-text-secondary hover:text-white"
           >
             Reset
           </button>
@@ -95,7 +95,7 @@ export default function AssetTagsPanel({
           type="button"
           onClick={onSave}
           disabled={!canSave || isSaving}
-          className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-stellar-ink transition-colors hover:bg-stellar-blue/90 disabled:cursor-not-allowed disabled:opacity-60"
+          className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {isSaving ? "Saving..." : "Save tags"}
         </button>

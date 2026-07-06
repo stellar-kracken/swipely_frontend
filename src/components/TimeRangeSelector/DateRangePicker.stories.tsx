@@ -123,7 +123,7 @@ export const WithValidationError: Story = {
                 type="datetime-local"
                 value={start}
                 onChange={(e) => setStart(e.target.value)}
-                className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary"
+                className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white"
               />
             </label>
             <label className="text-xs text-stellar-text-secondary">
@@ -132,7 +132,7 @@ export const WithValidationError: Story = {
                 type="datetime-local"
                 value={end}
                 onChange={(e) => setEnd(e.target.value)}
-                className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary"
+                className="mt-1 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white"
               />
             </label>
           </div>
@@ -141,7 +141,7 @@ export const WithValidationError: Story = {
           </p>
           <button
             disabled
-            className="mt-3 rounded bg-stellar-blue px-3 py-1.5 text-xs font-medium text-stellar-ink disabled:opacity-50"
+            className="mt-3 rounded bg-stellar-blue px-3 py-1.5 text-xs font-medium text-white disabled:opacity-50"
           >
             Apply custom range
           </button>

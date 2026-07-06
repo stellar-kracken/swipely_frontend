@@ -27,7 +27,7 @@ export default function Transactions() {
       />
 
       <header>
-        <h1 className="text-3xl font-bold text-stellar-text-primary">Transaction History</h1>
+        <h1 className="text-3xl font-bold text-white">Transaction History</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Browse recent bridge transfers with real-time status tracking
         </p>
@@ -55,7 +55,7 @@ export default function Transactions() {
           onClick={() => {
             void pullToRefresh.refresh();
           }}
-          className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border"
+          className="rounded-md border border-stellar-border px-4 py-2 text-sm text-white hover:bg-stellar-border"
         >
           Refresh now
         </button>

@@ -57,7 +57,7 @@ export default function MetricsSidebarPage() {
     <div className="space-y-8">
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-stellar-text-primary">Metrics Sidebar</h1>
+          <h1 className="text-3xl font-bold text-white">Metrics Sidebar</h1>
           <p className="mt-2 text-stellar-text-secondary">
             Pin metrics to a persistent sidebar so they stay visible while you browse the dashboard.
             Drag to reorder pinned metrics.
@@ -68,8 +68,8 @@ export default function MetricsSidebarPage() {
           onClick={() => setOpen(!isOpen)}
           className={`rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
             isOpen
-              ? "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary"
-              : "bg-stellar-blue text-stellar-ink hover:bg-stellar-blue/90"
+              ? "border border-stellar-border text-stellar-text-secondary hover:text-white"
+              : "bg-stellar-blue text-white hover:bg-stellar-blue/90"
           }`}
           aria-pressed={isOpen}
         >
@@ -81,7 +81,7 @@ export default function MetricsSidebarPage() {
         {/* Pinned metrics */}
         <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold text-stellar-text-primary">
+            <h2 className="text-lg font-semibold text-white">
               Pinned Metrics
               {pinned.length > 0 && (
                 <span className="ml-2 text-sm font-normal text-stellar-text-secondary">
@@ -115,7 +115,7 @@ export default function MetricsSidebarPage() {
                   d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z"
                 />
               </svg>
-              <p className="text-stellar-text-primary font-medium">No metrics pinned</p>
+              <p className="text-white font-medium">No metrics pinned</p>
               <p className="text-stellar-text-secondary text-sm mt-1">
                 Choose metrics from the library on the right.
               </p>
@@ -152,7 +152,7 @@ export default function MetricsSidebarPage() {
 
         {/* Metrics library */}
         <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-          <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">Metrics Library</h2>
+          <h2 className="text-lg font-semibold text-white mb-4">Metrics Library</h2>
           <MetricsLibrary
             pinned={pinned}
             onPin={pinMetric}
@@ -165,7 +165,7 @@ export default function MetricsSidebarPage() {
 
       {/* Sidebar behaviour info */}
       <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-4">Sidebar Behaviour</h2>
+        <h2 className="text-lg font-semibold text-white mb-4">Sidebar Behaviour</h2>
         <div className="grid sm:grid-cols-3 gap-4 text-sm text-stellar-text-secondary">
           {[
             {
@@ -188,7 +188,7 @@ export default function MetricsSidebarPage() {
                 </span>
               </div>
               <div>
-                <p className="text-stellar-text-primary font-medium">{item.title}</p>
+                <p className="text-white font-medium">{item.title}</p>
                 <p className="mt-0.5">{item.body}</p>
               </div>
             </div>
@@ -198,7 +198,7 @@ export default function MetricsSidebarPage() {
 
       {/* Quick-pin from available list */}
       <section className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-1">All Available Metrics</h2>
+        <h2 className="text-lg font-semibold text-white mb-1">All Available Metrics</h2>
         <p className="text-sm text-stellar-text-secondary mb-4">
           {AVAILABLE_METRICS.length} metrics available across network, bridge, and asset categories.
         </p>
@@ -213,8 +213,8 @@ export default function MetricsSidebarPage() {
                 aria-pressed={isPinned}
                 className={`rounded-full px-3 py-1 text-xs font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
                   isPinned
-                    ? "bg-stellar-blue text-stellar-ink"
-                    : "border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary hover:border-stellar-blue/50"
+                    ? "bg-stellar-blue text-white"
+                    : "border border-stellar-border text-stellar-text-secondary hover:text-white hover:border-stellar-blue/50"
                 }`}
               >
                 {m.label}

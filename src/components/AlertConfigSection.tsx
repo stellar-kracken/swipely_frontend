@@ -27,7 +27,7 @@ export default function AlertConfigSection({ alerts, isLoading }: AlertConfigSec
   if (isLoading) {
     return (
       <div className="bg-stellar-card border border-stellar-border rounded-xl p-6">
-        <h3 className="text-lg font-semibold text-stellar-text-primary mb-4">Alerts</h3>
+        <h3 className="text-lg font-semibold text-white mb-4">Alerts</h3>
         <div className="space-y-3">
           {[1, 2, 3].map((i) => (
             <div key={i} className="h-12 bg-stellar-border rounded animate-pulse" />
@@ -40,7 +40,7 @@ export default function AlertConfigSection({ alerts, isLoading }: AlertConfigSec
   return (
     <div className="bg-stellar-card border border-stellar-border rounded-xl p-6">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h3 className="text-lg font-semibold text-stellar-text-primary">Alerts</h3>
+        <h3 className="text-lg font-semibold text-white">Alerts</h3>
         {activeAlerts.length > 0 ? (
           <AlertSnoozeControls
             label="all active alerts"
@@ -72,7 +72,7 @@ export default function AlertConfigSection({ alerts, isLoading }: AlertConfigSec
                     {alert.severity}
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm text-stellar-text-primary">{alert.message}</p>
+                    <p className="text-sm text-white">{alert.message}</p>
                     <p className="mt-1 text-xs text-stellar-text-secondary">
                       {new Date(alert.createdAt).toLocaleString()}
                     </p>

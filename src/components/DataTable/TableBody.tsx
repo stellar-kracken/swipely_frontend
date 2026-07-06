@@ -60,7 +60,7 @@ function RowActionsMenu<TData>({
     >
       <button
         type="button"
-        className="px-2 py-1 rounded border border-stellar-border text-stellar-text-primary"
+        className="px-2 py-1 rounded border border-stellar-border text-white"
         aria-haspopup="menu"
         aria-expanded={open}
         aria-label={rowActions.label ?? "Row actions"}
@@ -79,7 +79,7 @@ function RowActionsMenu<TData>({
               key={item.id}
               type="button"
               role="menuitem"
-              className="w-full text-left px-3 py-2 text-sm text-stellar-text-primary hover:bg-stellar-dark disabled:opacity-40"
+              className="w-full text-left px-3 py-2 text-sm text-white hover:bg-stellar-dark disabled:opacity-40"
               disabled={item.disabled}
               ref={item.id === (rowActions.items?.[0]?.id ?? "") ? firstItemRef : undefined}
               onClick={() => {

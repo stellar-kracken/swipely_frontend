@@ -35,12 +35,12 @@ function NodeBreakdown({ node, onClose }: { node: ChainNode; onClose: () => void
     <div className="p-4 space-y-3">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="font-semibold text-stellar-text-primary text-base">{node.label}</h3>
+          <h3 className="font-semibold text-white text-base">{node.label}</h3>
           <p className="text-slate-400 text-xs capitalize">{node.chain} network</p>
         </div>
         <button
           onClick={onClose}
-          className="text-slate-500 hover:text-stellar-text-primary text-lg leading-none"
+          className="text-slate-500 hover:text-white text-lg leading-none"
           aria-label="Close panel"
         >
           ×
@@ -50,11 +50,11 @@ function NodeBreakdown({ node, onClose }: { node: ChainNode; onClose: () => void
       <div className="grid grid-cols-2 gap-2">
         <div className="bg-slate-800 rounded p-2">
           <p className="text-slate-500 text-[10px] uppercase tracking-wide">Total Supply</p>
-          <p className="text-stellar-text-primary font-semibold text-sm">{formatUsd(node.totalSupplyUsd)}</p>
+          <p className="text-white font-semibold text-sm">{formatUsd(node.totalSupplyUsd)}</p>
         </div>
         <div className="bg-slate-800 rounded p-2">
           <p className="text-slate-500 text-[10px] uppercase tracking-wide">Locked</p>
-          <p className="text-stellar-text-primary font-semibold text-sm">{formatUsd(node.lockedSupplyUsd)}</p>
+          <p className="text-white font-semibold text-sm">{formatUsd(node.lockedSupplyUsd)}</p>
         </div>
         <div className="bg-slate-800 rounded p-2">
           <p className="text-slate-500 text-[10px] uppercase tracking-wide">Health Score</p>
@@ -62,7 +62,7 @@ function NodeBreakdown({ node, onClose }: { node: ChainNode; onClose: () => void
         </div>
         <div className="bg-slate-800 rounded p-2">
           <p className="text-slate-500 text-[10px] uppercase tracking-wide">Assets</p>
-          <p className="text-stellar-text-primary font-semibold text-sm">{node.assets.length}</p>
+          <p className="text-white font-semibold text-sm">{node.assets.length}</p>
         </div>
       </div>
 
@@ -107,14 +107,14 @@ function EdgeBreakdown({
     <div className="p-4 space-y-3">
       <div className="flex items-start justify-between">
         <div>
-          <h3 className="font-semibold text-stellar-text-primary text-base">{edge.bridgeName}</h3>
+          <h3 className="font-semibold text-white text-base">{edge.bridgeName}</h3>
           <p className="text-slate-400 text-xs">
             {src?.label} ↔ {tgt?.label}
           </p>
         </div>
         <button
           onClick={onClose}
-          className="text-slate-500 hover:text-stellar-text-primary text-lg leading-none"
+          className="text-slate-500 hover:text-white text-lg leading-none"
           aria-label="Close panel"
         >
           ×
@@ -131,11 +131,11 @@ function EdgeBreakdown({
       <div className="grid grid-cols-2 gap-2">
         <div className="bg-slate-800 rounded p-2">
           <p className="text-slate-500 text-[10px] uppercase tracking-wide">24h Volume</p>
-          <p className="text-stellar-text-primary font-semibold text-sm">{formatUsd(edge.volume24hUsd)}</p>
+          <p className="text-white font-semibold text-sm">{formatUsd(edge.volume24hUsd)}</p>
         </div>
         <div className="bg-slate-800 rounded p-2">
           <p className="text-slate-500 text-[10px] uppercase tracking-wide">Direction</p>
-          <p className="text-stellar-text-primary font-semibold text-xs capitalize">
+          <p className="text-white font-semibold text-xs capitalize">
             {edge.flowDirection.replace(/-/g, " ")}
           </p>
         </div>

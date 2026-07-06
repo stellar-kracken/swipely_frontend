@@ -100,7 +100,7 @@ const LiquidityDepthChart = React.memo(function LiquidityDepthChart({
     <div>
       <div className="flex items-center justify-between mb-3">
         <p className="text-xs text-stellar-text-secondary">
-          Mid price: <span className="text-stellar-text-primary">{data.midPrice.toFixed(7)}</span>
+          Mid price: <span className="text-white">{data.midPrice.toFixed(7)}</span>
         </p>
         <div className="flex items-center gap-2 text-xs text-stellar-text-secondary">
           <label htmlFor="depth-zoom">Zoom</label>
@@ -130,17 +130,17 @@ const LiquidityDepthChart = React.memo(function LiquidityDepthChart({
               <stop offset="95%" stopColor="#FF4D4D" stopOpacity={0} />
             </linearGradient>
           </defs>
-          <CartesianGrid strokeDasharray="3 3" stroke="#27272A" />
+          <CartesianGrid strokeDasharray="3 3" stroke="#1E2340" />
           <XAxis
             dataKey="price"
-            stroke="#A1A1AA"
+            stroke="#8A8FA8"
             tick={{ fontSize: 10 }}
             tickFormatter={(v: number) => v.toFixed(4)}
             type="number"
             domain={["dataMin", "dataMax"]}
           />
           <YAxis
-            stroke="#A1A1AA"
+            stroke="#8A8FA8"
             tick={{ fontSize: 10 }}
             tickFormatter={(v: number) =>
               v >= 1000 ? `${(v / 1000).toFixed(1)}k` : v.toFixed(0)
@@ -150,9 +150,9 @@ const LiquidityDepthChart = React.memo(function LiquidityDepthChart({
           <Tooltip content={<CustomTooltip />} />
           <ReferenceLine
             x={data.midPrice}
-            stroke="#A1A1AA"
+            stroke="#8A8FA8"
             strokeDasharray="4 4"
-            label={{ value: "Mid", fill: "#A1A1AA", fontSize: 10 }}
+            label={{ value: "Mid", fill: "#8A8FA8", fontSize: 10 }}
           />
           <Area
             type="stepAfter"

@@ -539,11 +539,11 @@ export default function Dashboard() {
         </div>
 
         <main className="flex-1 space-y-8 min-w-0">
-          <div className="space-y-4 rounded-2xl border border-stellar-border bg-stellar-card p-6">
+          <div className="space-y-4 rounded-2xl border border-stellar-border bg-gradient-to-br from-stellar-card via-stellar-card to-stellar-dark/40 p-6">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <div className="flex flex-wrap items-center gap-3">
-              <h1 className="text-3xl font-bold text-stellar-text-primary">Dashboard</h1>
+              <h1 className="text-3xl font-bold text-white">Dashboard</h1>
               <LiveUpdatePill
                 updatedAt={dashboardUpdatedAt}
                 polling={assetsFetching || bridgesFetching}
@@ -568,7 +568,7 @@ export default function Dashboard() {
             <button
               type="button"
               onClick={tour.start}
-              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary transition-colors hover:bg-stellar-border"
+              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-white transition-colors hover:bg-stellar-border"
             >
               {tour.completed ? "Replay tour" : "Take a tour"}
             </button>
@@ -577,21 +577,21 @@ export default function Dashboard() {
               onClick={() => {
                 void pullToRefresh.refresh();
               }}
-              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary transition-colors hover:bg-stellar-border"
+              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-white transition-colors hover:bg-stellar-border"
             >
               Refresh data
             </button>
             <button
               type="button"
               onClick={() => setExportPickerOpen(true)}
-              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary transition-colors hover:bg-stellar-border"
+              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-white transition-colors hover:bg-stellar-border"
             >
               Export data
             </button>
             <button
               type="button"
               onClick={() => setSharingOpen(true)}
-              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary transition-colors hover:bg-stellar-border"
+              className="rounded-full border border-stellar-border px-4 py-2 text-sm text-white transition-colors hover:bg-stellar-border"
             >
               Share view
             </button>
@@ -627,7 +627,7 @@ export default function Dashboard() {
           <select
             value={dashboard.state.bridgeStatus}
             onChange={(e) => dashboard.setBridgeStatus(e.target.value as BridgeStatusFilter)}
-            className="min-w-44 rounded-md border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="min-w-44 rounded-md border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             aria-label="Filter bridges by status"
           >
             {bridgeStatusOptions.map((option) => (
@@ -659,7 +659,7 @@ export default function Dashboard() {
       </div>
 
       <section aria-labelledby="overview-stats">
-        <h2 id="overview-stats" className="text-xl font-semibold text-stellar-text-primary mb-4">
+        <h2 id="overview-stats" className="text-xl font-semibold text-white mb-4">
           Overview
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -710,7 +710,7 @@ export default function Dashboard() {
       {showAssets ? (
         <section>
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-xl font-semibold text-stellar-text-primary">Asset Health</h2>
+            <h2 className="text-xl font-semibold text-white">Asset Health</h2>
           </div>
           {showFilteredAssetEmpty ? (
             <div className="rounded-lg border border-stellar-border bg-stellar-card p-8 text-center">
@@ -747,7 +747,7 @@ export default function Dashboard() {
       {showBridges ? (
         <section>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-stellar-text-primary">Bridge Status</h2>
+            <h2 className="text-xl font-semibold text-white">Bridge Status</h2>
             <Link to="/bridges" className="text-sm text-stellar-blue hover:underline">
               View all
             </Link>
@@ -772,7 +772,7 @@ export default function Dashboard() {
                   <button
                     type="button"
                     onClick={() => setDrilldown("bridges")}
-                    className="w-full rounded-md border border-stellar-border px-3 py-2 text-xs font-medium text-stellar-text-secondary transition-colors hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                    className="w-full rounded-md border border-stellar-border px-3 py-2 text-xs font-medium text-stellar-text-secondary transition-colors hover:border-stellar-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                   >
                     Inspect bridge details
                   </button>

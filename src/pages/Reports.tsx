@@ -80,7 +80,7 @@ function ReportHeader({
           <p className="text-xs font-semibold uppercase tracking-widest text-stellar-blue">
             Swipely · Stellar Network Monitor
           </p>
-          <h1 className="mt-1 text-2xl font-bold text-stellar-text-primary">{title}</h1>
+          <h1 className="mt-1 text-2xl font-bold text-white">{title}</h1>
           {dateRange.from && dateRange.to && (
             <p className="mt-1 text-sm text-stellar-text-secondary">
               Period: {formatDate(dateRange.from)} – {formatDate(dateRange.to)}
@@ -89,7 +89,7 @@ function ReportHeader({
         </div>
         <div className="text-right text-xs text-stellar-text-secondary">
           <p>Generated</p>
-          <p className="font-medium text-stellar-text-primary">{now}</p>
+          <p className="font-medium text-white">{now}</p>
         </div>
       </div>
     </div>
@@ -146,7 +146,7 @@ function OverviewReport({
 
       {/* Summary stats */}
       <section className="print-avoid-break">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-3">Summary</h2>
+        <h2 className="text-lg font-semibold text-white mb-3">Summary</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
             { label: "Total Assets Tracked", value: totalAssets },
@@ -164,7 +164,7 @@ function OverviewReport({
               <p className="text-xs text-stellar-text-secondary uppercase tracking-wide">
                 {stat.label}
               </p>
-              <p className="mt-1 text-xl font-bold text-stellar-text-primary">{stat.value}</p>
+              <p className="mt-1 text-xl font-bold text-white">{stat.value}</p>
             </div>
           ))}
         </div>
@@ -172,7 +172,7 @@ function OverviewReport({
 
       {/* Status breakdown */}
       <section className="print-avoid-break">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-3">
+        <h2 className="text-lg font-semibold text-white mb-3">
           Asset Health Distribution
         </h2>
         <div className="grid grid-cols-3 gap-4">
@@ -208,7 +208,7 @@ function OverviewReport({
 
       {/* All assets table */}
       <section className="print-avoid-break">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-3">
+        <h2 className="text-lg font-semibold text-white mb-3">
           Asset Health Table
         </h2>
         <div className="overflow-x-auto">
@@ -226,7 +226,7 @@ function OverviewReport({
               {(assetsData ?? []).map((asset) => (
                 <tr
                   key={asset.symbol}
-                  className="border-b border-stellar-border/50 text-stellar-text-primary print-avoid-break"
+                  className="border-b border-stellar-border/50 text-white print-avoid-break"
                 >
                   <td className="py-2 pr-4 font-mono font-semibold">
                     {asset.symbol}
@@ -234,7 +234,7 @@ function OverviewReport({
                   <td className="py-2 pr-4 text-stellar-text-secondary">
                     {asset.name}
                   </td>
-                  <td className="py-2 pr-4 font-bold text-stellar-text-primary">
+                  <td className="py-2 pr-4 font-bold text-white">
                     {asset.health?.overallScore ?? "—"}
                   </td>
                   <td className="py-2 pr-4">
@@ -314,7 +314,7 @@ function AssetsReport({
         >
           <div className="flex items-start justify-between">
             <div>
-              <h2 className="text-xl font-bold text-stellar-text-primary">{asset.symbol}</h2>
+              <h2 className="text-xl font-bold text-white">{asset.symbol}</h2>
               <p className="text-sm text-stellar-text-secondary">
                 {asset.name}
               </p>
@@ -370,7 +370,7 @@ function AssetsReport({
                   <dd
                     className={`mt-1 font-semibold ${
                       item.isText
-                        ? "text-stellar-text-primary capitalize"
+                        ? "text-white capitalize"
                         : scoreColor(
                             typeof item.value === "number" ? item.value : null,
                           )
@@ -417,7 +417,7 @@ function BridgesReport({
       <ReportHeader title="Bridge Status Report" dateRange={dateRange} />
 
       <section className="print-avoid-break">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-3">
+        <h2 className="text-lg font-semibold text-white mb-3">
           Bridge Summary
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -443,14 +443,14 @@ function BridgesReport({
               <p className="text-xs text-stellar-text-secondary uppercase tracking-wide">
                 {s.label}
               </p>
-              <p className="mt-1 text-2xl font-bold text-stellar-text-primary">{s.value}</p>
+              <p className="mt-1 text-2xl font-bold text-white">{s.value}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section>
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-3">Bridge Detail</h2>
+        <h2 className="text-lg font-semibold text-white mb-3">Bridge Detail</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm border-collapse">
             <thead>
@@ -468,7 +468,7 @@ function BridgesReport({
                 return (
                   <tr
                     key={bridge.name}
-                    className="border-b border-stellar-border/50 text-stellar-text-primary print-avoid-break"
+                    className="border-b border-stellar-border/50 text-white print-avoid-break"
                   >
                     <td className="py-2 pr-4 font-semibold">{bridge.name}</td>
                     <td className="py-2 pr-4">
@@ -661,7 +661,7 @@ export default function Reports() {
     <div className="space-y-8">
       {/* ── Screen-only controls (hidden in print) ── */}
       <header className="no-print">
-        <h1 className="text-3xl font-bold text-stellar-text-primary">Reports</h1>
+        <h1 className="text-3xl font-bold text-white">Reports</h1>
         <p className="mt-2 text-stellar-text-secondary">
           Generate print-ready reports and export them as PDF using your
           browser's built-in Save as PDF option.
@@ -670,7 +670,7 @@ export default function Reports() {
 
       {/* Template selector */}
       <section className="no-print">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-3">
+        <h2 className="text-lg font-semibold text-white mb-3">
           Report Template
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
@@ -684,8 +684,8 @@ export default function Reports() {
                 "rounded-lg border p-4 text-left transition-colors focus:outline-none",
                 "focus:ring-2 focus:ring-stellar-blue",
                 activeTemplate === tpl.id
-                  ? "border-stellar-blue bg-stellar-blue/10 text-stellar-text-primary"
-                  : "border-stellar-border bg-stellar-card text-stellar-text-secondary hover:text-stellar-text-primary",
+                  ? "border-stellar-blue bg-stellar-blue/10 text-white"
+                  : "border-stellar-border bg-stellar-card text-stellar-text-secondary hover:text-white",
               ].join(" ")}
             >
               <p className="font-semibold text-sm">{tpl.label}</p>
@@ -697,7 +697,7 @@ export default function Reports() {
 
       {/* Date range controls */}
       <section className="no-print">
-        <h2 className="text-lg font-semibold text-stellar-text-primary mb-3">Date Range</h2>
+        <h2 className="text-lg font-semibold text-white mb-3">Date Range</h2>
         <div className="flex flex-wrap items-end gap-4">
           <div>
             <label
@@ -714,7 +714,7 @@ export default function Reports() {
               onChange={(e) =>
                 setDateRange((prev) => ({ ...prev, from: e.target.value }))
               }
-              className="rounded-lg border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              className="rounded-lg border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             />
           </div>
           <div>
@@ -733,7 +733,7 @@ export default function Reports() {
               onChange={(e) =>
                 setDateRange((prev) => ({ ...prev, to: e.target.value }))
               }
-              className="rounded-lg border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              className="rounded-lg border border-stellar-border bg-stellar-card px-3 py-2 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             />
           </div>
 
@@ -762,7 +762,7 @@ export default function Reports() {
             <p className="text-xs uppercase tracking-widest text-stellar-blue font-semibold">
               Swipely · Stellar Network Monitor
             </p>
-            <h2 className="text-xl font-bold text-stellar-text-primary mt-1">
+            <h2 className="text-xl font-bold text-white mt-1">
               {TEMPLATES.find((t) => t.id === activeTemplate)?.label}
             </h2>
             <p className="text-sm text-stellar-text-secondary mt-1">

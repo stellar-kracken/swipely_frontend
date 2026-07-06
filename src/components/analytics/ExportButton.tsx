@@ -124,9 +124,9 @@ function printAsPdf(
     body { font-family: system-ui, sans-serif; margin: 2rem; color: #111; }
     h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
     .meta { color: #666; font-size: 0.875rem; margin-bottom: 2rem; }
-    h2 { font-size: 1.1rem; border-bottom: 2px solid #111111; padding-bottom: 0.25rem; margin-top: 2rem; }
+    h2 { font-size: 1.1rem; border-bottom: 2px solid #0057FF; padding-bottom: 0.25rem; margin-top: 2rem; }
     table { width: 100%; border-collapse: collapse; margin-top: 0.75rem; font-size: 0.875rem; }
-    th { background: #f4f4f5; text-align: left; padding: 0.5rem 0.75rem; border: 1px solid #d4d4d8; }
+    th { background: #f0f4ff; text-align: left; padding: 0.5rem 0.75rem; border: 1px solid #d0d7ef; }
     td { padding: 0.4rem 0.75rem; border: 1px solid #e5e7eb; }
     tr:nth-child(even) td { background: #f9fafb; }
     @media print { button { display: none; } }
@@ -204,7 +204,7 @@ export default function ExportButton({
       <button
         onClick={toggle}
         disabled={isDisabled}
-        className="flex items-center gap-2 px-4 py-2 rounded-lg border border-stellar-border bg-stellar-card text-sm font-medium text-stellar-text-primary hover:border-stellar-blue/60 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+        className="flex items-center gap-2 px-4 py-2 rounded-lg border border-stellar-border bg-stellar-card text-sm font-medium text-white hover:border-stellar-blue/60 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -219,7 +219,7 @@ export default function ExportButton({
         <div className="absolute right-0 mt-2 w-44 bg-stellar-card border border-stellar-border rounded-lg shadow-xl z-20 overflow-hidden">
           <button
             onClick={onCsv}
-            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-stellar-text-primary hover:bg-stellar-border/60 transition-colors"
+            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-white hover:bg-stellar-border/60 transition-colors"
           >
             <svg className="w-4 h-4 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -228,7 +228,7 @@ export default function ExportButton({
           </button>
           <button
             onClick={onPdf}
-            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-stellar-text-primary hover:bg-stellar-border/60 transition-colors border-t border-stellar-border"
+            className="w-full flex items-center gap-2.5 px-4 py-2.5 text-sm text-white hover:bg-stellar-border/60 transition-colors border-t border-stellar-border"
           >
             <svg className="w-4 h-4 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />

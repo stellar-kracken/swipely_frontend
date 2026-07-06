@@ -26,7 +26,7 @@ export default function PairSelector({ value, onChange }: PairSelectorProps) {
         id="pair-selector"
         value={value}
         onChange={(e) => onChange(e.target.value as TradingPair)}
-        className="bg-stellar-dark border border-stellar-border rounded-md px-3 py-1.5 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+        className="bg-stellar-dark border border-stellar-border rounded-md px-3 py-1.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
       >
         {PHASE1_PAIRS.map((pair) => (
           <option key={pair} value={pair}>

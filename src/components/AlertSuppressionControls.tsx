@@ -223,7 +223,7 @@ export default function AlertSuppressionControls() {
             />
           </label>
         </div>
-        <button type="submit" className="rounded-md bg-stellar-blue px-3 py-2 text-sm font-medium text-stellar-ink">
+        <button type="submit" className="rounded-md bg-stellar-blue px-3 py-2 text-sm font-medium text-white">
           Add override
         </button>
       </form>

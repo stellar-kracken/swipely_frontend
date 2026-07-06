@@ -55,26 +55,26 @@ export default function TopologyMap({ graph }: TopologyMapProps) {
       <div className="absolute top-4 left-4 z-10 flex flex-col gap-2">
         <button
           onClick={() => setZoom((z) => Math.min(z + 0.1, 2))}
-          className="w-8 h-8 flex items-center justify-center bg-stellar-card border border-stellar-border rounded text-stellar-text-primary hover:bg-stellar-border"
+          className="w-8 h-8 flex items-center justify-center bg-stellar-card border border-stellar-border rounded text-white hover:bg-stellar-border"
         >
           +
         </button>
         <button
           onClick={() => setZoom((z) => Math.max(z - 0.1, 0.5))}
-          className="w-8 h-8 flex items-center justify-center bg-stellar-card border border-stellar-border rounded text-stellar-text-primary hover:bg-stellar-border"
+          className="w-8 h-8 flex items-center justify-center bg-stellar-card border border-stellar-border rounded text-white hover:bg-stellar-border"
         >
           -
         </button>
         <button
           onClick={() => { setZoom(1); setOffset({ x: 0, y: 0 }); }}
-          className="w-8 h-8 flex items-center justify-center bg-stellar-card border border-stellar-border rounded text-stellar-text-primary hover:bg-stellar-border text-xs"
+          className="w-8 h-8 flex items-center justify-center bg-stellar-card border border-stellar-border rounded text-white hover:bg-stellar-border text-xs"
         >
           Reset
         </button>
       </div>
 
       <div className="absolute bottom-4 left-4 z-10 bg-stellar-card/80 border border-stellar-border p-3 rounded-lg text-[10px] space-y-2">
-        <p className="font-bold text-stellar-text-primary uppercase tracking-wider mb-1">Topology Legend</p>
+        <p className="font-bold text-white uppercase tracking-wider mb-1">Topology Legend</p>
         {Object.entries(STATUS_COLORS).map(([status, color]) => (
           <div key={status} className="flex items-center gap-2 text-stellar-text-secondary">
             <div className="w-2 h-2 rounded-full" style={{ background: color }} />

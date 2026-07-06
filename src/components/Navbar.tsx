@@ -59,8 +59,8 @@ export default function Navbar() {
                       to={item.to}
                       className={`rounded-md px-3 py-2 text-sm font-medium transition ${
                         active
-                          ? "bg-stellar-blue/20 text-stellar-text-primary"
-                          : "text-stellar-text-secondary hover:bg-stellar-dark hover:text-stellar-text-primary"
+                          ? "bg-stellar-blue/20 text-white"
+                          : "text-stellar-text-secondary hover:bg-stellar-dark hover:text-white"
                       }`}
                       aria-current={active ? "page" : undefined}
                     >
@@ -80,7 +80,7 @@ export default function Navbar() {
               </div>
               <button
                 type="button"
-                className="hidden rounded-md px-2 py-1 text-sm text-stellar-text-secondary hover:bg-stellar-dark hover:text-stellar-text-primary lg:inline-flex"
+                className="hidden rounded-md px-2 py-1 text-sm text-stellar-text-secondary hover:bg-stellar-dark hover:text-white lg:inline-flex"
                 onClick={() =>
                   window.dispatchEvent(new CustomEvent("swipely:open-shortcuts"))
                 }
@@ -97,7 +97,7 @@ export default function Navbar() {
                     <Link
                       key={symbol}
                       to={`/assets/${symbol}`}
-                      className="rounded border border-stellar-border px-2 py-1 hover:text-stellar-text-primary"
+                      className="rounded border border-stellar-border px-2 py-1 hover:text-white"
                     >
                       {symbol}
                     </Link>
@@ -111,8 +111,8 @@ export default function Navbar() {
                 onClick={() => setIsNotificationsOpen((open) => !open)}
                 className={`relative rounded-full p-2 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue ${
                   isNotificationsOpen
-                    ? "bg-stellar-blue/20 text-stellar-text-primary"
-                    : "text-stellar-text-secondary hover:text-stellar-text-primary"
+                    ? "bg-stellar-blue/20 text-white"
+                    : "text-stellar-text-secondary hover:text-white"
                 }`}
                 aria-label={
                   isNotificationsOpen

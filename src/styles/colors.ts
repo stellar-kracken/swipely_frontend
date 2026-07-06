@@ -88,9 +88,9 @@ export function getVisualizationTheme({
     : visualizationColors.categorical;
 
   return {
-    grid: theme === "dark" ? "#27272A" : "#D1D5DB",
-    axis: theme === "dark" ? "#A1A1AA" : "#374151",
-    tooltipBg: theme === "dark" ? "#18181B" : "#FFFFFF",
+    grid: theme === "dark" ? "#1E2340" : "#D1D5DB",
+    axis: theme === "dark" ? "#8A8FA8" : "#374151",
+    tooltipBg: theme === "dark" ? "#141829" : "#FFFFFF",
     tooltipText: theme === "dark" ? "#FFFFFF" : "#0F172A",
     categorical,
     sequential: visualizationColors.sequential,

@@ -138,7 +138,7 @@ export default function ActivityFiltersBar({
             type="button"
             onClick={onReset}
             disabled={!active}
-            className="min-h-10 rounded-md border border-stellar-border px-4 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue disabled:cursor-not-allowed disabled:opacity-50"
+            className="min-h-10 rounded-md border border-stellar-border px-4 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue disabled:cursor-not-allowed disabled:opacity-50"
           >
             Reset
           </button>

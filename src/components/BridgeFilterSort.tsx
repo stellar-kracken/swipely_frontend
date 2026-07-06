@@ -21,7 +21,7 @@ export default function BridgeFilterSort({
           id="status-filter"
           value={statusFilter}
           onChange={(e) => onStatusFilterChange(e.target.value)}
-          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           <option value="all">All</option>
           <option value="healthy">Healthy</option>
@@ -39,7 +39,7 @@ export default function BridgeFilterSort({
           id="sort-by"
           value={sortBy}
           onChange={(e) => onSortByChange(e.target.value)}
-          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           <option value="name">Name</option>
           <option value="tvl">TVL</option>

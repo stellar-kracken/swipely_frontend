@@ -184,7 +184,7 @@ export default function ExportPickerDialog({
         <div className="flex flex-col gap-6 p-6 lg:p-8">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <h2 className="text-2xl font-semibold text-stellar-text-primary">Export data</h2>
+              <h2 className="text-2xl font-semibold text-white">Export data</h2>
               <p className="mt-2 text-sm text-stellar-text-secondary">
                 Choose the format, scope, and date range for the export. The picker saves your last selection and shows live status while the export is processed.
               </p>
@@ -192,7 +192,7 @@ export default function ExportPickerDialog({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-full border border-stellar-border bg-stellar-dark/90 p-2 text-stellar-text-secondary transition-colors hover:bg-stellar-border hover:text-stellar-text-primary"
+              className="rounded-full border border-stellar-border bg-stellar-dark/90 p-2 text-stellar-text-secondary transition-colors hover:bg-stellar-border hover:text-white"
               aria-label="Close export dialog"
             >
               ×
@@ -203,11 +203,11 @@ export default function ExportPickerDialog({
             <div className="space-y-6">
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="space-y-2">
-                  <span className="text-sm font-medium text-stellar-text-primary">File format</span>
+                  <span className="text-sm font-medium text-white">File format</span>
                   <select
                     value={preferences.format}
                     onChange={(event) => updatePreference("format", event.target.value as ExportFormat)}
-                    className="w-full rounded-xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-stellar-text-primary outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
+                    className="w-full rounded-xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-white outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
                   >
                     {formatOptions.map((option) => (
                       <option key={option.label} value={option.value}>
@@ -218,11 +218,11 @@ export default function ExportPickerDialog({
                 </label>
 
                 <label className="space-y-2">
-                  <span className="text-sm font-medium text-stellar-text-primary">Export scope</span>
+                  <span className="text-sm font-medium text-white">Export scope</span>
                   <select
                     value={preferences.dataType}
                     onChange={(event) => updatePreference("dataType", event.target.value as ExportDataType)}
-                    className="w-full rounded-xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-stellar-text-primary outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
+                    className="w-full rounded-xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-white outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
                   >
                     {dataTypeOptions.map((option) => (
                       <option key={option.value} value={option.value}>
@@ -235,23 +235,23 @@ export default function ExportPickerDialog({
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="space-y-2">
-                  <span className="text-sm font-medium text-stellar-text-primary">Start date</span>
+                  <span className="text-sm font-medium text-white">Start date</span>
                   <input
                     type="date"
                     value={preferences.startDate}
                     max={preferences.endDate}
                     onChange={(event) => updatePreference("startDate", event.target.value)}
-                    className="w-full rounded-xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-stellar-text-primary outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
+                    className="w-full rounded-xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-white outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
                   />
                 </label>
                 <label className="space-y-2">
-                  <span className="text-sm font-medium text-stellar-text-primary">End date</span>
+                  <span className="text-sm font-medium text-white">End date</span>
                   <input
                     type="date"
                     value={preferences.endDate}
                     min={preferences.startDate}
                     onChange={(event) => updatePreference("endDate", event.target.value)}
-                    className="w-full rounded-xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-stellar-text-primary outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
+                    className="w-full rounded-xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-white outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
                   />
                 </label>
               </div>
@@ -259,7 +259,7 @@ export default function ExportPickerDialog({
               <div className="space-y-3 rounded-3xl border border-stellar-border bg-stellar-dark/70 p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm font-semibold text-stellar-text-primary">Asset filters</p>
+                    <p className="text-sm font-semibold text-white">Asset filters</p>
                     <p className="text-xs text-stellar-text-secondary">
                       Leave blank to include all assets in the export.
                     </p>
@@ -267,7 +267,7 @@ export default function ExportPickerDialog({
                   <button
                     type="button"
                     onClick={() => updatePreference("assetCodes", [])}
-                    className="rounded-full border border-stellar-border px-3 py-1 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+                    className="rounded-full border border-stellar-border px-3 py-1 text-xs text-stellar-text-secondary hover:text-white"
                   >
                     Clear
                   </button>
@@ -282,7 +282,7 @@ export default function ExportPickerDialog({
                       Array.from(event.target.selectedOptions, (option) => option.value)
                     )
                   }
-                  className="h-full min-h-[10rem] w-full rounded-2xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-stellar-text-primary outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
+                  className="h-full min-h-[10rem] w-full rounded-2xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-white outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
                 >
                   {availableAssets.map((asset) => (
                     <option key={asset.symbol} value={asset.symbol}>
@@ -295,7 +295,7 @@ export default function ExportPickerDialog({
               <div className="space-y-3 rounded-3xl border border-stellar-border bg-stellar-dark/70 p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm font-semibold text-stellar-text-primary">Bridge filters</p>
+                    <p className="text-sm font-semibold text-white">Bridge filters</p>
                     <p className="text-xs text-stellar-text-secondary">
                       Leave blank to include all bridges in the export.
                     </p>
@@ -303,7 +303,7 @@ export default function ExportPickerDialog({
                   <button
                     type="button"
                     onClick={() => updatePreference("bridgeIds", [])}
-                    className="rounded-full border border-stellar-border px-3 py-1 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+                    className="rounded-full border border-stellar-border px-3 py-1 text-xs text-stellar-text-secondary hover:text-white"
                   >
                     Clear
                   </button>
@@ -318,7 +318,7 @@ export default function ExportPickerDialog({
                       Array.from(event.target.selectedOptions, (option) => option.value)
                     )
                   }
-                  className="h-full min-h-[10rem] w-full rounded-2xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-stellar-text-primary outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
+                  className="h-full min-h-[10rem] w-full rounded-2xl border border-stellar-border bg-stellar-dark/80 px-3 py-3 text-sm text-white outline-none focus:border-stellar-blue focus:ring-2 focus:ring-stellar-blue/30"
                 >
                   {availableBridges.map((bridge) => (
                     <option key={bridge.name} value={bridge.name}>
@@ -331,29 +331,29 @@ export default function ExportPickerDialog({
 
             <div className="space-y-6 rounded-3xl border border-stellar-border bg-stellar-dark/80 p-5 text-sm">
               <div className="space-y-3">
-                <h3 className="text-base font-semibold text-stellar-text-primary">Export preview</h3>
+                <h3 className="text-base font-semibold text-white">Export preview</h3>
                 <div className="grid gap-3">
                   <div className="rounded-2xl bg-stellar-card/80 p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-stellar-text-secondary">Format</p>
-                    <p className="mt-2 font-medium text-stellar-text-primary">{formatOptions.find((item) => item.value === preferences.format)?.label}</p>
+                    <p className="mt-2 font-medium text-white">{formatOptions.find((item) => item.value === preferences.format)?.label}</p>
                   </div>
                   <div className="rounded-2xl bg-stellar-card/80 p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-stellar-text-secondary">Scope</p>
-                    <p className="mt-2 font-medium text-stellar-text-primary">{dataTypeOptions.find((item) => item.value === preferences.dataType)?.label}</p>
+                    <p className="mt-2 font-medium text-white">{dataTypeOptions.find((item) => item.value === preferences.dataType)?.label}</p>
                   </div>
                   <div className="rounded-2xl bg-stellar-card/80 p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-stellar-text-secondary">Date range</p>
-                    <p className="mt-2 text-stellar-text-primary">{preferences.startDate} – {preferences.endDate}</p>
+                    <p className="mt-2 text-white">{preferences.startDate} – {preferences.endDate}</p>
                   </div>
                   <div className="rounded-2xl bg-stellar-card/80 p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-stellar-text-secondary">Asset filters</p>
-                    <p className="mt-2 text-stellar-text-primary">
+                    <p className="mt-2 text-white">
                       {selectedAssetLabels.length > 0 ? selectedAssetLabels.map((asset) => asset.symbol).join(", ") : "All assets"}
                     </p>
                   </div>
                   <div className="rounded-2xl bg-stellar-card/80 p-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-stellar-text-secondary">Bridge filters</p>
-                    <p className="mt-2 text-stellar-text-primary">
+                    <p className="mt-2 text-white">
                       {selectedBridgeLabels.length > 0 ? selectedBridgeLabels.map((bridge) => bridge.name).join(", ") : "All bridges"}
                     </p>
                   </div>
@@ -362,7 +362,7 @@ export default function ExportPickerDialog({
 
               <div className="space-y-3 rounded-3xl border border-stellar-border bg-stellar-card/80 p-4">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm font-semibold text-stellar-text-primary">Latest export</p>
+                  <p className="text-sm font-semibold text-white">Latest export</p>
                   {activeExport ? (
                     <span className="rounded-full bg-stellar-dark px-3 py-1 text-xs font-semibold text-stellar-text-secondary">
                       {formatExportStatus(activeExport.status)}
@@ -372,14 +372,14 @@ export default function ExportPickerDialog({
                 {activeExport ? (
                   <div className="space-y-3">
                     <p className="text-xs uppercase tracking-[0.18em] text-stellar-text-secondary">Requested</p>
-                    <p className="text-sm text-stellar-text-primary">{new Date(activeExport.created_at).toLocaleString()}</p>
+                    <p className="text-sm text-white">{new Date(activeExport.created_at).toLocaleString()}</p>
                     {activeExport.error_message ? (
                       <p className="rounded-2xl bg-rose-900/40 p-3 text-sm text-rose-200">{activeExport.error_message}</p>
                     ) : null}
                     {downloadUrl && activeExport.status === "completed" ? (
                       <a
                         href={downloadUrl}
-                        className="inline-flex items-center justify-center rounded-xl bg-stellar-blue px-4 py-3 text-sm font-semibold text-stellar-ink transition hover:bg-stellar-blue/90"
+                        className="inline-flex items-center justify-center rounded-xl bg-stellar-blue px-4 py-3 text-sm font-semibold text-white transition hover:bg-stellar-blue/90"
                       >
                         Download export
                       </a>
@@ -399,7 +399,7 @@ export default function ExportPickerDialog({
               </div>
 
               <div className="space-y-2 rounded-3xl border border-stellar-border bg-stellar-dark/70 p-4">
-                <p className="text-sm font-semibold text-stellar-text-primary">Session history</p>
+                <p className="text-sm font-semibold text-white">Session history</p>
                 <p className="text-xs text-stellar-text-secondary">
                   The last few exports from this session appear here so you can monitor completion without leaving the screen.
                 </p>
@@ -410,7 +410,7 @@ export default function ExportPickerDialog({
                     recentExports.map((record) => (
                       <div key={record.id} className="rounded-2xl border border-stellar-border bg-stellar-card/70 p-3">
                         <div className="flex items-center justify-between gap-2">
-                          <p className="text-sm font-medium text-stellar-text-primary">{record.data_type.replace("_", " ")}</p>
+                          <p className="text-sm font-medium text-white">{record.data_type.replace("_", " ")}</p>
                           <span className="rounded-full bg-stellar-dark px-2 py-1 text-xs text-stellar-text-secondary">
                             {formatExportStatus(record.status)}
                           </span>
@@ -434,7 +434,7 @@ export default function ExportPickerDialog({
             <button
               type="button"
               onClick={onClose}
-              className="rounded-2xl border border-stellar-border bg-stellar-dark/90 px-4 py-3 text-sm text-stellar-text-primary transition hover:bg-stellar-border"
+              className="rounded-2xl border border-stellar-border bg-stellar-dark/90 px-4 py-3 text-sm text-white transition hover:bg-stellar-border"
             >
               Close
             </button>
@@ -442,7 +442,7 @@ export default function ExportPickerDialog({
               type="button"
               onClick={handleSubmit}
               disabled={isSubmitting}
-              className="inline-flex justify-center rounded-2xl bg-stellar-blue px-4 py-3 text-sm font-semibold text-stellar-ink transition hover:bg-stellar-blue/90 disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex justify-center rounded-2xl bg-stellar-blue px-4 py-3 text-sm font-semibold text-white transition hover:bg-stellar-blue/90 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {isSubmitting ? "Starting export…" : "Start export"}
             </button>

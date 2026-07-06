@@ -214,7 +214,7 @@ function VolumeCard({ volume, loading }: {
         {periods.map(({ label, value }) => (
           <div key={label} className="flex flex-col gap-1">
             <p className="text-xs text-stellar-text-secondary">{label}</p>
-            <p className="text-sm font-semibold text-stellar-text-primary">{formatVolume(value)}</p>
+            <p className="text-sm font-semibold text-white">{formatVolume(value)}</p>
           </div>
         ))}
       </div>
@@ -240,7 +240,7 @@ function QuickActionsCard({
         <Link
           to={`/assets/${symbol}`}
           onClick={onClose}
-          className="flex items-center justify-between rounded-md border border-stellar-border px-3 py-2 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="flex items-center justify-between rounded-md border border-stellar-border px-3 py-2 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           View full details
           <span aria-hidden="true">→</span>
@@ -250,7 +250,7 @@ function QuickActionsCard({
           <button
             type="button"
             onClick={() => onAddToWatchlist(symbol)}
-            className="flex items-center justify-between rounded-md border border-stellar-border px-3 py-2 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="flex items-center justify-between rounded-md border border-stellar-border px-3 py-2 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           >
             Add to watchlist
             <span aria-hidden="true">+</span>
@@ -260,7 +260,7 @@ function QuickActionsCard({
         <Link
           to={`/assets/${symbol}?tab=alerts`}
           onClick={onClose}
-          className="flex items-center justify-between rounded-md border border-stellar-border px-3 py-2 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="flex items-center justify-between rounded-md border border-stellar-border px-3 py-2 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           View all alerts
           <span aria-hidden="true">→</span>
@@ -269,7 +269,7 @@ function QuickActionsCard({
         <Link
           to={`/transactions?asset=${symbol}`}
           onClick={onClose}
-          className="flex items-center justify-between rounded-md border border-stellar-border px-3 py-2 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+          className="flex items-center justify-between rounded-md border border-stellar-border px-3 py-2 text-sm font-medium text-stellar-text-primary transition-colors hover:border-stellar-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           View transactions
           <span aria-hidden="true">→</span>
@@ -363,7 +363,7 @@ export default function AssetInsightsTray({
               </p>
               <h2
                 id="asset-insights-tray-title"
-                className="truncate text-xl font-semibold text-stellar-text-primary"
+                className="truncate text-xl font-semibold text-white"
               >
                 {displayName}
               </h2>
@@ -374,7 +374,7 @@ export default function AssetInsightsTray({
             <button
               type="button"
               onClick={onClose}
-              className="shrink-0 rounded-md px-2 py-1 text-sm text-stellar-text-secondary transition hover:text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+              className="shrink-0 rounded-md px-2 py-1 text-sm text-stellar-text-secondary transition hover:text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               aria-label="Close asset insights"
             >
               ✕

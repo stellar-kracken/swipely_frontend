@@ -49,15 +49,15 @@ const LiquidityTrend = React.memo(function LiquidityTrend({
   return (
     <ResponsiveContainer width="100%" height={200}>
       <LineChart data={chartData} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="#27272A" />
+        <CartesianGrid strokeDasharray="3 3" stroke="#1E2340" />
         <XAxis
           dataKey="time"
-          stroke="#A1A1AA"
+          stroke="#8A8FA8"
           tick={{ fontSize: 10 }}
           interval="preserveStartEnd"
         />
         <YAxis
-          stroke="#A1A1AA"
+          stroke="#8A8FA8"
           tick={{ fontSize: 10 }}
           tickFormatter={(v: number) =>
             v >= 1_000_000
@@ -70,8 +70,8 @@ const LiquidityTrend = React.memo(function LiquidityTrend({
         />
         <Tooltip
           contentStyle={{
-            backgroundColor: "#18181B",
-            border: "1px solid #27272A",
+            backgroundColor: "#141829",
+            border: "1px solid #1E2340",
             borderRadius: "8px",
             color: "#FFFFFF",
             fontSize: "12px",
@@ -84,7 +84,7 @@ const LiquidityTrend = React.memo(function LiquidityTrend({
         <Line
           type="monotone"
           dataKey="liquidity"
-          stroke="#A1A1AA"
+          stroke="#0057FF"
           strokeWidth={2}
           dot={false}
           activeDot={{ r: 4 }}

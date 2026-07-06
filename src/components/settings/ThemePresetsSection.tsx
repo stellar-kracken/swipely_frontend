@@ -60,7 +60,7 @@ export default function ThemePresetsSection() {
                   type="button"
                   className={`mt-3 w-full rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card ${
                     selected
-                      ? "bg-stellar-blue text-stellar-ink"
+                      ? "bg-stellar-blue text-white"
                       : "border border-stellar-border bg-stellar-dark text-stellar-text-primary hover:bg-stellar-border"
                   }`}
                   aria-pressed={selected}
@@ -90,11 +90,11 @@ export default function ThemePresetsSection() {
             value={saveLabel}
             onChange={(e) => setSaveLabel(e.target.value)}
             placeholder="My workspace"
-            className="min-w-0 flex-1 rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-stellar-text-primary placeholder:text-stellar-text-muted focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="min-w-0 flex-1 rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-sm text-white placeholder:text-stellar-text-muted focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           />
           <button
             type="button"
-            className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-stellar-ink hover:bg-stellar-blue/90 focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card"
+            className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-white hover:bg-stellar-blue/90 focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-card"
             onClick={() => {
               saveCurrentAsCustomPreset(saveLabel);
               setSaveLabel("");
@@ -118,7 +118,7 @@ export default function ThemePresetsSection() {
                 <div className="flex gap-2">
                   <button
                     type="button"
-                    className="rounded border border-stellar-border px-2 py-1 text-xs text-stellar-text-secondary hover:text-stellar-text-primary"
+                    className="rounded border border-stellar-border px-2 py-1 text-xs text-stellar-text-secondary hover:text-white"
                     onClick={() => applySavedCustomPreset(p.id)}
                   >
                     Apply
