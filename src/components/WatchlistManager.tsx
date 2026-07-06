@@ -73,7 +73,7 @@ export function WatchlistManager() {
   return (
     <div className="space-y-8 bg-stellar-card p-6 rounded-lg border border-stellar-border shadow-lg">
       <div>
-        <h2 className="text-xl font-bold text-white mb-4">Your Watchlists</h2>
+        <h2 className="text-xl font-bold text-stellar-text-primary mb-4">Your Watchlists</h2>
 
         <form onSubmit={handleCreate} className="flex gap-2 mb-6">
           <input
@@ -81,12 +81,12 @@ export function WatchlistManager() {
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
             placeholder="New watchlist name..."
-            className="flex-1 bg-stellar-dark border border-stellar-border rounded px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+            className="flex-1 bg-stellar-dark border border-stellar-border rounded px-4 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
           />
           <button
             type="submit"
             disabled={!newName.trim()}
-            className="px-4 py-2 bg-stellar-blue text-white rounded font-medium hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-2 bg-stellar-blue text-stellar-ink rounded font-medium hover:bg-opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Create
           </button>
@@ -102,7 +102,7 @@ export function WatchlistManager() {
                       type="text"
                       value={editName}
                       onChange={(e) => setEditName(e.target.value)}
-                      className="flex-1 bg-stellar-card border border-stellar-border rounded px-2 py-1 text-white text-sm focus:outline-none focus:ring-1 focus:ring-stellar-blue"
+                      className="flex-1 bg-stellar-card border border-stellar-border rounded px-2 py-1 text-stellar-text-primary text-sm focus:outline-none focus:ring-1 focus:ring-stellar-blue"
                       autoFocus
                     />
                     <button
@@ -113,14 +113,14 @@ export function WatchlistManager() {
                     </button>
                     <button
                       onClick={() => setEditingId(null)}
-                      className="text-gray-400 hover:text-white text-sm font-medium"
+                      className="text-gray-400 hover:text-stellar-text-primary text-sm font-medium"
                     >
                       Cancel
                     </button>
                   </div>
                 ) : (
                   <>
-                    <h3 className="font-bold text-white flex items-center gap-2">
+                    <h3 className="font-bold text-stellar-text-primary flex items-center gap-2">
                       {list.name}
                       {list.id === activeListId && (
                         <span className="bg-stellar-blue text-xs px-2 py-0.5 rounded-full font-normal">
@@ -137,7 +137,7 @@ export function WatchlistManager() {
                 {list.id !== activeListId && (
                   <button
                     onClick={() => setActiveWatchlist(list.id)}
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-gray-400 hover:text-stellar-text-primary transition-colors"
                   >
                     Set Active
                   </button>
@@ -154,7 +154,7 @@ export function WatchlistManager() {
                     setEditingId(list.id);
                     setEditName(list.name);
                   }}
-                  className="text-sm text-gray-400 hover:text-white transition-colors"
+                  className="text-sm text-gray-400 hover:text-stellar-text-primary transition-colors"
                 >
                   Rename
                 </button>
@@ -174,31 +174,31 @@ export function WatchlistManager() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-stellar-border">
         <div>
-          <h3 className="text-lg font-bold text-white mb-2">Export Data</h3>
+          <h3 className="text-lg font-bold text-stellar-text-primary mb-2">Export Data</h3>
           <p className="text-sm text-gray-400 mb-4">
             Download your watchlists as a JSON file to serve as a backup or to move to another device.
           </p>
           <button
             onClick={handleExport}
-            className="px-4 py-2 bg-stellar-border text-white rounded font-medium hover:bg-gray-700 transition-colors focus:ring-2 focus:ring-stellar-blue focus:outline-none"
+            className="px-4 py-2 bg-stellar-border text-stellar-text-primary rounded font-medium hover:bg-gray-700 transition-colors focus:ring-2 focus:ring-stellar-blue focus:outline-none"
           >
             Export to JSON
           </button>
         </div>
 
         <div>
-          <h3 className="text-lg font-bold text-white mb-2">Import Data</h3>
+          <h3 className="text-lg font-bold text-stellar-text-primary mb-2">Import Data</h3>
           <form onSubmit={handleImport}>
             <textarea
               value={importText}
               onChange={(e) => setImportText(e.target.value)}
               placeholder='Paste JSON data here (e.g. [{"name": "My List", "assets": ["XLM"]}])...'
-              className="w-full h-24 bg-stellar-dark border border-stellar-border rounded p-3 text-white text-sm focus:outline-none focus:ring-2 focus:ring-stellar-blue mb-2 font-mono"
+              className="w-full h-24 bg-stellar-dark border border-stellar-border rounded p-3 text-stellar-text-primary text-sm focus:outline-none focus:ring-2 focus:ring-stellar-blue mb-2 font-mono"
             />
             <button
               type="submit"
               disabled={!importText.trim()}
-              className="px-4 py-2 bg-stellar-border text-white rounded font-medium hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-4 py-2 bg-stellar-border text-stellar-text-primary rounded font-medium hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Import JSON
             </button>

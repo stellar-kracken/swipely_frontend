@@ -53,7 +53,7 @@ export default function BridgeCard({ bridge, stats }: BridgeCardProps) {
       aria-label={`View details for bridge ${bridge.name}`}
     >
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-white">{bridge.name}</h3>
+        <h3 className="text-lg font-semibold text-stellar-text-primary">{bridge.name}</h3>
         {getStatusBadge(bridge.status)}
       </div>
 
@@ -71,7 +71,7 @@ export default function BridgeCard({ bridge, stats }: BridgeCardProps) {
 
         <div className="flex justify-between">
           <span className="text-sm text-stellar-text-secondary">TVL</span>
-          <span className="text-sm text-white font-medium">
+          <span className="text-sm text-stellar-text-primary font-medium">
             {formatNumber(bridge.totalValueLocked)}
           </span>
         </div>
@@ -80,14 +80,14 @@ export default function BridgeCard({ bridge, stats }: BridgeCardProps) {
           <>
             <div className="flex justify-between">
               <span className="text-sm text-stellar-text-secondary">24h Volume</span>
-              <span className="text-sm text-white font-medium">
+              <span className="text-sm text-stellar-text-primary font-medium">
                 {formatNumber(stats.volume24h)}
               </span>
             </div>
 
             <div className="flex justify-between">
               <span className="text-sm text-stellar-text-secondary">24h Transactions</span>
-              <span className="text-sm text-white font-medium">
+              <span className="text-sm text-stellar-text-primary font-medium">
                 {stats.totalTransactions.toLocaleString()}
               </span>
             </div>

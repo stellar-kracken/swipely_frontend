@@ -93,14 +93,14 @@ function MaintenanceBanner() {
               href={maintenance.statusPageUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-stellar-text-secondary hover:text-white underline underline-offset-2"
+              className="text-sm text-stellar-text-secondary hover:text-stellar-text-primary underline underline-offset-2"
             >
               View Status Page →
             </a>
           )}
           <button
             onClick={handleDismiss}
-            className="text-sm text-stellar-text-secondary hover:text-white transition-colors"
+            className="text-sm text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
             aria-label="Dismiss this banner for one hour"
           >
             Dismiss

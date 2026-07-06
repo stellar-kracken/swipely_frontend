@@ -168,7 +168,7 @@ export default function HealthScoreCard({
                 stroke="none"
               >
                 <Cell fill={statusColor} />
-                <Cell fill={stellarVarRgb("--stellar-border", "rgb(30 35 64)")} />
+                <Cell fill={stellarVarRgb("--stellar-border", "rgb(39 39 42)")} />
               </Pie>
             </PieChart>
           </ResponsiveContainer>

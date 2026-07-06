@@ -20,7 +20,7 @@ export function CollapsibleWidget({
   children,
   headerActions,
   className = "rounded-lg border border-stellar-border bg-stellar-card p-6",
-  headerClassName = "text-xl font-semibold text-white",
+  headerClassName = "text-xl font-semibold text-stellar-text-primary",
   "data-testid": dataTestId,
   "aria-labelledby": ariaLabelledBy,
 }: CollapsibleWidgetProps) {
@@ -42,7 +42,7 @@ export function CollapsibleWidget({
             aria-label={isCollapsed ? `Expand ${title}` : `Collapse ${title}`}
           >
             <svg
-              className={`h-4 w-4 text-stellar-text-secondary group-hover:text-white transition-transform duration-200 ${
+              className={`h-4 w-4 text-stellar-text-secondary group-hover:text-stellar-text-primary transition-transform duration-200 ${
                 isCollapsed ? "-rotate-90" : "rotate-0"
               }`}
               fill="none"

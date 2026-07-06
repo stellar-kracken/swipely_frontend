@@ -223,8 +223,8 @@ function MetricPill({
       onClick={onClick}
       className={`rounded-lg border px-3 py-2 text-sm transition-colors text-left ${
         active
-          ? "border-stellar-blue bg-stellar-blue/10 text-white"
-          : "border-stellar-border bg-stellar-card text-stellar-text-secondary hover:text-white hover:border-stellar-blue/50"
+          ? "border-stellar-blue bg-stellar-blue/10 text-stellar-text-primary"
+          : "border-stellar-border bg-stellar-card text-stellar-text-secondary hover:text-stellar-text-primary hover:border-stellar-blue/50"
       }`}
     >
       <p className="font-medium capitalize">{label}</p>
@@ -260,7 +260,7 @@ function NodeDrawer({
         <button
           type="button"
           onClick={onClose}
-          className="text-stellar-text-secondary hover:text-white text-lg leading-none shrink-0"
+          className="text-stellar-text-secondary hover:text-stellar-text-primary text-lg leading-none shrink-0"
           aria-label="Close detail drawer"
         >
           ×
@@ -527,7 +527,7 @@ export default function DataProvenanceGraph() {
                   <button
                     type="button"
                     onClick={() => setSelectedNodeId(null)}
-                    className="rounded-lg border border-stellar-border bg-stellar-dark px-3 py-1.5 text-sm text-stellar-text-secondary hover:text-white transition-colors"
+                    className="rounded-lg border border-stellar-border bg-stellar-dark px-3 py-1.5 text-sm text-stellar-text-secondary hover:text-stellar-text-primary transition-colors"
                   >
                     Clear selection
                   </button>

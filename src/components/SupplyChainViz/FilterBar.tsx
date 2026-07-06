@@ -42,7 +42,7 @@ export default function FilterBar({
             onClick={() => onToggleAsset(asset)}
             className={`text-xs font-mono px-2 py-0.5 rounded border transition-colors ${
               active
-                ? "border-transparent text-white"
+                ? "border-transparent text-stellar-text-primary"
                 : "border-slate-700 text-slate-500 hover:text-slate-300"
             }`}
             style={active ? { backgroundColor: `${ASSET_COLORS[asset]}33`, borderColor: ASSET_COLORS[asset], color: ASSET_COLORS[asset] } : {}}
@@ -56,7 +56,7 @@ export default function FilterBar({
       {hasFilter && (
         <button
           onClick={onClearFilters}
-          className="text-xs text-slate-500 hover:text-white ml-1 border-l border-slate-700 pl-2"
+          className="text-xs text-slate-500 hover:text-stellar-text-primary ml-1 border-l border-slate-700 pl-2"
         >
           Clear
         </button>
@@ -68,7 +68,7 @@ export default function FilterBar({
       {/* Zoom controls */}
       <button
         onClick={onZoomOut}
-        className="text-slate-400 hover:text-white w-6 h-6 flex items-center justify-center rounded hover:bg-slate-700"
+        className="text-slate-400 hover:text-stellar-text-primary w-6 h-6 flex items-center justify-center rounded hover:bg-slate-700"
         aria-label="Zoom out"
       >
         −
@@ -78,14 +78,14 @@ export default function FilterBar({
       </span>
       <button
         onClick={onZoomIn}
-        className="text-slate-400 hover:text-white w-6 h-6 flex items-center justify-center rounded hover:bg-slate-700"
+        className="text-slate-400 hover:text-stellar-text-primary w-6 h-6 flex items-center justify-center rounded hover:bg-slate-700"
         aria-label="Zoom in"
       >
         +
       </button>
       <button
         onClick={onResetView}
-        className="text-slate-400 hover:text-white text-xs ml-1 border-l border-slate-700 pl-2"
+        className="text-slate-400 hover:text-stellar-text-primary text-xs ml-1 border-l border-slate-700 pl-2"
         aria-label="Reset view"
       >
         Reset

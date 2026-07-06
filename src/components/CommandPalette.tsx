@@ -79,7 +79,7 @@ export default function CommandPalette() {
       <div className="absolute inset-0 bg-black/60" onClick={() => setOpen(false)} />
       <div className="relative w-full max-w-xl bg-stellar-card border border-stellar-border rounded-xl shadow-2xl overflow-hidden">
         <div className="px-4 py-3">
-          <input autoFocus value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Type a command or search..." className="w-full bg-transparent text-white py-2 outline-none" />
+          <input autoFocus value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Type a command or search..." className="w-full bg-transparent text-stellar-text-primary py-2 outline-none" />
         </div>
         <div className="max-h-80 overflow-y-auto">
           {recent.length > 0 && query.trim() === "" && (

@@ -83,7 +83,7 @@ export function SessionTimeoutModal({
         {/* Title */}
         <h2
           id="session-timeout-title"
-          className="text-xl font-semibold text-center text-gray-900 dark:text-white mb-2"
+          className="text-xl font-semibold text-center text-gray-900 dark:text-stellar-text-primary mb-2"
         >
           Session Expiring Soon
         </h2>
@@ -125,7 +125,7 @@ export function SessionTimeoutModal({
           </button>
           <button
             onClick={handleExtend}
-            className="flex-1 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-4 py-2 text-white bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 rounded-lg hover:bg-zinc-800 dark:hover:bg-zinc-200 transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-500"
             aria-label="Stay logged in"
             autoFocus
           >

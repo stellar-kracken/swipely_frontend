@@ -6,7 +6,8 @@ export default {
     extend: {
       colors: {
         stellar: {
-          blue: "#0057FF",
+          blue: "rgb(var(--stellar-accent) / <alpha-value>)",
+          ink: "rgb(var(--stellar-accent-ink) / <alpha-value>)",
           dark: "rgb(var(--stellar-bg) / <alpha-value>)",
           card: "rgb(var(--stellar-card) / <alpha-value>)",
           border: "rgb(var(--stellar-border) / <alpha-value>)",

@@ -55,7 +55,7 @@ export default function KpiBanner({
     <section aria-labelledby="dashboard-kpis" className="space-y-3">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 id="dashboard-kpis" className="text-lg font-semibold text-white">
+          <h2 id="dashboard-kpis" className="text-lg font-semibold text-stellar-text-primary">
             Key metrics
           </h2>
           <p className="text-sm text-stellar-text-secondary">
@@ -96,7 +96,7 @@ export default function KpiBanner({
                       <button
                         type="button"
                         onClick={() => onInspectMetric(item)}
-                        className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-md text-stellar-text-secondary hover:bg-stellar-dark hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+                        className="inline-flex min-h-10 min-w-10 items-center justify-center rounded-md text-stellar-text-secondary hover:bg-stellar-dark hover:text-stellar-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
                         aria-label={`Explain ${item.label}`}
                         title={`Explain ${item.label}`}
                       >
@@ -105,14 +105,14 @@ export default function KpiBanner({
                     ) : null}
                   </div>
                 </div>
-                <div className="mt-3 text-2xl font-bold text-white">{item.value}</div>
+                <div className="mt-3 text-2xl font-bold text-stellar-text-primary">{item.value}</div>
                 {expanded ? (
                   <p className="mt-3 text-sm text-stellar-text-secondary">{item.description}</p>
                 ) : null}
                 <button
                   type="button"
                   onClick={() => onDrilldown(item)}
-                  className="mt-3 inline-flex min-h-10 items-center rounded-md text-xs font-medium text-stellar-blue group-hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
+                  className="mt-3 inline-flex min-h-10 items-center rounded-md text-xs font-medium text-stellar-blue group-hover:text-stellar-text-primary focus:outline-none focus-visible:ring-2 focus-visible:ring-stellar-blue"
                   aria-label={`Open ${item.label} drilldown`}
                 >
                   Inspect

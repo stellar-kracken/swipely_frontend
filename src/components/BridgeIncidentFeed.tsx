@@ -69,7 +69,7 @@ function IncidentCard({ incident, isUnread, onMarkRead }: IncidentCardProps) {
             </span>
           </div>
 
-          <h3 className={`text-sm font-semibold truncate ${isUnread ? "text-white" : "text-stellar-text-secondary"}`}>
+          <h3 className={`text-sm font-semibold truncate ${isUnread ? "text-stellar-text-primary" : "text-stellar-text-secondary"}`}>
             {incident.title}
           </h3>
 
@@ -185,14 +185,14 @@ export default function BridgeIncidentFeed({
   );
 
   const inputClass =
-    "bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-white placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue w-full sm:w-auto";
+    "bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue w-full sm:w-auto";
 
   return (
     <section className="space-y-4" aria-label="Bridge Incident Feed">
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
-          <h2 className="text-lg font-semibold text-white">Incident Feed</h2>
+          <h2 className="text-lg font-semibold text-stellar-text-primary">Incident Feed</h2>
           {unreadCount > 0 && (
             <span className="bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full">
               {unreadCount} new
@@ -271,7 +271,7 @@ export default function BridgeIncidentFeed({
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1}
               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          <p className="font-medium text-white">No incidents found</p>
+          <p className="font-medium text-stellar-text-primary">No incidents found</p>
           <p className="text-sm mt-1">All bridges are operating normally.</p>
         </div>
       )}

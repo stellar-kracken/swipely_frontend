@@ -32,7 +32,7 @@ const CustomTooltip = ({ active, payload }: CustomTooltipProps) => {
   const { name, value, payload: inner } = payload[0];
   return (
     <div className="bg-stellar-dark border border-stellar-border rounded-lg p-3 text-xs shadow-lg">
-      <p className="text-white font-medium">{name}</p>
+      <p className="text-stellar-text-primary font-medium">{name}</p>
       <p className="text-stellar-text-secondary">
         ${value.toLocaleString(undefined, { maximumFractionDigits: 2 })}
       </p>
@@ -87,7 +87,7 @@ const LiquidityByVenue = React.memo(function LiquidityByVenue({
           {chartData.map((entry) => (
             <Cell
               key={entry.name}
-              fill={VENUE_COLORS[entry.name as keyof typeof VENUE_COLORS] ?? "#8A8FA8"}
+              fill={VENUE_COLORS[entry.name as keyof typeof VENUE_COLORS] ?? "#A1A1AA"}
             />
           ))}
         </Pie>

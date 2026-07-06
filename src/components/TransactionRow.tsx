@@ -95,10 +95,10 @@ export default function TransactionRow({
       </td>
 
       {/* Bridge */}
-      <td className="px-4 py-3 text-sm text-white">{tx.bridge}</td>
+      <td className="px-4 py-3 text-sm text-stellar-text-primary">{tx.bridge}</td>
 
       {/* Asset + Amount */}
-      <td className="px-4 py-3 text-sm text-white font-medium">
+      <td className="px-4 py-3 text-sm text-stellar-text-primary font-medium">
         {formatAmount(tx.amount, tx.asset)}
       </td>
 
@@ -164,7 +164,7 @@ export function TransactionCard({
       </div>
 
       <div className="flex items-center justify-between">
-        <span className="text-white font-medium text-sm">
+        <span className="text-stellar-text-primary font-medium text-sm">
           {formatAmount(tx.amount, tx.asset)}
         </span>
         <span className="text-xs text-stellar-text-secondary">{tx.bridge}</span>

@@ -87,7 +87,7 @@ function FeatureCard({
   return (
     <AnimatedSection delay={delay} className="h-full">
       <div className="group h-full rounded-2xl border border-stellar-border bg-stellar-card p-6 hover:border-stellar-blue/50 transition-colors duration-300">
-        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-stellar-blue/10 text-stellar-blue group-hover:bg-stellar-blue group-hover:text-white transition-colors duration-300">
+        <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-stellar-blue/10 text-stellar-blue group-hover:bg-stellar-blue group-hover:text-stellar-ink transition-colors duration-300">
           {icon}
         </div>
         <h3 className="text-lg font-semibold text-stellar-text-primary">{title}</h3>
@@ -125,7 +125,7 @@ function StepCard({
   return (
     <AnimatedSection delay={delay}>
       <div className="flex gap-5">
-        <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-stellar-blue text-white font-bold text-sm">
+        <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-full bg-stellar-blue text-stellar-ink font-bold text-sm">
           {step}
         </div>
         <div>
@@ -347,7 +347,7 @@ export default function Landing() {
               </Link>
               <Link
                 to="/dashboard"
-                className="inline-flex items-center gap-2 rounded-lg bg-stellar-blue px-4 py-2 text-sm font-medium text-white hover:bg-stellar-blue/80 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                className="inline-flex items-center gap-2 rounded-lg bg-stellar-blue px-4 py-2 text-sm font-medium text-stellar-ink hover:bg-stellar-blue/80 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               >
                 Launch App
                 <Icon.ArrowRight />
@@ -360,8 +360,8 @@ export default function Landing() {
       {/* ── Hero ── */}
       <section className="relative overflow-hidden pt-24 pb-32 sm:pt-32 sm:pb-40">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="absolute left-1/2 top-0 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-stellar-blue/10 blur-3xl" />
-          <div className="absolute right-0 bottom-0 h-[380px] w-[380px] translate-x-1/3 translate-y-1/3 rounded-full bg-[#00D4AA]/10 blur-3xl" />
+          <div className="absolute left-1/2 top-0 h-[560px] w-[560px] -translate-x-1/2 rounded-full bg-stellar-text-secondary/10 blur-3xl" />
+          <div className="absolute right-0 bottom-0 h-[380px] w-[380px] translate-x-1/3 translate-y-1/3 rounded-full bg-stellar-text-secondary/10 blur-3xl" />
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -385,7 +385,7 @@ export default function Landing() {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               to="/dashboard"
-              className="inline-flex items-center gap-2 rounded-xl bg-stellar-blue px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-stellar-blue/25 hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-dark"
+              className="inline-flex items-center gap-2 rounded-xl bg-stellar-blue px-7 py-3.5 text-base font-semibold text-stellar-ink shadow-lg shadow-stellar-blue/25 hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-dark"
             >
               Open Dashboard
               <Icon.ArrowRight />
@@ -455,7 +455,7 @@ export default function Landing() {
           <AnimatedSection delay={100}>
             <div className="mx-auto max-w-4xl rounded-2xl border border-stellar-border bg-stellar-dark overflow-hidden shadow-2xl">
               <div className="flex items-center gap-1.5 px-4 py-3 border-b border-stellar-border bg-stellar-card">
-                {["#FF5F57", "#FFBD2E", "#27C93F"].map((color) => (
+                {["#D4D4D8", "#A1A1AA", "#71717A"].map((color) => (
                   <div key={color} className="h-3 w-3 rounded-full" style={{ backgroundColor: color }} />
                 ))}
                 <span className="ml-2 text-xs text-stellar-text-secondary font-mono">
@@ -471,7 +471,7 @@ export default function Landing() {
                     {[62, 74, 58, 81, 90, 76, 95, 88, 92, 84, 97, 91].map((h, i) => (
                       <div
                         key={i}
-                        className="flex-1 rounded-t-sm bg-gradient-to-t from-stellar-blue/40 to-stellar-blue"
+                        className="flex-1 rounded-t-sm bg-stellar-blue"
                         style={{ height: `${h}%` }}
                       />
                     ))}
@@ -555,7 +555,7 @@ export default function Landing() {
               <div className="mt-8">
                 <Link
                   to="/api-docs"
-                  className="inline-flex items-center gap-2 rounded-xl bg-stellar-blue px-6 py-3 text-sm font-semibold text-white hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
+                  className="inline-flex items-center gap-2 rounded-xl bg-stellar-blue px-6 py-3 text-sm font-semibold text-stellar-ink hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue"
                 >
                   Read the API docs
                   <Icon.ArrowRight />
@@ -566,14 +566,14 @@ export default function Landing() {
             <AnimatedSection delay={150}>
               <div className="rounded-2xl border border-stellar-border bg-stellar-dark overflow-hidden">
                 <div className="flex items-center gap-1.5 px-4 py-3 border-b border-stellar-border bg-stellar-card">
-                  {["#FF5F57", "#FFBD2E", "#27C93F"].map((color) => (
+                  {["#D4D4D8", "#A1A1AA", "#71717A"].map((color) => (
                     <div key={color} className="h-3 w-3 rounded-full" style={{ backgroundColor: color }} />
                   ))}
                   <span className="ml-2 text-xs text-stellar-text-secondary font-mono">
                     example.ts
                   </span>
                 </div>
-                <pre className="overflow-x-auto p-5 text-xs leading-relaxed text-green-300 font-mono">
+                <pre className="overflow-x-auto p-5 text-xs leading-relaxed text-stellar-text-primary font-mono">
                   <code>{API_SNIPPET}</code>
                 </pre>
               </div>
@@ -595,7 +595,7 @@ export default function Landing() {
             <div className="mt-10 flex items-center justify-center">
               <Link
                 to="/dashboard"
-                className="inline-flex items-center gap-2 rounded-xl bg-stellar-blue px-8 py-4 text-base font-semibold text-white shadow-lg shadow-stellar-blue/25 hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-dark"
+                className="inline-flex items-center gap-2 rounded-xl bg-stellar-blue px-8 py-4 text-base font-semibold text-stellar-ink shadow-lg shadow-stellar-blue/25 hover:bg-stellar-blue/90 transition-colors focus:outline-none focus:ring-2 focus:ring-stellar-blue focus:ring-offset-2 focus:ring-offset-stellar-dark"
               >
                 Open the Dashboard
                 <Icon.ArrowRight />

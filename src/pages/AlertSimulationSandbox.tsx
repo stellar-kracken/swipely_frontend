@@ -151,7 +151,7 @@ export default function AlertSimulationSandbox() {
   }
 
   const inputCls =
-    "bg-stellar-card border border-stellar-border rounded px-3 py-2 text-sm text-white placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue w-full";
+    "bg-stellar-card border border-stellar-border rounded px-3 py-2 text-sm text-stellar-text-primary placeholder-stellar-text-muted focus:outline-none focus:border-stellar-blue w-full";
 
   return (
     <div className="space-y-6">
@@ -215,7 +215,7 @@ export default function AlertSimulationSandbox() {
 
           {/* Scenario presets */}
           <div className="bg-stellar-card border border-stellar-border rounded-lg p-4">
-            <h3 className="text-sm font-semibold text-white mb-3">Scenario Presets</h3>
+            <h3 className="text-sm font-semibold text-stellar-text-primary mb-3">Scenario Presets</h3>
             <div className="grid grid-cols-2 gap-2">
               {PRESETS.map((preset) => (
                 <button
@@ -228,7 +228,7 @@ export default function AlertSimulationSandbox() {
                     <span
                       className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${SEVERITY_STYLES[preset.input.severity].dot}`}
                     />
-                    <span className="text-xs font-medium text-white truncate">{preset.label}</span>
+                    <span className="text-xs font-medium text-stellar-text-primary truncate">{preset.label}</span>
                   </div>
                   <p className="text-xs text-stellar-text-muted truncate">{preset.description}</p>
                 </button>
@@ -241,7 +241,7 @@ export default function AlertSimulationSandbox() {
             onSubmit={handleSubmit}
             className="bg-stellar-card border border-stellar-border rounded-lg p-4 space-y-4"
           >
-            <h3 className="text-sm font-semibold text-white">Alert Parameters</h3>
+            <h3 className="text-sm font-semibold text-stellar-text-primary">Alert Parameters</h3>
 
             {/* Severity selector */}
             <fieldset>
@@ -409,7 +409,7 @@ export default function AlertSimulationSandbox() {
             <button
               type="submit"
               disabled={isRunning || !adminToken.trim()}
-              className="w-full py-2.5 px-4 rounded-md bg-stellar-blue text-white text-sm font-semibold hover:bg-stellar-blue/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+              className="w-full py-2.5 px-4 rounded-md bg-stellar-blue text-stellar-ink text-sm font-semibold hover:bg-stellar-blue/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
             >
               {isRunning ? (
                 <>
@@ -453,7 +453,7 @@ export default function AlertSimulationSandbox() {
                 onClick={() => setActiveTab(tab)}
                 className={`px-4 py-2 text-sm font-medium transition-colors border-b-2 -mb-px ${
                   activeTab === tab
-                    ? "text-white border-stellar-blue"
+                    ? "text-stellar-text-primary border-stellar-blue"
                     : "text-stellar-text-muted border-transparent hover:text-stellar-text-secondary"
                 }`}
                 aria-selected={activeTab === tab}
@@ -582,11 +582,11 @@ function SimulationResults({ result }: { result: SimulationResult }) {
           <p className="text-xs text-stellar-text-muted mt-0.5">Would dispatch</p>
         </div>
         <div className="rounded-lg border border-stellar-border bg-stellar-card p-3 text-center">
-          <p className="text-xl font-bold text-white">{summary.totalMatched}</p>
+          <p className="text-xl font-bold text-stellar-text-primary">{summary.totalMatched}</p>
           <p className="text-xs text-stellar-text-muted mt-0.5">Rules matched</p>
         </div>
         <div className="rounded-lg border border-stellar-border bg-stellar-card p-3 text-center">
-          <p className="text-xl font-bold text-white">{summary.totalActiveRules}</p>
+          <p className="text-xl font-bold text-stellar-text-primary">{summary.totalActiveRules}</p>
           <p className="text-xs text-stellar-text-muted mt-0.5">Rules checked</p>
         </div>
       </div>
@@ -668,7 +668,7 @@ function SimulationResults({ result }: { result: SimulationResult }) {
 
       {/* Per-rule breakdown */}
       <div>
-        <h4 className="text-sm font-semibold text-white mb-2">
+        <h4 className="text-sm font-semibold text-stellar-text-primary mb-2">
           Rule Evaluation ({results.length} active)
         </h4>
         <div className="space-y-2">
@@ -694,7 +694,7 @@ function SimulationResults({ result }: { result: SimulationResult }) {
                   )}
                   <span
                     className={`text-sm font-medium truncate ${
-                      r.matched ? "text-white" : "text-stellar-text-secondary"
+                      r.matched ? "text-stellar-text-primary" : "text-stellar-text-secondary"
                     }`}
                   >
                     {r.ruleName}
@@ -834,7 +834,7 @@ function SimulationHistory({
                     {run.input.severity}
                   </span>
                   {run.input.label && (
-                    <span className="text-xs text-white truncate">"{run.input.label}"</span>
+                    <span className="text-xs text-stellar-text-primary truncate">"{run.input.label}"</span>
                   )}
                 </div>
                 <div className="flex items-center gap-2 mt-0.5 text-xs text-stellar-text-muted">
