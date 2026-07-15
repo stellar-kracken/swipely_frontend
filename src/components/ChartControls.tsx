@@ -1,17 +1,19 @@
 export type TimeRangeId = "1h" | "24h" | "7d" | "30d" | "custom";
 
 export interface ChartControlsProps {
-  rangeId: TimeRangeId;
-  onRangeIdChange: (range: TimeRangeId) => void;
-  customStartIso: string;
-  customEndIso: string;
-  onCustomStartIsoChange: (value: string) => void;
-  onCustomEndIsoChange: (value: string) => void;
-  deviationThresholdPct: number;
-  onDeviationThresholdPctChange: (value: number) => void;
-  showVwap: boolean;
-  onShowVwapChange: (value: boolean) => void;
-  onExportPng: () => void;
+  rangeId?: TimeRangeId;
+  onRangeIdChange?: (range: TimeRangeId) => void;
+  customStartIso?: string;
+  customEndIso?: string;
+  onCustomStartIsoChange?: (value: string) => void;
+  onCustomEndIsoChange?: (value: string) => void;
+  deviationThresholdPct?: number;
+  onDeviationThresholdPctChange?: (value: number) => void;
+  showVwap?: boolean;
+  onShowVwapChange?: (value: boolean) => void;
+  onExportPng?: () => void;
+  onExportCsv?: () => void;
+  compact?: boolean;
 }
 
 function RangeButton({
@@ -41,18 +43,43 @@ function RangeButton({
 }
 
 export default function ChartControls({
-  rangeId,
+  rangeId = "24h",
   onRangeIdChange,
-  customStartIso,
-  customEndIso,
+  customStartIso = "",
+  customEndIso = "",
   onCustomStartIsoChange,
   onCustomEndIsoChange,
-  deviationThresholdPct,
+  deviationThresholdPct = 0,
   onDeviationThresholdPctChange,
-  showVwap,
+  showVwap = false,
   onShowVwapChange,
   onExportPng,
+  onExportCsv,
+  compact = false,
 }: ChartControlsProps) {
+  if (compact) {
+    return (
+      <div className="flex flex-wrap items-center justify-end gap-2">
+        <button
+          type="button"
+          onClick={onExportCsv}
+          aria-label="Export chart data as CSV"
+          className="rounded-md border border-stellar-border bg-stellar-card px-3 py-1.5 text-xs text-stellar-text-primary"
+        >
+          Export CSV
+        </button>
+        <button
+          type="button"
+          onClick={onExportPng}
+          aria-label="Export chart as PNG"
+          className="rounded-md border border-stellar-border bg-stellar-card px-3 py-1.5 text-xs text-stellar-text-primary"
+        >
+          Export PNG
+        </button>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
       <div className="flex flex-wrap items-center gap-2">
@@ -60,27 +87,27 @@ export default function ChartControls({
           <RangeButton
             active={rangeId === "1h"}
             label="1H"
-            onClick={() => onRangeIdChange("1h")}
+            onClick={() => onRangeIdChange?.("1h")}
           />
           <RangeButton
             active={rangeId === "24h"}
             label="24H"
-            onClick={() => onRangeIdChange("24h")}
+            onClick={() => onRangeIdChange?.("24h")}
           />
           <RangeButton
             active={rangeId === "7d"}
             label="7D"
-            onClick={() => onRangeIdChange("7d")}
+            onClick={() => onRangeIdChange?.("7d")}
           />
           <RangeButton
             active={rangeId === "30d"}
             label="30D"
-            onClick={() => onRangeIdChange("30d")}
+            onClick={() => onRangeIdChange?.("30d")}
           />
           <RangeButton
             active={rangeId === "custom"}
             label="Custom"
-            onClick={() => onRangeIdChange("custom")}
+            onClick={() => onRangeIdChange?.("custom")}
           />
         </div>
 
@@ -91,7 +118,7 @@ export default function ChartControls({
               <input
                 type="datetime-local"
                 value={customStartIso}
-                onChange={(e) => onCustomStartIsoChange(e.target.value)}
+                onChange={(e) => onCustomStartIsoChange?.(e.target.value)}
                 className="rounded-md border border-stellar-border bg-transparent px-2 py-1 text-xs text-stellar-text-primary"
               />
             </label>
@@ -100,7 +127,7 @@ export default function ChartControls({
               <input
                 type="datetime-local"
                 value={customEndIso}
-                onChange={(e) => onCustomEndIsoChange(e.target.value)}
+                onChange={(e) => onCustomEndIsoChange?.(e.target.value)}
                 className="rounded-md border border-stellar-border bg-transparent px-2 py-1 text-xs text-stellar-text-primary"
               />
             </label>
@@ -116,7 +143,7 @@ export default function ChartControls({
             min={0}
             step={0.1}
             value={deviationThresholdPct}
-            onChange={(e) => onDeviationThresholdPctChange(Number(e.target.value))}
+            onChange={(e) => onDeviationThresholdPctChange?.(Number(e.target.value))}
             className="w-20 rounded-md border border-stellar-border bg-transparent px-2 py-1 text-xs text-stellar-text-primary"
           />
           <span>%</span>
@@ -126,15 +153,27 @@ export default function ChartControls({
           <input
             type="checkbox"
             checked={showVwap}
-            onChange={(e) => onShowVwapChange(e.target.checked)}
+            onChange={(e) => onShowVwapChange?.(e.target.checked)}
             className="h-4 w-4"
           />
           <span>VWAP</span>
         </label>
 
+        {onExportCsv ? (
+          <button
+            type="button"
+            onClick={onExportCsv}
+            aria-label="Export chart data as CSV"
+            className="rounded-md border border-stellar-border bg-stellar-card px-3 py-1.5 text-xs text-stellar-text-primary"
+          >
+            Export CSV
+          </button>
+        ) : null}
+
         <button
           type="button"
           onClick={onExportPng}
+          aria-label="Export chart as PNG"
           className="rounded-md border border-stellar-border bg-stellar-card px-3 py-1.5 text-xs text-stellar-text-primary"
         >
           Export PNG
