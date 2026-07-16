@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   AreaChart,
   Area,
@@ -13,6 +13,13 @@ import {
 } from "recharts";
 import { useAnomalyTrends, type AnomalySeverity } from "../hooks/useAnomalyTrends";
 import { useAssetsWithHealth } from "../hooks/useAssets";
+import ChartControls from "./ChartControls";
+import {
+  buildAnomalyTrendCsv,
+  buildExportFilename,
+  exportSvgToPng,
+  triggerDownload,
+} from "../utils/chartExport";
 
 const SEVERITY_COLORS: Record<AnomalySeverity, string> = {
   low: "#22c55e",
@@ -56,6 +63,7 @@ export default function AnomalyTrendCharts() {
   const [selectedAsset, setSelectedAsset] = useState<string>("");
   const [chartType, setChartType] = useState<"area" | "bar">("area");
   const [days, setDays] = useState(30);
+  const chartContainerRef = useRef<HTMLDivElement>(null);
 
   const { data: assetsData } = useAssetsWithHealth();
   const { data: trendData, isLoading, error } = useAnomalyTrends({
@@ -67,22 +75,25 @@ export default function AnomalyTrendCharts() {
     .sort(([, a], [, b]) => b - a)
     .slice(0, 5);
 
-  const handleExport = () => {
+  const handleExportCsv = () => {
     if (!trendData) return;
-    const csv = [
-      ["Date", "Low", "Medium", "High", "Critical", "Total"],
-      ...trendData.trendPoints.map((p) => [p.date, p.low, p.medium, p.high, p.critical, p.total]),
-    ]
-      .map((row) => row.join(","))
-      .join("\n");
 
-    const blob = new Blob([csv], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `anomaly-trends-${new Date().toISOString().slice(0, 10)}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+    const csv = buildAnomalyTrendCsv(trendData, {
+      assetCode: selectedAsset || undefined,
+      days,
+      chartName: "Anomaly Trends",
+    });
+
+    triggerDownload(csv, buildExportFilename("Anomaly Trends", "csv"), "text/csv;charset=utf-8");
+  };
+
+  const handleExportPng = async () => {
+    if (!trendData) return;
+
+    const svg = chartContainerRef.current?.querySelector("svg");
+    if (!svg) return;
+
+    await exportSvgToPng(svg as SVGSVGElement, "Anomaly Trends");
   };
 
   return (
@@ -137,13 +148,7 @@ export default function AnomalyTrendCharts() {
             ))}
           </div>
 
-          <button
-            onClick={handleExport}
-            disabled={!trendData}
-            className="px-3 py-1.5 bg-stellar-card border border-stellar-border text-stellar-text-secondary text-sm rounded-lg hover:text-stellar-text-primary transition-colors disabled:opacity-50"
-          >
-            Export CSV
-          </button>
+          <ChartControls compact onExportCsv={trendData ? handleExportCsv : undefined} onExportPng={trendData ? handleExportPng : undefined} />
         </div>
       </div>
 
@@ -173,7 +178,7 @@ export default function AnomalyTrendCharts() {
       )}
 
       {/* Main trend chart */}
-      <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
+      <div ref={chartContainerRef} className="bg-stellar-card border border-stellar-border rounded-lg p-6">
         <h3 className="text-sm font-medium text-stellar-text-secondary uppercase tracking-wide mb-4">
           Severity breakdown over time
         </h3>
