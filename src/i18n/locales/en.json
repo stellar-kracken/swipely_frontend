@@ -175,6 +175,20 @@
     "ago": "{{time}} ago",
     "justNow": "Just now"
   },
+  "relativeTime": {
+    "never": "never"
+  },
+  "connection": {
+    "live": "Live",
+    "connecting": "Connecting…",
+    "offline": "Offline",
+    "error": "Error",
+    "polling": "Polling",
+    "updated": "updated {{relative}}",
+    "updatedNever": "not updated yet",
+    "exactTitle": "Last updated: {{timestamp}}",
+    "ariaLabel": "Connection: {{status}}. {{updated}}"
+  },
   "app": {
     "loadingPage": "Loading page..."
   }

@@ -175,6 +175,20 @@
     "ago": "{{time}}前",
     "justNow": "刚刚"
   },
+  "relativeTime": {
+    "never": "从未"
+  },
+  "connection": {
+    "live": "实时",
+    "connecting": "连接中…",
+    "offline": "离线",
+    "error": "错误",
+    "polling": "轮询中",
+    "updated": "更新于 {{relative}}",
+    "updatedNever": "尚未更新",
+    "exactTitle": "最后更新：{{timestamp}}",
+    "ariaLabel": "连接：{{status}}。{{updated}}"
+  },
   "app": {
     "loadingPage": "正在加载页面..."
   }
