@@ -189,6 +189,11 @@
     "exactTitle": "آخر تحديث: {{timestamp}}",
     "ariaLabel": "الاتصال: {{status}}. {{updated}}"
   },
+  "copyButton": {
+    "copy": "نسخ",
+    "copied": "تم النسخ!",
+    "failed": "فشل"
+  },
   "app": {
     "loadingPage": "جارٍ تحميل الصفحة..."
   }
