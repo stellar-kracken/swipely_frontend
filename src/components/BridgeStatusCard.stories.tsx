@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { useState } from "react";
 import BridgeStatusCard, { BridgeStatusCardSkeleton } from "./BridgeStatusCard";
+import FavoriteTagChip from "./favorites/FavoriteTagChip";
 
 const meta = {
   title: "Components/BridgeStatusCard",
@@ -12,6 +14,15 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+const base = {
+  name: "Example Bridge",
+  status: "healthy" as const,
+  totalValueLocked: 12_500_000,
+  supplyOnStellar: 5_200_000,
+  supplyOnSource: 5_180_000,
+  mismatchPercentage: 0.12,
+};
 
 export const Healthy: Story = {
   args: {
@@ -69,7 +80,16 @@ export const Loading: Story = {
   },
 };
 
+export const Default: Story = {
+  args: {
+    ...base,
+  },
+};
+
 export const SkeletonOnly: Story = {
+  args: {
+    ...base,
+  },
   render: () => (
     <div style={{ width: "340px" }}>
       <BridgeStatusCardSkeleton />
@@ -77,37 +97,10 @@ export const SkeletonOnly: Story = {
   ),
 };
 
-import type { Meta, StoryObj } from "@storybook/react";
-import BridgeStatusCard from "./BridgeStatusCard";
-import FavoriteTagChip from "./favorites/FavoriteTagChip";
-import { useState } from "react";
-
-const meta = {
-  title: "Swipely/Bridges/BridgeStatusCard",
-  component: BridgeStatusCard,
-  tags: ["autodocs"],
-} satisfies Meta<typeof BridgeStatusCard>;
-
-export default meta;
-
-type Story = StoryObj<typeof BridgeStatusCard>;
-
-const base = {
-  name: "Example Bridge",
-  status: "healthy" as const,
-  totalValueLocked: 12_500_000,
-  supplyOnStellar: 5_200_000,
-  supplyOnSource: 5_180_000,
-  mismatchPercentage: 0.12,
-};
-
-export const Default: Story = {
+export const WithFavorite: Story = {
   args: {
     ...base,
   },
-};
-
-export const WithFavorite: Story = {
   render: () => {
     const [active, setActive] = useState(false);
     return (

@@ -13,8 +13,13 @@ const mockBridge: Bridge = {
 };
 
 const mockStats: BridgeStats = {
+  name: "Circle",
   volume24h: 50_000_000,
+  volume7d: 320_000_000,
+  volume30d: 1_400_000_000,
   totalTransactions: 12_345,
+  averageTransferTime: 45,
+  uptime30d: 99.95,
 };
 
 function renderWithRouter(ui: React.ReactElement) {

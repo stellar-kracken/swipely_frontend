@@ -1,6 +1,6 @@
 import React from "react";
 import { MetricCard } from "../components/ops/MetricCard";
-import { ActionShortcutButton } from "../components/ops/ActionShortcutButton";
+import { ActionShortcutButton, type ActionDef } from "../components/ops/ActionShortcutButton";
 import { ConfirmationModal } from "../components/ops/ConfirmationModal";
 import { MockAuthProvider, useAuth } from "../context/AuthContext";
 
@@ -11,7 +11,7 @@ const mockMetrics = () => ({
   activeOraclePeers: 8,
 });
 
-const ACTIONS = [
+const ACTIONS: ActionDef[] = [
   {
     id: "pause-bridge",
     label: "Pause Bridge Contract",
@@ -78,7 +78,7 @@ function OperationsConsole() {
 
   const filtered = ACTIONS.filter((a) => a.label.toLowerCase().includes(query.toLowerCase()) || (a.description ?? "").toLowerCase().includes(query.toLowerCase()));
 
-  const handleExecute = async (action: typeof ACTIONS[number]) => {
+  const handleExecute = async (action: ActionDef) => {
     if (action.destructive && action.confirmationPhrase) {
       setModal({ actionId: action.id, phrase: action.confirmationPhrase });
       return;
@@ -183,12 +183,13 @@ function OperationsConsole() {
   );
 }
 
-interface ActionWrapperProps {
-  action: typeof ACTIONS[number];
-  onExecute: (action: typeof ACTIONS[number]) => Promise<void>;
-}
-
-function ActionWrapper({ action, onExecute }: ActionWrapperProps) {
+function ActionWrapper({
+  action,
+  onExecute,
+}: {
+  action: ActionDef;
+  onExecute: (action: ActionDef) => Promise<void> | void;
+}) {
   return (
     <ActionShortcutButton action={action} onExecute={onExecute} />
   );
