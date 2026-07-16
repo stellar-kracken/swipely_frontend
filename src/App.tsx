@@ -2,9 +2,12 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import { LoadingFallback } from "./components/LoadingFallback";
-import { GlobalErrorBoundary } from "./components/ErrorBoundary";
+import { GlobalErrorBoundary, withRouteErrorBoundary } from "./components/ErrorBoundary";
 import { NotificationProvider } from "./context/NotificationContext";
 import { useNotifications } from "./hooks/useNotifications";
+
+/** Wrap a top-level page element in a route error boundary. */
+const routePage = withRouteErrorBoundary;
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
 const AssetDetail = lazy(() => import("./pages/AssetDetail"));
@@ -57,46 +60,51 @@ function App() {
         <NotificationInitializer />
         <Suspense fallback={<LoadingFallback />}>
           <Routes>
-            <Route path="/" element={<Landing />} />
+            <Route path="/" element={routePage(<Landing />, "Route:/")} />
 
             <Route element={<Layout />}>
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/assets/:symbol" element={<AssetDetail />} />
-              <Route path="/bridges" element={<Bridges />} />
-              <Route path="/incidents" element={<Incidents />} />
-              <Route path="/incidents/replay/:id" element={<IncidentReplay />} />
-              <Route path="/alerts" element={<Alerts />} />
-              <Route path="/alert-playbooks" element={<AlertPlaybookViewer />} />
-              <Route path="/transactions" element={<Transactions />} />
-              <Route path="/analytics" element={<Analytics />} />
-              <Route path="/analytics/metric-builder" element={<CustomMetricBuilder />} />
-              <Route path="/reports" element={<Reports />} />
-              <Route path="/watchlist" element={<WatchlistPage />} />
-              <Route path="/watchlists" element={<WatchlistsPage />} />
-              <Route path="/settings" element={<Settings />} />
-              <Route path="/admin/api-keys" element={<ApiKeys />} />
-              <Route path="/admin/alert-routing" element={<AlertRoutingAdmin />} />
-              <Route path="/admin/access-audit" element={<OperationalAccessAudit />} />
-              <Route path="/supply-chain" element={<SupplyChain />} />
-              <Route path="/bridge-topology" element={<BridgeTopologyExplorer />} />
-              <Route path="/reconciliation" element={<Reconciliation />} />
-              <Route path="/api-docs" element={<ApiDocs />} />
-              <Route path="/help" element={<Help />} />
-              <Route path="/release-notes" element={<ReleaseNotes />} />
-              <Route path="/notification-preferences" element={<NotificationPreferencesPage />} />
-              <Route path="/relationship-explorer" element={<RelationshipExplorer />} />
-              <Route path="/search" element={<SearchResultsPage />} />
-              <Route path="/data-provenance" element={<DataProvenanceGraph />} />
-              <Route path="/alert-sandbox" element={<AlertSimulationSandbox />} />
-              <Route path="/liquidity-fragmentation" element={<LiquidityFragmentation />} />
-              <Route path="/liquidity-dashboard" element={<LiquidityDashboard />} />
-              <Route path="/schema-drift" element={<SchemaDriftMonitor />} />
-              <Route path="/bridge-health-timeline" element={<BridgeHealthTimeline />} />
-              <Route path="/export-scheduler" element={<ExportScheduler />} />
-              <Route path="/asset-comparison" element={<AssetComparison />} />
-              <Route path="/metrics-sidebar" element={<MetricsSidebarPage />} />
-              <Route path="/cross-chain-verification" element={<CrossChainVerification />} />
-              <Route path="/freshness" element={<FreshnessMonitoring />} />
+              {/*
+                Each top-level page is wrapped so a render error stays on that route.
+                Layout also keeps a pathname-keyed boundary around <Outlet /> as a
+                safety net (and so the shell survives when Suspense resolves late).
+              */}
+              <Route path="/dashboard" element={routePage(<Dashboard />, "Route:/dashboard")} />
+              <Route path="/assets/:symbol" element={routePage(<AssetDetail />, "Route:/assets/:symbol")} />
+              <Route path="/bridges" element={routePage(<Bridges />, "Route:/bridges")} />
+              <Route path="/incidents" element={routePage(<Incidents />, "Route:/incidents")} />
+              <Route path="/incidents/replay/:id" element={routePage(<IncidentReplay />, "Route:/incidents/replay/:id")} />
+              <Route path="/alerts" element={routePage(<Alerts />, "Route:/alerts")} />
+              <Route path="/alert-playbooks" element={routePage(<AlertPlaybookViewer />, "Route:/alert-playbooks")} />
+              <Route path="/transactions" element={routePage(<Transactions />, "Route:/transactions")} />
+              <Route path="/analytics" element={routePage(<Analytics />, "Route:/analytics")} />
+              <Route path="/analytics/metric-builder" element={routePage(<CustomMetricBuilder />, "Route:/analytics/metric-builder")} />
+              <Route path="/reports" element={routePage(<Reports />, "Route:/reports")} />
+              <Route path="/watchlist" element={routePage(<WatchlistPage />, "Route:/watchlist")} />
+              <Route path="/watchlists" element={routePage(<WatchlistsPage />, "Route:/watchlists")} />
+              <Route path="/settings" element={routePage(<Settings />, "Route:/settings")} />
+              <Route path="/admin/api-keys" element={routePage(<ApiKeys />, "Route:/admin/api-keys")} />
+              <Route path="/admin/alert-routing" element={routePage(<AlertRoutingAdmin />, "Route:/admin/alert-routing")} />
+              <Route path="/admin/access-audit" element={routePage(<OperationalAccessAudit />, "Route:/admin/access-audit")} />
+              <Route path="/supply-chain" element={routePage(<SupplyChain />, "Route:/supply-chain")} />
+              <Route path="/bridge-topology" element={routePage(<BridgeTopologyExplorer />, "Route:/bridge-topology")} />
+              <Route path="/reconciliation" element={routePage(<Reconciliation />, "Route:/reconciliation")} />
+              <Route path="/api-docs" element={routePage(<ApiDocs />, "Route:/api-docs")} />
+              <Route path="/help" element={routePage(<Help />, "Route:/help")} />
+              <Route path="/release-notes" element={routePage(<ReleaseNotes />, "Route:/release-notes")} />
+              <Route path="/notification-preferences" element={routePage(<NotificationPreferencesPage />, "Route:/notification-preferences")} />
+              <Route path="/relationship-explorer" element={routePage(<RelationshipExplorer />, "Route:/relationship-explorer")} />
+              <Route path="/search" element={routePage(<SearchResultsPage />, "Route:/search")} />
+              <Route path="/data-provenance" element={routePage(<DataProvenanceGraph />, "Route:/data-provenance")} />
+              <Route path="/alert-sandbox" element={routePage(<AlertSimulationSandbox />, "Route:/alert-sandbox")} />
+              <Route path="/liquidity-fragmentation" element={routePage(<LiquidityFragmentation />, "Route:/liquidity-fragmentation")} />
+              <Route path="/liquidity-dashboard" element={routePage(<LiquidityDashboard />, "Route:/liquidity-dashboard")} />
+              <Route path="/schema-drift" element={routePage(<SchemaDriftMonitor />, "Route:/schema-drift")} />
+              <Route path="/bridge-health-timeline" element={routePage(<BridgeHealthTimeline />, "Route:/bridge-health-timeline")} />
+              <Route path="/export-scheduler" element={routePage(<ExportScheduler />, "Route:/export-scheduler")} />
+              <Route path="/asset-comparison" element={routePage(<AssetComparison />, "Route:/asset-comparison")} />
+              <Route path="/metrics-sidebar" element={routePage(<MetricsSidebarPage />, "Route:/metrics-sidebar")} />
+              <Route path="/cross-chain-verification" element={routePage(<CrossChainVerification />, "Route:/cross-chain-verification")} />
+              <Route path="/freshness" element={routePage(<FreshnessMonitoring />, "Route:/freshness")} />
             </Route>
           </Routes>
         </Suspense>

@@ -50,7 +50,7 @@ describe("ErrorFallback", () => {
     expect(screen.queryByRole("button", { name: /reload page/i })).not.toBeInTheDocument();
   });
 
-  it("displays error ID when errorInfo is provided", () => {
+  it("displays a copyable error reference when errorInfo is provided", () => {
     render(
       <ErrorFallback
         {...defaultProps}
@@ -63,7 +63,8 @@ describe("ErrorFallback", () => {
         }}
       />
     );
-    expect(screen.getByText("err-abc123")).toBeInTheDocument();
+    expect(screen.getByTestId("error-reference-id")).toHaveTextContent("err-abc123");
+    expect(screen.getByRole("button", { name: /copy error reference/i })).toBeInTheDocument();
   });
 
   it("has role=alert for accessibility", () => {
