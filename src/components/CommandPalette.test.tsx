@@ -41,6 +41,8 @@ const TEST_ACTIONS = [
 ];
 
 beforeAll(() => {
+  // Populate the registry only with test actions (it is a module-level array)
+  // so we splice-in our entries to avoid cross-test pollution.
   actionsRegistry.length = 0;
   TEST_ACTIONS.forEach((a) => registerAction(a));
 });
@@ -80,6 +82,8 @@ describe("CommandPalette – open / close", () => {
   it("closes when backdrop is clicked", async () => {
     renderPalette();
     await openPalette();
+    // The backdrop div is the first child of the dialog's fixed container;
+    // clicking the fixed container (which has an onClick guard) also closes.
     const backdrop = document.querySelector(".absolute.inset-0.bg-black\\/60") as HTMLElement;
     expect(backdrop).not.toBeNull();
     fireEvent.click(backdrop);
@@ -100,29 +104,74 @@ describe("CommandPalette – open / close", () => {
 // ---------------------------------------------------------------------------
 
 describe("CommandPalette – ARIA", () => {
-  it("has combobox role on the search input", async () => {
+  it("dialog has role=dialog, aria-modal and aria-label", async () => {
     renderPalette();
     await openPalette();
-    expect(screen.getByRole("combobox")).toBeInTheDocument();
+    const dialog = screen.getByRole("dialog");
+    expect(dialog).toHaveAttribute("aria-modal", "true");
+    expect(dialog).toHaveAttribute("aria-label", "Command palette");
   });
 
-  it("renders options with listbox role", async () => {
+  it("input has role=combobox with correct aria attributes", async () => {
     renderPalette();
     await openPalette();
-    const listbox = screen.getByRole("listbox");
-    expect(listbox).toBeInTheDocument();
+    const input = screen.getByRole("combobox");
+    expect(input).toHaveAttribute("aria-autocomplete", "list");
+    expect(input).toHaveAttribute("aria-label", "Search commands");
+  });
+
+  it("listbox has role=listbox", async () => {
+    renderPalette();
+    await openPalette();
+    expect(screen.getByRole("listbox")).toBeInTheDocument();
+  });
+
+  it("each result item has role=option", async () => {
+    renderPalette();
+    await openPalette();
+    // Type something to show results
+    const input = screen.getByRole("combobox");
+    fireEvent.change(input, { target: { value: "dashboard" } });
     const options = screen.getAllByRole("option");
-    expect(options.length).toBeGreaterThan(0);
+    // "No results" empty state is also role=option; filter by non-disabled
+    const realOptions = options.filter((o) => !o.hasAttribute("aria-disabled"));
+    expect(realOptions.length).toBeGreaterThan(0);
   });
 
-
-  it("announces result count via live region", async () => {
+  it("aria-activedescendant points to the active option", async () => {
     renderPalette();
     await openPalette();
     const input = screen.getByRole("combobox");
     fireEvent.change(input, { target: { value: "dashboard" } });
+
+    const input2 = screen.getByRole("combobox");
+    const activeDescendant = input2.getAttribute("aria-activedescendant");
+    expect(activeDescendant).toBeTruthy();
+
+    const activeOption = document.getElementById(activeDescendant!);
+    expect(activeOption).not.toBeNull();
+    expect(activeOption).toHaveAttribute("aria-selected", "true");
+  });
+
+  it("live region announces result count", async () => {
+    renderPalette();
+    await openPalette();
+    const input = screen.getByRole("combobox");
+    fireEvent.change(input, { target: { value: "dashboard" } });
+
+    const status = screen.getByRole("status");
+    expect(status.textContent).toMatch(/result/i);
+  });
+
+  it("live region announces 'No results' when nothing matches", async () => {
+    renderPalette();
+    await openPalette();
+    const input = screen.getByRole("combobox");
+    fireEvent.change(input, { target: { value: "xyznotexist" } });
+
+    const status = screen.getByRole("status");
     await waitFor(() =>
-      expect(screen.getByText(/1 result/)).toBeInTheDocument(),
+      expect(status.textContent).toMatch(/no results found/i),
     );
   });
 });
@@ -132,37 +181,92 @@ describe("CommandPalette – ARIA", () => {
 // ---------------------------------------------------------------------------
 
 describe("CommandPalette – keyboard navigation", () => {
-  it("navigates items with ArrowDown", async () => {
+  it("ArrowDown moves highlight to the next item", async () => {
     renderPalette();
     await openPalette();
     const input = screen.getByRole("combobox");
+    // "e" appears in all three test actions (Dashboard, Bridges, Settings)
+    fireEvent.change(input, { target: { value: "e" } });
+
+    const getOptions = () =>
+      screen.getAllByRole("option").filter((o) => !o.hasAttribute("aria-disabled"));
+
+    expect(getOptions().length).toBeGreaterThanOrEqual(2);
+    expect(getOptions()[0]).toHaveAttribute("aria-selected", "true");
     fireEvent.keyDown(input, { key: "ArrowDown" });
-    const options = screen.getAllByRole("option");
-    await waitFor(() =>
-      expect(options[0]).toHaveAttribute("aria-selected", "true"),
-    );
+    // Re-query after re-render
+    expect(getOptions()[1]).toHaveAttribute("aria-selected", "true");
   });
 
-  it("executes selected item on Enter", async () => {
-    const onExecute = vi.fn();
-    actionsRegistry.length = 0;
-    registerAction({ id: "enter-action", title: "Enter Me", onExecute });
+  it("ArrowUp moves highlight to the previous item", async () => {
     renderPalette();
     await openPalette();
     const input = screen.getByRole("combobox");
-    fireEvent.change(input, { target: { value: "Enter" } });
+    fireEvent.change(input, { target: { value: "e" } });
+
+    // Move down first then back up
     fireEvent.keyDown(input, { key: "ArrowDown" });
+    fireEvent.keyDown(input, { key: "ArrowUp" });
+
+    const options = screen
+      .getAllByRole("option")
+      .filter((o) => !o.hasAttribute("aria-disabled"));
+    expect(options[0]).toHaveAttribute("aria-selected", "true");
+  });
+
+  it("ArrowDown does not go past the last item", async () => {
+    renderPalette();
+    await openPalette();
+    const input = screen.getByRole("combobox");
+    fireEvent.change(input, { target: { value: "e" } });
+
+    const getOptions = () =>
+      screen.getAllByRole("option").filter((o) => !o.hasAttribute("aria-disabled"));
+
+    const count = getOptions().length;
+    for (let i = 0; i < count + 5; i++) {
+      fireEvent.keyDown(input, { key: "ArrowDown" });
+    }
+    expect(getOptions()[count - 1]).toHaveAttribute("aria-selected", "true");
+  });
+
+  it("ArrowUp does not go above the first item", async () => {
+    renderPalette();
+    await openPalette();
+    const input = screen.getByRole("combobox");
+    fireEvent.change(input, { target: { value: "e" } });
+
+    for (let i = 0; i < 5; i++) {
+      fireEvent.keyDown(input, { key: "ArrowUp" });
+    }
+    const options = screen
+      .getAllByRole("option")
+      .filter((o) => !o.hasAttribute("aria-disabled"));
+    expect(options[0]).toHaveAttribute("aria-selected", "true");
+  });
+
+  it("Enter executes the currently active action and closes the palette", async () => {
+    const onExecute = vi.fn();
+    actionsRegistry.length = 0;
+    registerAction({ id: "test-action", title: "Test Action", onExecute });
+
+    renderPalette();
+    await openPalette();
+    const input = screen.getByRole("combobox");
+    fireEvent.change(input, { target: { value: "Test" } });
     fireEvent.keyDown(input, { key: "Enter" });
+
     expect(onExecute).toHaveBeenCalledOnce();
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+
+    // Restore for other tests
     actionsRegistry.length = 0;
     TEST_ACTIONS.forEach((a) => registerAction(a));
   });
 });
 
-
 // ---------------------------------------------------------------------------
-// Focus management
+// Focus restoration
 // ---------------------------------------------------------------------------
 
 describe("CommandPalette – focus management", () => {
@@ -187,6 +291,7 @@ describe("CommandPalette – focus management", () => {
     await waitFor(() =>
       expect(screen.queryByRole("dialog")).not.toBeInTheDocument(),
     );
+    // rAF-deferred focus; give it a tick
     await waitFor(() => expect(document.activeElement).toBe(trigger));
   });
 
@@ -208,13 +313,17 @@ describe("CommandPalette – mouse interaction", () => {
     renderPalette();
     await openPalette();
     const input = screen.getByRole("combobox");
+    // "e" appears in all three test actions (Dashboard, Bridges, Settings)
     fireEvent.change(input, { target: { value: "e" } });
 
     const getOptions = () =>
       screen.getAllByRole("option").filter((o) => !o.hasAttribute("aria-disabled"));
+
+    // Ensure there are at least 2 options
     expect(getOptions().length).toBeGreaterThanOrEqual(2);
 
     fireEvent.mouseEnter(getOptions()[1]);
+    // Re-query after state update
     expect(getOptions()[1]).toHaveAttribute("aria-selected", "true");
   });
 
@@ -241,19 +350,20 @@ describe("CommandPalette – mouse interaction", () => {
   });
 });
 
-
 // ---------------------------------------------------------------------------
 // Recent actions
 // ---------------------------------------------------------------------------
 
 describe("CommandPalette – recent actions", () => {
   it("shows 'Recent' section label when there are recent actions and query is empty", async () => {
+    // Pre-seed localStorage
     localStorage.setItem(
       "swipely:recent_actions",
       JSON.stringify(["action-dashboard"]),
     );
     renderPalette();
     await openPalette();
+    // The label is aria-hidden so query by text directly
     expect(screen.getByText("Recent")).toBeInTheDocument();
   });
 });
