@@ -175,6 +175,20 @@
     "ago": "hace {{time}}",
     "justNow": "Justo ahora"
   },
+  "relativeTime": {
+    "never": "nunca"
+  },
+  "connection": {
+    "live": "En vivo",
+    "connecting": "Conectando…",
+    "offline": "Desconectado",
+    "error": "Error",
+    "polling": "Consultando",
+    "updated": "actualizado {{relative}}",
+    "updatedNever": "aún no actualizado",
+    "exactTitle": "Última actualización: {{timestamp}}",
+    "ariaLabel": "Conexión: {{status}}. {{updated}}"
+  },
   "app": {
     "loadingPage": "Cargando página..."
   }

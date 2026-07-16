@@ -175,6 +175,20 @@
     "ago": "{{time}} 전",
     "justNow": "방금"
   },
+  "relativeTime": {
+    "never": "없음"
+  },
+  "connection": {
+    "live": "실시간",
+    "connecting": "연결 중…",
+    "offline": "오프라인",
+    "error": "오류",
+    "polling": "폴링 중",
+    "updated": "업데이트 {{relative}}",
+    "updatedNever": "아직 업데이트되지 않음",
+    "exactTitle": "마지막 업데이트: {{timestamp}}",
+    "ariaLabel": "연결: {{status}}. {{updated}}"
+  },
   "app": {
     "loadingPage": "페이지 로딩 중..."
   }

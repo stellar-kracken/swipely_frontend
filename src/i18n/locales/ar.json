@@ -175,6 +175,20 @@
     "ago": "منذ {{time}}",
     "justNow": "الآن"
   },
+  "relativeTime": {
+    "never": "أبداً"
+  },
+  "connection": {
+    "live": "مباشر",
+    "connecting": "جارٍ الاتصال…",
+    "offline": "غير متصل",
+    "error": "خطأ",
+    "polling": "استطلاع",
+    "updated": "تم التحديث {{relative}}",
+    "updatedNever": "لم يتم التحديث بعد",
+    "exactTitle": "آخر تحديث: {{timestamp}}",
+    "ariaLabel": "الاتصال: {{status}}. {{updated}}"
+  },
   "app": {
     "loadingPage": "جارٍ تحميل الصفحة..."
   }

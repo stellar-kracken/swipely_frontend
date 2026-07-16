@@ -12,6 +12,7 @@ import NotificationsDrawer from "./NotificationsDrawer";
 import GlobalSearch from "./search/GlobalSearch";
 import UnreadCountBadge from "./UnreadCountBadge";
 import SwipelyMark from "./SwipelyMark";
+import ConnectionStatus from "./ConnectionStatus";
 
 export default function Navbar() {
   const location = useLocation();
@@ -72,6 +73,9 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center gap-3">
+              <div className="hidden sm:block">
+                <ConnectionStatus />
+              </div>
               <div className="hidden lg:block">
                 <GlobalSearch />
               </div>

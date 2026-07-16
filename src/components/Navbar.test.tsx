@@ -11,6 +11,15 @@ vi.mock("../hooks/useWebSocketEnhanced", () => ({
   })),
 }));
 
+vi.mock("../contexts/WebSocketContextValue", () => ({
+  useWebSocketContext: () => ({
+    connectionState: "connected",
+    isPollingFallback: false,
+    send: vi.fn(),
+    subscribe: vi.fn(() => () => {}),
+  }),
+}));
+
 function resetNotifications() {
   useNotificationStore.setState(useNotificationStore.getInitialState(), true);
 }
