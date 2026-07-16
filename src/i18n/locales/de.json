@@ -189,6 +189,31 @@
     "exactTitle": "Zuletzt aktualisiert: {{timestamp}}",
     "ariaLabel": "Verbindung: {{status}}. {{updated}}"
   },
+  "help": {
+    "title": "Hilfe-Center",
+    "intro": "Durchsuchen Sie die Dokumentation, stöbern Sie in FAQs und finden Sie kontextbezogene Anleitungen für Dashboard-Operationen, Integrationen und Incident-Response.",
+    "categories": "Kategorien",
+    "allTopics": "Alle Themen",
+    "gettingStarted": "Erste Schritte",
+    "step1": "Öffnen Sie das Dashboard und überprüfen Sie die Live-Datenverbindungen.",
+    "step2": "Konfigurieren Sie die Benachrichtigungsschwellen in den Einstellungen.",
+    "step3": "Aktivieren Sie API-Integrationen und Webhook-Callbacks.",
+    "videoTutorials": "Video-Tutorials",
+    "searchLabel": "Dokumentation durchsuchen",
+    "searchPlaceholder": "Nach Schlüsselwort, Thema oder Workflow suchen",
+    "documentationViewer": "Dokumentations-Viewer",
+    "rateArticle": "Diesen Artikel bewerten",
+    "rateStar": "{{value}} Stern bewerten",
+    "relatedArticles": "Verwandte Artikel",
+    "faq": "FAQ",
+    "contactTitle": "Support und Feedback",
+    "contactDescription": "Teilen Sie mit, was in der Dokumentation fehlt oder unklar ist. Das Team überprüft das Feedback in jedem Sprint.",
+    "emailPlaceholder": "E-Mail (optional)",
+    "contactDirectly": "Support direkt kontaktieren",
+    "feedbackPlaceholder": "Sagen Sie uns, was verbessert werden soll",
+    "sendFeedback": "Feedback senden",
+    "feedbackReceived": "Feedback erhalten. Vielen Dank."
+  },
   "app": {
     "loadingPage": "Seite wird geladen..."
   }

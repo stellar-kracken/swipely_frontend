@@ -189,6 +189,31 @@
     "exactTitle": "Última actualización: {{timestamp}}",
     "ariaLabel": "Conexión: {{status}}. {{updated}}"
   },
+  "help": {
+    "title": "Centro de Ayuda",
+    "intro": "Busca documentación, consulta preguntas frecuentes y encuentra orientación contextual para operaciones del panel, integraciones y respuesta a incidentes.",
+    "categories": "Categorías",
+    "allTopics": "Todos los temas",
+    "gettingStarted": "Primeros Pasos",
+    "step1": "Abre el Panel y verifica las conexiones de datos en vivo.",
+    "step2": "Configura los umbrales de notificación en Configuración.",
+    "step3": "Habilita las integraciones de API y los callbacks de webhook.",
+    "videoTutorials": "Tutoriales en Video",
+    "searchLabel": "Buscar documentación",
+    "searchPlaceholder": "Buscar por palabra clave, tema o flujo de trabajo",
+    "documentationViewer": "Visor de Documentación",
+    "rateArticle": "Califica este artículo",
+    "rateStar": "Calificar con {{value}} estrella",
+    "relatedArticles": "Artículos relacionados",
+    "faq": "Preguntas Frecuentes",
+    "contactTitle": "Soporte y Comentarios",
+    "contactDescription": "Comparte lo que falta o es confuso en la documentación. El equipo revisa los comentarios durante cada sprint.",
+    "emailPlaceholder": "Correo electrónico (opcional)",
+    "contactDirectly": "Contactar a soporte directamente",
+    "feedbackPlaceholder": "Dinos qué se debería mejorar",
+    "sendFeedback": "Enviar comentarios",
+    "feedbackReceived": "Comentarios recibidos. Gracias."
+  },
   "app": {
     "loadingPage": "Cargando página..."
   }

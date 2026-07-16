@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   faqItems,
   helpArticles,
@@ -25,6 +26,7 @@ function saveRatings(ratings: RatingMap): void {
 }
 
 export default function Help() {
+  const { t } = useTranslation();
   const [query, setQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<HelpCategory | "all">("all");
   const [selectedArticleId, setSelectedArticleId] = useState(helpArticles[0]?.id ?? "");
@@ -79,17 +81,16 @@ export default function Help() {
   return (
     <div className="space-y-8">
       <header className="space-y-3">
-        <h1 className="text-3xl font-bold text-stellar-text-primary">Help Center</h1>
+        <h1 className="text-3xl font-bold text-stellar-text-primary">{t("help.title")}</h1>
         <p className="text-stellar-text-secondary max-w-3xl">
-          Search documentation, browse FAQs, and find contextual guidance for dashboard operations,
-          integrations, and incident response.
+          {t("help.intro")}
         </p>
       </header>
 
       <section className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <aside className="lg:col-span-1 space-y-4">
           <div className="rounded-lg border border-stellar-border bg-stellar-card p-4">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-stellar-text-secondary" id="help-categories-label">Categories</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-stellar-text-secondary" id="help-categories-label">{t("help.categories")}</h2>
             <Tabs
               activeTab={selectedCategory}
               onTabChange={(id) => setSelectedCategory(id as HelpCategory | "all")}
@@ -105,7 +106,7 @@ export default function Help() {
                   inactiveClassName="text-stellar-text-secondary hover:bg-stellar-dark hover:text-stellar-text-primary border-transparent"
                   className="rounded-md px-3 py-2 text-left text-sm"
                 >
-                  All topics
+                  {t("help.allTopics")}
                 </Tab>
                 {helpCategories.map((category) => (
                   <Tab
@@ -129,16 +130,16 @@ export default function Help() {
           </div>
 
           <div className="rounded-lg border border-stellar-border bg-stellar-card p-4">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-stellar-text-secondary">Getting Started</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-stellar-text-secondary">{t("help.gettingStarted")}</h2>
             <ol className="mt-3 space-y-2 text-sm text-stellar-text-secondary list-decimal list-inside">
-              <li>Open Dashboard and verify live data connections.</li>
-              <li>Configure notification thresholds in Settings.</li>
-              <li>Enable API integrations and webhook callbacks.</li>
+              <li>{t("help.step1")}</li>
+              <li>{t("help.step2")}</li>
+              <li>{t("help.step3")}</li>
             </ol>
           </div>
 
           <div className="rounded-lg border border-stellar-border bg-stellar-card p-4">
-            <h2 className="text-sm font-semibold uppercase tracking-wide text-stellar-text-secondary">Video Tutorials</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-wide text-stellar-text-secondary">{t("help.videoTutorials")}</h2>
             <div className="mt-3 space-y-2 text-sm">
               {helpArticles
                 .filter((article) => Boolean(article.videoUrl))
@@ -160,13 +161,13 @@ export default function Help() {
         <div className="lg:col-span-3 space-y-6">
           <section className="rounded-lg border border-stellar-border bg-stellar-card p-4">
             <label htmlFor="help-search" className="text-sm font-medium text-stellar-text-secondary">
-              Search documentation
+              {t("help.searchLabel")}
             </label>
             <input
               id="help-search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Search by keyword, topic, or workflow"
+              placeholder={t("help.searchPlaceholder")}
               className="mt-2 w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             />
 
@@ -192,7 +193,7 @@ export default function Help() {
           {selectedArticle && (
             <article className="rounded-lg border border-stellar-border bg-stellar-card p-6 space-y-4">
               <header className="space-y-1">
-                <p className="text-xs uppercase tracking-wide text-stellar-text-secondary">Documentation Viewer</p>
+                <p className="text-xs uppercase tracking-wide text-stellar-text-secondary">{t("help.documentationViewer")}</p>
                 <h2 className="text-2xl font-semibold text-stellar-text-primary">{selectedArticle.title}</h2>
                 <p className="text-sm text-stellar-text-secondary">{selectedArticle.summary}</p>
               </header>
@@ -200,7 +201,7 @@ export default function Help() {
               <p className="text-stellar-text-secondary">{selectedArticle.content}</p>
 
               <div className="border-t border-stellar-border pt-4">
-                <p className="text-sm font-medium text-stellar-text-primary">Rate this article</p>
+                <p className="text-sm font-medium text-stellar-text-primary">{t("help.rateArticle")}</p>
                 <div className="mt-2 flex items-center gap-2">
                   {[1, 2, 3, 4, 5].map((value) => (
                     <button
@@ -212,7 +213,7 @@ export default function Help() {
                           ? "border-stellar-blue bg-stellar-blue text-stellar-ink"
                           : "border-stellar-border text-stellar-text-secondary hover:border-stellar-blue"
                       }`}
-                      aria-label={`Rate ${value} star`}
+                      aria-label={t("help.rateStar", { value })}
                     >
                       {value}
                     </button>
@@ -222,7 +223,7 @@ export default function Help() {
 
               {relatedArticles.length > 0 && (
                 <div className="border-t border-stellar-border pt-4">
-                  <p className="text-sm font-medium text-stellar-text-primary">Related articles</p>
+                  <p className="text-sm font-medium text-stellar-text-primary">{t("help.relatedArticles")}</p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {relatedArticles.map((article) => (
                       <button
@@ -241,7 +242,7 @@ export default function Help() {
           )}
 
           <section className="rounded-lg border border-stellar-border bg-stellar-card p-6">
-            <h2 className="text-lg font-semibold text-stellar-text-primary">FAQ</h2>
+            <h2 className="text-lg font-semibold text-stellar-text-primary">{t("help.faq")}</h2>
             <div className="mt-4 space-y-3">
               {filteredFaq.map((item) => (
                 <details key={item.id} className="rounded-md border border-stellar-border p-3">
@@ -255,22 +256,22 @@ export default function Help() {
           </section>
 
           <section className="rounded-lg border border-stellar-border bg-stellar-card p-6 space-y-4">
-            <h2 className="text-lg font-semibold text-stellar-text-primary">Contact Support and Feedback</h2>
+            <h2 className="text-lg font-semibold text-stellar-text-primary">{t("help.contactTitle")}</h2>
             <p className="text-sm text-stellar-text-secondary">
-              Share what is missing or confusing in the docs. The team reviews feedback during each sprint.
+              {t("help.contactDescription")}
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               <input
                 value={contactEmail}
                 onChange={(event) => setContactEmail(event.target.value)}
-                placeholder="Email (optional)"
+                placeholder={t("help.emailPlaceholder")}
                 className="rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
               />
               <a
                 href="mailto:support@swipely.io"
                 className="rounded-md border border-stellar-border px-3 py-2 text-center text-sm text-stellar-blue hover:bg-stellar-dark"
               >
-                Contact support directly
+                {t("help.contactDirectly")}
               </a>
             </div>
             <textarea
@@ -279,7 +280,7 @@ export default function Help() {
                 setFeedback(event.target.value);
                 setFeedbackSent(false);
               }}
-              placeholder="Tell us what should be improved"
+              placeholder={t("help.feedbackPlaceholder")}
               rows={4}
               className="w-full rounded-md border border-stellar-border bg-stellar-dark px-3 py-2 text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
             />
@@ -288,9 +289,9 @@ export default function Help() {
               onClick={submitFeedback}
               className="rounded-md bg-stellar-blue px-4 py-2 text-sm font-medium text-stellar-ink hover:bg-stellar-blue/90"
             >
-              Send feedback
+              {t("help.sendFeedback")}
             </button>
-            {feedbackSent && <p className="text-sm text-green-400">Feedback received. Thank you.</p>}
+            {feedbackSent && <p className="text-sm text-green-400">{t("help.feedbackReceived")}</p>}
           </section>
         </div>
       </section>

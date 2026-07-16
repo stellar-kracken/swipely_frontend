@@ -189,6 +189,31 @@
     "exactTitle": "마지막 업데이트: {{timestamp}}",
     "ariaLabel": "연결: {{status}}. {{updated}}"
   },
+  "help": {
+    "title": "도움말 센터",
+    "intro": "문서를 검색하고, FAQ를 찾아보고, 대시보드 운영, 통합 및 사고 대응에 대한 상황별 지침을 찾아보세요.",
+    "categories": "카테고리",
+    "allTopics": "모든 주제",
+    "gettingStarted": "시작하기",
+    "step1": "대시보드를 열고 실시간 데이터 연결을 확인하세요.",
+    "step2": "설정에서 알림 임계값을 구성하세요.",
+    "step3": "API 통합 및 웹훅 콜백을 활성화하세요.",
+    "videoTutorials": "비디오 튜토리얼",
+    "searchLabel": "문서 검색",
+    "searchPlaceholder": "키워드, 주제 또는 워크플로우로 검색",
+    "documentationViewer": "문서 뷰어",
+    "rateArticle": "이 문서 평가하기",
+    "rateStar": "{{value}}점 평가",
+    "relatedArticles": "관련 문서",
+    "faq": "자주 묻는 질문",
+    "contactTitle": "지원 및 피드백",
+    "contactDescription": "문서에서 누락되었거나 혼란스러운 점을 공유해 주세요. 팀은 각 스프린트마다 피드백을 검토합니다.",
+    "emailPlaceholder": "이메일 (선택 사항)",
+    "contactDirectly": "지원팀에 직접 문의",
+    "feedbackPlaceholder": "개선해야 할 사항을 알려주세요",
+    "sendFeedback": "피드백 보내기",
+    "feedbackReceived": "피드백을 받았습니다. 감사합니다."
+  },
   "app": {
     "loadingPage": "페이지 로딩 중..."
   }
