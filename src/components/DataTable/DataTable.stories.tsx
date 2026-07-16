@@ -180,98 +180,117 @@ const COLUMNS: Array<DataTableColumnDef<BridgeRow>> = [
 
 // ── Meta ──────────────────────────────────────────────────────────────────────
 
-const meta = {
+/**
+ * DataTable is a generic component — Meta<typeof DataTable> widens the TData
+ * type parameter to `unknown`, which breaks column-definition assignments.
+ * We use `render` functions throughout so each story instantiates the concrete
+ * BridgeRow type directly, keeping TypeScript happy without any casts.
+ */
+const meta: Meta = {
   title: "Swipely/Data/DataTable",
-  component: DataTable,
   tags: ["autodocs"],
   parameters: {
     layout: "padded",
   },
-} satisfies Meta<typeof DataTable>;
+};
 
 export default meta;
 
-type Story = StoryObj<typeof DataTable>;
+type Story = StoryObj;
 
 // ── Stories ───────────────────────────────────────────────────────────────────
 
 /** Fully populated table with sorting, filtering, export, and row selection */
 export const Populated: Story = {
-  args: {
-    title: "Bridges",
-    description: "Live bridge health and volume data.",
-    data: MOCK_BRIDGES,
-    columns: COLUMNS,
-    isLoading: false,
-  },
+  render: () => (
+    <DataTable<BridgeRow>
+      title="Bridges"
+      description="Live bridge health and volume data."
+      data={MOCK_BRIDGES}
+      columns={COLUMNS}
+      isLoading={false}
+    />
+  ),
 };
 
 /** Loading skeleton state — data prop is empty and isLoading is true */
 export const Loading: Story = {
-  args: {
-    title: "Bridges",
-    data: [],
-    columns: COLUMNS,
-    isLoading: true,
-  },
+  render: () => (
+    <DataTable<BridgeRow>
+      title="Bridges"
+      data={[]}
+      columns={COLUMNS}
+      isLoading={true}
+    />
+  ),
 };
 
-/** Empty state — all filters cleared, zero rows returned */
+/** Empty state — no rows, not loading */
 export const Empty: Story = {
-  args: {
-    title: "Bridges",
-    description: "No bridges to display.",
-    data: [],
-    columns: COLUMNS,
-    isLoading: false,
-  },
+  render: () => (
+    <DataTable<BridgeRow>
+      title="Bridges"
+      description="No bridges to display."
+      data={[]}
+      columns={COLUMNS}
+      isLoading={false}
+    />
+  ),
 };
 
 /** Large dataset to demonstrate pagination */
 export const Paginated: Story = {
-  args: {
-    title: "All Bridges (50 rows)",
-    data: LARGE_DATASET,
-    columns: COLUMNS,
-    isLoading: false,
-    pageSizeOptions: [10, 25, 50],
-  },
+  render: () => (
+    <DataTable<BridgeRow>
+      title="All Bridges (50 rows)"
+      data={LARGE_DATASET}
+      columns={COLUMNS}
+      isLoading={false}
+      pageSizeOptions={[10, 25, 50]}
+    />
+  ),
 };
 
 /** Row-level action menu */
 export const WithRowActions: Story = {
-  args: {
-    title: "Bridges",
-    data: MOCK_BRIDGES,
-    columns: COLUMNS,
-    isLoading: false,
-    rowActions: {
-      label: "Actions",
-      items: [
-        { id: "view", label: "View details", onSelect: action("view-row") },
-        { id: "export", label: "Export row", onSelect: action("export-row") },
-        { id: "flag", label: "Flag for review", onSelect: action("flag-row") },
-      ],
-    },
-  },
+  render: () => (
+    <DataTable<BridgeRow>
+      title="Bridges"
+      data={MOCK_BRIDGES}
+      columns={COLUMNS}
+      isLoading={false}
+      rowActions={{
+        label: "Actions",
+        items: [
+          { id: "view", label: "View details", onSelect: action("view-row") },
+          { id: "export", label: "Export row", onSelect: action("export-row") },
+          { id: "flag", label: "Flag for review", onSelect: action("flag-row") },
+        ],
+      }}
+    />
+  ),
 };
 
 /** Table with no title or description — just data */
 export const NoHeader: Story = {
-  args: {
-    data: MOCK_BRIDGES,
-    columns: COLUMNS,
-    isLoading: false,
-  },
+  render: () => (
+    <DataTable<BridgeRow>
+      data={MOCK_BRIDGES}
+      columns={COLUMNS}
+      isLoading={false}
+    />
+  ),
 };
 
 /** Row selection disabled */
 export const SelectionDisabled: Story = {
-  args: {
-    title: "Bridges (read-only)",
-    data: MOCK_BRIDGES,
-    columns: COLUMNS,
-    isLoading: false,
-    enableRowSelection: false,
-  },
+  render: () => (
+    <DataTable<BridgeRow>
+      title="Bridges (read-only)"
+      data={MOCK_BRIDGES}
+      columns={COLUMNS}
+      isLoading={false}
+      enableRowSelection={false}
+    />
+  ),
 };
