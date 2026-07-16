@@ -78,7 +78,7 @@ function OperationsConsole() {
 
   const filtered = ACTIONS.filter((a) => a.label.toLowerCase().includes(query.toLowerCase()) || (a.description ?? "").toLowerCase().includes(query.toLowerCase()));
 
-  const handleExecute = async (action: any) => {
+  const handleExecute = async (action: typeof ACTIONS[number]) => {
     if (action.destructive && action.confirmationPhrase) {
       setModal({ actionId: action.id, phrase: action.confirmationPhrase });
       return;
@@ -183,7 +183,12 @@ function OperationsConsole() {
   );
 }
 
-function ActionWrapper({ action, onExecute }: any) {
+interface ActionWrapperProps {
+  action: typeof ACTIONS[number];
+  onExecute: (action: typeof ACTIONS[number]) => Promise<void>;
+}
+
+function ActionWrapper({ action, onExecute }: ActionWrapperProps) {
   return (
     <ActionShortcutButton action={action} onExecute={onExecute} />
   );
