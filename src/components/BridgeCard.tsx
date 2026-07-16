@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import type { Bridge, BridgeStats } from "../types";
+import SkeletonCard from "./Skeleton/SkeletonCard";
 
 interface BridgeCardProps {
   bridge: Bridge;
   stats: BridgeStats | null;
+  /** When true, renders a skeleton placeholder instead of real content */
+  isLoading?: boolean;
 }
 
 function getStatusBadge(status: string) {
@@ -24,10 +27,10 @@ function getStatusBadge(status: string) {
 }
 
 function formatNumber(num: number): string {
-  if (num >= 1_000_000_000) return `$${(num / 1_000_000_000).toFixed(2)}B`;
-  if (num >= 1_000_000) return `$${(num / 1_000_000).toFixed(2)}M`;
-  if (num >= 1_000) return `$${(num / 1_000).toFixed(2)}K`;
-  return `$${num.toFixed(2)}`;
+  if (num >= 1_000_000_000) return "$" + (num / 1_000_000_000).toFixed(2) + "B";
+  if (num >= 1_000_000) return "$" + (num / 1_000_000).toFixed(2) + "M";
+  if (num >= 1_000) return "$" + (num / 1_000).toFixed(2) + "K";
+  return "$" + num.toFixed(2);
 }
 
 function getHealthScore(bridge: Bridge): number {
@@ -43,7 +46,23 @@ function getHealthScore(bridge: Bridge): number {
   return Math.max(0, score);
 }
 
-export default function BridgeCard({ bridge, stats }: BridgeCardProps) {
+export function BridgeCardSkeleton({ className = "" }: { className?: string }) {
+  return (
+    <SkeletonCard
+      width="100%"
+      rows={4}
+      showHeader
+      className={className}
+      ariaLabel="Loading bridge details"
+    />
+  );
+}
+
+export default function BridgeCard({ bridge, stats, isLoading = false }: BridgeCardProps) {
+  if (isLoading) {
+    return <BridgeCardSkeleton />;
+  }
+
   const healthScore = getHealthScore(bridge);
 
   return (
