@@ -185,6 +185,21 @@ const COLUMNS: Array<DataTableColumnDef<BridgeRow>> = [
  * type parameter to `unknown`, which breaks column-definition assignments.
  * We use `render` functions throughout so each story instantiates the concrete
  * BridgeRow type directly, keeping TypeScript happy without any casts.
+ *
+ * Prop-documentation gaps noticed:
+ *   - `storageKey`: undocumented. Omitting it means column order/visibility
+ *     changes are not persisted to localStorage across page reloads. Stories
+ *     omit it intentionally to avoid polluting test storage.
+ *   - `enableVirtualization` defaults to `true` but the README/JSDoc does not
+ *     explain the row-count threshold at which virtualization kicks in, or
+ *     when to disable it (e.g. for snapshot testing or very short lists).
+ *   - `filenameBase` has no documentation — defaults to "data". Stories omit
+ *     it and rely on the default.
+ *
+ * States NOT covered and why:
+ *   - "error": DataTable itself has no error prop. Error states are rendered
+ *     by the parent (e.g. wrapping in a TanStack Query error boundary). Not
+ *     applicable here.
  */
 const meta: Meta = {
   title: "Swipely/Data/DataTable",

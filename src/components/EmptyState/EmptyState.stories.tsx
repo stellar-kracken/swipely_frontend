@@ -13,6 +13,20 @@ import {
 } from "./index";
 
 // ── Base component ────────────────────────────────────────────────────────────
+//
+// Theme gap (applies to all stories in this project):
+//   preview.tsx hardcodes `className="dark"` — there is no light/dark switcher
+//   in this Storybook setup. All stories render in dark mode only.
+//   To enable theme switching: install @storybook/addon-themes and add a
+//   withThemeByClassName decorator to .storybook/preview.tsx.
+//
+// Prop-documentation gaps noticed:
+//   - `ariaLabel` defaults to `title` when omitted (documented inline in
+//     source), but this default is not reflected in the TypeScript type
+//     (it is typed as `string | undefined`).
+//   - `illustration` accepts `ReactNode` — the source exports EmptyIllustration.*
+//     helpers but does not document which illustrations exist or what each
+//     represents beyond the identifier name.
 
 const meta = {
   title: "Swipely/UI/EmptyState",

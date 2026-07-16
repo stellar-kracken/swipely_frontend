@@ -29,6 +29,19 @@ function withWebSocketContext(
 }
 
 // ── Meta ──────────────────────────────────────────────────────────────────────
+//
+// Theme gap: preview.tsx hardcodes `className="dark"` — there is no light/dark
+// toggle in this Storybook setup. These stories only render in dark mode.
+// To add theme switching, install @storybook/addon-themes and add a
+// `withThemeByClassName` decorator to preview.tsx.
+//
+// Prop-documentation gap:
+//   - ConnectionStatus has NO props at all. Its entire state (connectionState,
+//     isPollingFallback) is read from WebSocketContext via useWebSocketContext().
+//     This makes the component impossible to test or preview in isolation
+//     without mocking the context, which is what the withWebSocketContext
+//     decorator below does. A future improvement would be to accept optional
+//     override props for testing/Storybook scenarios.
 
 const meta = {
   title: "Swipely/Network/ConnectionStatus",
