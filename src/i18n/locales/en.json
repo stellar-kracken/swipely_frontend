@@ -189,30 +189,10 @@
     "exactTitle": "Last updated: {{timestamp}}",
     "ariaLabel": "Connection: {{status}}. {{updated}}"
   },
-  "help": {
-    "title": "Help Center",
-    "intro": "Search documentation, browse FAQs, and find contextual guidance for dashboard operations, integrations, and incident response.",
-    "categories": "Categories",
-    "allTopics": "All topics",
-    "gettingStarted": "Getting Started",
-    "step1": "Open Dashboard and verify live data connections.",
-    "step2": "Configure notification thresholds in Settings.",
-    "step3": "Enable API integrations and webhook callbacks.",
-    "videoTutorials": "Video Tutorials",
-    "searchLabel": "Search documentation",
-    "searchPlaceholder": "Search by keyword, topic, or workflow",
-    "documentationViewer": "Documentation Viewer",
-    "rateArticle": "Rate this article",
-    "rateStar": "Rate {{value}} star",
-    "relatedArticles": "Related articles",
-    "faq": "FAQ",
-    "contactTitle": "Contact Support and Feedback",
-    "contactDescription": "Share what is missing or confusing in the docs. The team reviews feedback during each sprint.",
-    "emailPlaceholder": "Email (optional)",
-    "contactDirectly": "Contact support directly",
-    "feedbackPlaceholder": "Tell us what should be improved",
-    "sendFeedback": "Send feedback",
-    "feedbackReceived": "Feedback received. Thank you."
+  "copyButton": {
+    "copy": "Copy",
+    "copied": "Copied!",
+    "failed": "Failed"
   },
   "app": {
     "loadingPage": "Loading page..."

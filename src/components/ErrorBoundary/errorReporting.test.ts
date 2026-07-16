@@ -41,6 +41,12 @@ describe("logError", () => {
     const entry2 = logError(new Error("b"));
     expect(entry1.id).not.toBe(entry2.id);
   });
+
+  it("includes the reference id in the returned entry for support correlation", () => {
+    const entry = logError(new Error("support case"), undefined, "high", "Route:/x");
+    expect(entry.id).toMatch(/^err-\d+-[a-z0-9]+$/);
+    expect(entry.context).toBe("Route:/x");
+  });
 });
 
 describe("getErrorLog", () => {

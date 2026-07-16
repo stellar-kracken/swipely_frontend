@@ -1,4 +1,5 @@
-import type { Meta, StoryObj, Decorator } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react";
+import type { ComponentType } from "react";
 import { WebSocketContext } from "../contexts/WebSocketContextValue";
 import type { WebSocketContextValue } from "../contexts/WebSocketContextValue";
 import type { ConnectionState } from "../types";
@@ -13,7 +14,7 @@ import ConnectionStatus from "./ConnectionStatus";
 function withWebSocketContext(
   connectionState: ConnectionState,
   isPollingFallback = false
-): Decorator {
+) {
   const value: WebSocketContextValue = {
     connectionState,
     isPollingFallback,
@@ -21,7 +22,7 @@ function withWebSocketContext(
     subscribe: () => () => {},
   };
 
-  return (Story) => (
+  return (Story: ComponentType) => (
     <WebSocketContext.Provider value={value}>
       <Story />
     </WebSocketContext.Provider>

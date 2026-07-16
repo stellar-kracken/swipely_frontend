@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import BridgeCard from "./BridgeCard";
+import { MemoryRouter } from "react-router-dom";
+import BridgeCard, { BridgeCardSkeleton } from "./BridgeCard";
 import type { Bridge, BridgeStats } from "../types";
 
 const meta = {
@@ -13,6 +14,15 @@ const meta = {
     bridge: { control: "object" },
     stats: { control: "object" },
   },
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <div style={{ width: "380px" }}>
+          <Story />
+        </div>
+      </MemoryRouter>
+    ),
+  ],
 } satisfies Meta<typeof BridgeCard>;
 
 export default meta;
@@ -68,19 +78,6 @@ const mockStats: BridgeStats = {
 };
 
 // ── Stories ───────────────────────────────────────────────────────────────────
-//
-// States NOT covered and why:
-//   - "loading" : BridgeCard has no isLoading prop. The component simply omits
-//     the stats panel when `stats` is null, which is the closest proxy for an
-//     in-flight fetch. The `NoStats` story below documents this behaviour.
-//   - "error"   : No error prop exists on BridgeCard. Error states are handled
-//     by the parent page, not by this card.
-//
-// Prop-documentation gaps noticed:
-//   - `stats` is typed as `BridgeStats | null` but there is no JSDoc explaining
-//     that null means "not yet loaded" vs "no stats available".
-//   - `bridge.status` has no default value documented; the component falls back
-//     to the "unknown" style for any unrecognised string.
 
 /** Healthy bridge with full stats populated */
 export const Healthy: Story = {
@@ -140,3 +137,18 @@ export const LongName: Story = {
     stats: mockStats,
   },
 };
+
+/** Card in loading state — shows skeleton placeholder */
+export const Loading: Story = {
+  args: {
+    bridge: healthyBridge,
+    stats: null,
+    isLoading: true,
+  },
+};
+
+/** Standalone skeleton component without any props */
+export const SkeletonOnly: Story = {
+  render: () => <BridgeCardSkeleton />,
+};
+

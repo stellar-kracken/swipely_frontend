@@ -30,13 +30,22 @@ export function logError(
     errorLog.shift();
   }
 
+  // Always include the reference id so support can correlate user reports with logs.
   if (isDev) {
-    console.group(`[ErrorBoundary] ${severity.toUpperCase()} — ${context ?? "Unknown"}`);
+    console.group(
+      `[ErrorBoundary] ${severity.toUpperCase()} — ${context ?? "Unknown"} [${entry.id}]`
+    );
     console.error(error);
     if (componentStack) {
       console.log("Component stack:", componentStack);
     }
     console.groupEnd();
+  } else {
+    console.error(`[ErrorBoundary] ref=${entry.id}`, {
+      message: error.message,
+      severity,
+      context,
+    });
   }
 
   return entry;

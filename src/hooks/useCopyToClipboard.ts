@@ -15,7 +15,7 @@ interface CopyState {
   message: string;
 }
 
-const DEFAULT_SUCCESS_DURATION_MS = 2000;
+const DEFAULT_SUCCESS_DURATION_MS = 1500;
 
 function toText(value: unknown, format: CopyFormat): string {
   if (value === null || value === undefined) {

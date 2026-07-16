@@ -189,30 +189,10 @@
     "exactTitle": "Dernière mise à jour : {{timestamp}}",
     "ariaLabel": "Connexion : {{status}}. {{updated}}"
   },
-  "help": {
-    "title": "Centre d'Aide",
-    "intro": "Recherchez dans la documentation, parcourez les FAQ et trouvez des conseils contextuels pour les opérations du tableau de bord, les intégrations et la réponse aux incidents.",
-    "categories": "Catégories",
-    "allTopics": "Tous les sujets",
-    "gettingStarted": "Premiers Pas",
-    "step1": "Ouvrez le tableau de bord et vérifiez les connexions de données en direct.",
-    "step2": "Configurez les seuils de notification dans les Paramètres.",
-    "step3": "Activez les intégrations API et les rappels webhook.",
-    "videoTutorials": "Tutoriels Vidéo",
-    "searchLabel": "Rechercher dans la documentation",
-    "searchPlaceholder": "Rechercher par mot-clé, sujet ou flux de travail",
-    "documentationViewer": "Visionneuse de Documentation",
-    "rateArticle": "Évaluez cet article",
-    "rateStar": "Noter {{value}} étoile",
-    "relatedArticles": "Articles connexes",
-    "faq": "FAQ",
-    "contactTitle": "Support et Commentaires",
-    "contactDescription": "Partagez ce qui manque ou prête à confusion dans la documentation. L'équipe examine les commentaires à chaque sprint.",
-    "emailPlaceholder": "E-mail (facultatif)",
-    "contactDirectly": "Contacter le support directement",
-    "feedbackPlaceholder": "Dites-nous ce qui devrait être amélioré",
-    "sendFeedback": "Envoyer un commentaire",
-    "feedbackReceived": "Commentaire reçu. Merci."
+  "copyButton": {
+    "copy": "Copier",
+    "copied": "Copié !",
+    "failed": "Échec"
   },
   "app": {
     "loadingPage": "Chargement de la page..."

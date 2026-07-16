@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { AssetStatusBadge } from "./AssetStatusBadge";
 import { bridgeStatusToAssetStatus } from "../utils/status";
+import SkeletonCard from "./Skeleton/SkeletonCard";
 
 interface BridgeStatusCardProps {
   name: string;
@@ -12,15 +13,42 @@ interface BridgeStatusCardProps {
   mismatchPercentage: number;
   /** Renders above the card link (e.g. favorite chip); keep actions out of the navigation target */
   topRight?: ReactNode;
+  /** When true, renders a skeleton placeholder instead of real content */
+  isLoading?: boolean;
 }
 
 
 
 function formatNumber(num: number): string {
-  if (num >= 1_000_000_000) return `$${(num / 1_000_000_000).toFixed(2)}B`;
-  if (num >= 1_000_000) return `$${(num / 1_000_000).toFixed(2)}M`;
-  if (num >= 1_000) return `$${(num / 1_000).toFixed(2)}K`;
-  return `$${num.toFixed(2)}`;
+  if (num >= 1_000_000_000) return "$" + (num / 1_000_000_000).toFixed(2) + "B";
+  if (num >= 1_000_000) return "$" + (num / 1_000_000).toFixed(2) + "M";
+  if (num >= 1_000) return "$" + (num / 1_000).toFixed(2) + "K";
+  return "$" + num.toFixed(2);
+}
+
+export function BridgeStatusCardSkeleton({
+  topRight,
+  className = "",
+}: {
+  topRight?: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div className="relative">
+      {topRight ? (
+        <div className="absolute right-3 top-3 z-10 flex items-center gap-2">{topRight}</div>
+      ) : null}
+      <div className={topRight ? "pt-12" : ""}>
+        <SkeletonCard
+          width="100%"
+          rows={4}
+          showHeader
+          className={className}
+          ariaLabel="Loading bridge status"
+        />
+      </div>
+    </div>
+  );
 }
 
 export default function BridgeStatusCard({
@@ -31,7 +59,12 @@ export default function BridgeStatusCard({
   supplyOnSource,
   mismatchPercentage,
   topRight,
+  isLoading = false,
 }: BridgeStatusCardProps) {
+  if (isLoading) {
+    return <BridgeStatusCardSkeleton topRight={topRight} />;
+  }
+
   return (
     <div className="relative">
       {topRight ? (

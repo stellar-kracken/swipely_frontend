@@ -1,4 +1,6 @@
 import type { KeyboardEvent, MouseEvent } from "react";
+import { useTranslation } from "react-i18next";
+import { CheckIcon } from "@heroicons/react/24/outline";
 import useCopyToClipboard, {
   type CopyFormat,
   type CopyOptions,
@@ -22,9 +24,9 @@ interface CopyButtonProps {
 
 export default function CopyButton({
   value,
-  label = "Copy",
-  copiedLabel = "Copied",
-  failedLabel = "Failed",
+  label,
+  copiedLabel,
+  failedLabel,
   className = "",
   format = "text",
   mimeType,
@@ -35,12 +37,17 @@ export default function CopyButton({
   stopPropagation = true,
   ariaLabel,
 }: CopyButtonProps) {
+  const { t } = useTranslation();
   const { copy, status, message } = useCopyToClipboard();
+
+  const resolvedLabel = label ?? t("copyButton.copy", "Copy");
+  const resolvedCopiedLabel = copiedLabel ?? t("copyButton.copied", "Copied!");
+  const resolvedFailedLabel = failedLabel ?? t("copyButton.failed", "Failed");
 
   const buttonBaseClass =
     variant === "inline"
       ? "text-xs font-medium text-stellar-blue hover:text-stellar-text-primary underline underline-offset-2 focus:outline-none focus:ring-2 focus:ring-stellar-blue rounded px-1 py-0.5"
-      : "inline-flex items-center justify-center min-h-9 px-3 py-1.5 text-xs font-medium rounded-md border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary hover:border-stellar-blue focus:outline-none focus:ring-2 focus:ring-stellar-blue transition-colors";
+      : "inline-flex items-center justify-center gap-1.5 min-h-9 px-3 py-1.5 text-xs font-medium rounded-md border border-stellar-border text-stellar-text-secondary hover:text-stellar-text-primary hover:border-stellar-blue focus:outline-none focus:ring-2 focus:ring-stellar-blue transition-colors";
 
   const handleCopy = async (event?: MouseEvent | KeyboardEvent) => {
     if (stopPropagation && event) {
@@ -68,7 +75,14 @@ export default function CopyButton({
   };
 
   const visibleLabel =
-    status === "success" ? copiedLabel : status === "error" ? failedLabel : label;
+    status === "success"
+      ? resolvedCopiedLabel
+      : status === "error"
+        ? resolvedFailedLabel
+        : resolvedLabel;
+
+  const isSuccess = status === "success";
+  const buttonAriaLabel = ariaLabel ?? resolvedLabel;
 
   return (
     <span className="inline-flex items-center gap-2">
@@ -79,9 +93,14 @@ export default function CopyButton({
         }}
         onKeyDown={handleKeyDown}
         className={`${buttonBaseClass} ${className}`.trim()}
-        aria-label={ariaLabel ?? label}
+        aria-label={isSuccess ? `${buttonAriaLabel} - ${resolvedCopiedLabel}` : buttonAriaLabel}
       >
-        {visibleLabel}
+        {isSuccess && (
+          <CheckIcon className="h-3.5 w-3.5 shrink-0 text-emerald-500" aria-hidden="true" />
+        )}
+        <span className={isSuccess ? "text-emerald-500" : ""}>
+          {visibleLabel}
+        </span>
       </button>
       <span className="sr-only" role="status" aria-live="polite">
         {message}

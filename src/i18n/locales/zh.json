@@ -189,30 +189,10 @@
     "exactTitle": "最后更新：{{timestamp}}",
     "ariaLabel": "连接：{{status}}。{{updated}}"
   },
-  "help": {
-    "title": "帮助中心",
-    "intro": "搜索文档，浏览常见问题，并查找有关仪表板操作、集成和事件响应的上下文指导。",
-    "categories": "分类",
-    "allTopics": "全部主题",
-    "gettingStarted": "入门指南",
-    "step1": "打开仪表板并验证实时数据连接。",
-    "step2": "在设置中配置通知阈值。",
-    "step3": "启用 API 集成和 Webhook 回调。",
-    "videoTutorials": "视频教程",
-    "searchLabel": "搜索文档",
-    "searchPlaceholder": "按关键词、主题或工作流搜索",
-    "documentationViewer": "文档查看器",
-    "rateArticle": "评价此文章",
-    "rateStar": "评分 {{value}} 星",
-    "relatedArticles": "相关文章",
-    "faq": "常见问题",
-    "contactTitle": "支持与反馈",
-    "contactDescription": "分享文档中缺失或令人困惑的内容。团队在每个冲刺中审查反馈。",
-    "emailPlaceholder": "邮箱（可选）",
-    "contactDirectly": "直接联系支持",
-    "feedbackPlaceholder": "告诉我们应该改进什么",
-    "sendFeedback": "发送反馈",
-    "feedbackReceived": "反馈已收到。谢谢。"
+  "copyButton": {
+    "copy": "复制",
+    "copied": "已复制！",
+    "failed": "失败"
   },
   "app": {
     "loadingPage": "正在加载页面..."
