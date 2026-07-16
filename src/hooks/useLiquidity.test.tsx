@@ -2,7 +2,7 @@
  * Tests for useLiquidity hook — liquidity data fetching and aggregation logic
  * Following MSW v2 + renderHook pattern from existing hook tests
  */
-import { describe, it, expect, beforeAll, afterEach, afterAll, vi } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { http, HttpResponse } from "msw";
@@ -35,17 +35,9 @@ const createWrapper = () => {
 };
 
 describe("useLiquidity", () => {
-  beforeAll(() => {
-    server.listen();
-  });
-
-  afterEach(() => {
-    server.resetHandlers();
-  });
-
-  afterAll(() => {
-    server.close();
-  });
+  // MSW server lifecycle (listen/reset/close) is handled globally in
+  // src/test/setup.ts — do not start it again here or MSW throws
+  // "cannot configure an already enabled network".
 
   it("returns loading state initially", () => {
     server.use(

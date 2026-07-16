@@ -10,7 +10,6 @@
  */
 import { screen, fireEvent, waitFor } from "../test/utils";
 import { render } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import CommandPalette from "./CommandPalette";
 import { actionsRegistry, registerAction } from "../utils/commandRegistry";

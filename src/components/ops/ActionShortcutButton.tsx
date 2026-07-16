@@ -2,7 +2,7 @@ import React from "react";
 import { useAuth } from "../../context/AuthContext";
 import { LockClosedIcon } from "@heroicons/react/24/solid";
 
-interface ActionDef {
+export interface ActionDef {
   id: string;
   label: string;
   description?: string;
