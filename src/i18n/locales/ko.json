@@ -189,6 +189,11 @@
     "exactTitle": "마지막 업데이트: {{timestamp}}",
     "ariaLabel": "연결: {{status}}. {{updated}}"
   },
+  "copyButton": {
+    "copy": "복사",
+    "copied": "복사됨!",
+    "failed": "실패"
+  },
   "app": {
     "loadingPage": "페이지 로딩 중..."
   }

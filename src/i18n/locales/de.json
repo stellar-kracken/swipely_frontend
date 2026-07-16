@@ -189,6 +189,11 @@
     "exactTitle": "Zuletzt aktualisiert: {{timestamp}}",
     "ariaLabel": "Verbindung: {{status}}. {{updated}}"
   },
+  "copyButton": {
+    "copy": "Kopieren",
+    "copied": "Kopiert!",
+    "failed": "Fehlgeschlagen"
+  },
   "app": {
     "loadingPage": "Seite wird geladen..."
   }
