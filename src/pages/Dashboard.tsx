@@ -8,7 +8,7 @@ import {
   type DashboardFilters,
 } from "../hooks/useDashboardFilters";
 import { usePullToRefresh } from "../hooks/usePullToRefresh";
-import BridgeStatusCard from "../components/BridgeStatusCard";
+import BridgeStatusCard, { BridgeStatusCardSkeleton } from "../components/BridgeStatusCard";
 import WatchlistWidget from "../components/watchlist/WatchlistWidget";
 import ExternalDependencyPanel from "../components/dashboard/ExternalDependencyPanel";
 import PullToRefresh from "../components/PullToRefresh";
@@ -753,7 +753,13 @@ export default function Dashboard() {
             </Link>
           </div>
           {bridgesLoading ? (
-            <p className="text-stellar-text-secondary">Loading bridges...</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="status" aria-label="Loading bridge status cards">
+              {Array.from({ length: 3 }).map((_, i) => (
+                <div key={`skeleton-${i}`} className="space-y-2">
+                  <BridgeStatusCardSkeleton />
+                </div>
+              ))}
+            </div>
           ) : filteredBridges.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredBridges.map((bridge) => (
