@@ -34,3 +34,13 @@ export interface GlobalErrorBoundaryProps {
   children: React.ReactNode;
   onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
 }
+
+export interface RouteErrorBoundaryProps {
+  children: React.ReactNode;
+  /** Label used in error logs (e.g. route path or page name). */
+  context?: string;
+  severity?: ErrorSeverity;
+  fallback?: React.ReactNode | ((props: ErrorFallbackProps) => React.ReactNode);
+  onError?: (error: Error, errorInfo: React.ErrorInfo) => void;
+  onReset?: () => void;
+}

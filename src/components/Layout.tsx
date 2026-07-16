@@ -2,13 +2,27 @@ import { useState, useCallback, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import { Breadcrumb } from "./Breadcrumb";
-import { ComponentErrorBoundary } from "./ErrorBoundary";
+import { RouteErrorBoundary } from "./ErrorBoundary";
 import ShortcutHelp from "./ShortcutHelp";
 import CommandPalette from "./CommandPalette";
 import MaintenanceBanner from "./MaintenanceBanner";
 import { useKeyboardShortcuts } from "../hooks/useKeyboardShortcuts";
 import { MetricsSidebar } from "./MetricsSidebar";
 import { useMetricsSidebarStore } from "../stores/metricsSidebarStore";
+
+/**
+ * Renders the active route inside a boundary keyed by pathname so:
+ * - a crash on one page cannot blank the shell (nav, banners, etc.)
+ * - navigating away remounts a fresh boundary (error state does not stick)
+ */
+function RouteOutlet() {
+  const { pathname } = useLocation();
+  return (
+    <RouteErrorBoundary key={pathname} context={`Route:${pathname}`} severity="high">
+      <Outlet />
+    </RouteErrorBoundary>
+  );
+}
 
 export default function Layout() {
   const { pathname } = useLocation();
@@ -48,9 +62,7 @@ export default function Layout() {
         {/* Command Palette */}
         <CommandPalette />
         {showBreadcrumbs && <Breadcrumb />}
-        <ComponentErrorBoundary context="PageContent" severity="high">
-          <Outlet />
-        </ComponentErrorBoundary>
+        <RouteOutlet />
       </main>
 
       {isSidebarOpen && sidebarPinnedCount > 0 && <MetricsSidebar />}

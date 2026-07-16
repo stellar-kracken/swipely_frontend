@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CopyButton from "../CopyButton";
 import type { ErrorFallbackProps } from "./types";
 
 const isDev = import.meta.env.DEV;
@@ -88,9 +89,24 @@ export default function ErrorFallback({
       <p className={`mt-1 text-sm ${styles.text}/80`}>{displayMessage}</p>
 
       {errorInfo?.id && (
-        <p className="mt-2 text-xs text-stellar-text-secondary">
-          Error ID: <code className="font-mono">{errorInfo.id}</code>
-        </p>
+        <div
+          className="mt-3 flex flex-wrap items-center justify-center gap-2 text-xs text-stellar-text-secondary"
+          data-testid="error-reference"
+        >
+          <span>
+            Error reference:{" "}
+            <code className="font-mono text-stellar-text-primary" data-testid="error-reference-id">
+              {errorInfo.id}
+            </code>
+          </span>
+          <CopyButton
+            value={errorInfo.id}
+            label="Copy"
+            copiedLabel="Copied"
+            variant="inline"
+            ariaLabel="Copy error reference"
+          />
+        </div>
       )}
 
       <div className="mt-4 flex items-center justify-center gap-3">
