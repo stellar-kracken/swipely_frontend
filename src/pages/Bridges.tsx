@@ -5,11 +5,16 @@ import { useFavorites } from "../hooks/useFavorites";
 import { useRefreshControls } from "../hooks/useRefreshControls";
 import { usePullToRefresh } from "../hooks/usePullToRefresh";
 import BridgeStatusCard from "../components/BridgeStatusCard";
+import BridgeFilterSort from "../components/BridgeFilterSort";
 import BridgeNotesPanel from "../components/BridgeNotesPanel";
 import FavoriteTagChip from "../components/favorites/FavoriteTagChip";
 import RefreshControls from "../components/RefreshControls";
 import PullToRefresh from "../components/PullToRefresh";
 import { SkeletonCard, ErrorBoundary } from "../components/Skeleton";
+import {
+  applyBridgeFilterSort,
+  useBridgeFilterSortStore,
+} from "../stores/bridgeFilterSortStore";
 
 export default function Bridges() {
   const [searchParams] = useSearchParams();
@@ -21,6 +26,9 @@ export default function Bridges() {
     toggleFavoriteBridge,
     favoriteBridges,
   } = useFavorites();
+
+  const statusFilter = useBridgeFilterSortStore((s) => s.statusFilter);
+  const sortBy = useBridgeFilterSortStore((s) => s.sortBy);
 
   const refreshControls = useRefreshControls({
     viewId: "bridges",
@@ -41,9 +49,12 @@ export default function Bridges() {
 
   const filteredBridges = useMemo(() => {
     const bridges = data?.bridges ?? [];
-    if (favoritesFilterMode !== "favorites") return bridges;
-    return bridges.filter((b) => favoriteBridges.includes(b.name));
-  }, [data?.bridges, favoritesFilterMode, favoriteBridges]);
+    const favoriteScoped =
+      favoritesFilterMode === "favorites"
+        ? bridges.filter((b) => favoriteBridges.includes(b.name))
+        : bridges;
+    return applyBridgeFilterSort(favoriteScoped, statusFilter, sortBy);
+  }, [data?.bridges, favoritesFilterMode, favoriteBridges, statusFilter, sortBy]);
 
   return (
     <div className="space-y-8">
@@ -77,42 +88,45 @@ export default function Bridges() {
         lastUpdatedAt={refreshControls.lastUpdatedAt}
       />
 
-      <div className="flex flex-wrap items-center justify-end gap-3">
-        <div className="inline-flex rounded-full border border-stellar-border p-0.5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <BridgeFilterSort />
+        <div className="flex flex-wrap items-center gap-3">
+          <div className="inline-flex rounded-full border border-stellar-border p-0.5">
+            <button
+              type="button"
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                favoritesFilterMode === "all"
+                  ? "bg-stellar-blue text-stellar-ink"
+                  : "text-stellar-text-secondary hover:text-stellar-text-primary"
+              }`}
+              aria-pressed={favoritesFilterMode === "all"}
+              onClick={() => setFavoritesFilterMode("all")}
+            >
+              All bridges
+            </button>
+            <button
+              type="button"
+              className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
+                favoritesFilterMode === "favorites"
+                  ? "bg-stellar-blue text-stellar-ink"
+                  : "text-stellar-text-secondary hover:text-stellar-text-primary"
+              }`}
+              aria-pressed={favoritesFilterMode === "favorites"}
+              onClick={() => setFavoritesFilterMode("favorites")}
+            >
+              Favorites only
+            </button>
+          </div>
           <button
             type="button"
-            className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
-              favoritesFilterMode === "all"
-                ? "bg-stellar-blue text-stellar-ink"
-                : "text-stellar-text-secondary hover:text-stellar-text-primary"
-            }`}
-            aria-pressed={favoritesFilterMode === "all"}
-            onClick={() => setFavoritesFilterMode("all")}
+            onClick={() => {
+              void pullToRefresh.refresh();
+            }}
+            className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border"
           >
-            All bridges
-          </button>
-          <button
-            type="button"
-            className={`rounded-full px-3 py-1 text-xs font-medium transition-colors ${
-              favoritesFilterMode === "favorites"
-                ? "bg-stellar-blue text-stellar-ink"
-                : "text-stellar-text-secondary hover:text-stellar-text-primary"
-            }`}
-            aria-pressed={favoritesFilterMode === "favorites"}
-            onClick={() => setFavoritesFilterMode("favorites")}
-          >
-            Favorites only
+            Refresh now
           </button>
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            void pullToRefresh.refresh();
-          }}
-          className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border"
-        >
-          Refresh now
-        </button>
       </div>
 
       <ErrorBoundary onRetry={() => window.location.reload()}>

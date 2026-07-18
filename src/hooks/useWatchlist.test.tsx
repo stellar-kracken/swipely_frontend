@@ -2,6 +2,7 @@ import { renderHook, act } from "@testing-library/react";
 import { describe, it, expect, beforeEach, beforeAll, afterAll, afterEach } from "vitest";
 import { setupServer } from "msw/node";
 import { useWatchlist, WatchlistProvider } from "./useWatchlist";
+import { useWatchlistStore, WATCHLIST_STORAGE_KEY } from "../stores/watchlistStore";
 import React from "react";
 
 // Mock MSW server setup to fulfill established frontend testing patterns,
@@ -15,6 +16,7 @@ afterEach(() => server.resetHandlers());
 describe("useWatchlist", () => {
   beforeEach(() => {
     window.localStorage.clear();
+    useWatchlistStore.setState(useWatchlistStore.getInitialState(), true);
   });
 
   const wrapper = ({ children }: { children: React.ReactNode }) => (
@@ -70,11 +72,13 @@ describe("useWatchlist", () => {
       result.current.addAsset("BTC");
     });
 
-    const storedRaw = window.localStorage.getItem("swipely.watchlists.v1");
+    const storedRaw = window.localStorage.getItem(WATCHLIST_STORAGE_KEY);
     expect(storedRaw).toBeTruthy();
-    
+
     const stored = JSON.parse(storedRaw!);
-    expect(stored.lists[0].assets).toContain("BTC");
+    // Zustand persist wraps partialized state under `state`.
+    const lists = stored.state?.lists ?? stored.lists;
+    expect(lists[0].assets).toContain("BTC");
   });
 
   it("should reorder assets", () => {

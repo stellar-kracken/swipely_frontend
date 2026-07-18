@@ -86,6 +86,36 @@ export {
   type CacheActions,
 } from "./cacheStore";
 
+// Watchlist Store (persisted)
+export {
+  useWatchlistStore,
+  selectWatchlists,
+  selectActiveListId,
+  selectActiveWatchlist,
+  selectActiveSymbols,
+  normalizeWatchlistState,
+  WATCHLIST_STORAGE_KEY,
+  LEGACY_WATCHLIST_STORAGE_KEY,
+  type Watchlist,
+  type WatchlistState,
+  type WatchlistStore,
+} from "./watchlistStore";
+
+// Bridge filter/sort preferences (persisted)
+export {
+  useBridgeFilterSortStore,
+  selectStatusFilter,
+  selectSortBy,
+  applyBridgeFilterSort,
+  getBridgeHealthScore,
+  normalizeBridgeFilterSortState,
+  BRIDGE_FILTER_SORT_STORAGE_KEY,
+  type BridgeStatusFilter,
+  type BridgeSortBy,
+  type BridgeFilterSortState,
+  type BridgeFilterSortStore,
+} from "./bridgeFilterSortStore";
+
 // Middleware
 export {
   logger,
