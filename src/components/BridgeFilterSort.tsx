@@ -1,16 +1,53 @@
+import {
+  useBridgeFilterSortStore,
+  type BridgeSortBy,
+  type BridgeStatusFilter,
+} from "../stores/bridgeFilterSortStore";
+
 interface BridgeFilterSortProps {
-  statusFilter: string;
-  onStatusFilterChange: (status: string) => void;
-  sortBy: string;
-  onSortByChange: (sortBy: string) => void;
+  /** Optional controlled status filter; defaults to the persisted store value. */
+  statusFilter?: string;
+  onStatusFilterChange?: (status: string) => void;
+  /** Optional controlled sort key; defaults to the persisted store value. */
+  sortBy?: string;
+  onSortByChange?: (sortBy: string) => void;
 }
 
+/**
+ * Bridge status filter + sort controls.
+ * Selections are persisted to localStorage via `useBridgeFilterSortStore`
+ * unless fully controlled by the parent through props.
+ */
 export default function BridgeFilterSort({
-  statusFilter,
+  statusFilter: statusFilterProp,
   onStatusFilterChange,
-  sortBy,
+  sortBy: sortByProp,
   onSortByChange,
-}: BridgeFilterSortProps) {
+}: BridgeFilterSortProps = {}) {
+  const storeStatusFilter = useBridgeFilterSortStore((s) => s.statusFilter);
+  const storeSortBy = useBridgeFilterSortStore((s) => s.sortBy);
+  const setStatusFilter = useBridgeFilterSortStore((s) => s.setStatusFilter);
+  const setSortBy = useBridgeFilterSortStore((s) => s.setSortBy);
+
+  const statusFilter = statusFilterProp ?? storeStatusFilter;
+  const sortBy = sortByProp ?? storeSortBy;
+
+  const handleStatusChange = (value: string) => {
+    if (onStatusFilterChange) {
+      onStatusFilterChange(value);
+    } else {
+      setStatusFilter(value as BridgeStatusFilter);
+    }
+  };
+
+  const handleSortChange = (value: string) => {
+    if (onSortByChange) {
+      onSortByChange(value);
+    } else {
+      setSortBy(value as BridgeSortBy);
+    }
+  };
+
   return (
     <div className="flex flex-wrap gap-4 items-center">
       <div className="flex items-center gap-2">
@@ -20,7 +57,7 @@ export default function BridgeFilterSort({
         <select
           id="status-filter"
           value={statusFilter}
-          onChange={(e) => onStatusFilterChange(e.target.value)}
+          onChange={(e) => handleStatusChange(e.target.value)}
           className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           <option value="all">All</option>
@@ -38,7 +75,7 @@ export default function BridgeFilterSort({
         <select
           id="sort-by"
           value={sortBy}
-          onChange={(e) => onSortByChange(e.target.value)}
+          onChange={(e) => handleSortChange(e.target.value)}
           className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
           <option value="name">Name</option>
