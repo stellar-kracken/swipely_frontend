@@ -30,8 +30,19 @@ jobs:
       - name: Type check
         run: npm run type-check
 
-      - name: Unit tests
-        run: npm run test
+      # The same vitest suite as 'npm run test', with the v8 provider on: the
+      # thresholds in vite.config.ts are what makes this a gate rather than a
+      # report. Running both scripts would run the suite twice for one signal.
+      - name: Unit tests with coverage gate
+        run: npm run test:coverage
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 14
 
       - name: Build
         run: npm run build
