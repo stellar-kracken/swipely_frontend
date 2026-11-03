@@ -8,31 +8,37 @@ import Bridges from "./Bridges";
 
 // ── Hook mocks ────────────────────────────────────────────────────────────────
 
-vi.mock("../hooks/useBridges", () => ({
-  useBridges: () => ({
-    data: {
-      bridges: [
-        {
-          name: "Circle",
-          status: "healthy",
-          totalValueLocked: 500_000_000,
-          supplyOnStellar: 500_000_000,
-          supplyOnSource: 500_000_000,
-          mismatchPercentage: 0,
-        },
-        {
-          name: "Wormhole",
-          status: "degraded",
-          totalValueLocked: 200_000_000,
-          supplyOnStellar: 190_000_000,
-          supplyOnSource: 200_000_000,
-          mismatchPercentage: 5.0,
-        },
-      ],
+const mockBridgesData = {
+  bridges: [
+    {
+      name: "Circle",
+      status: "healthy" as const,
+      totalValueLocked: 500_000_000,
+      supplyOnStellar: 500_000_000,
+      supplyOnSource: 500_000_000,
+      mismatchPercentage: 0,
     },
-    isLoading: false,
-    refetch: vi.fn(),
-  }),
+    {
+      name: "Wormhole",
+      status: "degraded" as const,
+      totalValueLocked: 200_000_000,
+      supplyOnStellar: 190_000_000,
+      supplyOnSource: 200_000_000,
+      mismatchPercentage: 5.0,
+    },
+  ],
+};
+
+const useBridgesMock = vi.fn(() => ({
+  data: mockBridgesData,
+  isLoading: false,
+  refetch: vi.fn(),
+}));
+
+let mockStatusFilter: import("../stores/bridgeFilterSortStore").BridgeStatusFilter = "all";
+
+vi.mock("../hooks/useBridges", () => ({
+  useBridges: () => useBridgesMock(),
 }));
 
 vi.mock("../hooks/useFavorites", () => ({
@@ -82,7 +88,7 @@ vi.mock("../stores/bridgeFilterSortStore", async (importOriginal) => {
     ...original,
     useBridgeFilterSortStore: (selector: (s: import("../stores/bridgeFilterSortStore").BridgeFilterSortStore) => unknown) => {
       const state: import("../stores/bridgeFilterSortStore").BridgeFilterSortStore = {
-        statusFilter: "all",
+        statusFilter: mockStatusFilter,
         sortBy: "name",
         setStatusFilter: vi.fn(),
         setSortBy: vi.fn(),
@@ -104,7 +110,36 @@ vi.mock("../components/BridgeNotesPanel", () => ({
 // ── Tests ─────────────────────────────────────────────────────────────────────
 
 describe("Bridges — accessibility", () => {
+  beforeEach(() => {
+    mockStatusFilter = "all";
+    useBridgesMock.mockReturnValue({
+      data: mockBridgesData,
+      isLoading: false,
+      refetch: vi.fn(),
+    });
+  });
+
   it("has no axe violations on initial render", async () => {
+    const { container } = render(<Bridges />);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it("has no axe violations when no bridges exist", async () => {
+    useBridgesMock.mockReturnValue({
+      data: { bridges: [] },
+      isLoading: false,
+      refetch: vi.fn(),
+    });
+
+    const { container } = render(<Bridges />);
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
+  });
+
+  it("has no axe violations when filters exclude all bridges", async () => {
+    mockStatusFilter = "down";
+
     const { container } = render(<Bridges />);
     const results = await axe(container);
     expect(results).toHaveNoViolations();

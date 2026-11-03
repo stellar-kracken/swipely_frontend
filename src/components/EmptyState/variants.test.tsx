@@ -33,6 +33,13 @@ describe("EmptyState variants", () => {
     expect(onClearFilters).toHaveBeenCalledTimes(1);
   });
 
+  it("EmptyBridges omits the clear-filters button when hasFilters is true without onClearFilters", async () => {
+    renderVariant(<EmptyBridges hasFilters />);
+
+    expect(await screen.findByText("No bridges match your filters")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Clear filters" })).not.toBeInTheDocument();
+  });
+
   it("EmptyAlerts distinguishes no data from no matches", async () => {
     renderVariant(<EmptyAlerts />);
     expect(await screen.findByText("No active alerts")).toBeInTheDocument();

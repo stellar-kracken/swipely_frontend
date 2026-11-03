@@ -1,4 +1,5 @@
-import { Suspense, useMemo } from "react";
+import { Suspense, useCallback, useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 import { useBridges } from "../hooks/useBridges";
 import { useFavorites } from "../hooks/useFavorites";
@@ -18,6 +19,7 @@ import {
 } from "../stores/bridgeFilterSortStore";
 
 export default function Bridges() {
+  const { t } = useTranslation();
   const [searchParams] = useSearchParams();
   const selectedBridge = searchParams.get("selected") ?? null;
 
@@ -32,9 +34,18 @@ export default function Bridges() {
   const sortBy = useBridgeFilterSortStore((s) => s.sortBy);
   const setStatusFilter = useBridgeFilterSortStore((s) => s.setStatusFilter);
 
+  const hasActiveFilters = statusFilter !== "all" || favoritesFilterMode !== "all";
+
+  const handleClearFilters = useCallback(() => {
+    setFavoritesFilterMode("all");
+    setStatusFilter("all");
+  }, [setFavoritesFilterMode, setStatusFilter]);
+
+  const bridgeStatusLabel = t("bridges.bridgeStatus");
+
   const refreshControls = useRefreshControls({
     viewId: "bridges",
-    targets: [{ id: "bridges", label: "Bridge status", queryKey: ["bridges"] }],
+    targets: [{ id: "bridges", label: bridgeStatusLabel, queryKey: ["bridges"] }],
     defaultIntervalMs: 30_000,
   });
 
@@ -58,6 +69,14 @@ export default function Bridges() {
     return applyBridgeFilterSort(favoriteScoped, statusFilter, sortBy);
   }, [data?.bridges, favoritesFilterMode, favoriteBridges, statusFilter, sortBy]);
 
+  const loadingGrid = (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {[1, 2, 3].map((i) => (
+        <SkeletonCard key={i} rows={6} ariaLabel={t("bridges.loadingCard", { index: i })} />
+      ))}
+    </div>
+  );
+
   return (
     <div className="space-y-8">
       <PullToRefresh
@@ -68,10 +87,8 @@ export default function Bridges() {
       />
 
       <div>
-        <h1 className="text-3xl font-bold text-stellar-text-primary">Bridges</h1>
-        <p className="mt-2 text-stellar-text-secondary">
-          Monitor cross-chain bridge status, supply consistency, and performance
-        </p>
+        <h1 className="text-3xl font-bold text-stellar-text-primary">{t("bridges.title")}</h1>
+        <p className="mt-2 text-stellar-text-secondary">{t("bridges.subtitle")}</p>
       </div>
 
       <RefreshControls
@@ -81,7 +98,7 @@ export default function Bridges() {
         onRefreshIntervalChange={refreshControls.setRefreshIntervalMs}
         refreshOnFocus={refreshControls.preferences.refreshOnFocus}
         onRefreshOnFocusChange={refreshControls.setRefreshOnFocus}
-        targets={[{ id: "bridges", label: "Bridge status", refetch }]}
+        targets={[{ id: "bridges", label: bridgeStatusLabel, refetch }]}
         selectedTargetIds={refreshControls.preferences.selectedTargetIds}
         onSelectedTargetIdsChange={refreshControls.setSelectedTargetIds}
         onRefresh={refreshControls.refreshNow}
@@ -104,7 +121,7 @@ export default function Bridges() {
               aria-pressed={favoritesFilterMode === "all"}
               onClick={() => setFavoritesFilterMode("all")}
             >
-              All bridges
+              {t("bridges.allBridges")}
             </button>
             <button
               type="button"
@@ -116,7 +133,7 @@ export default function Bridges() {
               aria-pressed={favoritesFilterMode === "favorites"}
               onClick={() => setFavoritesFilterMode("favorites")}
             >
-              Favorites only
+              {t("bridges.favoritesOnly")}
             </button>
           </div>
           <button
@@ -126,78 +143,71 @@ export default function Bridges() {
             }}
             className="rounded-md border border-stellar-border px-4 py-2 text-sm text-stellar-text-primary hover:bg-stellar-border"
           >
-            Refresh now
+            {t("bridges.refreshNow")}
           </button>
         </div>
       </div>
 
       <ErrorBoundary onRetry={() => window.location.reload()}>
-        <Suspense
-          fallback={
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3].map((i) => (
-                <SkeletonCard key={i} rows={6} ariaLabel={`Loading bridge card ${i}`} />
-              ))}
-            </div>
-          }
-        >
+        <Suspense fallback={loadingGrid}>
           {isLoading ? (
+            loadingGrid
+          ) : filteredBridges.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1, 2, 3].map((i) => (
-                <SkeletonCard key={i} rows={6} ariaLabel={`Loading bridge card ${i}`} />
+              {filteredBridges.map((bridge) => (
+                <BridgeStatusCard
+                  key={bridge.name}
+                  {...bridge}
+                  topRight={
+                    <FavoriteTagChip
+                      compact
+                      label={bridge.name}
+                      active={favoriteBridges.includes(bridge.name)}
+                      onToggle={() => toggleFavoriteBridge(bridge.name)}
+                    />
+                  }
+                />
               ))}
             </div>
-          ) : data && data.bridges && data.bridges.length > 0 ? (
-            filteredBridges.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredBridges.map((bridge) => (
-                  <BridgeStatusCard
-                    key={bridge.name}
-                    {...bridge}
-                    topRight={
-                      <FavoriteTagChip
-                        compact
-                        label={bridge.name}
-                        active={favoriteBridges.includes(bridge.name)}
-                        onToggle={() => toggleFavoriteBridge(bridge.name)}
-                      />
-                    }
-                  />
-                ))}
-              </div>
-            ) : (
-              <EmptyBridges
-                hasFilters
-                onClearFilters={() => {
-                  setFavoritesFilterMode("all");
-                  setStatusFilter("all");
-                }}
-              />
-            )
           ) : (
-            <EmptyBridges />
+            <EmptyBridges
+              hasFilters={hasActiveFilters}
+              onClearFilters={hasActiveFilters ? handleClearFilters : undefined}
+            />
           )}
         </Suspense>
       </ErrorBoundary>
 
       <div className="bg-stellar-card border border-stellar-border rounded-lg p-6">
-        <h2 className="text-xl font-semibold text-stellar-text-primary mb-4">Bridge Performance</h2>
+        <h2 className="text-xl font-semibold text-stellar-text-primary mb-4">
+          {t("bridges.performanceTitle")}
+        </h2>
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <caption className="sr-only">Bridge performance metrics table</caption>
+            <caption className="sr-only">{t("bridges.performanceTableCaption")}</caption>
             <thead>
               <tr className="text-left text-stellar-text-secondary border-b border-stellar-border">
-                <th scope="col" className="pb-3 pr-4">Bridge</th>
-                <th scope="col" className="pb-3 pr-4">24h Volume</th>
-                <th scope="col" className="pb-3 pr-4">7d Volume</th>
-                <th scope="col" className="pb-3 pr-4">Avg Transfer Time</th>
-                <th scope="col" className="pb-3">30d Uptime</th>
+                <th scope="col" className="pb-3 pr-4">
+                  {t("bridges.columnBridge")}
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  {t("bridges.columnVolume24h")}
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  {t("bridges.columnVolume7d")}
+                </th>
+                <th scope="col" className="pb-3 pr-4">
+                  {t("bridges.columnAvgTransferTime")}
+                </th>
+                <th scope="col" className="pb-3">
+                  {t("bridges.columnUptime30d")}
+                </th>
               </tr>
             </thead>
             <tbody className="text-stellar-text-primary">
               <tr>
                 <td colSpan={5} className="py-6 text-center text-stellar-text-secondary">
-                  Performance data will appear once bridge monitoring is active
+                  {t("bridges.performanceEmpty")}
                 </td>
               </tr>
             </tbody>
@@ -205,9 +215,7 @@ export default function Bridges() {
         </div>
       </div>
       {/* Bridge notes panel — shown when a bridge card is clicked */}
-      {selectedBridge && (
-        <BridgeNotesPanel bridgeName={selectedBridge} />
-      )}
+      {selectedBridge && <BridgeNotesPanel bridgeName={selectedBridge} />}
     </div>
   );
 }

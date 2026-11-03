@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import {
   useBridgeFilterSortStore,
   type BridgeSortBy,
@@ -24,6 +25,7 @@ export default function BridgeFilterSort({
   sortBy: sortByProp,
   onSortByChange,
 }: BridgeFilterSortProps = {}) {
+  const { t } = useTranslation();
   const storeStatusFilter = useBridgeFilterSortStore((s) => s.statusFilter);
   const storeSortBy = useBridgeFilterSortStore((s) => s.sortBy);
   const setStatusFilter = useBridgeFilterSortStore((s) => s.setStatusFilter);
@@ -52,7 +54,7 @@ export default function BridgeFilterSort({
     <div className="flex flex-wrap gap-4 items-center">
       <div className="flex items-center gap-2">
         <label htmlFor="status-filter" className="text-sm text-stellar-text-secondary">
-          Status:
+          {t("bridges.filterStatusLabel")}
         </label>
         <select
           id="status-filter"
@@ -60,17 +62,17 @@ export default function BridgeFilterSort({
           onChange={(e) => handleStatusChange(e.target.value)}
           className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
-          <option value="all">All</option>
-          <option value="healthy">Healthy</option>
-          <option value="degraded">Degraded</option>
-          <option value="down">Down</option>
-          <option value="unknown">Unknown</option>
+          <option value="all">{t("bridges.filterAll")}</option>
+          <option value="healthy">{t("bridges.healthy")}</option>
+          <option value="degraded">{t("bridges.degraded")}</option>
+          <option value="down">{t("bridges.down")}</option>
+          <option value="unknown">{t("bridges.unknown")}</option>
         </select>
       </div>
 
       <div className="flex items-center gap-2">
         <label htmlFor="sort-by" className="text-sm text-stellar-text-secondary">
-          Sort by:
+          {t("bridges.sortByLabel")}
         </label>
         <select
           id="sort-by"
@@ -78,10 +80,10 @@ export default function BridgeFilterSort({
           onChange={(e) => handleSortChange(e.target.value)}
           className="bg-stellar-card border border-stellar-border rounded px-3 py-1.5 text-sm text-stellar-text-primary focus:outline-none focus:ring-2 focus:ring-stellar-blue"
         >
-          <option value="name">Name</option>
-          <option value="tvl">TVL</option>
-          <option value="volume">24h Volume</option>
-          <option value="health">Health Score</option>
+          <option value="name">{t("bridges.sortName")}</option>
+          <option value="tvl">{t("bridges.sortTvl")}</option>
+          <option value="volume">{t("bridges.sortVolume24h")}</option>
+          <option value="health">{t("bridges.sortHealthScore")}</option>
         </select>
       </div>
     </div>

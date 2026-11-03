@@ -35,9 +35,11 @@ export function EmptyBridges({ hasFilters, onClearFilters }: EmptyBridgesProps) 
         illustration={<EmptyIllustration.NoResults />}
         title={t("emptyStates.bridges.filteredTitle")}
         description={t("emptyStates.bridges.filteredDescription")}
-        actions={[
-          { label: t("common.clearFilters"), onClick: onClearFilters, variant: "primary" },
-        ]}
+        actions={
+          onClearFilters
+            ? [{ label: t("common.clearFilters"), onClick: onClearFilters, variant: "primary" }]
+            : []
+        }
         ariaLabel={t("emptyStates.bridges.filteredTitle")}
       />
     );
